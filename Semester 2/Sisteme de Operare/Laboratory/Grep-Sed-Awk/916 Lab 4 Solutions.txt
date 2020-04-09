@@ -1,0 +1,26 @@
+Exercice 1:
+    sed -e "#\(<article>\|</article>\)#d" seddata.txt
+
+Exercice 2:
+    1) sed "s/<title>/Title:/g" seddata.txt | sed "s#</title>##g"
+    2) sed -e "s/<title>/Title:/g" seddata.txt -e "s#</title>##g" seddata.txt
+
+Exercice 3:
+    sed "/^<para>$/d" seddata.txt | sed "/^<\/para>$/d" | sed "s/\(<para>\)\|\(<\/para>\)//gi"
+
+Exercice 4:
+    sed -e "s/<emphasis>/\*/g" seddata.txt -e "s#</emphasis>#\*#g" seddata.txt
+
+Exercice 5:
+    sed "s/web/Web/g" seddata.txt
+
+Exercice 6:
+    sed "s/\(^<listing>\)/---begin listing/g" seddata.txt
+
+Exercice 7:
+    sed "s/\(^<\/listing>\)/---end listing/g" seddata.txt
+
+Exercice 8:
+    awk -f last_exercice.awk seddata.txt | sed "s/\&lt/</g" | sed "s/\&gt/>/g" | sed "s/\&amp/\&/g"
+
+/<listing>/, /<\/listing>/

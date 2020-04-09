@@ -1,0 +1,50 @@
+'''
+Created on Nov 2, 2016
+
+@author: Arthur
+'''
+class Student:
+    
+    __studentCount = 0
+    
+    def __init__(self, name="Anonymous"):
+        self.__name = name
+        
+        '''
+            NB!
+            Make sure to prefix the attribute name with:
+                - class name, or
+                - type(self)
+        '''
+        Student.__studentCount += 1
+        
+
+    def setName(self, name):
+        self.__name = name
+        
+    def getName(self):
+        return self.__name
+    
+    
+    @staticmethod
+    def getStudentCount():
+        return Student.__studentCount
+        
+'''
+    We create some students
+'''
+s1 = Student()
+s2 = Student()
+
+s1.setName("Anna")
+s2.setName("Carla")
+
+print(s1.getName())
+print(s2.getName())
+
+print(Student.getStudentCount())
+
+'''
+    What happens here?
+'''
+#print(Student.__studentCount)

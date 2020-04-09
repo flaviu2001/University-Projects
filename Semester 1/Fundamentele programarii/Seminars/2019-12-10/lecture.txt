@@ -1,0 +1,7 @@
+TicTacToe
+Player vs Computer (Player moves first)
+Validate everything
+Computer moves
+	lvl1 always make valid moves
+	lvl2 takes all 1-move wins
+	lvl3 prevent player's 1-move wins 

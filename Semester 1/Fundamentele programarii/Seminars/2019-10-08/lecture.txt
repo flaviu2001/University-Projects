@@ -1,0 +1,8 @@
+procedural programming
+	functions -> subprograms, subroutines, prodcedures?
+	functions:
+		have human readable names
+		talk using parameters and/or returns
+		each function does one thing
+		specification
+simple feature-driven development	

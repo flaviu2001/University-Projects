@@ -1,0 +1,121 @@
+gcc -std=c99 -Wall -g -o main main.c
+
+int	| File*
+0   | stdin
+1   | stdout
+2   | stderr
+
+write to stderr -> fprintf(stderr, ...);
+				   cerr
+
+ctrl+d 	-> eof
+
+>			-> redirect stdout to a file
+>> 			-> redirect stdout to a file and append
+<			-> redirect stdin to a file
+| 			-> takes the output of a command and makes it input for the next one
+2> or 2>> 	-> redirect the error
+
+cat a asdasdsad > out 2> err
+cat out
+cat err
+cat a adqwefwwe > both 2>&1  	-> sends stdout and stderr to both
+/dev/null 	-> black hole file (everything you write is lost and anything you try to read is empty)
+0 == success == TRUE
+not 0 == failure == FALSE
+There are the commands true and false
+true has exit code 0
+false has exit code 1
+echo $? 	-> shows exit code of last command
+true || echo not going to be shown
+|| works on exit codes
+echo "adsada" | grep -i "[aeiou]" || echo qqqqqqqqqq
+echo "adsada" | grep -i -q "[aeiou]" || echo qqqqqqqqqq
+
+test
+strings: == != -n -z
+integers: -lt -le -eq -ne -ge -gt
+files: -e -f -d -r -w -x
+These are all in man test
+
+bash has variables
+A="Tom"
+echo $A
+echo ${A}cat
+C=`wc -l < a`
+echo $C
+echo '$A has `wc -l < a` apple'	-> apostrophes do not allow substitutions
+echo "$A has `wc -l < a` apple"	-> quotes do allow substitutions
+
+chmod (User/Group/Other) (Read=4, Write=2, Execute=1)
+#!/bin/bash
+
+#-comment
+
+$0,$1...$9(arguments) , have to use shift for more than 10
+Special :$*, $#, $?
+
+Shift: Gets rid of argument on the left and changes index of all by -1
+Shift (number of times)
+When you execute the file , have to give arguments
+
+
+#!/bin/bash
+echo $1 $2 $3
+shift
+shift
+echo $1 $2 $3
+
+./args.sh a b c d e f
+a b c
+c d e
+
+for A in a b c d e; do
+        echo $A
+done
+//This prints a b c d e on new lines
+
+
+*- wildcard:
+e.g.:for F in * (for every file in directory)
+for F in *.sh(for every file ending in .sh in directory
+
+
+root@DESKTOP-IK3E5JB:/# ./args.sh
+2 Jesus.txt
+1 a
+13 args.sh
+3 b
+2 err
+37 filter
+24 filter.c
+1306 init
+2 out
+2 out2
+14 syscall
+29 syscall.c
+find: ‘../mnt/c/$Recycle.Bin/S-1-5-18’: Permission denied
+find: ‘../mnt/c/$Recycle.Bin/S-1-5-21-1245256001-3158177535-1900119561-1000’: Permission denied
+find: ‘../mnt/c/Config.Msi’: Permission denied
+...permission denied *100
+
+Should have printed out all directories too, but it didn't . A lot of permissions denied ,though. Maybe because it goes up from root in my case?(find ..)
+
+IF- Ends with fi
+-elif
+-else
+
+file- tells you things about files
+
+#!/bin/bash
+
+
+
+
+for F in *; do
+        if file $F | grep -q "C source"; then
+                X=`echo $F | sed "s/\..*//"`
+                echo Nu merge compilarea
+                gcc -Wall -g -o $X $F && ./$X
+        fi
+done

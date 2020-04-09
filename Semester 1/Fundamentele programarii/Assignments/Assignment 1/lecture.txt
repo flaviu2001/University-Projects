@@ -1,0 +1,5 @@
+RULES:
+	1. Function specification for each function. 
+	2.Each function does a separate thing
+	3a.no reading outside read functions
+	3b.no printing outside print functions

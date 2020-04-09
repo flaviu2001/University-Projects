@@ -1,0 +1,5 @@
+Algebra: 10
+Analiza: 10 
+Fundamentele Programarii: 10
+Arhitectura Sistemelor de Calcul: 10
+Logica Computationala: 10

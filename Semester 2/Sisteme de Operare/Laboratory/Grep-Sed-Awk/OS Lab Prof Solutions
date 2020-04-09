@@ -1,0 +1,83 @@
+ 1. Display all the users in the system (using the /etc/passwd file) whose username starts with a vowel.
+grep -i "^[aeiou]" /etc/passwd
+
+2. Display how many times a user has logged in the system(using the last command).
+st | awk '{print $1}' | sort | uniq -c
+
+3. Remove the first word containing only lowercase letters from each line of a file.
+sed "s/\<[a-z]\+\>//" file
+
+4. For each file in the current directory, display only the owner's permissions and the filename.
+ls -l | grep ^- | awk '{print substr($1,2,3)" : "$9}'
+
+5. Display all the usernames in a system but replace any digits in the username with the digit + 1 (except for 9, which will be replaced by 0).
+cat /etc/passwd | cut -d: -f1 | sed "y/0123456789/1234567890/"
+
+6. Display the number of lines in a file.
+wc -l file
+
+7. Display informations about the students in the system in the following format: Name - Username - Group.
+cat /etc/passwd | awk -F: '{print $5" "$1" "substr($6,11,5)}'
+
+8. Display all the student groups and the number of students in each one.
+cat /etc/passwd | awk -F: '{print substr($6,11,5)}' | sort | uniq -c
+
+9. Display the names of students whose user id (the number in the username) contains only even digits.
+grep "^[a-z]\{4\}[24680]\{4\}" /etc/passwd | cut -d: -f5
+
+10. Determine the number of duplicate lines in a file.
+cat file | sort | uniq -c | awk '$1 > 1 {print $2}'
+
+11. Display the name of all text files from the current directory.
+file * | grep text
+
+12. Display all the files smaller than 100 bytes.
+ls -l | awk 'NR > 1 && $5 < 100 {print $9}'
+
+13. Count the number of lines ending in vowel and the number of lines ending in consonant.
+awk -f f file
+where f is an awk script file containing:
+
+BEGIN {
+    v=0
+    c=0
+}
+
+$0 ~ /[aeiou]$/ {
+    v++
+}
+
+$0 ~ /[a-z]$/ && /[^aeiou]$/ {
+    c++
+}
+
+END {
+    print "Lines ending in vowel: "v
+    print "Lines ending in consonant: "c
+}
+
+
+
+14. Write a bash script that calculates the sum of the sizes of all text files in a given folder.
+
+#!/bin/bash
+
+if [ $# -ne 1 ]; then
+    echo "Please provide exactly one argument"
+fi
+
+sum=0
+for i in `ls "$1"`; do
+    if [ -f "$i" ]; then
+        isfile=$(file "$i"|grep -c "text")
+        if [ $isfile -eq 1 ]; then
+            fsize=$(du -b "$i" | cut -f1)
+            sum=$((sum+fsize))
+        fi
+    fi
+done
+
+echo "Total size: $sum"
+
+
+
