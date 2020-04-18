@@ -18,6 +18,7 @@ G 			-> end of file (start of line)
 o O 		-> inserts new line below/above cursor
 x X 		-> deletes character under/left of cursor
 r 			-> replaces the character under cursor 		(eg. re)
+R 			-> replaces characters until esc is pressed
 d 			-> deletes, can combine with movement 		(eg. d2w, also copies to clipboard)
 dd 			-> deletes entire line
 .			-> repeats previous command
@@ -29,3 +30,6 @@ u 			-> redo
 ctrl+r 		-> undo
 >>			-> tab 										(2>> will tab the next two lines)
 << 			-> de-tab
+ctrl+n 		-> auto-complete
+:!  		-> external commands 						(like :! ls)
+:r 			-> puts text from a file to cursor 			(:r !ls also works and pastes ls output)

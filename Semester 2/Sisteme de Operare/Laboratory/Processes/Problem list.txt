@@ -1,0 +1,21 @@
+1. Create a C program that runs a bash command received as a command line argument.
+sol-exec
+sol-popen
+
+2. Create a C program that generates N random integers (N given at the command line). It then creates a child, sends the numbers via pipe. The child calculates the average and sends the result back.
+sol
+
+3. Write a C program that creates two child processes. The two child processes will alternate sending random integers between 1 and 10(inclusively) to one another until one of them sends the number 10. Print messages as the numbers are sent.
+sol
+
+4. Write a C program that implements the boltz game. N processes (numbered 1 to N, where N is given) take turns incrementing a number and sending it to the next process. Process 1 starts the game by incrementing the number and sends it to process 2, which increments and sends it to process 3 and so on. Process N will send the number back to process 1. Each process must print the number it sends, unless the number contains the digit 7 or is divisible by 7, in which case it must print "boltz". Implement so that each process has a 1 in 3 chance to fail printing "boltz" when it should, in which case the game stops.
+sol
+
+5. Write two C programs that communicate via fifo. Program A is responsible for creating/deleting the fifo. Program A reads commands from the standard input, executes them and sends the output to program B. Program B keeps reading from the fifo and displays whatever it receives at the standard output. This continues until program A receives the "stop" command.
+Process A
+Process B
+common.h
+
+6. Create two processes A and B. A generates a random number n between 50 and 200. If it is even, it sends it to B, if it is odd it sends n+1 to B. B receives the number and divides it by 2 and sends it back to A. The process repeats until n is smaller than 5. The processes will print the value of n at each step.
+
+7. Using FIFO channels create and implement the following scenario: Process A receives N integer numbers from the command line and sends them one by one to another process named B. Process B will subtract a random number, between 0 and 2, from each received number and will send them to another process named C. The process C will establish the minimum and the maximum values from all the received numbers and will send them back to process A. All processes will print a debug message before sending and after receiving a number.
