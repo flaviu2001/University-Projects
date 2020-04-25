@@ -1,0 +1,3 @@
+Negative cycles!
+
+Path is 1 5 487 175 714 799 222 561 100
