@@ -49,7 +49,7 @@ mat fastexpo(const mat& v)
             p = multiply(p, now);
             --b;
         }
-    return now;
+    return p;
 }
 
 vector<int> getwalk(Graph g, int a, int b)

@@ -131,6 +131,16 @@ bool SortedMultiMap::isEmpty() const {
     return this->length == 0;
 }
 
+vector<TKey> SortedMultiMap::keySet() const {
+    vector<TKey> keys;
+    for (int node = this->elems.head; node != -1; node = this->elems.list[node].next){
+        if (!keys.empty() && keys.back() == this->elems.list[node].info.first)
+            continue;
+        keys.push_back(this->elems.list[node].info.first);
+    }
+    return keys;
+}
+
 SMMIterator SortedMultiMap::iterator() const {
     return SMMIterator{*this};
 }

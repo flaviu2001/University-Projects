@@ -62,6 +62,9 @@ public:
     //verifies if the sorted multi map is empty
     bool isEmpty() const;	//Theta(1)
 
+    //returns a vector with all the keys from the sortedmultimap
+    vector<TKey> keySet() const;    //best: Theta(n), average: Theta(n), worst: Theta(n)
+
     // returns an iterator for the sorted multimap. The iterator will returns the pairs as required by the relation (given to the constructor)
     SMMIterator iterator() const;	//Theta(1)
 

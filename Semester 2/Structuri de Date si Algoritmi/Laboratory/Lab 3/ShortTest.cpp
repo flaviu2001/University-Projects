@@ -3,6 +3,7 @@
 #include "SortedMultiMap.h"
 #include "SMMIterator.h"
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -10,7 +11,21 @@ bool relation1(TKey cheie1, TKey cheie2) {
     return cheie1 <= cheie2;
 }
 
+void testKeySet() {
+    SortedMultiMap smm = SortedMultiMap(relation1);
+    smm.add(1,2);
+    smm.add(2,3);
+    smm.add(0,4);
+    smm.add(2,6);
+    smm.add(1,5);
+    smm.add(4,9);
+    vector<TKey> keys = smm.keySet();
+    sort(keys.begin(), keys.end());
+    assert(keys == vector<TKey>({0,1,2,4}));
+}
+
 void testAll(){
+    testKeySet();
     SortedMultiMap smm = SortedMultiMap(relation1);
     assert(smm.size() == 0);
     assert(smm.isEmpty());
