@@ -1,1 +1,1 @@
-Executie manuala lab 2
+Print the paths for bonus lab 3

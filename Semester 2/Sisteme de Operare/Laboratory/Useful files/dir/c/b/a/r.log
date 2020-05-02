@@ -1,0 +1,1782 @@
+Feb 28 11:22:52 osvm sshd[1416]: Accepted password for rares from 10.0.2.2 port 3332 ssh2
+Feb 21 22:35:01 osvm systemd-logind[778]: Power key pressed.
+Feb 28 11:59:07 osvm sshd[1104]: pam_unix(sshd:session): session closed for user rares
+Apr 17 21:23:38 osvm sshd[6345]: pam_unix(sshd:session): session closed for user rares
+Apr  4 10:17:01 osvm CRON[1295]: pam_unix(cron:session): session opened for user root by (uid=0)
+Apr 26 07:44:18 osvm sshd[1559]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Apr 19 13:21:10 osvm sshd[17070]: pam_unix(sshd:session): session closed for user rares
+Mar  7 13:14:00 osvm sudo: pam_unix(sudo:session): session closed for user root
+May  8 17:17:01 osvm CRON[1535]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar  7 09:59:15 osvm sshd[2210]: pam_unix(sshd:session): session closed for user rares
+Apr 17 16:13:25 osvm sshd[1394]: Accepted password for rares from 10.0.2.2 port 1102 ssh2
+Mar 28 10:07:38 osvm sshd[994]: Server listening on :: port 22.
+Mar  7 09:17:01 osvm CRON[2842]: pam_unix(cron:session): session opened for user root by (uid=0)
+Feb 24 18:17:01 osvm CRON[2546]: pam_unix(cron:session): session closed for user root
+Feb 24 18:44:46 osvm sshd[1417]: pam_unix(sshd:session): session closed for user rares
+May 15 17:35:34 osvm systemd-logind[857]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Apr  3 16:05:00 osvm systemd-logind[877]: Watching system buttons on /dev/input/event1 (Sleep Button)
+May  3 14:14:34 osvm systemd-logind[840]: Powering Off...
+Mar  2 20:06:10 osvm su[1858]: pam_unix(su:session): session closed for user root
+Mar  7 19:27:06 osvm systemd-logind[806]: System is powering down.
+Feb 28 13:21:17 osvm sshd[1424]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Apr 26 15:49:27 osvm sshd[1105]: Accepted password for rares from 10.0.2.2 port 6285 ssh2
+Apr 19 07:34:16 osvm sudo: pam_unix(sudo:session): session opened for user root by rares(uid=0)
+Mar  7 11:12:41 osvm sudo: pam_unix(sudo:session): session closed for user root
+Jun 25 08:53:57 osvm sshd[996]: Server listening on :: port 22.
+Apr  4 15:49:07 osvm systemd-logind[830]: Removed session 2.
+Apr 26 12:06:50 osvm sshd[1170]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Apr 19 09:49:16 osvm sshd[1345]: pam_unix(sshd:session): session closed for user rares
+Apr  5 16:17:01 osvm CRON[1669]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 28 13:53:40 osvm systemd-logind[802]: System is powering down.
+Mar 28 10:07:37 osvm systemd-logind[802]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Apr 26 12:06:12 osvm systemd-logind[870]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Feb 22 11:17:01 osvm CRON[2133]: pam_unix(cron:session): session closed for user root
+Mar 10 10:00:36 osvm su[1516]: pam_systemd(su:session): Cannot create session: Already running in a session
+Apr  5 12:05:37 osvm systemd-logind[870]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Feb 28 09:05:11 osvm systemd-logind[841]: New session 1 of user rares.
+Jun 29 09:00:30 osvm sshd[1489]: Accepted password for rares from 10.0.2.2 port 1480 ssh2
+May 29 16:08:32 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Feb 22 11:17:01 osvm CRON[2133]: pam_unix(cron:session): session opened for user root by (uid=0)
+Apr  7 17:09:54 osvm sshd[1028]: Server listening on :: port 22.
+Mar  7 19:27:06 osvm systemd-logind[806]: Power key pressed.
+Apr  5 09:49:01 osvm systemd-logind[741]: Power key pressed.
+Mar  7 13:17:01 osvm CRON[14411]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 21 08:17:01 osvm CRON[13381]: pam_unix(cron:session): session opened for user root by (uid=0)
+Apr  4 13:17:01 osvm CRON[1892]: pam_unix(cron:session): session closed for user root
+Feb 21 20:03:32 osvm systemd-logind[778]: Watching system buttons on /dev/input/event0 (Power Button)
+Mar  7 10:07:52 osvm sshd[1118]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Mar 28 10:07:38 osvm sshd[994]: Server listening on 0.0.0.0 port 22.
+Mar 24 16:57:17 osvm sshd[1129]: pam_unix(sshd:session): session closed for user rares
+Apr 17 16:13:25 osvm systemd-logind[834]: New session 1 of user rares.
+Apr 26 07:43:39 osvm systemd-logind[806]: New session 1 of user rares.
+Mar  7 19:43:17 osvm systemd-logind[842]: Removed session 1.
+Dec  6 09:47:11 osvm sudo: pam_unix(sudo:session): session closed for user root
+Mar  7 10:14:00 osvm sshd[1188]: pam_unix(sshd:session): session closed for user rares
+Apr 26 12:06:12 osvm systemd-logind[870]: Watching system buttons on /dev/input/event0 (Power Button)
+Jun 25 08:54:23 osvm systemd-logind[836]: New session 1 of user rares.
+Apr  4 19:00:26 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Apr 19 09:17:01 osvm CRON[1634]: pam_unix(cron:session): session closed for user root
+Apr  5 09:48:44 osvm systemd-logind[741]: Removed session 6.
+Feb 28 09:05:19 osvm sudo: pam_unix(sudo:session): session opened for user root by rares(uid=0)
+Mar  2 12:43:24 osvm systemd-logind[806]: New session 1 of user rares.
+Jun 13 18:57:39 osvm systemd-logind[850]: System is powering down.
+Mar 28 10:07:37 osvm systemd-logind[802]: Watching system buttons on /dev/input/event0 (Power Button)
+Apr 24 16:21:07 osvm sshd[1029]: Server listening on :: port 22.
+May  8 17:25:42 osvm systemd-logind[808]: New session 4 of user rares.
+May 10 09:00:19 osvm sshd[1282]: pam_unix(sshd:session): session closed for user rares
+Mar 21 09:27:57 osvm systemd-logind[832]: Watching system buttons on /dev/input/event0 (Power Button)
+Mar  7 19:26:06 osvm systemd-logind[806]: New seat seat0.
+May  3 10:17:01 osvm CRON[2252]: pam_unix(cron:session): session closed for user root
+Dec  6 13:17:01 osvm CRON[30869]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 21 08:01:25 osvm sshd[1455]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Apr  4 11:17:01 osvm CRON[1512]: pam_unix(cron:session): session closed for user root
+May  3 07:38:39 osvm systemd-logind[840]: New seat seat0.
+Mar 28 10:08:07 osvm sshd[1110]: Accepted password for rares from 10.0.2.2 port 3013 ssh2
+Mar 21 08:01:49 osvm systemd-logind[840]: New session 2 of user rares.
+Mar 25 19:32:44 osvm sshd[1049]: Server listening on 0.0.0.0 port 22.
+Apr  7 17:09:53 osvm systemd-logind[826]: New seat seat0.
+May  8 16:14:42 osvm sshd[1318]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Mar 10 16:17:01 osvm CRON[3040]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 13 10:20:54 osvm sshd[1335]: pam_unix(sshd:session): session closed for user rares
+Apr 26 07:47:33 osvm su[1651]: Successful su for root by root
+Apr 26 13:17:01 osvm CRON[10916]: pam_unix(cron:session): session opened for user root by (uid=0)
+Apr  4 07:43:45 osvm su[2057]: pam_unix(su:session): session closed for user root
+Dec  6 11:32:16 osvm sudo: pam_unix(sudo:session): session opened for user root by rares(uid=0)
+Dec  5 19:17:01 osvm CRON[1969]: pam_unix(cron:session): session closed for user root
+Mar 28 10:08:13 osvm sshd[1180]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Mar  7 13:57:07 osvm sshd[1262]: pam_unix(sshd:session): session closed for user rares
+Apr  4 07:42:46 osvm sudo: pam_unix(sudo:session): session opened for user root by rares(uid=0)
+Feb 21 20:27:30 osvm useradd[1134]: failed adding user 'vboxadd', data deleted
+Jul 12 20:26:28 osvm sshd[1011]: Server listening on :: port 22.
+Dec  6 11:32:16 osvm sudo:    rares : TTY=pts/1 ; PWD=/home/rares ; USER=root ; COMMAND=/bin/su -
+Apr 26 09:35:42 osvm systemd-logind[806]: Removed session 4.
+Apr 26 17:04:49 osvm systemd-logind[885]: Powering Off...
+Jul 12 18:01:50 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Feb 23 11:53:02 osvm sshd[2649]: Accepted password for rares from 10.0.2.2 port 2084 ssh2
+Mar  7 10:08:04 osvm sshd[1188]: Accepted password for rares from 10.0.2.2 port 2620 ssh2
+Mar 10 22:17:01 osvm CRON[7314]: pam_unix(cron:session): session closed for user root
+Mar 10 21:17:01 osvm CRON[7307]: pam_unix(cron:session): session closed for user root
+Mar 10 09:57:28 osvm systemd-logind[793]: Watching system buttons on /dev/input/event3 (Video Bus)
+Apr 19 07:33:39 osvm systemd-logind[851]: Watching system buttons on /dev/input/event0 (Power Button)
+Apr  5 12:05:41 osvm sshd[1015]: Server listening on :: port 22.
+Apr 26 08:06:42 osvm sshd[15572]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Dec  5 19:14:57 osvm sshd[1895]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Apr  4 10:06:14 osvm systemd-logind[787]: Watching system buttons on /dev/input/event0 (Power Button)
+Apr 26 09:17:01 osvm CRON[4110]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar  7 11:12:17 osvm su[1744]: + /dev/pts/0 root:root
+Mar 14 09:29:51 osvm su[1516]: pam_systemd(su:session): Cannot create session: Already running in a session
+Feb 23 09:33:05 osvm systemd-logind[836]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Mar  7 13:57:15 osvm systemd-logind[848]: Power key pressed.
+Apr  3 16:05:00 osvm systemd-logind[877]: Watching system buttons on /dev/input/event0 (Power Button)
+Apr 17 16:12:44 osvm sshd[1024]: Server listening on :: port 22.
+Apr  5 07:56:35 osvm su[25696]: pam_unix(su:session): session opened for user root by rares(uid=0)
+Feb 28 10:05:16 osvm systemd-logind[841]: Power key pressed.
+May 15 17:35:59 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Feb 28 11:59:13 osvm systemd-logind[795]: System is powering down.
+Apr 19 08:17:01 osvm CRON[1233]: pam_unix(cron:session): session closed for user root
+May  8 18:17:01 osvm CRON[1859]: pam_unix(cron:session): session closed for user root
+Mar 24 08:08:17 osvm systemd-logind[832]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Apr  5 09:41:58 osvm sshd[26439]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Mar 28 13:53:35 osvm sshd[1110]: pam_unix(sshd:session): session closed for user rares
+Mar 24 08:08:22 osvm sshd[1054]: Server listening on :: port 22.
+Feb 21 20:04:35 osvm sshd[1369]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Feb 22 12:14:46 osvm sshd[1341]: pam_unix(sshd:session): session closed for user rares
+Jul 12 18:05:46 osvm systemd-logind[813]: Powering Off...
+Apr  7 17:14:11 osvm su[1565]: pam_systemd(su:session): Cannot create session: Already running in a session
+Apr  5 12:06:32 osvm sshd[1204]: Accepted password for rares from 10.0.2.2 port 1527 ssh2
+Mar 28 08:07:24 osvm sshd[1019]: Server listening on 0.0.0.0 port 22.
+Apr  4 19:00:26 osvm systemd-logind[822]: New session 1 of user rares.
+May  3 13:45:06 osvm systemd-logind[840]: Removed session 9.
+Apr  7 17:13:58 osvm sshd[1487]: Accepted password for rares from 10.0.2.2 port 2699 ssh2
+Jul 10 22:36:08 osvm systemd-logind[766]: New session 2 of user rares.
+Apr  5 09:48:44 osvm sshd[25922]: pam_unix(sshd:session): session closed for user rares
+Feb 23 09:37:36 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Mar 24 23:17:29 osvm systemd-logind[835]: System is powering down.
+Apr 26 08:07:18 osvm su[15689]: Successful su for root by root
+Apr  5 14:17:01 osvm CRON[1663]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 24 13:46:10 osvm systemd-logind[832]: Removed session 1.
+Mar 21 09:17:01 osvm CRON[13384]: pam_unix(cron:session): session closed for user root
+Feb 28 10:05:10 osvm sudo: pam_unix(sudo:session): session closed for user root
+Apr  5 13:53:09 osvm sshd[1204]: pam_unix(sshd:session): session closed for user rares
+Apr  4 07:44:14 osvm useradd[10353]: failed adding user 'vboxadd', data deleted
+Feb 28 10:05:16 osvm systemd-logind[841]: System is powering down.
+May 15 17:40:10 osvm useradd[18275]: failed adding user 'vboxadd', data deleted
+Apr 24 19:17:01 osvm CRON[30935]: pam_unix(cron:session): session closed for user root
+Apr 26 13:27:28 osvm sshd[1170]: pam_unix(sshd:session): session closed for user rares
+May  2 11:06:21 osvm systemd-logind[819]: Watching system buttons on /dev/input/event0 (Power Button)
+Apr 24 16:21:03 osvm systemd-logind[876]: Watching system buttons on /dev/input/event0 (Power Button)
+Apr 17 17:15:24 osvm sshd[6345]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Dec  6 13:17:01 osvm CRON[30869]: pam_unix(cron:session): session closed for user root
+Apr 26 07:43:39 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Mar 21 08:00:40 osvm systemd-logind[840]: Watching system buttons on /dev/input/event3 (Video Bus)
+Mar 10 10:00:36 osvm su[1516]: Successful su for root by root
+Mar 10 10:17:01 osvm CRON[2827]: pam_unix(cron:session): session opened for user root by (uid=0)
+Apr  5 09:48:42 osvm sshd[25985]: pam_unix(sshd:session): session closed for user rares
+Dec  5 19:12:15 osvm systemd-logind[874]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Apr  4 13:17:01 osvm CRON[1892]: pam_unix(cron:session): session opened for user root by (uid=0)
+May 10 08:06:32 osvm systemd-logind[815]: New seat seat0.
+May 10 08:06:32 osvm systemd-logind[815]: Watching system buttons on /dev/input/event0 (Power Button)
+Apr  4 19:51:12 osvm systemd-logind[822]: Powering Off...
+Mar  7 19:28:29 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Feb 28 11:22:52 osvm sshd[1416]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Jul 12 21:03:15 osvm systemd-logind[821]: Removed session 1.
+Apr  4 10:06:14 osvm systemd-logind[787]: New seat seat0.
+Feb 24 10:17:01 osvm CRON[2232]: pam_unix(cron:session): session closed for user root
+Apr 19 08:35:24 osvm systemd-logind[807]: New session 4 of user rares.
+Mar  7 19:28:02 osvm systemd-logind[842]: New seat seat0.
+Apr  5 07:51:11 osvm sshd[1009]: Server listening on 0.0.0.0 port 22.
+Jun 13 17:17:25 osvm systemd-logind[850]: New seat seat0.
+Mar 10 16:17:01 osvm CRON[3040]: pam_unix(cron:session): session closed for user root
+Dec  6 09:31:46 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Apr  4 09:57:58 osvm systemd-logind[833]: Power key pressed.
+Sep  3 14:36:18 osvm useradd[1880]: failed adding user 'vboxadd', data deleted
+May  8 16:14:25 osvm systemd-logind[808]: Watching system buttons on /dev/input/event3 (Video Bus)
+Jul 12 21:17:01 osvm CRON[1211]: pam_unix(cron:session): session closed for user root
+Mar 24 19:17:01 osvm CRON[2675]: pam_unix(cron:session): session closed for user root
+Mar 21 13:50:28 osvm sshd[1196]: pam_unix(sshd:session): session closed for user rares
+May  3 07:39:11 osvm systemd-logind[840]: New session 1 of user rares.
+Apr  5 07:56:35 osvm su[25696]: pam_systemd(su:session): Cannot create session: Already running in a session
+Mar 21 12:17:01 osvm CRON[19787]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jun 13 18:16:11 osvm systemd-logind[850]: Removed session 1.
+Feb 21 20:04:35 osvm systemd-logind[778]: New session 1 of user rares.
+Apr 24 17:17:01 osvm CRON[30644]: pam_unix(cron:session): session opened for user root by (uid=0)
+Apr 17 16:12:39 osvm systemd-logind[834]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Dec  6 09:31:21 osvm systemd-logind[878]: Watching system buttons on /dev/input/event3 (Video Bus)
+Jun 25 11:46:18 osvm systemd-logind[839]: New seat seat0.
+Apr 19 07:33:58 osvm systemd-logind[851]: New session 1 of user rares.
+Jul 10 22:26:35 osvm sshd[1006]: Server listening on 0.0.0.0 port 22.
+Apr 26 07:47:33 osvm su[1651]: pam_systemd(su:session): Cannot create session: Already running in a session
+Mar 28 10:03:33 osvm systemd-logind[816]: Power key pressed.
+Mar 24 16:51:01 osvm sudo: pam_unix(sudo:session): session opened for user root by rares(uid=0)
+May  3 07:39:23 osvm su[1493]: + /dev/pts/0 root:root
+Sep  3 14:28:09 osvm systemd-logind[860]: Watching system buttons on /dev/input/event0 (Power Button)
+Apr  7 17:15:46 osvm sudo: pam_unix(sudo:session): session closed for user root
+May 22 20:01:47 osvm systemd-logind[771]: Powering Off...
+Apr  3 16:05:37 osvm sshd[1372]: Accepted password for rares from 10.0.2.2 port 1287 ssh2
+Mar  2 15:23:39 osvm su[1858]: Successful su for root by rares
+Apr  4 07:41:19 osvm systemd-logind[833]: Watching system buttons on /dev/input/event0 (Power Button)
+Mar  7 19:28:29 osvm sshd[1106]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Jul 12 22:17:01 osvm CRON[1214]: pam_unix(cron:session): session closed for user root
+Apr  4 15:49:18 osvm systemd-logind[830]: System is powering down.
+Apr  3 17:17:01 osvm CRON[1954]: pam_unix(cron:session): session opened for user root by (uid=0)
+Apr  5 14:17:01 osvm CRON[1663]: pam_unix(cron:session): session closed for user root
+Jul 12 18:01:50 osvm sshd[1085]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Feb 24 12:17:01 osvm CRON[2261]: pam_unix(cron:session): session opened for user root by (uid=0)
+Feb 28 09:17:01 osvm CRON[8846]: pam_unix(cron:session): session closed for user root
+Apr 19 08:05:39 osvm sshd[1009]: Server listening on 0.0.0.0 port 22.
+Mar  2 20:07:38 osvm su[2066]: + /dev/pts/4 root:root
+Feb 21 20:25:48 osvm useradd[19111]: failed adding user 'vboxadd', data deleted
+Apr  4 07:51:12 osvm sudo: pam_unix(sudo:session): session closed for user root
+May  8 20:01:27 osvm systemd-logind[808]: System is powering down.
+Apr  5 13:53:09 osvm systemd-logind[870]: Removed session 2.
+Apr 26 15:49:09 osvm systemd-logind[885]: Watching system buttons on /dev/input/event3 (Video Bus)
+Apr  5 09:17:01 osvm CRON[26325]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 10 09:57:28 osvm systemd-logind[793]: Watching system buttons on /dev/input/event1 (Sleep Button)
+May 15 17:35:59 osvm systemd-logind[857]: New session 1 of user rares.
+Apr 19 13:37:42 osvm systemd-logind[807]: System is powering down.
+Mar 21 18:33:29 osvm systemd-logind[822]: System is powering down.
+May  3 07:39:11 osvm sshd[1426]: Accepted password for rares from 10.0.2.2 port 1118 ssh2
+Mar  7 19:28:30 osvm systemd-logind[842]: New session 1 of user rares.
+Jul 10 22:26:27 osvm systemd-logind[766]: Watching system buttons on /dev/input/event3 (Video Bus)
+Jun 13 17:17:44 osvm sshd[1123]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Jun 25 08:54:23 osvm sshd[1355]: Accepted password for rares from 10.0.2.2 port 1379 ssh2
+Apr  5 12:06:45 osvm sshd[1249]: Accepted password for rares from 10.0.2.2 port 1528 ssh2
+Jul 10 22:34:58 osvm useradd[30289]: failed adding user 'vboxadd', data deleted
+Feb 28 09:05:19 osvm sudo:    rares : TTY=pts/0 ; PWD=/home/rares ; USER=root ; COMMAND=/bin/su -
+Feb 24 09:17:01 osvm CRON[1747]: pam_unix(cron:session): session closed for user root
+May 29 16:17:01 osvm CRON[3439]: pam_unix(cron:session): session closed for user root
+Jun 29 09:17:01 osvm CRON[2997]: pam_unix(cron:session): session opened for user root by (uid=0)
+Apr  5 12:17:01 osvm CRON[1308]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 21 09:28:20 osvm systemd-logind[832]: New session 1 of user rares.
+Apr 26 13:17:01 osvm CRON[10916]: pam_unix(cron:session): session closed for user root
+Mar 24 16:50:43 osvm sshd[1129]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Mar  2 12:44:13 osvm sshd[1571]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Mar 10 23:15:37 osvm sshd[1024]: Server listening on :: port 22.
+Apr  4 07:42:37 osvm sudo: pam_unix(sudo:session): session opened for user root by rares(uid=0)
+Apr  4 07:42:29 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Mar  7 19:26:41 osvm sshd[1109]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Mar 10 22:58:42 osvm systemd-logind[793]: Removed session 1.
+May  8 16:17:01 osvm CRON[1524]: pam_unix(cron:session): session closed for user root
+Apr  5 12:06:45 osvm sshd[1249]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Apr 24 16:21:03 osvm systemd-logind[876]: Watching system buttons on /dev/input/event3 (Video Bus)
+May 22 19:58:35 osvm systemd-logind[771]: Removed session 1.
+May  8 16:14:29 osvm sshd[1005]: Server listening on 0.0.0.0 port 22.
+Apr  3 16:05:00 osvm systemd-logind[877]: New seat seat0.
+Apr  4 14:52:11 osvm systemd-logind[830]: New session 2 of user rares.
+Apr  5 12:05:41 osvm sshd[1015]: Server listening on 0.0.0.0 port 22.
+May 29 19:17:01 osvm CRON[6101]: pam_unix(cron:session): session opened for user root by (uid=0)
+Apr  7 17:15:43 osvm su[10916]: Successful su for root by root
+Mar 21 09:28:02 osvm sshd[1043]: Server listening on :: port 22.
+Apr  4 07:43:30 osvm sudo: pam_unix(sudo:session): session closed for user root
+Dec  6 09:31:58 osvm su[1269]: + /dev/pts/0 root:root
+Mar 13 15:38:44 osvm sshd[981]: Server listening on :: port 22.
+Apr  7 17:17:01 osvm CRON[11064]: pam_unix(cron:session): session closed for user root
+Mar 24 10:17:01 osvm CRON[15319]: pam_unix(cron:session): session closed for user root
+Mar 10 11:17:01 osvm CRON[2832]: pam_unix(cron:session): session opened for user root by (uid=0)
+May  3 13:17:01 osvm CRON[2754]: pam_unix(cron:session): session closed for user root
+Feb 22 08:18:54 osvm systemd-logind[830]: Watching system buttons on /dev/input/event3 (Video Bus)
+Feb 28 11:17:01 osvm CRON[1354]: pam_unix(cron:session): session opened for user root by (uid=0)
+Apr  4 07:42:59 osvm sshd[1851]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Mar 28 10:08:13 osvm systemd-logind[802]: New session 2 of user rares.
+Apr  4 19:00:37 osvm sshd[1207]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+May 15 19:40:58 osvm sshd[1445]: pam_unix(sshd:session): session closed for user rares
+Mar  7 11:12:17 osvm su[1744]: Successful su for root by root
+Mar 21 10:02:06 osvm systemd-logind[790]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Apr  7 17:09:53 osvm systemd-logind[826]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Mar  2 14:17:01 osvm CRON[1763]: pam_unix(cron:session): session closed for user root
+Mar 21 09:51:19 osvm systemd-logind[832]: Removed session 2.
+Apr 19 08:05:36 osvm systemd-logind[807]: Watching system buttons on /dev/input/event0 (Power Button)
+May  3 13:51:50 osvm sshd[2931]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Apr 26 07:43:17 osvm systemd-logind[806]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Apr  5 07:54:48 osvm useradd[11740]: failed adding user 'vboxadd', data deleted
+May  3 08:00:33 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+May  3 11:57:54 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+May  3 08:00:33 osvm sshd[1636]: Accepted password for rares from 10.0.2.2 port 4174 ssh2
+Mar  2 12:43:07 osvm sshd[1039]: Server listening on :: port 22.
+Mar 24 18:01:27 osvm systemd-logind[835]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Mar  7 10:07:33 osvm systemd-logind[848]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Mar 10 23:29:33 osvm sshd[1107]: pam_unix(sshd:session): session closed for user rares
+Mar  2 22:43:33 osvm su[2066]: pam_unix(su:session): session closed for user root
+Dec 13 10:02:56 osvm systemd-logind[772]: New session 1 of user rares.
+Mar 21 09:28:20 osvm sshd[1127]: Accepted password for rares from 10.0.2.2 port 53764 ssh2
+Mar  7 13:53:05 osvm systemd-logind[848]: Removed session 6.
+Apr  4 19:50:51 osvm sshd[1137]: pam_unix(sshd:session): session closed for user rares
+Jul 12 20:26:19 osvm systemd-logind[821]: New seat seat0.
+May  3 11:57:54 osvm sshd[2258]: Accepted password for rares from 10.0.2.2 port 4839 ssh2
+Mar  7 14:39:53 osvm sshd[1112]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Feb 23 12:17:01 osvm CRON[2949]: pam_unix(cron:session): session closed for user root
+May  3 07:39:16 osvm sudo: pam_unix(sudo:auth): authentication failure; logname=rares uid=1000 euid=0 tty=/dev/pts/0 ruser=rares rhost=  user=rares
+May 10 09:00:35 osvm systemd-logind[815]: Power key pressed.
+Mar  2 15:23:39 osvm su[1858]: + /dev/pts/0 rares:root
+Mar 10 18:14:09 osvm sudo:    rares : TTY=pts/0 ; PWD=/home/rares ; USER=root ; COMMAND=/bin/su -
+Mar 14 09:28:04 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Mar 24 09:17:01 osvm CRON[15316]: pam_unix(cron:session): session opened for user root by (uid=0)
+Apr 26 12:09:45 osvm sudo: pam_unix(sudo:session): session opened for user root by rares(uid=0)
+Mar  7 07:29:37 osvm systemd-logind[786]: New seat seat0.
+Mar 10 15:17:01 osvm CRON[3037]: pam_unix(cron:session): session closed for user root
+Apr 26 07:43:39 osvm sshd[1329]: Accepted password for rares from 10.0.2.2 port 1163 ssh2
+Dec  6 11:34:14 osvm sudo: pam_unix(sudo:session): session closed for user root
+May  8 16:14:42 osvm systemd-logind[808]: New session 1 of user rares.
+Mar 10 20:17:01 osvm CRON[18135]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 24 16:50:43 osvm sshd[1129]: Accepted password for rares from 10.0.2.2 port 3739 ssh2
+Mar 10 17:17:01 osvm CRON[3044]: pam_unix(cron:session): session closed for user root
+Mar 14 09:31:29 osvm usermod[2685]: change user 'postfix' password
+Mar 14 09:31:28 osvm groupadd[2613]: new group: name=ssl-cert, GID=117
+Mar  2 17:17:01 osvm CRON[1894]: pam_unix(cron:session): session closed for user root
+May  3 12:17:01 osvm CRON[2495]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec  6 12:17:01 osvm CRON[30866]: pam_unix(cron:session): session opened for user root by (uid=0)
+May  8 16:14:29 osvm sshd[1005]: Server listening on :: port 22.
+Apr 26 07:47:33 osvm su[1651]: + /dev/pts/1 root:root
+Dec  6 11:17:01 osvm CRON[30512]: pam_unix(cron:session): session opened for user root by (uid=0)
+Apr 26 07:59:03 osvm sshd[1329]: pam_unix(sshd:session): session closed for user rares
+Mar  2 20:07:38 osvm sudo: pam_unix(sudo:session): session opened for user root by rares(uid=0)
+May 10 08:07:32 osvm systemd-logind[815]: New session 2 of user rares.
+Mar 24 18:01:28 osvm sshd[1024]: Server listening on 0.0.0.0 port 22.
+Mar  7 14:41:15 osvm systemd-logind[795]: System is powering down.
+Apr  4 09:17:01 osvm CRON[22723]: pam_unix(cron:session): session closed for user root
+Apr 17 17:15:24 osvm sshd[6345]: Accepted password for rares from 10.0.2.2 port 1460 ssh2
+Mar  7 19:43:15 osvm systemd-logind[842]: Removed session 2.
+Feb 28 13:53:36 osvm systemd-logind[825]: System is powering down.
+Dec 13 10:17:01 osvm CRON[4372]: pam_unix(cron:session): session closed for user root
+Mar 13 15:41:06 osvm sshd[1425]: Accepted password for rares from 10.0.2.2 port 5200 ssh2
+Feb 28 10:31:54 osvm systemd-logind[795]: New session 1 of user rares.
+Feb 24 15:17:01 osvm CRON[2525]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 14 09:25:37 osvm systemd-logind[797]: Watching system buttons on /dev/input/event1 (Sleep Button)
+May  3 13:51:50 osvm sshd[2931]: Accepted password for rares from 10.0.2.2 port 5067 ssh2
+Apr 26 12:06:50 osvm sshd[1170]: Accepted password for rares from 10.0.2.2 port 6110 ssh2
+Apr 17 16:13:25 osvm sshd[1394]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Apr 24 16:21:03 osvm systemd-logind[876]: New seat seat0.
+Feb 21 22:35:01 osvm systemd-logind[778]: System is powering down.
+Mar 24 13:17:01 osvm CRON[15328]: pam_unix(cron:session): session opened for user root by (uid=0)
+Feb 28 13:21:17 osvm sshd[1424]: Accepted password for rares from 10.0.2.2 port 3645 ssh2
+May 29 20:00:19 osvm systemd-logind[842]: Powering Off...
+Mar 21 09:51:18 osvm systemd-logind[832]: Removed session 1.
+Apr 24 16:21:07 osvm sshd[1029]: Server listening on 0.0.0.0 port 22.
+Apr  5 09:48:42 osvm systemd-logind[741]: Removed session 3.
+Apr  4 14:46:00 osvm systemd-logind[830]: Watching system buttons on /dev/input/event3 (Video Bus)
+Jul 10 22:36:07 osvm sshd[1617]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Apr 24 16:21:03 osvm systemd-logind[876]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Sep  4 08:44:26 osvm systemd-logind[849]: New seat seat0.
+Mar 24 16:50:43 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Apr  4 13:50:14 osvm systemd-logind[787]: System is powering down.
+May 29 16:08:13 osvm sshd[1011]: Server listening on :: port 22.
+May 22 18:17:01 osvm CRON[25860]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec  5 19:14:40 osvm su[1457]: pam_unix(su:session): session closed for user root
+Jul 10 22:26:32 osvm systemd-logind[766]: New seat seat0.
+Jul 12 18:01:50 osvm systemd-logind[813]: New session 1 of user rares.
+Mar 13 16:51:34 osvm systemd-logind[823]: Power key pressed.
+Apr 26 09:45:33 osvm systemd-logind[806]: System is powering down.
+May  3 13:51:50 osvm systemd-logind[840]: New session 12 of user rares.
+Jun 25 11:46:18 osvm systemd-logind[839]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Apr 19 07:33:43 osvm sshd[1024]: Server listening on 0.0.0.0 port 22.
+Mar 14 09:31:29 osvm groupadd[2730]: new group: name=postdrop, GID=119
+Apr  4 08:17:01 osvm CRON[22350]: pam_unix(cron:session): session closed for user root
+Feb 24 16:17:01 osvm CRON[2528]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 14 09:31:29 osvm useradd[2680]: new user: name=postfix, UID=111, GID=118, home=/var/spool/postfix, shell=/bin/false
+Mar  7 10:14:14 osvm systemd-logind[848]: New session 3 of user rares.
+Mar  7 14:28:54 osvm systemd-logind[795]: New seat seat0.
+Apr 19 13:21:13 osvm systemd-logind[807]: Removed session 9.
+Apr 26 08:07:18 osvm sudo:    rares : TTY=pts/0 ; PWD=/home/rares/nessie/course/os/res/osvm/2018/lecture-08-en ; USER=root ; COMMAND=/bin/su -
+Mar 28 11:17:01 osvm CRON[1579]: pam_unix(cron:session): session opened for user root by (uid=0)
+Apr  4 09:57:23 osvm systemd-logind[833]: Removed session 3.
+May 29 17:45:45 osvm sshd[3454]: Accepted password for rares from 10.0.2.2 port 1601 ssh2
+Apr  5 08:01:12 osvm systemd-logind[741]: New session 2 of user rares.
+Mar 24 18:01:43 osvm sshd[1140]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Feb 24 08:50:56 osvm sshd[1689]: Accepted password for rares from 10.0.2.2 port 1405 ssh2
+May 22 16:17:01 osvm CRON[1469]: pam_unix(cron:session): session opened for user root by (uid=0)
+May 22 20:01:47 osvm systemd-logind[771]: Power key pressed.
+May  8 17:25:42 osvm sshd[1538]: Accepted password for rares from 10.0.2.2 port 3736 ssh2
+Mar 24 08:08:17 osvm systemd-logind[832]: Watching system buttons on /dev/input/event3 (Video Bus)
+Feb 28 09:05:11 osvm sshd[1361]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Feb 28 10:29:43 osvm systemd-logind[795]: Watching system buttons on /dev/input/event1 (Sleep Button)
+May 22 16:13:29 osvm systemd-logind[771]: New session 1 of user rares.
+Mar 18 11:58:51 osvm systemd-logind[802]: New session 1 of user rares.
+Apr  4 13:50:03 osvm sshd[1103]: pam_unix(sshd:session): session closed for user rares
+Dec  6 11:32:10 osvm su[30584]: pam_authenticate: Authentication failure
+Feb 28 09:09:18 osvm systemd-logind[841]: Watching system buttons on /dev/input/event0 (Power Button)
+Mar 24 16:48:16 osvm systemd-logind[810]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Dec  6 11:34:14 osvm su[30590]: pam_unix(su:session): session closed for user root
+Mar  2 12:53:09 osvm sshd[1683]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+May  3 08:17:01 osvm CRON[1858]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 14 09:28:04 osvm sshd[1440]: Accepted password for rares from 10.0.2.2 port 1418 ssh2
+Mar  7 09:59:13 osvm systemd-logind[786]: Removed session 2.
+Apr 26 07:44:18 osvm systemd-logind[806]: New session 2 of user rares.
+Mar 25 19:32:39 osvm systemd-logind[853]: Watching system buttons on /dev/input/event3 (Video Bus)
+Mar 10 23:15:37 osvm sshd[1024]: Server listening on 0.0.0.0 port 22.
+Mar 28 10:08:07 osvm systemd-logind[802]: New session 1 of user rares.
+Apr 26 07:44:18 osvm sshd[1559]: Accepted password for rares from 10.0.2.2 port 1165 ssh2
+Mar  7 12:09:59 osvm systemd-logind[848]: New session 6 of user rares.
+Apr  4 10:06:20 osvm sshd[1018]: Server listening on :: port 22.
+Jun 13 17:17:25 osvm systemd-logind[850]: Watching system buttons on /dev/input/event0 (Power Button)
+Mar 10 10:00:36 osvm su[1516]: + /dev/pts/0 root:root
+Mar 18 11:53:57 osvm systemd-logind[802]: Watching system buttons on /dev/input/event1 (Sleep Button)
+May  8 16:14:42 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Apr  4 14:52:11 osvm sshd[1300]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+May 15 17:36:15 osvm sshd[1445]: Accepted password for rares from 10.0.2.2 port 2275 ssh2
+Mar 18 12:53:59 osvm systemd-logind[802]: Powering Off...
+May 22 16:13:02 osvm sshd[1001]: Server listening on :: port 22.
+Apr  4 07:46:06 osvm su[12242]: + /dev/pts/0 root:root
+Mar 13 15:46:30 osvm systemd-logind[823]: Removed session 1.
+Mar 28 10:17:01 osvm CRON[1247]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 21 08:00:40 osvm systemd-logind[840]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Jun 13 17:17:26 osvm sshd[950]: Server listening on :: port 22.
+Apr  5 12:06:45 osvm systemd-logind[870]: New session 3 of user rares.
+Apr 19 07:36:45 osvm sudo: pam_unix(sudo:session): session closed for user root
+Mar 13 16:17:01 osvm CRON[1562]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 28 10:17:01 osvm CRON[1247]: pam_unix(cron:session): session closed for user root
+Dec  5 19:12:57 osvm su[1457]: + /dev/pts/0 root:root
+Dec 13 10:02:41 osvm systemd-logind[772]: New seat seat0.
+May  2 11:17:01 osvm CRON[1646]: pam_unix(cron:session): session closed for user root
+Mar 10 18:17:01 osvm CRON[3315]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 10 10:17:01 osvm CRON[2827]: pam_unix(cron:session): session closed for user root
+May  3 13:51:50 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Apr 17 19:17:01 osvm CRON[7189]: pam_unix(cron:session): session closed for user root
+Apr 19 12:17:01 osvm CRON[17113]: pam_unix(cron:session): session closed for user root
+Apr 17 16:12:39 osvm systemd-logind[834]: New seat seat0.
+Feb 28 11:59:07 osvm systemd-logind[795]: Removed session 1.
+May 15 17:35:39 osvm sshd[981]: Server listening on :: port 22.
+Mar 24 16:57:23 osvm systemd-logind[810]: Powering Off...
+Mar  2 16:17:01 osvm CRON[1891]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar  2 12:53:09 osvm systemd-logind[806]: New session 3 of user rares.
+May  3 11:58:15 osvm sshd[2347]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Apr  4 15:49:07 osvm sshd[1300]: pam_unix(sshd:session): session closed for user rares
+Apr 26 12:09:45 osvm su[1215]: Successful su for root by root
+Mar  2 20:13:01 osvm systemd-logind[806]: Removed session 11.
+Feb 28 10:29:43 osvm systemd-logind[795]: New seat seat0.
+Mar 14 09:25:37 osvm systemd-logind[797]: Watching system buttons on /dev/input/event3 (Video Bus)
+Mar 10 14:17:01 osvm CRON[2976]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 24 16:51:05 osvm su[1217]: pam_unix(su:session): session closed for user root
+Mar 28 13:17:01 osvm CRON[1928]: pam_unix(cron:session): session opened for user root by (uid=0)
+Apr  5 16:40:21 osvm systemd-logind[870]: Powering Off...
+Apr  7 17:13:58 osvm systemd-logind[826]: New session 1 of user rares.
+Mar 21 18:33:24 osvm systemd-logind[822]: Watching system buttons on /dev/input/event3 (Video Bus)
+Apr 19 12:12:04 osvm sshd[17027]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Mar  7 14:28:54 osvm systemd-logind[795]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Jul 12 18:01:12 osvm systemd-logind[813]: Watching system buttons on /dev/input/event3 (Video Bus)
+Apr  5 08:01:12 osvm sshd[25922]: Accepted password for rares from 10.0.2.2 port 1167 ssh2
+Mar  7 09:59:21 osvm systemd-logind[786]: Power key pressed.
+Jun 13 18:17:01 osvm CRON[1360]: pam_unix(cron:session): session closed for user root
+Jun 25 09:00:37 osvm useradd[19618]: failed adding user 'vboxadd', data deleted
+May 15 17:35:34 osvm systemd-logind[857]: Watching system buttons on /dev/input/event3 (Video Bus)
+Apr  4 07:42:06 osvm systemd-logind[833]: New session 1 of user rares.
+May  3 09:46:58 osvm systemd-logind[840]: Removed session 2.
+Mar  2 20:06:49 osvm systemd-logind[806]: New session 12 of user rares.
+Feb 22 12:14:52 osvm systemd-logind[830]: Powering Off...
+Mar  7 10:07:33 osvm systemd-logind[848]: Watching system buttons on /dev/input/event3 (Video Bus)
+Apr  3 16:17:01 osvm CRON[1797]: pam_unix(cron:session): session opened for user root by (uid=0)
+Apr  4 07:42:59 osvm systemd-logind[833]: New session 3 of user rares.
+Mar 21 10:03:38 osvm systemd-logind[790]: New session 2 of user rares.
+Feb 28 09:04:54 osvm systemd-logind[841]: New seat seat0.
+Apr  4 19:50:50 osvm systemd-logind[822]: Removed session 2.
+Mar 21 13:17:01 osvm CRON[27891]: pam_unix(cron:session): session closed for user root
+Mar 18 12:00:00 osvm useradd[9314]: failed adding user 'vboxadd', data deleted
+Feb 22 12:14:52 osvm systemd-logind[830]: System is powering down.
+Mar 28 10:03:27 osvm systemd-logind[816]: Removed session 1.
+Mar  7 19:43:21 osvm systemd-logind[842]: Power key pressed.
+Mar  7 07:29:37 osvm systemd-logind[786]: Watching system buttons on /dev/input/event0 (Power Button)
+Apr 17 21:23:52 osvm systemd-logind[834]: Powering Off...
+Apr 19 09:49:17 osvm sshd[1105]: pam_unix(sshd:session): session closed for user rares
+Feb 28 09:05:11 osvm sshd[1361]: Accepted password for rares from 10.0.2.2 port 1558 ssh2
+Apr 19 07:36:46 osvm systemd-logind[851]: Removed session 1.
+Feb 21 22:17:01 osvm CRON[14933]: pam_unix(cron:session): session closed for user root
+Mar 24 23:17:01 osvm CRON[2758]: pam_unix(cron:session): session closed for user root
+Apr  3 16:05:00 osvm systemd-logind[877]: Watching system buttons on /dev/input/event3 (Video Bus)
+Dec  6 09:31:58 osvm su[1269]: pam_systemd(su:session): Cannot create session: Already running in a session
+Mar  7 14:28:54 osvm systemd-logind[795]: Watching system buttons on /dev/input/event3 (Video Bus)
+May 10 08:06:32 osvm systemd-logind[815]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Mar 25 21:17:01 osvm CRON[1774]: pam_unix(cron:session): session closed for user root
+Apr 19 09:49:16 osvm systemd-logind[807]: Removed session 4.
+May 29 16:08:32 osvm sshd[1388]: Accepted password for rares from 10.0.2.2 port 1110 ssh2
+Mar 14 09:25:37 osvm systemd-logind[797]: New seat seat0.
+Mar  7 10:07:39 osvm sshd[1037]: Server listening on 0.0.0.0 port 22.
+Apr 17 16:12:44 osvm sshd[1024]: Server listening on 0.0.0.0 port 22.
+Mar 24 08:08:34 osvm systemd-logind[832]: New session 1 of user rares.
+Mar 24 16:57:23 osvm systemd-logind[810]: System is powering down.
+Feb 23 11:53:02 osvm systemd-logind[836]: New session 4 of user rares.
+Apr 17 16:12:39 osvm systemd-logind[834]: Watching system buttons on /dev/input/event0 (Power Button)
+Mar 14 09:31:29 osvm groupadd[2674]: new group: name=postfix, GID=118
+Apr  5 12:05:37 osvm systemd-logind[870]: New seat seat0.
+Mar  2 20:13:06 osvm systemd-logind[806]: Removed session 3.
+May 22 16:20:27 osvm useradd[2016]: failed adding user 'vboxadd', data deleted
+Mar  2 20:07:38 osvm su[2066]: pam_unix(su:session): session opened for user root by rares(uid=0)
+Mar 18 11:54:04 osvm sshd[1036]: Server listening on 0.0.0.0 port 22.
+Feb 21 20:25:48 osvm useradd[19110]: failed adding user 'vboxadd', data deleted
+May 10 09:00:35 osvm systemd-logind[815]: Powering Off...
+Mar  7 19:26:41 osvm systemd-logind[806]: New session 1 of user rares.
+Apr 19 13:37:42 osvm systemd-logind[807]: Power key pressed.
+Feb 23 13:17:01 osvm CRON[3464]: pam_unix(cron:session): session opened for user root by (uid=0)
+Feb 21 22:34:57 osvm systemd-logind[778]: Removed session 1.
+Mar 21 08:00:41 osvm sshd[1016]: Server listening on :: port 22.
+Feb 28 09:09:18 osvm systemd-logind[841]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Dec  5 19:28:19 osvm useradd[1971]: failed adding user 'vboxadd', data deleted
+Apr 26 16:17:01 osvm CRON[1239]: pam_unix(cron:session): session opened for user root by (uid=0)
+May 29 16:08:13 osvm sshd[1011]: Server listening on 0.0.0.0 port 22.
+May  3 09:46:58 osvm sshd[1636]: pam_unix(sshd:session): session closed for user rares
+May 29 18:46:41 osvm sshd[3740]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Mar 10 22:59:03 osvm systemd-logind[793]: Powering Off...
+Apr 26 13:27:36 osvm systemd-logind[870]: Power key pressed.
+Mar 25 22:17:01 osvm CRON[2082]: pam_unix(cron:session): session closed for user root
+May 10 08:07:04 osvm systemd-logind[815]: New session 1 of user rares.
+Mar 28 08:07:35 osvm systemd-logind[816]: New session 1 of user rares.
+Apr  5 13:53:09 osvm systemd-logind[870]: Removed session 1.
+Mar 18 11:58:51 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Mar 10 23:15:42 osvm sshd[1107]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Mar 28 10:03:33 osvm systemd-logind[816]: System is powering down.
+Apr  3 19:37:12 osvm sshd[1372]: pam_unix(sshd:session): session closed for user rares
+May  3 07:38:39 osvm systemd-logind[840]: Watching system buttons on /dev/input/event3 (Video Bus)
+Apr 26 12:06:29 osvm systemd-logind[870]: New session 1 of user rares.
+Mar 24 18:01:43 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Apr 24 19:42:15 osvm systemd-logind[876]: Power key pressed.
+Mar 24 16:51:01 osvm su[1217]: + /dev/pts/0 root:root
+Mar 21 09:28:26 osvm sshd[1197]: Accepted password for rares from 10.0.2.2 port 53765 ssh2
+Apr 19 07:36:52 osvm systemd-logind[851]: Power key pressed.
+Apr  4 07:43:32 osvm su[2057]: + /dev/pts/0 root:root
+Mar  7 19:28:02 osvm systemd-logind[842]: Watching system buttons on /dev/input/event3 (Video Bus)
+Feb 24 14:17:01 osvm CRON[2522]: pam_unix(cron:session): session closed for user root
+Mar 21 08:01:32 osvm su[1879]: pam_unix(su:session): session opened for user root by rares(uid=0)
+Mar 14 09:31:29 osvm chage[2690]: changed password expiry for postfix
+Apr  4 10:06:14 osvm systemd-logind[787]: Watching system buttons on /dev/input/event1 (Sleep Button)
+May  8 16:14:42 osvm sshd[1318]: Accepted password for rares from 10.0.2.2 port 1177 ssh2
+Mar 14 09:29:51 osvm su[1516]: pam_unix(su:session): session opened for user root by rares(uid=0)
+Mar  2 12:43:07 osvm sshd[1039]: Server listening on 0.0.0.0 port 22.
+Apr  5 12:06:05 osvm systemd-logind[870]: New session 1 of user rares.
+Jul 12 20:26:44 osvm sshd[1104]: Accepted password for rares from 10.0.2.2 port 1074 ssh2
+Dec  6 09:31:46 osvm sshd[1201]: Accepted password for rares from 10.0.2.2 port 2085 ssh2
+May 15 19:41:15 osvm systemd-logind[857]: Power key pressed.
+Apr  5 12:06:32 osvm sshd[1204]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Dec  6 11:32:16 osvm su[30590]: pam_unix(su:session): session opened for user root by rares(uid=0)
+Apr  4 07:42:46 osvm su[1643]: pam_systemd(su:session): Cannot create session: Already running in a session
+Apr  4 10:07:04 osvm systemd-logind[787]: New session 2 of user rares.
+Sep  3 14:28:46 osvm systemd-logind[860]: New session 1 of user rares.
+Mar  7 14:39:53 osvm systemd-logind[795]: New session 1 of user rares.
+Mar  7 07:30:51 osvm sshd[1023]: Received signal 15; terminating.
+Mar 14 09:29:51 osvm sudo:    rares : TTY=pts/0 ; PWD=/home/rares ; USER=root ; COMMAND=/bin/su -
+Mar  7 09:59:21 osvm systemd-logind[786]: Powering Off...
+Jul 12 20:30:59 osvm sshd[1190]: Accepted password for rares from 10.0.2.2 port 1089 ssh2
+Mar 14 09:31:28 osvm groupadd[2613]: group added to /etc/gshadow: name=ssl-cert
+May  3 08:00:55 osvm systemd-logind[840]: New session 3 of user rares.
+Mar 18 12:53:59 osvm systemd-logind[802]: System is powering down.
+Feb 22 08:18:54 osvm systemd-logind[830]: New seat seat0.
+Mar 10 18:14:49 osvm sshd[3241]: Accepted password for rares from 10.0.2.2 port 9300 ssh2
+Jul 12 20:26:19 osvm systemd-logind[821]: Watching system buttons on /dev/input/event0 (Power Button)
+Mar  2 22:43:34 osvm sshd[2002]: pam_unix(sshd:session): session closed for user rares
+Apr  5 08:17:01 osvm CRON[26058]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 18 12:53:59 osvm systemd-logind[802]: Power key pressed.
+Mar  2 12:43:00 osvm systemd-logind[806]: New seat seat0.
+Mar 24 13:46:19 osvm systemd-logind[832]: Powering Off...
+Mar 10 18:14:09 osvm su[3204]: Successful su for root by root
+Feb 23 18:17:01 osvm CRON[4182]: pam_unix(cron:session): session closed for user root
+Mar 24 08:08:22 osvm sshd[1054]: Server listening on 0.0.0.0 port 22.
+Apr  3 19:17:01 osvm CRON[26122]: pam_unix(cron:session): session closed for user root
+Apr  3 19:17:01 osvm CRON[26122]: pam_unix(cron:session): session opened for user root by (uid=0)
+Apr  3 19:38:13 osvm systemd-logind[877]: System is powering down.
+Dec  5 19:12:44 osvm sshd[1358]: Accepted password for rares from 10.0.2.2 port 35708 ssh2
+Mar 21 08:01:25 osvm systemd-logind[840]: New session 1 of user rares.
+Dec  6 11:31:32 osvm sshd[30515]: Accepted password for rares from 10.0.2.2 port 3053 ssh2
+Feb 22 10:17:01 osvm CRON[2130]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 21 08:00:40 osvm systemd-logind[840]: Watching system buttons on /dev/input/event0 (Power Button)
+Dec  5 20:17:02 osvm CRON[32072]: pam_unix(cron:session): session opened for user root by (uid=0)
+May  3 14:14:29 osvm systemd-logind[840]: Removed session 12.
+Apr  4 07:42:06 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Mar  7 09:17:01 osvm CRON[2842]: pam_unix(cron:session): session closed for user root
+Feb 28 13:17:01 osvm CRON[1394]: pam_unix(cron:session): session closed for user root
+Mar  2 21:17:01 osvm CRON[2137]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 21 09:28:26 osvm systemd-logind[832]: New session 2 of user rares.
+Mar  2 12:44:13 osvm systemd-logind[806]: New session 2 of user rares.
+Apr  4 07:41:19 osvm systemd-logind[833]: Watching system buttons on /dev/input/event3 (Video Bus)
+Mar 24 16:51:01 osvm sudo:    rares : TTY=pts/0 ; PWD=/home/rares ; USER=root ; COMMAND=/bin/su -
+Mar 28 13:53:40 osvm systemd-logind[802]: Powering Off...
+May  8 20:01:15 osvm sshd[1538]: pam_unix(sshd:session): session closed for user rares
+Dec  5 19:28:19 osvm useradd[1973]: failed adding user 'vboxadd', data deleted
+Mar 25 22:44:18 osvm sshd[1345]: pam_unix(sshd:session): session closed for user rares
+Feb 24 14:17:01 osvm CRON[2522]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar  7 14:41:10 osvm systemd-logind[795]: Removed session 1.
+Apr  4 13:49:43 osvm sshd[1191]: pam_unix(sshd:session): session closed for user rares
+Mar  7 10:07:33 osvm systemd-logind[848]: Watching system buttons on /dev/input/event0 (Power Button)
+Apr  7 17:15:43 osvm su[10916]: + /dev/pts/0 root:root
+Dec  5 19:14:40 osvm sudo: pam_unix(sudo:session): session closed for user root
+Apr 24 19:42:15 osvm systemd-logind[876]: System is powering down.
+Mar 24 18:01:27 osvm systemd-logind[835]: Watching system buttons on /dev/input/event3 (Video Bus)
+Sep  4 08:44:26 osvm systemd-logind[849]: Watching system buttons on /dev/input/event3 (Video Bus)
+Apr  4 10:06:20 osvm sshd[1018]: Server listening on 0.0.0.0 port 22.
+Apr  5 16:38:34 osvm systemd-logind[870]: New session 9 of user rares.
+Feb 24 08:07:10 osvm systemd-logind[802]: New seat seat0.
+Sep  3 14:37:00 osvm useradd[18799]: failed adding user 'vboxadd', data deleted
+Mar  7 07:30:51 osvm sshd[2154]: Server listening on 0.0.0.0 port 22.
+Jul 12 18:02:40 osvm sshd[1209]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Apr  3 16:05:37 osvm systemd-logind[877]: New session 1 of user rares.
+Mar 21 11:17:01 osvm CRON[14482]: pam_unix(cron:session): session closed for user root
+Apr 19 12:12:04 osvm systemd-logind[807]: New session 9 of user rares.
+Mar 10 12:17:01 osvm CRON[2835]: pam_unix(cron:session): session opened for user root by (uid=0)
+Feb 23 09:37:36 osvm sshd[1790]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Apr 19 11:17:01 osvm CRON[16927]: pam_unix(cron:session): session closed for user root
+May  3 13:45:06 osvm sshd[2347]: pam_unix(sshd:session): session closed for user rares
+Apr 26 07:59:03 osvm systemd-logind[806]: Removed session 2.
+Jul 10 23:16:57 osvm systemd-logind[766]: Removed session 2.
+Apr 26 08:08:05 osvm sudo: pam_unix(sudo:session): session closed for user root
+Mar 10 18:25:19 osvm sshd[4787]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Apr 17 21:23:39 osvm systemd-logind[834]: Removed session 1.
+Mar  7 07:30:51 osvm sshd[2154]: Server listening on :: port 22.
+Apr 19 08:07:15 osvm systemd-logind[807]: New session 2 of user rares.
+Apr 26 08:07:18 osvm sudo: pam_unix(sudo:session): session opened for user root by rares(uid=0)
+Dec  6 09:47:11 osvm su[1269]: pam_unix(su:session): session closed for user root
+May 10 09:00:19 osvm systemd-logind[815]: Removed session 2.
+Dec  6 10:17:01 osvm CRON[30509]: pam_unix(cron:session): session opened for user root by (uid=0)
+Apr 17 21:23:52 osvm systemd-logind[834]: Power key pressed.
+Apr 24 17:17:01 osvm CRON[30644]: pam_unix(cron:session): session closed for user root
+Apr  7 17:15:31 osvm su[1565]: pam_unix(su:session): session closed for user root
+Apr  4 19:50:50 osvm sshd[1207]: pam_unix(sshd:session): session closed for user rares
+Mar  7 12:11:15 osvm systemd-logind[848]: Removed session 1.
+Apr 26 12:06:50 osvm systemd-logind[870]: New session 2 of user rares.
+Apr  4 10:06:42 osvm systemd-logind[787]: New session 1 of user rares.
+Mar 13 15:41:06 osvm systemd-logind[823]: New session 1 of user rares.
+Apr  4 07:46:06 osvm sudo: pam_unix(sudo:session): session opened for user root by rares(uid=0)
+May 29 16:17:01 osvm CRON[3439]: pam_unix(cron:session): session opened for user root by (uid=0)
+Apr 26 07:43:39 osvm sshd[1329]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Feb 24 17:17:01 osvm CRON[2531]: pam_unix(cron:session): session opened for user root by (uid=0)
+Feb 23 15:17:01 osvm CRON[4132]: pam_unix(cron:session): session closed for user root
+Apr 19 12:12:04 osvm sshd[17027]: Accepted password for rares from 10.0.2.2 port 3250 ssh2
+Mar 18 11:53:57 osvm systemd-logind[802]: New seat seat0.
+Mar 10 18:14:49 osvm sshd[3241]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Mar  7 13:13:41 osvm su[14381]: pam_systemd(su:session): Cannot create session: Already running in a session
+Mar  2 20:07:38 osvm su[2066]: Successful su for root by root
+Mar 10 18:14:17 osvm sudo: pam_unix(sudo:session): session closed for user root
+Mar  7 19:26:07 osvm sshd[990]: Server listening on :: port 22.
+May 15 19:41:15 osvm systemd-logind[857]: System is powering down.
+Feb 23 19:05:32 osvm sshd[2649]: pam_unix(sshd:session): session closed for user rares
+Apr 19 07:36:45 osvm su[1533]: pam_unix(su:session): session closed for user root
+May 29 16:08:08 osvm systemd-logind[842]: Watching system buttons on /dev/input/event0 (Power Button)
+Mar 10 17:17:01 osvm CRON[3044]: pam_unix(cron:session): session opened for user root by (uid=0)
+Apr  4 14:52:11 osvm sshd[1300]: Accepted password for rares from 10.0.2.2 port 4985 ssh2
+Mar 13 15:38:42 osvm systemd-logind[823]: Watching system buttons on /dev/input/event3 (Video Bus)
+Dec  6 09:31:58 osvm su[1269]: Successful su for root by root
+Apr  5 16:40:12 osvm systemd-logind[870]: Removed session 9.
+Mar 13 15:38:42 osvm systemd-logind[823]: New seat seat0.
+Jun 13 18:57:39 osvm systemd-logind[850]: Power key pressed.
+Mar 28 10:07:37 osvm systemd-logind[802]: Watching system buttons on /dev/input/event3 (Video Bus)
+May 10 08:17:01 osvm CRON[1386]: pam_unix(cron:session): session opened for user root by (uid=0)
+Apr 19 12:11:37 osvm systemd-logind[807]: New session 8 of user rares.
+Feb 24 18:44:43 osvm systemd-logind[802]: Removed session 3.
+Apr  4 09:57:33 osvm sshd[1576]: pam_unix(sshd:session): session closed for user rares
+Apr 26 12:06:12 osvm systemd-logind[870]: New seat seat0.
+Apr  7 17:15:43 osvm sudo:    rares : TTY=pts/0 ; PWD=/home/rares/osvm ; USER=root ; COMMAND=/bin/su -
+Apr 19 13:21:13 osvm systemd-logind[807]: Removed session 8.
+Apr  4 07:41:19 osvm systemd-logind[833]: New seat seat0.
+Mar 10 23:15:33 osvm systemd-logind[834]: Watching system buttons on /dev/input/event0 (Power Button)
+May  3 08:00:55 osvm sshd[1696]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Mar 28 10:08:07 osvm sshd[1110]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Apr  5 07:55:24 osvm useradd[23736]: failed adding user 'vboxadd', data deleted
+Mar 10 23:29:37 osvm systemd-logind[834]: Power key pressed.
+Apr 19 13:17:01 osvm CRON[11850]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 21 13:50:34 osvm systemd-logind[790]: Power key pressed.
+Jul 10 22:34:58 osvm useradd[30290]: failed adding user 'vboxadd', data deleted
+Feb 23 09:33:05 osvm systemd-logind[836]: Watching system buttons on /dev/input/event3 (Video Bus)
+Mar 21 09:26:39 osvm sshd[2116]: pam_unix(sshd:session): session closed for user rares
+Mar 24 11:17:01 osvm CRON[15322]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 13 15:41:06 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Mar 21 18:33:29 osvm systemd-logind[822]: Powering Off...
+Mar 25 19:33:01 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Dec  5 19:12:44 osvm systemd-logind[874]: New session 1 of user rares.
+May 22 16:17:01 osvm CRON[1469]: pam_unix(cron:session): session closed for user root
+Dec  6 11:31:32 osvm systemd-logind[878]: New session 4 of user rares.
+Sep  3 14:37:00 osvm useradd[18800]: failed adding user 'vboxadd', data deleted
+Apr 19 07:33:58 osvm sshd[1428]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Mar 10 10:00:25 osvm sshd[1438]: Accepted password for rares from 10.0.2.2 port 1395 ssh2
+Mar 24 20:17:01 osvm CRON[2678]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 21 09:28:02 osvm sshd[1043]: Server listening on 0.0.0.0 port 22.
+Apr 24 19:17:01 osvm CRON[30935]: pam_unix(cron:session): session opened for user root by (uid=0)
+Feb 24 18:17:01 osvm CRON[2546]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 24 16:51:05 osvm sudo: pam_unix(sudo:session): session closed for user root
+May 29 20:00:13 osvm systemd-logind[842]: Removed session 4.
+May  3 12:17:01 osvm CRON[2495]: pam_unix(cron:session): session closed for user root
+Mar 10 22:58:29 osvm systemd-logind[793]: Removed session 10.
+Mar 24 18:01:43 osvm sshd[1140]: Accepted password for rares from 10.0.2.2 port 4429 ssh2
+Apr  7 17:17:01 osvm CRON[11064]: pam_unix(cron:session): session opened for user root by (uid=0)
+Feb 21 20:24:06 osvm sshd[6391]: Server listening on :: port 22.
+Jul 10 23:40:41 osvm systemd-logind[766]: Power key pressed.
+Apr  5 15:17:01 osvm CRON[1666]: pam_unix(cron:session): session opened for user root by (uid=0)
+Feb 28 12:28:57 osvm sshd[1119]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Apr 26 08:08:05 osvm su[15689]: pam_unix(su:session): session closed for user root
+Mar  7 10:07:52 osvm systemd-logind[848]: New session 1 of user rares.
+Feb 24 13:17:01 osvm CRON[2414]: pam_unix(cron:session): session opened for user root by (uid=0)
+Feb 24 08:50:56 osvm systemd-logind[802]: New session 3 of user rares.
+Apr 19 08:35:24 osvm sshd[1345]: Accepted password for rares from 10.0.2.2 port 2087 ssh2
+May  3 11:58:15 osvm sshd[2347]: Accepted password for rares from 10.0.2.2 port 4840 ssh2
+Apr  5 12:06:05 osvm sshd[1107]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Feb 23 11:17:01 osvm CRON[2180]: pam_unix(cron:session): session closed for user root
+Mar 10 22:58:42 osvm sshd[1438]: pam_unix(sshd:session): session closed for user rares
+Apr  4 09:57:58 osvm systemd-logind[833]: System is powering down.
+May  3 09:17:01 osvm CRON[2048]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 13 15:41:06 osvm sshd[1425]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Mar  7 13:14:00 osvm su[14381]: pam_unix(su:session): session closed for user root
+Mar 10 10:00:36 osvm sudo: pam_unix(sudo:session): session opened for user root by rares(uid=0)
+Apr 17 18:17:01 osvm CRON[6944]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jun 13 17:17:44 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+May 22 16:13:29 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Mar 14 10:04:12 osvm systemd-logind[797]: Removed session 1.
+Apr  5 07:56:29 osvm sudo: pam_unix(sudo:auth): authentication failure; logname=rares uid=1000 euid=0 tty=/dev/pts/0 ruser=rares rhost=  user=rares
+Jun 25 13:59:27 osvm systemd-logind[839]: Removed session 1.
+Jun 29 10:17:01 osvm CRON[3000]: pam_unix(cron:session): session closed for user root
+Mar 10 18:14:09 osvm sudo: pam_unix(sudo:session): session opened for user root by rares(uid=0)
+Apr  4 07:42:29 osvm sshd[1576]: Accepted password for rares from 10.0.2.2 port 1380 ssh2
+Mar  7 07:31:47 osvm systemd-logind[786]: New session 1 of user rares.
+Feb 28 09:09:18 osvm systemd-logind[841]: Watching system buttons on /dev/input/event3 (Video Bus)
+Mar 10 10:00:25 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Apr  5 08:01:12 osvm sshd[25922]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Apr  4 19:51:12 osvm systemd-logind[822]: Power key pressed.
+May  8 16:14:25 osvm systemd-logind[808]: Watching system buttons on /dev/input/event0 (Power Button)
+Dec  5 19:24:09 osvm sshd[1019]: Received signal 15; terminating.
+Jul 10 22:26:27 osvm systemd-logind[766]: Watching system buttons on /dev/input/event1 (Sleep Button)
+May 29 19:17:01 osvm CRON[6101]: pam_unix(cron:session): session closed for user root
+Apr  5 09:48:44 osvm systemd-logind[741]: Removed session 2.
+Mar 10 13:17:01 osvm CRON[2838]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 25 19:33:01 osvm sshd[1345]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Apr  5 07:56:34 osvm sudo: pam_unix(sudo:session): session opened for user root by rares(uid=0)
+Mar 21 10:17:01 osvm CRON[4915]: pam_unix(cron:session): session closed for user root
+May 15 17:36:15 osvm systemd-logind[857]: New session 2 of user rares.
+Apr 17 21:23:52 osvm systemd-logind[834]: System is powering down.
+May 10 08:17:01 osvm CRON[1386]: pam_unix(cron:session): session closed for user root
+May 15 19:40:58 osvm systemd-logind[857]: Removed session 1.
+Apr 19 08:05:36 osvm systemd-logind[807]: Watching system buttons on /dev/input/event3 (Video Bus)
+Apr 26 07:47:33 osvm su[1651]: pam_unix(su:session): session opened for user root by rares(uid=0)
+May  3 14:14:34 osvm systemd-logind[840]: Power key pressed.
+Mar  7 10:14:00 osvm sshd[1188]: syslogin_perform_logout: logout() returned an error
+Mar 24 16:48:16 osvm systemd-logind[810]: Watching system buttons on /dev/input/event3 (Video Bus)
+Feb 24 18:48:27 osvm systemd-logind[802]: Power key pressed.
+Apr 19 07:33:43 osvm sshd[1024]: Server listening on :: port 22.
+May  3 07:39:11 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Feb 21 22:17:01 osvm CRON[14933]: pam_unix(cron:session): session opened for user root by (uid=0)
+Apr  5 07:55:35 osvm sshd[25597]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Mar 25 22:17:01 osvm CRON[2082]: pam_unix(cron:session): session opened for user root by (uid=0)
+Feb 22 08:18:54 osvm systemd-logind[830]: Watching system buttons on /dev/input/event1 (Sleep Button)
+May 10 09:00:21 osvm systemd-logind[815]: Removed session 1.
+Feb 23 19:05:42 osvm systemd-logind[836]: Power key pressed.
+Apr  4 10:06:14 osvm systemd-logind[787]: Watching system buttons on /dev/input/event3 (Video Bus)
+Apr 24 16:21:51 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Jul 12 20:26:28 osvm sshd[1011]: Server listening on 0.0.0.0 port 22.
+Jul 12 18:02:40 osvm sshd[1209]: Accepted password for rares from 10.0.2.2 port 1049 ssh2
+Mar 10 09:57:28 osvm systemd-logind[793]: Watching system buttons on /dev/input/event0 (Power Button)
+May  8 18:17:01 osvm CRON[1859]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jun 25 11:46:18 osvm systemd-logind[839]: Watching system buttons on /dev/input/event3 (Video Bus)
+May 22 19:58:35 osvm sshd[1377]: pam_unix(sshd:session): session closed for user rares
+Mar 10 23:29:33 osvm systemd-logind[834]: Removed session 1.
+Apr 26 12:10:22 osvm su[1215]: pam_unix(su:session): session closed for user root
+Mar 21 10:02:06 osvm systemd-logind[790]: Watching system buttons on /dev/input/event0 (Power Button)
+Mar 28 09:17:01 osvm CRON[1623]: pam_unix(cron:session): session closed for user root
+May  2 11:10:36 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Mar 25 19:32:39 osvm systemd-logind[853]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Mar 24 22:17:01 osvm CRON[2735]: pam_unix(cron:session): session closed for user root
+Jun 13 18:17:01 osvm CRON[1360]: pam_unix(cron:session): session opened for user root by (uid=0)
+Apr 26 08:17:01 osvm CRON[19980]: pam_unix(cron:session): session closed for user root
+Apr 26 12:06:12 osvm systemd-logind[870]: Watching system buttons on /dev/input/event3 (Video Bus)
+May 22 19:17:01 osvm CRON[25863]: pam_unix(cron:session): session opened for user root by (uid=0)
+Apr  5 07:59:31 osvm sudo: pam_unix(sudo:session): session closed for user root
+Dec  6 09:31:27 osvm sshd[1095]: Server listening on :: port 22.
+Mar 13 16:51:34 osvm systemd-logind[823]: System is powering down.
+Jun 25 08:59:58 osvm useradd[4182]: failed adding user 'vboxadd', data deleted
+Apr 17 16:12:39 osvm systemd-logind[834]: Watching system buttons on /dev/input/event3 (Video Bus)
+May  3 08:00:33 osvm systemd-logind[840]: New session 2 of user rares.
+Feb 21 20:04:35 osvm sshd[1369]: Accepted password for rares from 10.0.2.2 port 59301 ssh2
+Apr  4 07:41:19 osvm systemd-logind[833]: Watching system buttons on /dev/input/event1 (Sleep Button)
+May  2 11:23:42 osvm systemd-logind[819]: Power key pressed.
+Mar 28 10:08:07 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Dec 13 10:21:00 osvm systemd-logind[772]: Powering Off...
+Apr  5 07:51:07 osvm systemd-logind[741]: Watching system buttons on /dev/input/event3 (Video Bus)
+Apr  4 14:46:00 osvm systemd-logind[830]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Mar  7 08:17:01 osvm CRON[2829]: pam_unix(cron:session): session closed for user root
+Apr  4 15:49:18 osvm systemd-logind[830]: Powering Off...
+Dec  5 19:12:44 osvm sshd[1358]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Mar 10 19:17:01 osvm CRON[6230]: pam_unix(cron:session): session closed for user root
+Mar 10 18:25:19 osvm sshd[4787]: Accepted password for rares from 10.0.2.2 port 9866 ssh2
+Mar  2 12:48:45 osvm systemd-logind[806]: Removed session 1.
+Mar 24 18:01:49 osvm sudo:    rares : TTY=pts/0 ; PWD=/home/rares ; USER=root ; COMMAND=/bin/su -
+May 29 20:00:14 osvm sshd[1388]: pam_unix(sshd:session): session closed for user rares
+Jun 29 10:17:01 osvm CRON[3000]: pam_unix(cron:session): session opened for user root by (uid=0)
+Apr  4 07:42:06 osvm sshd[1417]: Accepted password for rares from 10.0.2.2 port 1376 ssh2
+Feb 24 11:17:01 osvm CRON[2243]: pam_unix(cron:session): session opened for user root by (uid=0)
+Feb 21 22:35:01 osvm systemd-logind[778]: Powering Off...
+Apr  5 12:05:37 osvm systemd-logind[870]: Watching system buttons on /dev/input/event3 (Video Bus)
+Mar 28 13:53:16 osvm sshd[1180]: pam_unix(sshd:session): session closed for user rares
+Apr  4 07:44:14 osvm useradd[10354]: failed adding user 'vboxadd', data deleted
+Jul 10 22:26:27 osvm systemd-logind[766]: Watching system buttons on /dev/input/event0 (Power Button)
+Apr 26 15:49:28 osvm sshd[1105]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Mar 14 10:05:00 osvm systemd-logind[797]: Power key pressed.
+Mar  7 09:59:21 osvm systemd-logind[786]: System is powering down.
+Mar  2 20:07:38 osvm su[2066]: pam_systemd(su:session): Cannot create session: Already running in a session
+Mar 10 22:58:31 osvm systemd-logind[793]: Removed session 12.
+Feb 23 11:17:01 osvm CRON[2180]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jun 25 11:46:24 osvm systemd-logind[839]: New session 1 of user rares.
+Apr 17 19:17:01 osvm CRON[7189]: pam_unix(cron:session): session opened for user root by (uid=0)
+Feb 28 09:04:54 osvm sshd[1003]: Server listening on 0.0.0.0 port 22.
+Sep  4 08:44:26 osvm systemd-logind[849]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Mar 13 15:46:30 osvm sshd[1425]: pam_unix(sshd:session): session closed for user rares
+Apr  3 16:05:09 osvm sshd[1031]: Server listening on 0.0.0.0 port 22.
+May  8 20:01:15 osvm systemd-logind[808]: Removed session 4.
+Apr  7 17:14:11 osvm su[1565]: Successful su for root by root
+Jul 10 22:34:19 osvm useradd[14155]: failed adding user 'vboxadd', data deleted
+Mar  2 22:43:45 osvm systemd-logind[806]: System is powering down.
+Mar 21 08:01:25 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Apr 19 07:33:58 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Apr  5 13:51:11 osvm sshd[1249]: pam_unix(sshd:session): session closed for user rares
+May  3 10:17:01 osvm CRON[2252]: pam_unix(cron:session): session opened for user root by (uid=0)
+Apr 26 07:43:17 osvm systemd-logind[806]: New seat seat0.
+Feb 24 08:07:10 osvm systemd-logind[802]: Watching system buttons on /dev/input/event3 (Video Bus)
+Apr  4 07:42:37 osvm su[1625]: + /dev/pts/0 root:root
+Jul 12 18:01:12 osvm systemd-logind[813]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Dec  5 19:30:04 osvm useradd[19803]: failed adding user 'vboxadd', data deleted
+Dec 13 10:02:43 osvm sshd[1024]: Server listening on :: port 22.
+Mar 21 10:03:38 osvm sshd[1196]: Accepted password for rares from 10.0.2.2 port 53969 ssh2
+Feb 22 08:19:12 osvm systemd-logind[830]: New session 1 of user rares.
+Mar  2 12:44:03 osvm sshd[1374]: pam_unix(sshd:session): session closed for user rares
+Mar  7 12:17:01 osvm CRON[14026]: pam_unix(cron:session): session opened for user root by (uid=0)
+Apr  5 16:40:12 osvm sshd[1672]: pam_unix(sshd:session): session closed for user rares
+Mar 13 15:38:44 osvm sshd[981]: Server listening on 0.0.0.0 port 22.
+Apr  4 19:00:37 osvm systemd-logind[822]: New session 2 of user rares.
+Mar  7 09:58:35 osvm sshd[2368]: syslogin_perform_logout: logout() returned an error
+Mar 10 15:17:01 osvm CRON[3037]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar  7 10:07:33 osvm systemd-logind[848]: New seat seat0.
+Mar 21 09:17:01 osvm CRON[13384]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 28 08:07:24 osvm systemd-logind[816]: Watching system buttons on /dev/input/event0 (Power Button)
+Mar 21 08:01:32 osvm sudo: pam_unix(sudo:session): session opened for user root by rares(uid=0)
+Sep  3 14:28:09 osvm systemd-logind[860]: Watching system buttons on /dev/input/event3 (Video Bus)
+Mar 21 09:27:17 osvm systemd-logind[840]: Power key pressed.
+Feb 22 08:18:54 osvm systemd-logind[830]: Watching system buttons on /dev/input/event0 (Power Button)
+Mar  7 19:37:18 osvm sshd[1317]: Accepted password for rares from 10.0.2.2 port 4651 ssh2
+Mar 24 23:17:25 osvm sshd[1140]: pam_unix(sshd:session): session closed for user rares
+Mar  7 09:59:15 osvm systemd-logind[786]: Removed session 1.
+May  8 20:01:15 osvm sshd[1318]: pam_unix(sshd:session): session closed for user rares
+Apr  3 19:37:12 osvm systemd-logind[877]: Removed session 1.
+Apr 19 12:17:01 osvm CRON[17113]: pam_unix(cron:session): session opened for user root by (uid=0)
+Apr  4 14:46:01 osvm sshd[1033]: Server listening on 0.0.0.0 port 22.
+Dec 13 10:02:41 osvm systemd-logind[772]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Apr  4 07:43:32 osvm su[2057]: Successful su for root by root
+Feb 28 13:48:26 osvm systemd-logind[825]: Removed session 3.
+Apr 26 13:27:28 osvm systemd-logind[870]: Removed session 2.
+Apr 24 16:26:11 osvm useradd[28793]: failed adding user 'vboxadd', data deleted
+Mar 25 22:44:23 osvm systemd-logind[853]: Power key pressed.
+Mar 28 13:53:35 osvm systemd-logind[802]: Removed session 1.
+Feb 23 10:17:01 osvm CRON[1994]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jun 25 09:01:25 osvm sshd[1355]: pam_unix(sshd:session): session closed for user rares
+Mar 24 16:48:16 osvm systemd-logind[810]: Watching system buttons on /dev/input/event0 (Power Button)
+May 22 16:20:27 osvm useradd[2017]: failed adding user 'vboxadd', data deleted
+May  3 07:42:32 osvm su[1493]: pam_unix(su:session): session closed for user root
+Apr  4 07:42:46 osvm su[1643]: + /dev/pts/0 root:root
+Apr 26 09:35:42 osvm sshd[15572]: pam_unix(sshd:session): session closed for user rares
+Feb 23 09:37:36 osvm systemd-logind[836]: New session 1 of user rares.
+Apr 17 21:23:39 osvm sshd[1394]: pam_unix(sshd:session): session closed for user rares
+Mar 21 09:26:41 osvm sudo: pam_unix(sudo:session): session closed for user root
+Apr 26 08:06:42 osvm sshd[15572]: Accepted password for rares from 10.0.2.2 port 5436 ssh2
+Mar  7 13:57:15 osvm systemd-logind[848]: Powering Off...
+Mar 24 22:17:01 osvm CRON[2735]: pam_unix(cron:session): session opened for user root by (uid=0)
+Feb 23 19:05:36 osvm systemd-logind[836]: Removed session 1.
+May  2 11:10:31 osvm sshd[1449]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=10.0.2.2  user=rares
+May 29 16:08:08 osvm systemd-logind[842]: New seat seat0.
+Mar  7 12:09:45 osvm sshd[1118]: syslogin_perform_logout: logout() returned an error
+Jul 12 22:17:01 osvm CRON[1214]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 24 23:17:29 osvm systemd-logind[835]: Power key pressed.
+May 29 20:00:14 osvm systemd-logind[842]: Removed session 1.
+May  3 07:38:39 osvm systemd-logind[840]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Apr  7 17:14:11 osvm su[1565]: pam_unix(su:session): session opened for user root by rares(uid=0)
+Mar  7 07:29:42 osvm sshd[1023]: Server listening on 0.0.0.0 port 22.
+Feb 28 12:25:57 osvm systemd-logind[825]: Watching system buttons on /dev/input/event3 (Video Bus)
+Feb 21 21:17:01 osvm CRON[9946]: pam_unix(cron:session): session closed for user root
+May  2 11:06:21 osvm systemd-logind[819]: Watching system buttons on /dev/input/event3 (Video Bus)
+Apr 19 08:07:15 osvm sshd[1184]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Feb 23 14:17:01 osvm CRON[3761]: pam_unix(cron:session): session opened for user root by (uid=0)
+Apr  4 15:49:11 osvm systemd-logind[830]: Removed session 1.
+Feb 22 12:14:52 osvm systemd-logind[830]: Power key pressed.
+Mar 28 09:17:01 osvm CRON[1623]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 10 18:14:17 osvm su[3204]: pam_unix(su:session): session closed for user root
+Apr 19 12:11:37 osvm sshd[16930]: Accepted password for rares from 10.0.2.2 port 3249 ssh2
+Mar 18 12:53:55 osvm systemd-logind[802]: Removed session 1.
+Mar  7 19:28:02 osvm systemd-logind[842]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Mar  2 22:17:01 osvm CRON[2140]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jul 12 21:03:15 osvm sshd[1104]: pam_unix(sshd:session): session closed for user rares
+Feb 28 10:05:16 osvm systemd-logind[841]: Powering Off...
+Mar 28 08:07:24 osvm systemd-logind[816]: Watching system buttons on /dev/input/event3 (Video Bus)
+Mar  7 19:28:09 osvm sshd[1025]: Server listening on 0.0.0.0 port 22.
+Jul 12 18:01:50 osvm sshd[1085]: Accepted password for rares from 10.0.2.2 port 1047 ssh2
+Jun 25 11:46:18 osvm systemd-logind[839]: Watching system buttons on /dev/input/event0 (Power Button)
+May  2 11:10:33 osvm sshd[1449]: Failed password for rares from 10.0.2.2 port 36739 ssh2
+Feb 28 10:05:10 osvm su[1453]: pam_unix(su:session): session closed for user root
+Feb 28 13:17:01 osvm CRON[1394]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar  7 11:17:01 osvm CRON[1791]: pam_unix(cron:session): session closed for user root
+May 10 08:07:32 osvm sshd[1282]: Accepted password for rares from 10.0.2.2 port 1372 ssh2
+Feb 28 09:05:19 osvm su[1453]: + /dev/pts/0 root:root
+Apr  4 07:42:46 osvm sudo:    rares : TTY=pts/0 ; PWD=/home/rares ; USER=root ; COMMAND=/bin/su -
+Dec  6 11:32:16 osvm su[30590]: pam_systemd(su:session): Cannot create session: Already running in a session
+Feb 28 12:28:57 osvm systemd-logind[825]: New session 1 of user rares.
+Mar  2 12:43:00 osvm systemd-logind[806]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Mar  2 20:06:08 osvm systemd-logind[806]: New session 11 of user rares.
+Mar 10 23:29:37 osvm systemd-logind[834]: Powering Off...
+Mar  7 19:26:06 osvm systemd-logind[806]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Apr 19 13:17:01 osvm CRON[11850]: pam_unix(cron:session): session closed for user root
+Feb 28 10:31:54 osvm sshd[1104]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Apr 26 07:43:20 osvm sshd[1020]: Server listening on 0.0.0.0 port 22.
+Mar  7 19:43:17 osvm sshd[1106]: pam_unix(sshd:session): session closed for user rares
+May  2 11:06:21 osvm systemd-logind[819]: New seat seat0.
+Jun 25 08:53:57 osvm sshd[996]: Server listening on 0.0.0.0 port 22.
+Apr 26 12:09:45 osvm su[1215]: pam_unix(su:session): session opened for user root by rares(uid=0)
+Mar 21 08:01:32 osvm su[1879]: + /dev/pts/0 root:root
+May 29 16:08:08 osvm systemd-logind[842]: Watching system buttons on /dev/input/event1 (Sleep Button)
+                                                                                                                                                    Dec  5 19:12:15 osvm systemd-logind[874]: Watching system buttons on /dev/input/event0 (Power Button)
+Mar 13 16:17:01 osvm CRON[1562]: pam_unix(cron:session): session closed for user root
+Feb 28 10:31:54 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Apr  5 07:51:07 osvm systemd-logind[741]: New seat seat0.
+Mar 21 10:02:10 osvm sshd[1022]: Server listening on 0.0.0.0 port 22.
+Apr 24 16:26:11 osvm useradd[28794]: failed adding user 'vboxadd', data deleted
+Mar  7 11:12:41 osvm su[1744]: pam_unix(su:session): session closed for user root
+Apr 19 09:49:15 osvm sshd[1184]: pam_unix(sshd:session): session closed for user rares
+Mar 24 18:17:01 osvm CRON[1438]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 10 09:57:29 osvm systemd-logind[793]: New seat seat0.
+Feb 23 09:33:05 osvm sshd[1007]: Server listening on 0.0.0.0 port 22.
+Mar 28 10:08:13 osvm sshd[1180]: Accepted password for rares from 10.0.2.2 port 3014 ssh2
+Mar 21 09:26:42 osvm sshd[1455]: pam_unix(sshd:session): session closed for user rares
+Apr 19 13:21:10 osvm systemd-logind[807]: Removed session 10.
+Mar  7 07:29:37 osvm systemd-logind[786]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Apr  4 07:43:32 osvm su[2057]: pam_systemd(su:session): Cannot create session: Already running in a session
+Apr  7 17:15:43 osvm sudo: pam_unix(sudo:session): session opened for user root by rares(uid=0)
+Apr 26 12:06:16 osvm sshd[992]: Server listening on :: port 22.
+Mar 24 13:46:19 osvm systemd-logind[832]: Power key pressed.
+Jun 25 13:59:27 osvm sshd[1110]: pam_unix(sshd:session): session closed for user rares
+Mar 21 08:01:32 osvm su[1879]: Successful su for root by root
+Apr 19 10:17:01 osvm CRON[16922]: pam_unix(cron:session): session closed for user root
+Apr  4 09:57:23 osvm sshd[1851]: pam_unix(sshd:session): session closed for user rares
+Feb 28 13:48:26 osvm sshd[1424]: pam_unix(sshd:session): session closed for user rares
+Sep  3 14:28:09 osvm systemd-logind[860]: New seat seat0.
+Mar  7 13:13:41 osvm su[14381]: Successful su for root by root
+Apr  4 07:42:29 osvm systemd-logind[833]: New session 2 of user rares.
+Mar 24 13:17:01 osvm CRON[15328]: pam_unix(cron:session): session closed for user root
+Apr  3 16:10:54 osvm sshd[1625]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Apr 26 15:49:12 osvm sshd[1010]: Server listening on :: port 22.
+Mar 24 12:17:01 osvm CRON[15325]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 21 09:28:20 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Feb 23 10:17:01 osvm CRON[1994]: pam_unix(cron:session): session closed for user root
+Mar  2 17:17:01 osvm CRON[1894]: pam_unix(cron:session): session opened for user root by (uid=0)
+Apr 26 12:09:45 osvm sudo:    rares : TTY=pts/1 ; PWD=/home/rares/nessie/course/os/res/osvm/2018/lecture-08-ro ; USER=root ; COMMAND=/bin/su -
+Apr  5 12:06:05 osvm sshd[1107]: Accepted password for rares from 10.0.2.2 port 1525 ssh2
+Mar 21 08:01:32 osvm sudo:    rares : TTY=pts/0 ; PWD=/home/rares ; USER=root ; COMMAND=/bin/su -
+Jun 25 08:53:53 osvm systemd-logind[836]: Watching system buttons on /dev/input/event0 (Power Button)
+Feb 28 10:05:10 osvm systemd-logind[841]: Removed session 1.
+Apr  4 07:42:21 osvm sshd[1417]: pam_unix(sshd:session): session closed for user rares
+Mar  7 19:37:18 osvm sshd[1317]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Mar 21 10:02:06 osvm systemd-logind[790]: Watching system buttons on /dev/input/event3 (Video Bus)
+Apr 19 07:33:39 osvm systemd-logind[851]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Apr 19 07:33:39 osvm systemd-logind[851]: Watching system buttons on /dev/input/event3 (Video Bus)
+Apr 24 19:40:32 osvm sshd[1411]: pam_unix(sshd:session): session closed for user rares
+Apr  4 14:46:00 osvm systemd-logind[830]: New seat seat0.
+Mar  2 12:52:57 osvm sshd[1571]: syslogin_perform_logout: logout() returned an error
+Jun 29 09:00:30 osvm systemd-logind[839]: New session 4 of user rares.
+Mar 28 13:53:40 osvm systemd-logind[802]: Power key pressed.
+Mar 21 18:33:24 osvm sshd[1016]: Server listening on :: port 22.
+Apr 26 13:27:28 osvm systemd-logind[870]: Removed session 1.
+Feb 24 08:07:10 osvm systemd-logind[802]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Apr 19 09:49:15 osvm systemd-logind[807]: Removed session 2.
+Mar  2 22:43:45 osvm systemd-logind[806]: Power key pressed.
+Jun 25 09:01:32 osvm systemd-logind[836]: Powering Off...
+Mar 24 16:48:16 osvm sshd[1010]: Server listening on 0.0.0.0 port 22.
+Apr  5 07:56:35 osvm su[25696]: Successful su for root by root
+Apr 26 13:27:28 osvm sshd[1087]: pam_unix(sshd:session): session closed for user rares
+Apr  7 17:13:58 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Apr  5 07:54:48 osvm useradd[11739]: failed adding user 'vboxadd', data deleted
+Mar  7 13:13:41 osvm su[14381]: + /dev/pts/1 root:root
+Mar 14 09:31:36 osvm sudo: pam_unix(sudo:session): session closed for user root
+Apr 24 18:17:01 osvm CRON[30870]: pam_unix(cron:session): session closed for user root
+Mar 24 18:17:01 osvm CRON[1438]: pam_unix(cron:session): session closed for user root
+Jun 25 09:00:37 osvm useradd[19617]: failed adding user 'vboxadd', data deleted
+May 15 17:35:59 osvm sshd[1309]: Accepted password for rares from 10.0.2.2 port 2252 ssh2
+Apr 26 08:06:42 osvm systemd-logind[806]: New session 3 of user rares.
+Mar  7 14:29:03 osvm sshd[1029]: Server listening on :: port 22.
+Apr 26 07:43:17 osvm systemd-logind[806]: Watching system buttons on /dev/input/event3 (Video Bus)
+Apr  3 19:38:13 osvm systemd-logind[877]: Powering Off...
+Apr  5 16:38:34 osvm sshd[1672]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+May  3 08:00:33 osvm sshd[1636]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Apr  4 13:50:03 osvm systemd-logind[787]: Removed session 1.
+Mar 21 18:33:24 osvm sshd[1016]: Server listening on 0.0.0.0 port 22.
+Jul 10 23:17:01 osvm CRON[16566]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 18 12:17:01 osvm CRON[11751]: pam_unix(cron:session): session closed for user root
+Dec 13 10:21:00 osvm systemd-logind[772]: System is powering down.
+Mar 21 18:33:24 osvm systemd-logind[822]: New seat seat0.
+Apr  7 17:09:53 osvm systemd-logind[826]: Watching system buttons on /dev/input/event0 (Power Button)
+Apr 26 12:06:16 osvm sshd[992]: Server listening on 0.0.0.0 port 22.
+Mar  7 11:17:01 osvm CRON[1791]: pam_unix(cron:session): session opened for user root by (uid=0)
+Feb 21 21:17:01 osvm CRON[9946]: pam_unix(cron:session): session opened for user root by (uid=0)
+Apr 26 15:49:28 osvm systemd-logind[885]: New session 1 of user rares.
+Mar 14 09:29:51 osvm sudo: pam_unix(sudo:session): session opened for user root by rares(uid=0)
+Jul 12 18:05:39 osvm sshd[1085]: pam_unix(sshd:session): session closed for user rares
+Mar 14 09:29:51 osvm su[1516]: + /dev/pts/0 root:root
+Apr  4 10:17:01 osvm CRON[1295]: pam_unix(cron:session): session closed for user root
+Mar 28 12:17:01 osvm CRON[1714]: pam_unix(cron:session): session closed for user root
+Apr 26 08:06:52 osvm sshd[15617]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Apr 24 16:21:51 osvm sshd[1411]: Accepted password for rares from 10.0.2.2 port 2182 ssh2
+Mar 24 18:01:27 osvm systemd-logind[835]: Watching system buttons on /dev/input/event0 (Power Button)
+Apr  5 07:55:24 osvm useradd[23735]: failed adding user 'vboxadd', data deleted
+Apr 19 07:33:58 osvm sshd[1428]: Accepted password for rares from 10.0.2.2 port 1366 ssh2
+Feb 28 10:29:48 osvm sshd[1023]: Server listening on :: port 22.
+Apr  5 13:17:01 osvm CRON[1457]: pam_unix(cron:session): session closed for user root
+Apr 26 08:17:01 osvm CRON[19980]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jul 10 23:17:01 osvm CRON[16566]: pam_unix(cron:session): session closed for user root
+Mar  7 13:13:41 osvm sudo: pam_unix(sudo:session): session opened for user root by rares(uid=0)
+Sep  4 08:47:00 osvm sshd[1464]: Accepted password for rares from 10.0.2.2 port 1415 ssh2
+Jul 10 22:27:31 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Apr 26 15:49:12 osvm sshd[1010]: Server listening on 0.0.0.0 port 22.
+Dec  5 19:12:15 osvm systemd-logind[874]: New seat seat0.
+Dec  6 11:32:10 osvm su[30584]: - /dev/pts/1 rares:root
+Mar 10 22:58:29 osvm sshd[3241]: pam_unix(sshd:session): session closed for user rares
+Mar 24 12:17:01 osvm CRON[15325]: pam_unix(cron:session): session closed for user root
+Mar 10 09:57:29 osvm sshd[991]: Server listening on :: port 22.
+Apr 26 12:17:01 osvm CRON[1556]: pam_unix(cron:session): session closed for user root
+Mar 25 19:32:44 osvm sshd[1049]: Server listening on :: port 22.
+Apr 19 07:34:16 osvm sudo:    rares : TTY=pts/0 ; PWD=/home/rares/nessie ; USER=root ; COMMAND=/bin/su -
+Mar 18 11:58:51 osvm sshd[1447]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+May 29 18:46:41 osvm sshd[3740]: Accepted password for rares from 10.0.2.2 port 1829 ssh2
+Mar 28 08:07:24 osvm systemd-logind[816]: New seat seat0.
+Sep  3 14:28:11 osvm sshd[1007]: Server listening on :: port 22.
+Mar 10 10:00:25 osvm sshd[1438]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Mar 10 10:00:36 osvm sudo:    rares : TTY=pts/0 ; PWD=/home/rares ; USER=root ; COMMAND=/bin/su -
+Feb 23 19:05:32 osvm systemd-logind[836]: Removed session 4.
+Mar  2 20:17:01 osvm CRON[2134]: pam_unix(cron:session): session closed for user root
+May 15 17:40:48 osvm useradd[32439]: failed adding user 'vboxadd', data deleted
+Feb 24 09:17:01 osvm CRON[1747]: pam_unix(cron:session): session opened for user root by (uid=0)
+Feb 23 12:17:01 osvm CRON[2949]: pam_unix(cron:session): session opened for user root by (uid=0)
+Apr  4 19:00:13 osvm sshd[1051]: Server listening on 0.0.0.0 port 22.
+Mar  2 20:13:01 osvm sshd[1903]: pam_unix(sshd:session): session closed for user rares
+Feb 28 10:05:10 osvm sshd[1361]: pam_unix(sshd:session): session closed for user rares
+Apr  7 17:14:11 osvm su[1565]: + /dev/pts/0 root:root
+May  3 07:58:15 osvm sshd[1426]: pam_unix(sshd:session): session closed for user rares
+Mar 18 12:53:55 osvm sshd[1447]: pam_unix(sshd:session): session closed for user rares
+Mar 13 15:38:42 osvm systemd-logind[823]: Watching system buttons on /dev/input/event0 (Power Button)
+Mar 24 23:17:29 osvm systemd-logind[835]: Powering Off...
+Mar 24 18:01:49 osvm su[1211]: pam_systemd(su:session): Cannot create session: Already running in a session
+Mar  7 10:14:14 osvm sshd[1262]: Accepted password for rares from 10.0.2.2 port 2635 ssh2
+Mar  7 10:07:39 osvm sshd[1037]: Server listening on :: port 22.
+Mar 21 09:26:42 osvm systemd-logind[840]: Removed session 1.
+Mar 10 23:15:42 osvm systemd-logind[834]: New session 1 of user rares.
+Mar  7 14:41:15 osvm systemd-logind[795]: Powering Off...
+May 15 18:17:01 osvm CRON[2168]: pam_unix(cron:session): session opened for user root by (uid=0)
+Feb 21 20:03:32 osvm systemd-logind[778]: New seat seat0.
+May 15 17:35:34 osvm systemd-logind[857]: New seat seat0.
+May  3 11:57:54 osvm systemd-logind[840]: New session 8 of user rares.
+Apr  5 12:06:05 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Mar  7 19:26:07 osvm sshd[990]: Server listening on 0.0.0.0 port 22.
+Mar 14 09:31:28 osvm groupadd[2613]: group added to /etc/group: name=ssl-cert, GID=117
+Apr 26 12:06:29 osvm sshd[1087]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Mar 21 09:27:17 osvm systemd-logind[840]: Powering Off...
+May  3 09:17:01 osvm CRON[2048]: pam_unix(cron:session): session closed for user root
+Apr  4 07:42:37 osvm su[1625]: Successful su for root by root
+Mar 24 19:17:01 osvm CRON[2675]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 28 08:17:01 osvm CRON[1598]: pam_unix(cron:session): session closed for user root
+Apr  4 07:43:32 osvm sudo:    rares : TTY=pts/0 ; PWD=/home/rares ; USER=root ; COMMAND=/bin/su -
+Apr 26 08:06:42 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Mar  7 11:12:17 osvm sudo:    rares : TTY=pts/0 ; PWD=/home/rares/nessie/course/os/res/osvm/2019/lecture-02-ro ; USER=root ; COMMAND=/bin/su -
+Mar 10 23:15:33 osvm systemd-logind[834]: New seat seat0.
+Mar  2 13:17:01 osvm CRON[1760]: pam_unix(cron:session): session closed for user root
+May  2 11:17:01 osvm CRON[1646]: pam_unix(cron:session): session opened for user root by (uid=0)
+Apr 19 13:37:42 osvm systemd-logind[807]: Powering Off...
+May 29 18:17:01 osvm CRON[3727]: pam_unix(cron:session): session closed for user root
+May  3 11:57:54 osvm sshd[2258]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Sep  4 08:47:00 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Apr 26 17:04:43 osvm sshd[1105]: pam_unix(sshd:session): session closed for user rares
+Apr  5 09:49:01 osvm systemd-logind[741]: Powering Off...
+Mar  7 07:31:47 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Mar  7 07:29:42 osvm sshd[1023]: Server listening on :: port 22.
+Feb 24 08:07:59 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Feb 28 09:05:19 osvm su[1453]: pam_systemd(su:session): Cannot create session: Already running in a session
+Mar  7 11:12:17 osvm sudo: pam_unix(sudo:session): session opened for user root by rares(uid=0)
+Mar 21 10:03:13 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Apr  7 17:14:11 osvm sudo:    rares : TTY=pts/0 ; PWD=/home/rares ; USER=root ; COMMAND=/bin/su -
+May  3 07:39:23 osvm su[1493]: pam_unix(su:session): session opened for user root by rares(uid=0)
+Apr  5 16:38:34 osvm sshd[1672]: Accepted password for rares from 10.0.2.2 port 3405 ssh2
+Apr 19 07:33:39 osvm systemd-logind[851]: New seat seat0.
+Mar 24 18:01:27 osvm systemd-logind[835]: New seat seat0.
+Apr  3 16:05:37 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Feb 28 09:04:54 osvm systemd-logind[841]: Watching system buttons on /dev/input/event0 (Power Button)
+Mar 10 12:17:01 osvm CRON[2835]: pam_unix(cron:session): session closed for user root
+Apr  4 07:46:06 osvm su[12242]: Successful su for root by root
+Mar  7 14:39:53 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Sep  3 14:28:46 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Feb 24 16:17:01 osvm CRON[2528]: pam_unix(cron:session): session closed for user root
+May  3 13:45:06 osvm sshd[2258]: pam_unix(sshd:session): session closed for user rares
+Mar 10 21:17:01 osvm CRON[7307]: pam_unix(cron:session): session opened for user root by (uid=0)
+Apr  5 07:56:34 osvm sudo:    rares : TTY=pts/0 ; PWD=/home/rares ; USER=root ; COMMAND=/bin/su -
+Sep  4 08:44:29 osvm sshd[1022]: Server listening on 0.0.0.0 port 22.
+Mar 14 09:28:04 osvm sshd[1440]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Mar 21 08:17:01 osvm CRON[13381]: pam_unix(cron:session): session closed for user root
+May  2 11:06:21 osvm systemd-logind[819]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Jul 12 20:30:59 osvm sshd[1190]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Feb 24 08:07:16 osvm sshd[1031]: Server listening on 0.0.0.0 port 22.
+Jul 12 20:26:19 osvm systemd-logind[821]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Apr 19 07:36:46 osvm sshd[1428]: pam_unix(sshd:session): session closed for user rares
+Apr  4 15:49:11 osvm sshd[1150]: pam_unix(sshd:session): session closed for user rares
+May 29 17:17:01 osvm CRON[3448]: pam_unix(cron:session): session closed for user root
+Apr  4 15:49:18 osvm systemd-logind[830]: Power key pressed.
+Feb 28 12:28:57 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Mar 14 09:25:43 osvm sshd[1031]: Server listening on 0.0.0.0 port 22.
+Apr  5 09:49:01 osvm systemd-logind[741]: System is powering down.
+Mar 25 19:33:01 osvm systemd-logind[853]: New session 1 of user rares.
+Mar  7 14:39:53 osvm sshd[1112]: Accepted password for rares from 10.0.2.2 port 3218 ssh2
+Apr 26 07:48:40 osvm su[1651]: pam_unix(su:session): session closed for user root
+Feb 23 16:17:01 osvm CRON[4174]: pam_unix(cron:session): session opened for user root by (uid=0)
+Apr 17 21:23:38 osvm systemd-logind[834]: Removed session 3.
+Jul 12 18:02:40 osvm systemd-logind[813]: New session 2 of user rares.
+Mar  7 13:17:01 osvm CRON[14411]: pam_unix(cron:session): session closed for user root
+Apr  5 07:51:07 osvm systemd-logind[741]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Jul 10 22:26:35 osvm sshd[1006]: Server listening on :: port 22.
+Apr  7 17:15:46 osvm su[10916]: pam_unix(su:session): session closed for user root
+Mar 24 08:17:01 osvm CRON[15308]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 24 18:01:49 osvm su[1211]: Successful su for root by root
+Apr 26 07:43:17 osvm systemd-logind[806]: Watching system buttons on /dev/input/event0 (Power Button)
+Apr  3 17:17:01 osvm CRON[1954]: pam_unix(cron:session): session closed for user root
+Mar  2 20:06:49 osvm sshd[2002]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Apr 19 08:05:36 osvm systemd-logind[807]: New seat seat0.
+Mar  7 19:28:02 osvm systemd-logind[842]: Watching system buttons on /dev/input/event0 (Power Button)
+Sep  3 14:28:46 osvm sshd[1384]: Accepted password for rares from 10.0.2.2 port 1206 ssh2
+Apr 24 16:25:33 osvm useradd[14644]: failed adding user 'vboxadd', data deleted
+Feb 24 08:07:59 osvm sshd[1417]: Accepted password for rares from 10.0.2.2 port 1219 ssh2
+Apr  4 12:17:01 osvm CRON[1725]: pam_unix(cron:session): session closed for user root
+Jun 25 08:53:53 osvm systemd-logind[836]: Watching system buttons on /dev/input/event3 (Video Bus)
+Feb 23 11:53:02 osvm sshd[2649]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Dec 13 10:02:56 osvm sshd[1335]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+May  3 07:39:23 osvm sudo:    rares : TTY=pts/0 ; PWD=/home/rares ; USER=root ; COMMAND=/bin/su -
+Apr 17 21:17:01 osvm CRON[19259]: pam_unix(cron:session): session opened for user root by (uid=0)
+Apr  4 10:06:42 osvm sshd[1103]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Mar 25 22:44:18 osvm systemd-logind[853]: Removed session 1.
+Feb 22 09:17:01 osvm CRON[1814]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 21 08:01:32 osvm su[1879]: pam_systemd(su:session): Cannot create session: Already running in a session
+Jul 12 20:26:44 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Apr  4 19:00:13 osvm sshd[1051]: Server listening on :: port 22.
+Apr  4 07:42:59 osvm sshd[1851]: Accepted password for rares from 10.0.2.2 port 1384 ssh2
+Apr  4 07:43:32 osvm su[2057]: pam_unix(su:session): session opened for user root by rares(uid=0)
+Feb 28 11:22:52 osvm systemd-logind[795]: New session 3 of user rares.
+Mar  7 07:31:47 osvm sshd[2210]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+May  3 07:39:11 osvm sshd[1426]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+May 15 17:40:48 osvm useradd[32440]: failed adding user 'vboxadd', data deleted
+May 22 16:12:58 osvm systemd-logind[771]: Watching system buttons on /dev/input/event3 (Video Bus)
+Jun 25 08:53:53 osvm systemd-logind[836]: New seat seat0.
+Apr 17 16:17:01 osvm CRON[6255]: pam_unix(cron:session): session opened for user root by (uid=0)
+May 15 19:40:58 osvm systemd-logind[857]: Removed session 2.
+Apr  4 14:46:45 osvm sshd[1150]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Apr  5 08:17:01 osvm CRON[26058]: pam_unix(cron:session): session closed for user root
+Mar 25 19:32:39 osvm systemd-logind[853]: Watching system buttons on /dev/input/event0 (Power Button)
+Mar 28 12:17:01 osvm CRON[1714]: pam_unix(cron:session): session opened for user root by (uid=0)
+May 10 09:00:21 osvm sshd[1190]: pam_unix(sshd:session): session closed for user rares
+Mar 21 10:03:13 osvm systemd-logind[790]: New session 1 of user rares.
+Mar  2 12:43:00 osvm systemd-logind[806]: Watching system buttons on /dev/input/event3 (Video Bus)
+Mar  7 10:07:52 osvm sshd[1118]: Accepted password for rares from 10.0.2.2 port 2616 ssh2
+Mar 10 14:09:19 osvm su[1516]: pam_unix(su:session): session closed for user root
+Mar 24 18:01:49 osvm sudo: pam_unix(sudo:session): session opened for user root by rares(uid=0)
+Jul 10 23:16:57 osvm sshd[1617]: pam_unix(sshd:session): session closed for user rares
+Mar  2 15:23:39 osvm su[1858]: pam_unix(su:session): session opened for user root by rares(uid=1000)
+Apr  3 16:05:09 osvm sshd[1031]: Server listening on :: port 22.
+May 22 16:13:02 osvm sshd[1001]: Server listening on 0.0.0.0 port 22.
+May 15 17:35:39 osvm sshd[981]: Server listening on 0.0.0.0 port 22.
+Feb 28 11:17:01 osvm CRON[1354]: pam_unix(cron:session): session closed for user root
+May  8 16:14:25 osvm systemd-logind[808]: New seat seat0.
+Feb 24 18:48:27 osvm systemd-logind[802]: System is powering down.
+Feb 24 18:44:43 osvm sshd[1689]: pam_unix(sshd:session): session closed for user rares
+Feb 24 10:17:01 osvm CRON[2232]: pam_unix(cron:session): session opened for user root by (uid=0)
+Feb 24 08:07:10 osvm systemd-logind[802]: Watching system buttons on /dev/input/event0 (Power Button)
+Apr 19 07:34:16 osvm su[1533]: pam_unix(su:session): session opened for user root by rares(uid=0)
+May  8 20:01:27 osvm systemd-logind[808]: Power key pressed.
+Sep  4 08:44:29 osvm sshd[1022]: Server listening on :: port 22.
+Mar 10 18:17:01 osvm CRON[3315]: pam_unix(cron:session): session closed for user root
+May  2 11:23:42 osvm systemd-logind[819]: Powering Off...
+May  3 07:39:23 osvm su[1493]: pam_systemd(su:session): Cannot create session: Already running in a session
+Feb 21 20:03:38 osvm sshd[1040]: Server listening on 0.0.0.0 port 22.
+May 29 16:08:08 osvm systemd-logind[842]: Watching system buttons on /dev/input/event3 (Video Bus)
+Jul 10 22:27:31 osvm sshd[1366]: Accepted password for rares from 10.0.2.2 port 1083 ssh2
+Mar 28 13:53:16 osvm systemd-logind[802]: Removed session 2.
+Dec  5 19:12:57 osvm sudo:    rares : TTY=pts/0 ; PWD=/home/rares ; USER=root ; COMMAND=/bin/su -
+Feb 28 09:04:54 osvm sshd[1003]: Server listening on :: port 22.
+Jun 29 09:00:30 osvm sshd[1489]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Mar  7 19:27:02 osvm systemd-logind[806]: Removed session 1.
+Apr 26 12:06:29 osvm sshd[1087]: Accepted password for rares from 10.0.2.2 port 6108 ssh2
+Mar 21 12:17:01 osvm CRON[19787]: pam_unix(cron:session): session closed for user root
+Feb 28 09:17:01 osvm CRON[8846]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 14 09:31:29 osvm groupadd[2730]: group added to /etc/gshadow: name=postdrop
+Apr  4 14:46:01 osvm sshd[1033]: Server listening on :: port 22.
+Apr  3 16:10:54 osvm sshd[1625]: Accepted password for rares from 10.0.2.2 port 1374 ssh2
+May  3 11:17:01 osvm CRON[2255]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jul 10 22:34:19 osvm useradd[14154]: failed adding user 'vboxadd', data deleted
+Apr  5 13:53:09 osvm sshd[1107]: pam_unix(sshd:session): session closed for user rares
+Mar 10 18:25:19 osvm systemd-logind[793]: New session 12 of user rares.
+Apr  3 18:17:01 osvm CRON[25987]: pam_unix(cron:session): session closed for user root
+Dec 13 10:21:00 osvm systemd-logind[772]: Power key pressed.
+Mar 18 11:54:04 osvm sshd[1036]: Server listening on :: port 22.
+Feb 21 20:24:06 osvm sshd[1040]: Received signal 15; terminating.
+Feb 23 15:17:01 osvm CRON[4132]: pam_unix(cron:session): session opened for user root by (uid=0)
+Sep  4 08:47:00 osvm sshd[1464]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Mar 10 23:17:01 osvm CRON[1211]: pam_unix(cron:session): session closed for user root
+Feb 21 20:03:32 osvm systemd-logind[778]: Watching system buttons on /dev/input/event3 (Video Bus)
+Feb 21 20:03:32 osvm systemd-logind[778]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Mar 10 22:59:03 osvm systemd-logind[793]: Power key pressed.
+Dec  5 19:12:44 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Mar 21 10:02:06 osvm systemd-logind[790]: New seat seat0.
+Mar  2 20:13:06 osvm sshd[1683]: pam_unix(sshd:session): session closed for user rares
+Mar  7 19:43:21 osvm systemd-logind[842]: Powering Off...
+Apr  4 07:43:45 osvm sudo: pam_unix(sudo:session): session closed for user root
+May  3 14:14:34 osvm systemd-logind[840]: System is powering down.
+Feb 23 09:33:05 osvm systemd-logind[836]: Watching system buttons on /dev/input/event0 (Power Button)
+Mar 10 22:59:03 osvm systemd-logind[793]: System is powering down.
+Apr 19 07:35:50 osvm useradd[19287]: failed adding user 'vboxadd', data deleted
+Apr 26 17:04:49 osvm systemd-logind[885]: System is powering down.
+Apr  4 07:41:22 osvm sshd[1034]: Server listening on 0.0.0.0 port 22.
+Apr  7 17:09:54 osvm sshd[1028]: Server listening on 0.0.0.0 port 22.
+Mar 14 09:28:04 osvm systemd-logind[797]: New session 1 of user rares.
+Jul 12 20:26:44 osvm systemd-logind[821]: New session 1 of user rares.
+Apr  4 07:42:37 osvm su[1625]: pam_unix(su:session): session opened for user root by rares(uid=0)
+Mar 21 09:51:19 osvm sshd[1197]: pam_unix(sshd:session): session closed for user rares
+Mar  7 13:57:15 osvm systemd-logind[848]: System is powering down.
+May 15 19:17:01 osvm CRON[2172]: pam_unix(cron:session): session opened for user root by (uid=0)
+Apr  4 14:46:00 osvm systemd-logind[830]: Watching system buttons on /dev/input/event0 (Power Button)
+Apr  4 08:17:01 osvm CRON[22350]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 10 23:15:42 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Dec 13 10:17:01 osvm CRON[4372]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jun 25 12:17:01 osvm CRON[1190]: pam_unix(cron:session): session closed for user root
+Mar  2 21:17:01 osvm CRON[2137]: pam_unix(cron:session): session closed for user root
+Apr  4 07:46:06 osvm su[12242]: pam_unix(su:session): session opened for user root by rares(uid=0)
+Apr 26 08:07:18 osvm su[15689]: pam_systemd(su:session): Cannot create session: Already running in a session
+Mar 28 11:17:01 osvm CRON[1579]: pam_unix(cron:session): session closed for user root
+Mar  2 13:17:01 osvm CRON[1760]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jul 12 22:20:45 osvm systemd-logind[821]: Powering Off...
+Mar 21 13:50:34 osvm systemd-logind[790]: System is powering down.
+Jun 13 17:17:44 osvm sshd[1123]: Accepted password for rares from 10.0.2.2 port 1045 ssh2
+Apr 26 13:27:36 osvm systemd-logind[870]: System is powering down.
+Jun 29 09:00:30 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Mar 21 09:28:20 osvm sshd[1127]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Apr 26 15:49:09 osvm systemd-logind[885]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Mar  2 18:17:01 osvm CRON[1897]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jul 10 22:27:31 osvm sshd[1366]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Mar 10 10:00:36 osvm su[1516]: pam_unix(su:session): session opened for user root by rares(uid=0)
+Apr  4 10:06:42 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Sep  3 14:28:46 osvm sshd[1384]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Feb 21 20:17:01 osvm CRON[5333]: pam_unix(cron:session): session opened for user root by (uid=0)
+May  8 19:17:01 osvm CRON[1909]: pam_unix(cron:session): session closed for user root
+Mar 21 08:01:25 osvm sshd[1455]: Accepted password for rares from 10.0.2.2 port 1214 ssh2
+Mar 21 18:33:29 osvm systemd-logind[822]: Power key pressed.
+Apr  4 07:51:12 osvm su[12242]: pam_unix(su:session): session closed for user root
+Mar 25 22:44:23 osvm systemd-logind[853]: Powering Off...
+Apr 26 15:49:09 osvm systemd-logind[885]: New seat seat0.
+Mar  2 12:52:57 osvm sshd[1571]: pam_unix(sshd:session): session closed for user rares
+Feb 28 12:25:57 osvm systemd-logind[825]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Mar 21 13:50:34 osvm systemd-logind[790]: Powering Off...
+Apr  3 16:05:37 osvm sshd[1372]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Mar 24 21:17:01 osvm CRON[2681]: pam_unix(cron:session): session opened for user root by (uid=0)
+Apr 19 08:07:00 osvm sshd[1105]: Accepted password for rares from 10.0.2.2 port 2044 ssh2
+Feb 28 09:05:19 osvm su[1453]: Successful su for root by root
+Apr 26 07:48:40 osvm sudo: pam_unix(sudo:session): session closed for user root
+Mar  2 22:43:33 osvm sudo: pam_unix(sudo:session): session closed for user root
+Mar  2 12:53:09 osvm sshd[1683]: Accepted password for rares from 10.0.2.2 port 3031 ssh2
+Mar 21 09:27:17 osvm systemd-logind[840]: System is powering down.
+Mar  2 18:17:01 osvm CRON[1897]: pam_unix(cron:session): session closed for user root
+Apr 26 09:45:33 osvm systemd-logind[806]: Power key pressed.
+Apr  4 19:00:09 osvm systemd-logind[822]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Mar  2 12:43:24 osvm sshd[1374]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Jun 29 09:17:01 osvm CRON[2997]: pam_unix(cron:session): session closed for user root
+May 15 19:17:01 osvm CRON[2172]: pam_unix(cron:session): session closed for user root
+Mar  7 10:16:19 osvm systemd-logind[848]: Removed session 2.
+Mar 25 20:17:01 osvm CRON[1645]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 24 18:29:35 osvm sudo: pam_unix(sudo:session): session closed for user root
+Apr 19 10:17:01 osvm CRON[16922]: pam_unix(cron:session): session opened for user root by (uid=0)
+Feb 24 17:17:01 osvm CRON[2531]: pam_unix(cron:session): session closed for user root
+Jul 12 18:05:39 osvm sshd[1209]: pam_unix(sshd:session): session closed for user rares
+Mar  2 12:44:13 osvm sshd[1571]: Accepted password for rares from 10.0.2.2 port 2977 ssh2
+Mar 21 10:03:13 osvm sshd[1108]: Accepted password for rares from 10.0.2.2 port 53968 ssh2
+Mar 21 09:27:57 osvm systemd-logind[832]: Watching system buttons on /dev/input/event3 (Video Bus)
+Mar 21 09:51:32 osvm systemd-logind[832]: Powering Off...
+Feb 21 20:03:38 osvm sshd[1040]: Server listening on :: port 22.
+Mar 24 09:17:01 osvm CRON[15316]: pam_unix(cron:session): session closed for user root
+Feb 28 11:59:05 osvm systemd-logind[795]: Removed session 3.
+Apr 26 12:17:01 osvm CRON[1556]: pam_unix(cron:session): session opened for user root by (uid=0)
+Apr  4 07:42:46 osvm su[1643]: Successful su for root by root
+Apr  5 09:48:44 osvm sshd[26439]: pam_unix(sshd:session): session closed for user rares
+Mar  2 16:17:01 osvm CRON[1891]: pam_unix(cron:session): session closed for user root
+May  3 08:17:01 osvm CRON[1858]: pam_unix(cron:session): session closed for user root
+Apr 19 12:12:18 osvm sshd[17070]: Accepted password for rares from 10.0.2.2 port 3251 ssh2
+Feb 24 08:07:59 osvm systemd-logind[802]: New session 1 of user rares.
+May 15 18:17:01 osvm CRON[2168]: pam_unix(cron:session): session closed for user root
+Mar  7 19:26:41 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Jul 12 21:17:01 osvm CRON[1211]: pam_unix(cron:session): session opened for user root by (uid=0)
+Apr 17 17:17:01 osvm CRON[6445]: pam_unix(cron:session): session closed for user root
+Mar 10 11:17:01 osvm CRON[2832]: pam_unix(cron:session): session closed for user root
+Jul 10 22:36:07 osvm sshd[1617]: Accepted password for rares from 10.0.2.2 port 1130 ssh2
+Feb 28 11:59:13 osvm systemd-logind[795]: Powering Off...
+Mar 10 23:15:42 osvm sshd[1107]: Accepted password for rares from 10.0.2.2 port 17467 ssh2
+Jul 12 18:05:39 osvm systemd-logind[813]: Removed session 2.
+Apr 24 19:40:32 osvm systemd-logind[876]: Removed session 1.
+Apr 24 18:17:01 osvm CRON[30870]: pam_unix(cron:session): session opened for user root by (uid=0)
+May 10 09:00:35 osvm systemd-logind[815]: System is powering down.
+Apr 26 13:27:36 osvm systemd-logind[870]: Powering Off...
+Dec  6 10:17:01 osvm CRON[30509]: pam_unix(cron:session): session closed for user root
+Apr  4 09:17:01 osvm CRON[22723]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jul 12 18:05:46 osvm systemd-logind[813]: Power key pressed.
+Mar 24 08:08:17 osvm systemd-logind[832]: New seat seat0.
+Mar 24 20:17:01 osvm CRON[2678]: pam_unix(cron:session): session closed for user root
+Feb 21 20:24:06 osvm sshd[6391]: Server listening on 0.0.0.0 port 22.
+May 29 16:08:32 osvm systemd-logind[842]: New session 1 of user rares.
+Feb 22 08:18:58 osvm sshd[1028]: Server listening on :: port 22.
+Mar  7 09:58:35 osvm sshd[2368]: pam_unix(sshd:session): session closed for user rares
+Sep  3 14:36:18 osvm useradd[1879]: failed adding user 'vboxadd', data deleted
+Mar 28 08:07:25 osvm sshd[1019]: Server listening on :: port 22.
+Mar 10 18:14:09 osvm su[3204]: pam_unix(su:session): session opened for user root by rares(uid=0)
+Dec  6 11:17:01 osvm CRON[30512]: pam_unix(cron:session): session closed for user root
+May  2 11:10:36 osvm sshd[1449]: Accepted password for rares from 10.0.2.2 port 36739 ssh2
+Mar 24 08:08:34 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Mar 10 23:29:37 osvm systemd-logind[834]: System is powering down.
+Jul 12 18:01:12 osvm systemd-logind[813]: New seat seat0.
+May  3 13:17:01 osvm CRON[2754]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 24 18:01:49 osvm su[1211]: pam_unix(su:session): session opened for user root by rares(uid=0)
+Mar 24 13:46:09 osvm sshd[1367]: pam_unix(sshd:session): session closed for user rares
+Feb 21 20:04:35 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Feb 22 08:18:58 osvm sshd[1028]: Server listening on 0.0.0.0 port 22.
+May  8 19:17:01 osvm CRON[1909]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar  7 19:28:09 osvm sshd[1025]: Server listening on :: port 22.
+Apr  5 16:38:34 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Mar 28 08:07:35 osvm sshd[1370]: Accepted password for rares from 10.0.2.2 port 1539 ssh2
+Feb 23 19:05:36 osvm sshd[1790]: pam_unix(sshd:session): session closed for user rares
+May 29 18:17:01 osvm CRON[3727]: pam_unix(cron:session): session opened for user root by (uid=0)
+Apr  3 19:38:13 osvm systemd-logind[877]: Power key pressed.
+Jun 25 11:46:19 osvm sshd[976]: Server listening on :: port 22.
+Apr 24 16:21:51 osvm sshd[1411]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+May 22 18:17:01 osvm CRON[25860]: pam_unix(cron:session): session closed for user root
+Mar 24 18:29:35 osvm su[1211]: pam_unix(su:session): session closed for user root
+Mar 28 08:07:35 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Feb 22 10:17:01 osvm CRON[2130]: pam_unix(cron:session): session closed for user root
+                                                                                                                                                                                                                                                                                                        Dec  6 09:31:21 osvm systemd-logind[878]: Watching system buttons on /dev/input/event0 (Power Button)
+Mar 21 10:03:38 osvm sshd[1196]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Jun 25 09:01:32 osvm systemd-logind[836]: Power key pressed.
+Jun 25 08:59:58 osvm useradd[4181]: failed adding user 'vboxadd', data deleted
+May 22 16:12:58 osvm systemd-logind[771]: New seat seat0.
+Mar  2 22:17:01 osvm CRON[2140]: pam_unix(cron:session): session closed for user root
+Jul 12 18:01:16 osvm sshd[992]: Server listening on :: port 22.
+Apr 19 07:35:50 osvm useradd[19288]: failed adding user 'vboxadd', data deleted
+Dec  6 12:17:01 osvm CRON[30866]: pam_unix(cron:session): session closed for user root
+Mar  2 12:43:24 osvm sshd[1374]: Accepted password for rares from 10.0.2.2 port 2975 ssh2
+May  3 13:45:06 osvm systemd-logind[840]: Removed session 8.
+Sep  3 14:28:09 osvm systemd-logind[860]: Watching system buttons on /dev/input/event1 (Sleep Button)
+May  2 11:23:36 osvm sshd[1449]: pam_unix(sshd:session): session closed for user rares
+May 10 08:06:32 osvm systemd-logind[815]: Watching system buttons on /dev/input/event3 (Video Bus)
+Mar 24 16:57:17 osvm systemd-logind[810]: Removed session 1.
+Apr  3 18:17:01 osvm CRON[25987]: pam_unix(cron:session): session opened for user root by (uid=0)
+Feb 28 09:04:54 osvm systemd-logind[841]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Mar  7 10:17:01 osvm CRON[1318]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 28 10:03:33 osvm sshd[1019]: Received signal 15; terminating.
+Jul 12 21:03:12 osvm systemd-logind[821]: Removed session 2.
+Feb 24 08:50:56 osvm sshd[1689]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+May  3 07:42:32 osvm sudo: pam_unix(sudo:session): session closed for user root
+Dec  5 20:17:02 osvm CRON[32072]: pam_unix(cron:session): session closed for user root
+Apr  4 19:17:01 osvm CRON[1368]: pam_unix(cron:session): session closed for user root
+Dec  6 11:32:16 osvm su[30590]: + /dev/pts/1 root:root
+May 22 17:17:01 osvm CRON[25816]: pam_unix(cron:session): session opened for user root by (uid=0)
+Apr  5 12:05:37 osvm systemd-logind[870]: Watching system buttons on /dev/input/event0 (Power Button)
+Dec  6 11:32:16 osvm su[30590]: Successful su for root by root
+Apr 19 13:21:13 osvm sshd[16930]: pam_unix(sshd:session): session closed for user rares
+Jun 13 18:16:11 osvm sshd[1123]: pam_unix(sshd:session): session closed for user rares
+Apr  5 07:55:35 osvm systemd-logind[741]: New session 1 of user rares.
+May  3 14:14:29 osvm sshd[2931]: pam_unix(sshd:session): session closed for user rares
+Apr  4 14:46:45 osvm systemd-logind[830]: New session 1 of user rares.
+May  8 20:01:15 osvm systemd-logind[808]: Removed session 1.
+Feb 24 08:17:01 osvm CRON[1537]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar  7 13:53:05 osvm sshd[13953]: pam_unix(sshd:session): session closed for user rares
+Apr 19 12:12:18 osvm sshd[17070]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Mar 28 08:17:01 osvm CRON[1598]: pam_unix(cron:session): session opened for user root by (uid=0)
+Apr 24 19:42:15 osvm systemd-logind[876]: Powering Off...
+Apr  5 12:06:32 osvm systemd-logind[870]: New session 2 of user rares.
+Mar 28 13:17:01 osvm CRON[1928]: pam_unix(cron:session): session closed for user root
+Apr  3 16:10:54 osvm systemd-logind[877]: New session 2 of user rares.
+Apr 26 12:10:22 osvm sudo: pam_unix(sudo:session): session closed for user root
+Apr  7 17:09:53 osvm systemd-logind[826]: Watching system buttons on /dev/input/event3 (Video Bus)
+Apr 19 08:05:36 osvm systemd-logind[807]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Apr  5 16:40:21 osvm systemd-logind[870]: Power key pressed.
+Feb 28 13:53:36 osvm systemd-logind[825]: Powering Off...
+Apr  5 07:59:32 osvm systemd-logind[741]: Removed session 1.
+Apr  4 14:46:45 osvm sshd[1150]: Accepted password for rares from 10.0.2.2 port 4948 ssh2
+Apr 17 21:17:01 osvm CRON[19259]: pam_unix(cron:session): session closed for user root
+May 22 16:12:58 osvm systemd-logind[771]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Apr 26 17:04:49 osvm systemd-logind[885]: Power key pressed.
+Mar  2 15:17:01 osvm CRON[1786]: pam_unix(cron:session): session opened for user root by (uid=0)
+May 15 19:41:15 osvm systemd-logind[857]: Powering Off...
+Mar 13 16:51:34 osvm systemd-logind[823]: Powering Off...
+Mar  7 10:14:14 osvm sshd[1262]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Jul 12 22:20:45 osvm systemd-logind[821]: System is powering down.
+Mar  7 19:28:29 osvm sshd[1106]: Accepted password for rares from 10.0.2.2 port 4635 ssh2
+Apr 26 17:04:43 osvm systemd-logind[885]: Removed session 1.
+Dec  5 19:12:57 osvm sudo: pam_unix(sudo:session): session opened for user root by rares(uid=0)
+Mar 21 09:26:41 osvm su[1879]: pam_unix(su:session): session closed for user root
+Mar 24 16:48:16 osvm systemd-logind[810]: New seat seat0.
+Mar  7 12:09:59 osvm sshd[13953]: Accepted password for rares from 10.0.2.2 port 2851 ssh2
+Feb 28 09:05:19 osvm su[1453]: pam_unix(su:session): session opened for user root by rares(uid=0)
+May  3 08:00:55 osvm sshd[1696]: Accepted password for rares from 10.0.2.2 port 4175 ssh2
+Mar  7 19:26:06 osvm systemd-logind[806]: Watching system buttons on /dev/input/event0 (Power Button)
+Apr 26 07:43:20 osvm sshd[1020]: Server listening on :: port 22.
+Mar 10 20:17:01 osvm CRON[18135]: pam_unix(cron:session): session closed for user root
+Feb 23 16:17:01 osvm CRON[4174]: pam_unix(cron:session): session closed for user root
+Mar 24 18:01:28 osvm sshd[1024]: Server listening on :: port 22.
+May  3 11:17:01 osvm CRON[2255]: pam_unix(cron:session): session closed for user root
+May 15 17:36:15 osvm sshd[1445]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Mar 21 09:27:57 osvm systemd-logind[832]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Feb 21 20:27:30 osvm useradd[1135]: failed adding user 'vboxadd', data deleted
+Apr  7 17:14:11 osvm sudo: pam_unix(sudo:session): session opened for user root by rares(uid=0)
+Dec  6 09:31:21 osvm systemd-logind[878]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Apr 26 07:59:03 osvm systemd-logind[806]: Removed session 1.
+Apr  5 16:17:01 osvm CRON[1669]: pam_unix(cron:session): session closed for user root
+Feb 21 22:34:57 osvm sshd[1369]: pam_unix(sshd:session): session closed for user rares
+Apr  4 07:46:06 osvm su[12242]: pam_systemd(su:session): Cannot create session: Already running in a session
+Apr 26 08:07:18 osvm su[15689]: pam_unix(su:session): session opened for user root by rares(uid=0)
+May 29 20:00:19 osvm systemd-logind[842]: Power key pressed.
+Dec  6 09:31:21 osvm systemd-logind[878]: New seat seat0.
+Jun 25 11:46:24 osvm sshd[1110]: Accepted password for rares from 10.0.2.2 port 1075 ssh2
+Apr  4 13:50:14 osvm systemd-logind[787]: Powering Off...
+Feb 24 11:17:01 osvm CRON[2243]: pam_unix(cron:session): session closed for user root
+Dec  5 19:12:57 osvm su[1457]: Successful su for root by root
+Mar 28 08:07:24 osvm systemd-logind[816]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Apr 19 13:21:13 osvm sshd[17027]: pam_unix(sshd:session): session closed for user rares
+Mar  2 22:43:45 osvm systemd-logind[806]: Powering Off...
+May 22 16:12:58 osvm systemd-logind[771]: Watching system buttons on /dev/input/event0 (Power Button)
+Apr 17 17:15:24 osvm systemd-logind[834]: New session 3 of user rares.
+Feb 23 13:17:01 osvm CRON[3464]: pam_unix(cron:session): session closed for user root
+May 10 08:07:04 osvm sshd[1190]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Apr  5 15:17:01 osvm CRON[1666]: pam_unix(cron:session): session closed for user root
+Apr 17 16:17:01 osvm CRON[6255]: pam_unix(cron:session): session closed for user root
+Apr 17 17:17:01 osvm CRON[6445]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar  7 14:41:10 osvm sshd[1112]: pam_unix(sshd:session): session closed for user rares
+Dec 13 10:02:43 osvm sshd[1024]: Server listening on 0.0.0.0 port 22.
+May  3 07:38:39 osvm systemd-logind[840]: Watching system buttons on /dev/input/event0 (Power Button)
+Apr  4 11:17:01 osvm CRON[1512]: pam_unix(cron:session): session opened for user root by (uid=0)
+May 15 17:40:10 osvm useradd[18276]: failed adding user 'vboxadd', data deleted
+Jul 10 23:40:41 osvm systemd-logind[766]: Powering Off...
+Jun 25 08:54:23 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Feb 22 08:19:12 osvm sshd[1341]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Mar  7 12:09:45 osvm sshd[1118]: pam_unix(sshd:session): session closed for user rares
+Feb 23 19:05:42 osvm systemd-logind[836]: System is powering down.
+Dec  6 11:32:09 osvm su[30584]: pam_unix(su:auth): authentication failure; logname=rares uid=1000 euid=0 tty=/dev/pts/1 ruser=rares rhost=  user=root
+May 29 17:45:45 osvm sshd[3454]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Feb 23 17:17:01 osvm CRON[4178]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar  7 19:27:06 osvm systemd-logind[806]: Powering Off...
+Apr 26 12:09:45 osvm su[1215]: pam_systemd(su:session): Cannot create session: Already running in a session
+Jun 25 08:53:53 osvm systemd-logind[836]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Apr  5 08:01:37 osvm systemd-logind[741]: New session 3 of user rares.
+Mar 24 18:01:43 osvm systemd-logind[835]: New session 1 of user rares.
+Mar 18 11:53:57 osvm systemd-logind[802]: Watching system buttons on /dev/input/event3 (Video Bus)
+May  3 07:39:23 osvm sudo: pam_unix(sudo:session): session opened for user root by rares(uid=0)
+May  8 20:01:27 osvm systemd-logind[808]: Powering Off...
+Mar 14 10:04:12 osvm sshd[1440]: pam_unix(sshd:session): session closed for user rares
+Apr 26 07:59:03 osvm sshd[1559]: pam_unix(sshd:session): session closed for user rares
+Mar 14 09:31:29 osvm groupadd[2730]: group added to /etc/group: name=postdrop, GID=119
+Apr  5 07:51:07 osvm systemd-logind[741]: Watching system buttons on /dev/input/event0 (Power Button)
+May 10 08:07:32 osvm sshd[1282]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Apr  4 07:42:29 osvm sshd[1576]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Feb 23 14:17:01 osvm CRON[3761]: pam_unix(cron:session): session closed for user root
+Apr 19 08:17:01 osvm CRON[1233]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar  2 12:43:00 osvm systemd-logind[806]: Watching system buttons on /dev/input/event0 (Power Button)
+Apr  5 08:01:37 osvm sshd[25985]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+May  2 11:23:36 osvm systemd-logind[819]: Removed session 1.
+Apr 19 08:07:00 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Apr  4 09:57:58 osvm systemd-logind[833]: Powering Off...
+Apr  4 07:43:32 osvm sudo: pam_unix(sudo:session): session opened for user root by rares(uid=0)
+Apr  3 19:37:10 osvm systemd-logind[877]: Removed session 2.
+Dec  6 09:31:46 osvm systemd-logind[878]: New session 1 of user rares.
+Dec  5 19:24:09 osvm sshd[8191]: Server listening on 0.0.0.0 port 22.
+Mar 21 09:51:32 osvm systemd-logind[832]: Power key pressed.
+Jun 25 09:01:32 osvm systemd-logind[836]: System is powering down.
+Mar  7 08:17:01 osvm CRON[2829]: pam_unix(cron:session): session opened for user root by (uid=0)
+May  8 17:17:01 osvm CRON[1535]: pam_unix(cron:session): session closed for user root
+Jul 10 23:40:41 osvm systemd-logind[766]: System is powering down.
+Mar 18 11:53:57 osvm systemd-logind[802]: Watching system buttons on /dev/input/event0 (Power Button)
+Apr  7 17:15:31 osvm sudo: pam_unix(sudo:session): session closed for user root
+May 10 08:06:36 osvm sshd[975]: Server listening on :: port 22.
+May  2 11:23:42 osvm systemd-logind[819]: System is powering down.
+May 22 19:17:01 osvm CRON[25863]: pam_unix(cron:session): session closed for user root
+Jul 12 20:26:19 osvm systemd-logind[821]: Watching system buttons on /dev/input/event3 (Video Bus)
+Apr  4 10:06:42 osvm sshd[1103]: Accepted password for rares from 10.0.2.2 port 3190 ssh2
+Mar 24 11:17:01 osvm CRON[15322]: pam_unix(cron:session): session closed for user root
+Mar  7 07:31:47 osvm sshd[2210]: Accepted password for rares from 10.0.2.2 port 1510 ssh2
+May 15 17:35:59 osvm sshd[1309]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+May 22 16:13:29 osvm sshd[1377]: Accepted password for rares from 10.0.2.2 port 1331 ssh2
+May 29 20:00:19 osvm systemd-logind[842]: System is powering down.
+Mar 10 18:14:09 osvm su[3204]: pam_systemd(su:session): Cannot create session: Already running in a session
+Dec 13 10:02:56 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Apr 26 09:45:33 osvm systemd-logind[806]: Powering Off...
+Jun 25 11:46:24 osvm sshd[1110]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+May 29 20:00:13 osvm sshd[3454]: pam_unix(sshd:session): session closed for user rares
+Apr  3 16:17:01 osvm CRON[1797]: pam_unix(cron:session): session closed for user root
+Feb 28 13:53:36 osvm systemd-logind[825]: Power key pressed.
+May  2 11:06:25 osvm sshd[1007]: Server listening on 0.0.0.0 port 22.
+Mar  2 15:23:39 osvm su[1858]: pam_systemd(su:session): Cannot create session: Already running in a session
+Mar  7 07:34:39 osvm sshd[2368]: Accepted password for rares from 10.0.2.2 port 1530 ssh2
+Mar 10 18:14:09 osvm su[3204]: + /dev/pts/0 root:root
+Mar 21 08:00:40 osvm systemd-logind[840]: New seat seat0.
+Apr  4 07:43:30 osvm su[1643]: pam_unix(su:session): session closed for user root
+Apr  4 07:42:41 osvm sudo: pam_unix(sudo:session): session closed for user root
+May 22 16:21:06 osvm useradd[16835]: failed adding user 'vboxadd', data deleted
+Apr  4 07:42:37 osvm sudo:    rares : TTY=pts/0 ; PWD=/home/rares ; USER=root ; COMMAND=/bin/su -
+May 22 16:13:29 osvm sshd[1377]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Apr 26 08:06:52 osvm systemd-logind[806]: New session 4 of user rares.
+Apr  5 07:55:35 osvm sshd[25597]: Accepted password for rares from 10.0.2.2 port 1155 ssh2
+Feb 28 10:29:48 osvm sshd[1023]: Server listening on 0.0.0.0 port 22.
+Apr 26 09:35:42 osvm sshd[15617]: pam_unix(sshd:session): session closed for user rares
+Feb 24 18:44:46 osvm systemd-logind[802]: Removed session 1.
+Feb 22 08:19:12 osvm sshd[1341]: Accepted password for rares from 10.0.2.2 port 1482 ssh2
+Apr  5 13:17:01 osvm CRON[1457]: pam_unix(cron:session): session opened for user root by (uid=0)
+Apr 26 09:17:01 osvm CRON[4110]: pam_unix(cron:session): session closed for user root
+Jul 10 23:17:00 osvm sshd[1366]: pam_unix(sshd:session): session closed for user rares
+Mar  2 20:06:49 osvm sshd[2002]: Accepted password for rares from 10.0.2.2 port 4617 ssh2
+Feb 28 13:21:17 osvm systemd-logind[825]: New session 3 of user rares.
+Dec  6 09:31:27 osvm sshd[1095]: Server listening on 0.0.0.0 port 22.
+Mar 24 10:17:01 osvm CRON[15319]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 10 23:15:33 osvm systemd-logind[834]: Watching system buttons on /dev/input/event3 (Video Bus)
+Apr 26 09:35:42 osvm systemd-logind[806]: Removed session 3.
+Apr  5 07:59:31 osvm su[25696]: pam_unix(su:session): session closed for user root
+Apr  4 14:46:45 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Apr  7 17:15:43 osvm su[10916]: pam_systemd(su:session): Cannot create session: Already running in a session
+Apr 19 07:34:16 osvm su[1533]: + /dev/pts/0 root:root
+Mar 25 19:33:01 osvm sshd[1345]: Accepted password for rares from 10.0.2.2 port 63161 ssh2
+Mar  2 19:17:01 osvm CRON[1900]: pam_unix(cron:session): session closed for user root
+Mar  7 14:29:03 osvm sshd[1029]: Server listening on 0.0.0.0 port 22.
+Apr  7 17:15:43 osvm su[10916]: pam_unix(su:session): session opened for user root by rares(uid=0)
+Apr  5 13:51:11 osvm systemd-logind[870]: Removed session 3.
+Apr  5 07:59:32 osvm sshd[25597]: pam_unix(sshd:session): session closed for user rares
+Mar 21 10:17:01 osvm CRON[4915]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec  5 19:30:04 osvm useradd[19802]: failed adding user 'vboxadd', data deleted
+Jun 13 18:57:39 osvm systemd-logind[850]: Powering Off...
+Apr  4 19:00:09 osvm systemd-logind[822]: New seat seat0.
+Mar 21 13:50:29 osvm sshd[1108]: pam_unix(sshd:session): session closed for user rares
+Apr 19 07:34:16 osvm su[1533]: Successful su for root by root
+Feb 23 09:37:36 osvm sshd[1790]: Accepted password for rares from 10.0.2.2 port 1384 ssh2
+Mar 10 10:00:25 osvm systemd-logind[793]: New session 1 of user rares.
+Apr 24 16:25:33 osvm useradd[14645]: failed adding user 'vboxadd', data deleted
+Feb 24 08:07:59 osvm sshd[1417]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Feb 28 12:28:57 osvm sshd[1119]: Accepted password for rares from 10.0.2.2 port 3504 ssh2
+Apr 26 08:07:18 osvm su[15689]: + /dev/pts/0 root:root
+Mar 10 23:15:33 osvm systemd-logind[834]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Apr 24 16:21:51 osvm systemd-logind[876]: New session 1 of user rares.
+Mar 24 16:51:01 osvm su[1217]: pam_systemd(su:session): Cannot create session: Already running in a session
+Mar 24 08:08:34 osvm sshd[1367]: Accepted password for rares from 10.0.2.2 port 1370 ssh2
+                                                                                                                                                                                                                                               Dec 13 10:02:41 osvm systemd-logind[772]: Watching system buttons on /dev/input/event0 (Power Button)
+Mar  7 14:28:54 osvm systemd-logind[795]: Watching system buttons on /dev/input/event0 (Power Button)
+Jul 12 20:30:59 osvm systemd-logind[821]: New session 2 of user rares.
+Apr  4 19:00:26 osvm sshd[1137]: Accepted password for rares from 10.0.2.2 port 7384 ssh2
+Feb 24 15:17:01 osvm CRON[2525]: pam_unix(cron:session): session closed for user root
+Mar 10 22:58:31 osvm sshd[4787]: pam_unix(sshd:session): session closed for user rares
+Feb 23 17:17:01 osvm CRON[4178]: pam_unix(cron:session): session closed for user root
+Mar  7 12:17:01 osvm CRON[14026]: pam_unix(cron:session): session closed for user root
+Mar 10 10:00:33 osvm sudo: pam_unix(sudo:auth): authentication failure; logname=rares uid=1000 euid=0 tty=/dev/pts/0 ruser=rares rhost=  user=rares
+Apr  5 07:56:35 osvm su[25696]: + /dev/pts/0 root:root
+May  8 16:14:25 osvm systemd-logind[808]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Mar  7 13:57:07 osvm systemd-logind[848]: Removed session 3.
+Apr  4 19:00:26 osvm sshd[1137]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Apr  4 12:17:01 osvm CRON[1725]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 10 18:14:49 osvm systemd-logind[793]: New session 10 of user rares.
+Jul 12 18:05:46 osvm systemd-logind[813]: System is powering down.
+Apr  4 15:17:01 osvm CRON[1704]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar  7 19:26:41 osvm sshd[1109]: Accepted password for rares from 10.0.2.2 port 4620 ssh2
+Feb 28 11:59:13 osvm systemd-logind[795]: Power key pressed.
+Mar  7 10:08:04 osvm systemd-logind[848]: New session 2 of user rares.
+Mar 28 08:07:35 osvm sshd[1370]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Apr  4 13:50:14 osvm systemd-logind[787]: Power key pressed.
+May 22 17:17:01 osvm CRON[25816]: pam_unix(cron:session): session closed for user root
+Feb 28 12:25:57 osvm systemd-logind[825]: New seat seat0.
+Apr 26 12:06:29 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Apr  4 07:42:41 osvm su[1625]: pam_unix(su:session): session closed for user root
+Mar  7 11:12:17 osvm su[1744]: pam_unix(su:session): session opened for user root by rares(uid=0)
+May 22 20:01:47 osvm systemd-logind[771]: System is powering down.
+Mar 14 09:31:29 osvm groupadd[2674]: group added to /etc/group: name=postfix, GID=118
+Apr 19 08:07:00 osvm sshd[1105]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+May  2 11:06:25 osvm sshd[1007]: Server listening on :: port 22.
+Apr  3 19:37:10 osvm sshd[1625]: pam_unix(sshd:session): session closed for user rares
+Mar 18 12:17:01 osvm CRON[11751]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 21 13:17:01 osvm CRON[27891]: pam_unix(cron:session): session opened for user root by (uid=0)
+Apr  4 19:51:12 osvm systemd-logind[822]: System is powering down.
+Mar 21 08:00:41 osvm sshd[1016]: Server listening on 0.0.0.0 port 22.
+Mar 24 13:46:19 osvm systemd-logind[832]: System is powering down.
+Dec 13 10:02:56 osvm sshd[1335]: Accepted password for rares from 10.0.2.2 port 35560 ssh2
+Dec  6 11:32:10 osvm su[30584]: FAILED su for root by rares
+Mar 10 22:17:01 osvm CRON[7314]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar  2 20:17:01 osvm CRON[2134]: pam_unix(cron:session): session opened for user root by (uid=0)
+Apr 17 18:17:01 osvm CRON[6944]: pam_unix(cron:session): session closed for user root
+Mar 14 09:31:36 osvm su[1516]: pam_unix(su:session): session closed for user root
+Jun 13 17:17:26 osvm sshd[950]: Server listening on 0.0.0.0 port 22.
+May  2 11:10:36 osvm systemd-logind[819]: New session 1 of user rares.
+Apr  4 15:17:01 osvm CRON[1704]: pam_unix(cron:session): session closed for user root
+May 10 08:07:04 osvm sshd[1190]: Accepted password for rares from 10.0.2.2 port 1367 ssh2
+Mar  2 22:43:34 osvm systemd-logind[806]: Removed session 12.
+Mar  7 07:34:39 osvm sshd[2368]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Mar  2 12:54:35 osvm systemd-logind[806]: Removed session 2.
+Apr  4 10:07:04 osvm sshd[1191]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Mar  7 13:13:41 osvm su[14381]: pam_unix(su:session): session opened for user root by rares(uid=0)
+Dec  6 09:31:58 osvm sudo: pam_unix(sudo:session): session opened for user root by rares(uid=0)
+Mar  2 20:06:08 osvm sshd[1903]: Accepted password for rares from 10.0.2.2 port 4616 ssh2
+May 29 20:00:13 osvm sshd[3740]: pam_unix(sshd:session): session closed for user rares
+Feb 23 18:17:01 osvm CRON[4182]: pam_unix(cron:session): session opened for user root by (uid=0)
+Apr  4 07:42:06 osvm sshd[1417]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Jun 13 17:17:25 osvm systemd-logind[850]: Watching system buttons on /dev/input/event3 (Video Bus)
+Apr 19 08:35:24 osvm sshd[1345]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Dec  5 19:24:09 osvm sshd[8191]: Server listening on :: port 22.
+Mar 24 16:51:01 osvm su[1217]: pam_unix(su:session): session opened for user root by rares(uid=0)
+Apr 19 12:12:18 osvm systemd-logind[807]: New session 10 of user rares.
+Mar 18 11:58:51 osvm sshd[1447]: Accepted password for rares from 10.0.2.2 port 22871 ssh2
+May 29 18:46:41 osvm systemd-logind[842]: New session 6 of user rares.
+Apr  5 16:40:21 osvm systemd-logind[870]: System is powering down.
+Mar 24 23:17:25 osvm systemd-logind[835]: Removed session 1.
+May 22 16:21:06 osvm useradd[16836]: failed adding user 'vboxadd', data deleted
+Mar  2 14:17:01 osvm CRON[1763]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 28 10:07:37 osvm systemd-logind[802]: New seat seat0.
+Feb 23 19:05:42 osvm systemd-logind[836]: Powering Off...
+Apr  4 19:50:51 osvm systemd-logind[822]: Removed session 1.
+Dec  6 11:31:32 osvm sshd[30515]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Mar 14 09:29:51 osvm su[1516]: Successful su for root by root
+Mar  7 19:27:01 osvm sshd[1109]: pam_unix(sshd:session): session closed for user rares
+Dec  5 19:12:57 osvm su[1457]: pam_systemd(su:session): Cannot create session: Already running in a session
+Mar 14 10:05:00 osvm systemd-logind[797]: System is powering down.
+Mar 13 15:38:42 osvm systemd-logind[823]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Apr 26 15:49:09 osvm systemd-logind[885]: Watching system buttons on /dev/input/event0 (Power Button)
+Mar  7 12:09:59 osvm sshd[13953]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Feb 21 20:17:01 osvm CRON[5333]: pam_unix(cron:session): session closed for user root
+Mar 10 09:57:29 osvm sshd[991]: Server listening on 0.0.0.0 port 22.
+May  8 16:17:01 osvm CRON[1524]: pam_unix(cron:session): session opened for user root by (uid=0)
+Apr  5 09:41:58 osvm sshd[26439]: Accepted password for rares from 10.0.2.2 port 1353 ssh2
+Mar 21 10:03:13 osvm sshd[1108]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Mar 24 08:17:01 osvm CRON[15308]: pam_unix(cron:session): session closed for user root
+Feb 24 13:17:01 osvm CRON[2414]: pam_unix(cron:session): session closed for user root
+Feb 22 09:17:01 osvm CRON[1814]: pam_unix(cron:session): session closed for user root
+Dec  5 19:17:01 osvm CRON[1969]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 24 08:08:17 osvm systemd-logind[832]: Watching system buttons on /dev/input/event0 (Power Button)
+Mar  7 19:26:06 osvm systemd-logind[806]: Watching system buttons on /dev/input/event3 (Video Bus)
+May 10 08:06:36 osvm sshd[975]: Server listening on 0.0.0.0 port 22.
+Mar  7 10:17:01 osvm CRON[1318]: pam_unix(cron:session): session closed for user root
+May 15 17:35:34 osvm systemd-logind[857]: Watching system buttons on /dev/input/event0 (Power Button)
+Apr 19 09:17:01 osvm CRON[1634]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar  7 07:34:39 osvm systemd-logind[786]: New session 2 of user rares.
+May  3 07:38:47 osvm sshd[999]: Server listening on :: port 22.
+Mar 25 19:32:39 osvm systemd-logind[853]: New seat seat0.
+May  3 09:46:56 osvm sshd[1696]: pam_unix(sshd:session): session closed for user rares
+Mar 24 16:48:16 osvm sshd[1010]: Server listening on :: port 22.
+Feb 24 18:48:27 osvm systemd-logind[802]: Powering Off...
+Jun 25 11:46:19 osvm sshd[976]: Server listening on 0.0.0.0 port 22.
+Feb 28 13:53:32 osvm systemd-logind[825]: Removed session 1.
+May  3 07:38:47 osvm sshd[999]: Server listening on 0.0.0.0 port 22.
+Jun 25 12:17:01 osvm CRON[1190]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar  7 10:08:04 osvm sshd[1188]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Apr 19 09:49:17 osvm systemd-logind[807]: Removed session 1.
+Apr 17 16:13:25 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Mar 21 08:01:49 osvm sshd[2116]: Accepted password for rares from 10.0.2.2 port 1219 ssh2
+Feb 28 11:59:05 osvm sshd[1416]: pam_unix(sshd:session): session closed for user rares
+Mar 24 08:08:34 osvm sshd[1367]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+                                                                                                                                                    Sep  4 08:44:26 osvm systemd-logind[849]: Watching system buttons on /dev/input/event0 (Power Button)
+Apr  4 07:41:22 osvm sshd[1034]: Server listening on :: port 22.
+Mar 14 10:05:00 osvm systemd-logind[797]: Powering Off...
+Mar 21 10:02:10 osvm sshd[1022]: Server listening on :: port 22.
+Apr  4 09:57:33 osvm systemd-logind[833]: Removed session 2.
+Mar 18 12:00:00 osvm useradd[9313]: failed adding user 'vboxadd', data deleted
+Apr  4 13:49:43 osvm systemd-logind[787]: Removed session 2.
+Feb 23 09:33:05 osvm systemd-logind[836]: New seat seat0.
+Dec  5 19:12:20 osvm sshd[1019]: Server listening on 0.0.0.0 port 22.
+Apr 26 07:47:32 osvm sudo: pam_unix(sudo:session): session opened for user root by rares(uid=0)
+Mar 28 10:03:33 osvm systemd-logind[816]: Powering Off...
+Apr  5 09:41:58 osvm systemd-logind[741]: New session 6 of user rares.
+Feb 28 12:25:57 osvm systemd-logind[825]: Watching system buttons on /dev/input/event0 (Power Button)
+Apr  4 19:00:09 osvm systemd-logind[822]: Watching system buttons on /dev/input/event3 (Video Bus)
+May  2 11:10:36 osvm sshd[1449]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Jul 12 22:20:45 osvm systemd-logind[821]: Power key pressed.
+Jun 13 17:17:44 osvm systemd-logind[850]: New session 1 of user rares.
+Dec  6 09:31:58 osvm sudo:    rares : TTY=pts/0 ; PWD=/home/rares ; USER=root ; COMMAND=/bin/su -
+May 29 17:17:01 osvm CRON[3448]: pam_unix(cron:session): session opened for user root by (uid=0)
+Apr 19 12:11:37 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Mar 21 09:28:26 osvm sshd[1197]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Apr 19 07:36:52 osvm systemd-logind[851]: System is powering down.
+Dec  6 09:31:46 osvm sshd[1201]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Mar  7 19:43:21 osvm systemd-logind[842]: System is powering down.
+Apr 26 15:49:28 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Feb 24 12:17:01 osvm CRON[2261]: pam_unix(cron:session): session closed for user root
+Apr  5 07:51:11 osvm sshd[1009]: Server listening on :: port 22.
+Mar 21 09:26:39 osvm systemd-logind[840]: Removed session 2.
+Jul 12 18:05:39 osvm systemd-logind[813]: Removed session 1.
+May  3 09:46:56 osvm systemd-logind[840]: Removed session 3.
+Jun 25 13:17:01 osvm CRON[1232]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec  6 09:31:58 osvm su[1269]: pam_unix(su:session): session opened for user root by rares(uid=0)
+Mar 21 18:33:24 osvm systemd-logind[822]: Watching system buttons on /dev/input/event0 (Power Button)
+Jul 12 20:26:44 osvm sshd[1104]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Feb 28 12:26:01 osvm sshd[999]: Server listening on 0.0.0.0 port 22.
+Jul 12 18:01:12 osvm systemd-logind[813]: Watching system buttons on /dev/input/event0 (Power Button)
+Apr  5 07:55:35 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Feb 24 08:17:01 osvm CRON[1537]: pam_unix(cron:session): session closed for user root
+Mar  2 15:17:01 osvm CRON[1786]: pam_unix(cron:session): session closed for user root
+Feb 28 09:05:11 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Apr  7 17:13:58 osvm sshd[1487]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Feb 28 12:26:01 osvm sshd[999]: Server listening on :: port 22.
+Apr 26 16:17:01 osvm CRON[1239]: pam_unix(cron:session): session closed for user root
+Jul 12 18:01:16 osvm sshd[992]: Server listening on 0.0.0.0 port 22.
+Mar 21 08:01:49 osvm sshd[2116]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Feb 22 08:19:12 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Mar 24 18:01:49 osvm su[1211]: + /dev/pts/0 root:root
+Feb 23 09:33:05 osvm sshd[1007]: Server listening on :: port 22.
+Apr  5 09:17:01 osvm CRON[26325]: pam_unix(cron:session): session closed for user root
+May 10 08:07:04 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Apr 19 07:34:16 osvm su[1533]: pam_systemd(su:session): Cannot create session: Already running in a session
+Mar 24 16:51:01 osvm su[1217]: Successful su for root by root
+Apr 19 08:05:39 osvm sshd[1009]: Server listening on :: port 22.
+Apr  5 12:17:01 osvm CRON[1308]: pam_unix(cron:session): session closed for user root
+Apr  4 07:42:21 osvm systemd-logind[833]: Removed session 1.
+Mar 28 10:03:27 osvm sshd[1370]: pam_unix(sshd:session): session closed for user rares
+Jun 25 11:46:24 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Jul 10 23:17:00 osvm systemd-logind[766]: Removed session 1.
+Feb 28 09:04:54 osvm systemd-logind[841]: Watching system buttons on /dev/input/event3 (Video Bus)
+Feb 24 08:07:16 osvm sshd[1031]: Server listening on :: port 22.
+Mar 21 09:27:57 osvm systemd-logind[832]: New seat seat0.
+May 29 16:08:32 osvm sshd[1388]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Apr 19 11:17:01 osvm CRON[16927]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar  2 20:07:38 osvm sudo:    rares : TTY=pts/4 ; PWD=/home/rares ; USER=root ; COMMAND=/bin/su -
+Mar 10 13:17:01 osvm CRON[2838]: pam_unix(cron:session): session closed for user root
+Feb 28 10:29:43 osvm systemd-logind[795]: Watching system buttons on /dev/input/event0 (Power Button)
+Mar 24 21:17:01 osvm CRON[2681]: pam_unix(cron:session): session closed for user root
+Jul 12 21:03:12 osvm sshd[1190]: pam_unix(sshd:session): session closed for user rares
+Mar 21 13:50:28 osvm systemd-logind[790]: Removed session 2.
+Mar 14 09:25:43 osvm sshd[1031]: Server listening on :: port 22.
+Mar  7 10:07:52 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Mar 24 16:57:23 osvm systemd-logind[810]: Power key pressed.
+Mar  2 19:17:01 osvm CRON[1900]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec  5 19:14:57 osvm sshd[1895]: Accepted password for rares from 10.0.2.2 port 35714 ssh2
+Mar 24 16:50:43 osvm systemd-logind[810]: New session 1 of user rares.
+Mar  7 19:37:18 osvm systemd-logind[842]: New session 2 of user rares.
+Feb 22 12:14:46 osvm systemd-logind[830]: Removed session 1.
+Apr  4 19:17:01 osvm CRON[1368]: pam_unix(cron:session): session opened for user root by (uid=0)
+May  3 07:39:23 osvm su[1493]: Successful su for root by root
+Mar  2 12:43:24 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)
+Mar 10 19:17:01 osvm CRON[6230]: pam_unix(cron:session): session opened for user root by (uid=0)
+Apr  4 10:07:04 osvm sshd[1191]: Accepted password for rares from 10.0.2.2 port 3191 ssh2
+Mar  7 07:29:37 osvm systemd-logind[786]: Watching system buttons on /dev/input/event3 (Video Bus)
+Jun 25 08:54:23 osvm sshd[1355]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Apr  4 07:46:06 osvm sudo:    rares : TTY=pts/0 ; PWD=/home/rares ; USER=root ; COMMAND=/bin/su -
+May 15 19:40:58 osvm sshd[1309]: pam_unix(sshd:session): session closed for user rares
+May  8 17:25:42 osvm sshd[1538]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Mar 21 13:50:29 osvm systemd-logind[790]: Removed session 1.
+Dec  5 19:12:15 osvm systemd-logind[874]: Watching system buttons on /dev/input/event3 (Video Bus)
+Mar  7 19:43:15 osvm sshd[1317]: pam_unix(sshd:session): session closed for user rares
+Mar  2 20:06:08 osvm sshd[1903]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Mar 14 09:25:37 osvm systemd-logind[797]: Watching system buttons on /dev/input/event0 (Power Button)
+Apr  4 07:42:37 osvm su[1625]: pam_systemd(su:session): Cannot create session: Already running in a session
+Apr 26 12:09:45 osvm su[1215]: + /dev/pts/1 root:root
+Apr  5 08:01:37 osvm sshd[25985]: Accepted password for rares from 10.0.2.2 port 1168 ssh2
+Dec 13 10:20:54 osvm systemd-logind[772]: Removed session 1.
+Mar 10 14:09:19 osvm sudo: pam_unix(sudo:session): session closed for user root
+Apr 19 08:07:00 osvm systemd-logind[807]: New session 1 of user rares.
+Mar 10 14:17:01 osvm CRON[2976]: pam_unix(cron:session): session closed for user root
+Mar 10 23:17:01 osvm CRON[1211]: pam_unix(cron:session): session opened for user root by (uid=0)
+Apr 26 08:06:52 osvm sshd[15617]: Accepted password for rares from 10.0.2.2 port 5437 ssh2
+Jul 10 22:27:31 osvm systemd-logind[766]: New session 1 of user rares.
+Mar 25 20:17:01 osvm CRON[1645]: pam_unix(cron:session): session closed for user root
+Mar 21 09:51:32 osvm systemd-logind[832]: System is powering down.
+Apr 26 07:47:32 osvm sudo:    rares : TTY=pts/1 ; PWD=/home/rares/nessie/course/os/res/osvm/2018/lecture-08-en ; USER=root ; COMMAND=/bin/su -
+Feb 28 13:53:32 osvm sshd[1119]: pam_unix(sshd:session): session closed for user rares
+Mar 21 18:33:24 osvm systemd-logind[822]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Sep  4 08:47:00 osvm systemd-logind[849]: New session 1 of user rares.
+Mar 21 11:17:01 osvm CRON[14482]: pam_unix(cron:session): session opened for user root by (uid=0)
+Feb 28 10:31:54 osvm sshd[1104]: Accepted password for rares from 10.0.2.2 port 3192 ssh2
+Apr  4 07:42:46 osvm su[1643]: pam_unix(su:session): session opened for user root by rares(uid=0)
+Dec 13 10:02:41 osvm systemd-logind[772]: Watching system buttons on /dev/input/event3 (Video Bus)
+Mar 25 21:17:01 osvm CRON[1774]: pam_unix(cron:session): session opened for user root by (uid=0)
+Apr 19 08:07:15 osvm sshd[1184]: Accepted password for rares from 10.0.2.2 port 2048 ssh2
+Mar 21 09:51:18 osvm sshd[1127]: pam_unix(sshd:session): session closed for user rares
+Apr 19 07:36:52 osvm systemd-logind[851]: Powering Off...
+Mar 14 09:31:29 osvm groupadd[2674]: group added to /etc/gshadow: name=postfix
+Apr 19 12:11:37 osvm sshd[16930]: pam_unix(sshd:session): session opened for user rares by (uid=0)
+Dec  5 19:12:20 osvm sshd[1019]: Server listening on :: port 22.
+May  3 11:58:15 osvm systemd-logind[840]: New session 9 of user rares.
+Mar 24 23:17:01 osvm CRON[2758]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jun 25 13:17:01 osvm CRON[1232]: pam_unix(cron:session): session closed for user root
+Dec  5 19:14:57 osvm systemd-logind[874]: New session 2 of user rares.
+Mar  7 13:13:41 osvm sudo:    rares : TTY=pts/1 ; PWD=/home/rares/nessie/course/os/res/osvm/2019/lecture-02-en ; USER=root ; COMMAND=/bin/su -
+Jun 13 17:17:25 osvm systemd-logind[850]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Mar  7 14:41:15 osvm systemd-logind[795]: Power key pressed.
+May 29 17:45:45 osvm systemd-logind[842]: New session 4 of user rares.
+Mar  7 11:12:17 osvm su[1744]: pam_systemd(su:session): Cannot create session: Already running in a session
+Mar 25 22:44:23 osvm systemd-logind[853]: System is powering down.
+Apr  4 19:00:37 osvm sshd[1207]: Accepted password for rares from 10.0.2.2 port 7385 ssh2
+Apr  4 19:00:09 osvm systemd-logind[822]: Watching system buttons on /dev/input/event0 (Power Button)
+Dec  5 19:12:57 osvm su[1457]: pam_unix(su:session): session opened for user root by rares(uid=0)
+Jun 25 09:01:25 osvm systemd-logind[836]: Removed session 1.
+Feb 28 10:29:43 osvm systemd-logind[795]: Watching system buttons on /dev/input/event3 (Video Bus)
+Sep  3 14:28:11 osvm sshd[1007]: Server listening on 0.0.0.0 port 22.
+Feb 22 12:14:52 osvm sshd[1028]: Received signal 15; terminating.
+May  3 07:58:15 osvm systemd-logind[840]: Removed session 1.
+Apr  5 08:01:12 osvm systemd: pam_unix(systemd-user:session): session opened for user rares by (uid=0)

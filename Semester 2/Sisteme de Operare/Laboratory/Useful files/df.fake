@@ -1,0 +1,9 @@
+Filesystem     1M-blocks    Used Available Use% Mounted on
+udev                476M      0M      476M   0% /dev
+tmpfs               100M      4M       97M   4% /run
+/dev/sda1          8943M   2799M     5668M  34% /
+tmpfs               497M      0M      497M   0% /dev/shm
+tmpfs                 5M      0M        5M   0% /run/lock
+tmpfs               497M      0M      497M   0% /sys/fs/cgroup
+tmpfs               100M      0M      100M   0% /run/user/1000
+osvm             927232M 758083M   169150M  82% /home/rares/osvm

@@ -1,0 +1,210 @@
+Feb 24 14:47:36 osvm sudo:      joe : TTY=pts/0 ; PWD=/home/joe ; USER=root ; COMMAND=/bin/su -
+Feb 24 16:39:59 osvm systemd-logind[883]: New session 6 of user joe.
+Feb 24 14:38:07 osvm sudo: pam_unix(sudo:session): session closed for user root
+Feb 24 14:28:42 osvm sudo: pam_unix(sudo:session): session closed for user root
+Feb 24 16:40:09 osvm su[25709]: Successful su for root by root
+Feb 24 16:40:32 osvm systemd-logind[883]: Powering Off...
+Feb 24 14:46:40 osvm su[1349]: pam_unix(su:session): session closed for user root
+Feb 24 22:17:01 osvm CRON[1226]: pam_unix(cron:session): session closed for user root
+Feb 24 14:47:36 osvm sudo: pam_unix(sudo:session): session opened for user root by joe(uid=0)
+Feb 24 14:22:37 osvm su[1180]: pam_unix(su:session): session closed for user root
+Feb 24 14:22:46 osvm sudo:      joe : TTY=pts/0 ; PWD=/home/joe ; USER=root ; COMMAND=/bin/su -
+Feb 24 16:40:09 osvm su[25709]: pam_systemd(su:session): Cannot create session: Already running in a session
+Feb 24 14:39:52 osvm su[1297]: Successful su for root by root
+Feb 24 14:38:36 osvm su[1197]: pam_unix(su:session): session opened for user root by joe(uid=0)
+Feb 24 14:19:20 osvm systemd-logind[886]: Watching system buttons on /dev/input/event3 (Video Bus)
+Feb 24 14:41:57 osvm su[1297]: pam_unix(su:session): session closed for user root
+Feb 24 14:47:33 osvm sudo: pam_unix(sudo:session): session closed for user root
+Feb 24 16:40:09 osvm sudo: pam_unix(sudo:session): session opened for user root by joe(uid=0)
+Feb 24 17:44:09 osvm sshd[1024]: Server listening on :: port 22.
+Feb 24 14:22:46 osvm su[5363]: pam_unix(su:session): session opened for user root by joe(uid=0)
+Feb 24 14:38:29 osvm sshd[1033]: Server listening on :: port 22.
+Feb 24 14:38:06 osvm su[1291]: pam_systemd(su:session): Cannot create session: Already running in a session
+Feb 24 14:46:43 osvm sudo: pam_unix(sudo:session): session opened for user root by joe(uid=0)
+Feb 24 16:40:26 osvm login[1226]: pam_unix(login:session): session closed for user joe
+Feb 24 14:37:52 osvm sudo: pam_unix(sudo:session): session closed for user root
+Feb 24 17:44:05 osvm systemd-logind[842]: New seat seat0.
+Feb 24 14:39:05 osvm systemd-logind[883]: New session 2 of user joe.
+Feb 24 14:39:52 osvm su[1297]: pam_unix(su:session): session opened for user root by joe(uid=0)
+Feb 24 14:38:25 osvm systemd-logind[883]: New seat seat0.
+Feb 24 14:21:38 osvm useradd[5153]: failed adding user 'vboxadd', data deleted
+Feb 24 17:44:05 osvm systemd-logind[842]: Watching system buttons on /dev/input/event3 (Video Bus)
+Feb 24 14:31:30 osvm sudo: pam_unix(sudo:session): session opened for user root by joe(uid=0)
+Feb 24 14:39:05 osvm sshd[1236]: pam_unix(sshd:session): session opened for user joe by (uid=0)
+Feb 24 14:32:38 osvm su[1199]: + /dev/pts/0 root:root
+Feb 24 14:38:33 osvm systemd: pam_unix(systemd-user:session): session opened for user joe by (uid=0)
+Feb 24 14:46:43 osvm su[1365]: Successful su for root by root
+Feb 24 21:17:01 osvm CRON[1223]: pam_unix(cron:session): session closed for user root
+Feb 24 14:46:43 osvm sudo:      joe : TTY=pts/0 ; PWD=/home/joe ; USER=root ; COMMAND=/bin/su -
+Feb 24 14:38:33 osvm systemd-logind[883]: New session 1 of user joe.
+Feb 24 14:45:29 osvm sudo: pam_unix(sudo:session): session opened for user root by joe(uid=0)
+Feb 24 22:34:08 osvm systemd-logind[842]: Power key pressed.
+Feb 24 14:32:38 osvm sudo: pam_unix(sudo:session): session opened for user root by joe(uid=0)
+Feb 24 14:38:49 osvm su[1197]: pam_unix(su:session): session closed for user root
+Feb 24 14:47:36 osvm su[1385]: pam_unix(su:session): session opened for user root by joe(uid=0)
+Feb 24 14:19:24 osvm sshd[1018]: Server listening on 0.0.0.0 port 22.
+Feb 24 21:04:13 osvm su[1208]: + /dev/pts/0 root:root
+Feb 24 16:40:26 osvm systemd-logind[883]: Removed session 6.
+Feb 24 14:38:25 osvm systemd-logind[883]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Feb 24 14:39:52 osvm su[1297]: + /dev/pts/0 root:root
+Feb 24 16:39:33 osvm systemd-logind[883]: Removed session 4.
+Feb 24 15:46:08 osvm sshd[25527]: Accepted password for joe from 10.0.2.2 port 3019 ssh2
+Feb 24 14:57:19 osvm systemd-logind[883]: Watching system buttons on /dev/input/event3 (Video Bus)
+Feb 24 14:08:23 osvm sshd[970]: Server listening on 0.0.0.0 port 22.
+Feb 24 15:46:08 osvm sshd[25527]: pam_unix(sshd:session): session opened for user joe by (uid=0)
+Feb 24 14:10:51 osvm sshd[1065]: pam_unix(sshd:session): session opened for user joe by (uid=0)
+Feb 24 14:20:05 osvm systemd: pam_unix(systemd-user:session): session opened for user joe by (uid=0)
+Feb 24 14:32:17 osvm systemd-logind[854]: New session 1 of user joe.
+Feb 24 21:04:13 osvm su[1208]: pam_unix(su:session): session opened for user root by joe(uid=0)
+Feb 24 14:11:48 osvm sudo:      joe : TTY=pts/0 ; PWD=/home/joe ; USER=root ; COMMAND=/bin/su -
+Feb 24 16:17:01 osvm CRON[25644]: pam_unix(cron:session): session closed for user root
+Feb 24 14:18:19 osvm groupadd[24972]: new group: name=vboxadd, GID=1001
+Feb 24 14:22:37 osvm sudo: pam_unix(sudo:session): session closed for user root
+Feb 24 14:31:30 osvm sudo:      joe : TTY=pts/0 ; PWD=/home/joe/osvm ; USER=root ; COMMAND=/bin/su -
+Feb 24 14:08:23 osvm sshd[970]: Server listening on :: port 22.
+Feb 24 21:04:13 osvm su[1208]: pam_systemd(su:session): Cannot create session: Already running in a session
+Feb 24 14:11:48 osvm su[1145]: Successful su for root by root
+Feb 24 14:31:49 osvm systemd-logind[854]: Watching system buttons on /dev/input/event0 (Power Button)
+Feb 24 14:20:11 osvm sudo: pam_unix(sudo:session): session opened for user root by joe(uid=0)
+Feb 24 14:22:46 osvm su[5363]: + /dev/pts/0 root:root
+Feb 24 22:34:08 osvm systemd-logind[842]: Powering Off...
+Feb 24 15:46:08 osvm systemd: pam_unix(systemd-user:session): session opened for user joe by (uid=0)
+Feb 24 14:39:52 osvm sudo:      joe : TTY=pts/0 ; PWD=/home/joe ; USER=root ; COMMAND=/bin/su -
+Feb 24 14:38:36 osvm su[1197]: Successful su for root by root
+Feb 24 14:38:06 osvm sudo:      joe : TTY=tty1 ; PWD=/home/joe ; USER=root ; COMMAND=/bin/su -
+Feb 24 22:34:08 osvm systemd-logind[842]: System is powering down.
+Feb 24 14:32:38 osvm su[1199]: pam_unix(su:session): session opened for user root by joe(uid=0)
+Feb 24 14:38:06 osvm su[1291]: Successful su for root by root
+Feb 24 14:38:00 osvm systemd-logind[854]: New session 2 of user joe.
+Feb 24 14:11:48 osvm sudo: pam_unix(sudo:session): session opened for user root by joe(uid=0)
+Feb 24 21:04:13 osvm su[1208]: Successful su for root by root
+Feb 24 16:40:25 osvm su[25709]: pam_unix(su:session): session closed for user root
+Feb 24 14:38:50 osvm login[1115]: pam_unix(login:session): session closed for user joe
+Feb 24 14:38:25 osvm systemd-logind[883]: Watching system buttons on /dev/input/event3 (Video Bus)
+Feb 24 14:19:24 osvm sshd[1018]: Server listening on :: port 22.
+Feb 24 14:31:30 osvm su[5466]: pam_systemd(su:session): Cannot create session: Already running in a session
+Feb 24 22:17:01 osvm CRON[1226]: pam_unix(cron:session): session opened for user root by (uid=0)
+Feb 24 14:47:36 osvm su[1385]: pam_systemd(su:session): Cannot create session: Already running in a session
+Feb 24 21:04:13 osvm sudo:      joe : TTY=pts/0 ; PWD=/home/joe ; USER=root ; COMMAND=/bin/su -
+Feb 24 21:17:01 osvm CRON[1223]: pam_unix(cron:session): session opened for user root by (uid=0)
+Feb 24 17:44:04 osvm systemd-logind[842]: Watching system buttons on /dev/input/event0 (Power Button)
+Feb 24 14:31:49 osvm systemd-logind[854]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Feb 24 14:20:10 osvm sudo:      joe : TTY=pts/0 ; PWD=/home/joe ; USER=root ; COMMAND=/bin/su -
+Feb 24 14:45:29 osvm su[1349]: pam_unix(su:session): session opened for user root by joe(uid=0)
+Feb 24 14:20:11 osvm su[1180]: pam_unix(su:session): session opened for user root by joe(uid=0)
+Feb 24 14:38:00 osvm systemd: pam_unix(systemd-user:session): session opened for user joe by (uid=0)
+Feb 24 14:46:40 osvm sudo: pam_unix(sudo:session): session closed for user root
+Feb 24 14:31:32 osvm sshd[1107]: pam_unix(sshd:session): session closed for user joe
+Feb 24 14:18:19 osvm groupadd[24972]: group added to /etc/group: name=vboxadd, GID=1001
+Feb 24 14:17:01 osvm CRON[21341]: pam_unix(cron:session): session opened for user root by (uid=0)
+Feb 24 14:08:23 osvm systemd-logind[796]: Watching system buttons on /dev/input/event3 (Video Bus)
+Feb 24 14:08:23 osvm systemd-logind[796]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Feb 24 14:11:48 osvm su[1145]: pam_systemd(su:session): Cannot create session: Already running in a session
+Feb 24 14:39:52 osvm su[1297]: pam_systemd(su:session): Cannot create session: Already running in a session
+Feb 24 14:11:48 osvm su[1145]: + /dev/pts/0 root:root
+Feb 24 14:20:11 osvm su[1180]: + /dev/pts/0 root:root
+Feb 24 14:20:11 osvm su[1180]: Successful su for root by root
+Feb 24 14:46:43 osvm su[1365]: pam_unix(su:session): session opened for user root by joe(uid=0)
+Feb 24 17:44:05 osvm systemd-logind[842]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Feb 24 16:39:59 osvm login[1226]: pam_unix(login:session): session opened for user joe by LOGIN(uid=0)
+Feb 24 14:10:52 osvm systemd-logind[796]: New session 1 of user joe.
+Feb 24 19:17:01 osvm CRON[1128]: pam_unix(cron:session): session closed for user root
+Feb 24 21:04:13 osvm sudo: pam_unix(sudo:session): session opened for user root by joe(uid=0)
+Feb 24 14:38:33 osvm login[1115]: pam_unix(login:session): session opened for user joe by LOGIN(uid=0)
+Feb 24 14:21:38 osvm useradd[5152]: failed adding user 'vboxadd', data deleted
+Feb 24 14:38:49 osvm sudo: pam_unix(sudo:session): session closed for user root
+Feb 24 16:40:25 osvm sudo: pam_unix(sudo:session): session closed for user root
+Feb 24 20:17:01 osvm CRON[1131]: pam_unix(cron:session): session closed for user root
+Feb 24 16:40:09 osvm su[25709]: + /dev/tty1 root:root
+Feb 24 14:19:20 osvm systemd-logind[886]: Watching system buttons on /dev/input/event0 (Power Button)
+Feb 24 16:40:09 osvm sudo:      joe : TTY=tty1 ; PWD=/home/joe ; USER=root ; COMMAND=/bin/su -
+Feb 24 14:31:30 osvm su[5466]: pam_unix(su:session): session opened for user root by joe(uid=0)
+Feb 24 14:32:38 osvm sudo:      joe : TTY=pts/0 ; PWD=/home/joe ; USER=root ; COMMAND=/bin/su -
+Feb 24 14:57:19 osvm systemd-logind[883]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Feb 24 14:20:05 osvm systemd-logind[886]: New session 1 of user joe.
+Feb 24 14:31:53 osvm sshd[1011]: Server listening on 0.0.0.0 port 22.
+Feb 24 14:18:19 osvm useradd[24971]: failed adding user 'vboxadd', data deleted
+Feb 24 14:18:19 osvm useradd[24966]: new user: name=vboxadd, UID=999, GID=1, home=/var/run/vboxadd, shell=/bin/false
+Feb 24 16:39:59 osvm systemd: pam_unix(systemd-user:session): session opened for user joe by (uid=0)
+Feb 24 14:18:19 osvm groupadd[24985]: new group: name=vboxsf, GID=999
+Feb 24 14:39:52 osvm sudo: pam_unix(sudo:session): session opened for user root by joe(uid=0)
+Feb 24 14:08:23 osvm systemd-logind[796]: Watching system buttons on /dev/input/event0 (Power Button)
+Feb 24 14:47:36 osvm su[1385]: Successful su for root by root
+Feb 24 14:46:43 osvm su[1365]: + /dev/pts/0 root:root
+Feb 24 15:05:41 osvm systemd-logind[883]: Removed session 2.
+Feb 24 14:32:38 osvm su[1199]: pam_systemd(su:session): Cannot create session: Already running in a session
+Feb 24 15:17:02 osvm CRON[25523]: pam_unix(cron:session): session opened for user root by (uid=0)
+Feb 24 14:38:25 osvm systemd-logind[883]: Watching system buttons on /dev/input/event0 (Power Button)
+Feb 24 14:45:29 osvm su[1349]: Successful su for root by root
+Feb 24 16:40:09 osvm su[25709]: pam_unix(su:session): session opened for user root by joe(uid=0)
+Feb 24 15:05:40 osvm su[1385]: pam_unix(su:session): session closed for user root
+Feb 24 14:37:53 osvm sshd[1123]: pam_unix(sshd:session): session closed for user joe
+Feb 24 17:44:09 osvm sshd[1024]: Server listening on 0.0.0.0 port 22.
+Feb 24 14:19:20 osvm systemd-logind[886]: New seat seat0.
+Feb 24 21:04:03 osvm systemd: pam_unix(systemd-user:session): session opened for user joe by (uid=0)
+Feb 24 14:47:36 osvm su[1385]: + /dev/pts/0 root:root
+Feb 24 14:45:29 osvm su[1349]: + /dev/pts/0 root:root
+Feb 24 14:38:36 osvm sudo: pam_unix(sudo:session): session opened for user root by joe(uid=0)
+Feb 24 15:17:02 osvm CRON[25523]: pam_unix(cron:session): session closed for user root
+Feb 24 14:38:36 osvm su[1197]: pam_systemd(su:session): Cannot create session: Already running in a session
+Feb 24 15:46:08 osvm systemd-logind[883]: New session 4 of user joe.
+Feb 24 14:39:05 osvm systemd: pam_unix(systemd-user:session): session opened for user joe by (uid=0)
+Feb 24 14:11:48 osvm su[1145]: pam_unix(su:session): session opened for user root by joe(uid=0)
+Feb 24 16:39:33 osvm sshd[25527]: pam_unix(sshd:session): session closed for user joe
+Feb 24 16:17:01 osvm CRON[25644]: pam_unix(cron:session): session opened for user root by (uid=0)
+Feb 24 14:37:53 osvm systemd-logind[854]: Removed session 1.
+Feb 24 14:22:46 osvm sudo: pam_unix(sudo:session): session opened for user root by joe(uid=0)
+Feb 24 14:31:49 osvm systemd-logind[854]: Watching system buttons on /dev/input/event3 (Video Bus)
+Feb 24 14:18:19 osvm groupadd[24972]: group added to /etc/gshadow: name=vboxadd
+Feb 24 14:38:06 osvm su[1291]: + /dev/tty1 root:root
+Feb 24 21:04:03 osvm sshd[1134]: Accepted password for joe from 10.0.2.2 port 3527 ssh2
+Feb 24 14:41:57 osvm sudo: pam_unix(sudo:session): session closed for user root
+Feb 24 14:08:23 osvm systemd-logind[796]: New seat seat0.
+Feb 24 14:32:17 osvm sshd[1123]: pam_unix(sshd:session): session opened for user joe by (uid=0)
+Feb 24 16:40:32 osvm systemd-logind[883]: Power key pressed.
+Feb 24 14:57:19 osvm systemd-logind[883]: Watching system buttons on /dev/input/event0 (Power Button)
+Feb 24 14:37:52 osvm su[1199]: pam_unix(su:session): session closed for user root
+Feb 24 15:05:40 osvm sudo: pam_unix(sudo:session): session closed for user root
+Feb 24 14:32:17 osvm sshd[1123]: Accepted password for joe from 10.0.2.2 port 2797 ssh2
+Feb 24 14:38:06 osvm su[1291]: pam_unix(su:session): session opened for user root by joe(uid=0)
+Feb 24 14:56:57 osvm sshd[2906]: Server listening on 0.0.0.0 port 22.
+Feb 24 15:05:41 osvm sshd[1236]: pam_unix(sshd:session): session closed for user joe
+Feb 24 14:10:51 osvm sshd[1065]: Accepted password for joe from 10.0.2.2 port 2732 ssh2
+Feb 24 14:31:49 osvm systemd-logind[854]: New seat seat0.
+Feb 24 20:17:01 osvm CRON[1131]: pam_unix(cron:session): session opened for user root by (uid=0)
+Feb 24 14:19:20 osvm systemd-logind[886]: Watching system buttons on /dev/input/event1 (Sleep Button)
+Feb 24 14:20:05 osvm sshd[1107]: Accepted password for joe from 10.0.2.2 port 2786 ssh2
+Feb 24 14:45:29 osvm su[1349]: pam_systemd(su:session): Cannot create session: Already running in a session
+Feb 24 14:31:53 osvm sshd[1011]: Server listening on :: port 22.
+Feb 24 14:31:30 osvm su[5466]: + /dev/pts/0 root:root
+Feb 24 14:38:00 osvm login[1104]: pam_unix(login:session): session opened for user joe by LOGIN(uid=0)
+Feb 24 14:56:57 osvm sshd[2906]: Server listening on :: port 22.
+Feb 24 14:32:17 osvm systemd: pam_unix(systemd-user:session): session opened for user joe by (uid=0)
+Feb 24 14:56:57 osvm sshd[1033]: Received signal 15; terminating.
+Feb 24 16:40:32 osvm systemd-logind[883]: System is powering down.
+Feb 24 14:10:52 osvm systemd: pam_unix(systemd-user:session): session opened for user joe by (uid=0)
+Feb 24 14:38:29 osvm sshd[1033]: Server listening on 0.0.0.0 port 22.
+Feb 24 18:17:02 osvm CRON[1124]: pam_unix(cron:session): session opened for user root by (uid=0)
+Feb 24 14:45:29 osvm sudo:      joe : TTY=pts/0 ; PWD=/home/joe ; USER=root ; COMMAND=/bin/su -
+Feb 24 14:38:36 osvm su[1197]: + /dev/tty1 root:root
+Feb 24 14:46:43 osvm su[1365]: pam_systemd(su:session): Cannot create session: Already running in a session
+Feb 24 19:17:01 osvm CRON[1128]: pam_unix(cron:session): session opened for user root by (uid=0)
+Feb 24 21:04:03 osvm systemd-logind[842]: New session 4 of user joe.
+Feb 24 14:20:05 osvm sshd[1107]: pam_unix(sshd:session): session opened for user joe by (uid=0)
+Feb 24 14:38:36 osvm sudo:      joe : TTY=tty1 ; PWD=/home/joe ; USER=root ; COMMAND=/bin/su -
+Feb 24 14:17:01 osvm CRON[21341]: pam_unix(cron:session): session closed for user root
+Feb 24 14:22:46 osvm su[5363]: pam_systemd(su:session): Cannot create session: Already running in a session
+Feb 24 14:38:06 osvm sudo: pam_unix(sudo:session): session opened for user root by joe(uid=0)
+Feb 24 14:39:05 osvm sshd[1236]: Accepted password for joe from 10.0.2.2 port 2861 ssh2
+Feb 24 14:18:19 osvm groupadd[24985]: group added to /etc/gshadow: name=vboxsf
+Feb 24 14:18:19 osvm groupadd[24985]: group added to /etc/group: name=vboxsf, GID=999
+Feb 24 21:04:03 osvm sshd[1134]: pam_unix(sshd:session): session opened for user joe by (uid=0)
+Feb 24 14:20:11 osvm su[1180]: pam_systemd(su:session): Cannot create session: Already running in a session
+Feb 24 14:38:07 osvm su[1291]: pam_unix(su:session): session closed for user root
+Feb 24 14:47:33 osvm su[1365]: pam_unix(su:session): session closed for user root
+Feb 24 14:28:42 osvm su[5363]: pam_unix(su:session): session closed for user root
+Feb 24 14:32:38 osvm su[1199]: Successful su for root by root
+Feb 24 14:22:46 osvm su[5363]: Successful su for root by root
+Feb 24 14:31:30 osvm su[5466]: Successful su for root by root
+Feb 24 18:17:02 osvm CRON[1124]: pam_unix(cron:session): session closed for user root
+Feb 24 14:38:50 osvm systemd-logind[883]: Removed session 1.
