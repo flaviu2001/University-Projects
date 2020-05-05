@@ -28,8 +28,8 @@ class Turret {
         void set_vision(const std::string &new_vision);
         Turret& operator=(const Turret &new_turret);
         bool operator==(const Turret &other_turret)const;
-        friend std::istream& operator>>(std::istream& is, Turret &turret);
-        friend std::ostream& operator<<(std::ostream& os, const Turret &turret);
+        friend std::istream& operator>>(std::istream& reader, Turret &turret);
+        friend std::ostream& operator<<(std::ostream& writer, const Turret &turret);
 };
 
 #endif //IMRE5_DOMAIN_H

@@ -79,10 +79,12 @@ bool Turret::operator==(const Turret &other_turret) const {
     return location == other_turret.location;
 }
 
-std::istream &operator>>(std::istream &is, Turret &turret) {
+std::istream &operator>>(std::istream &reader, Turret &turret) {
 
     std::string line;
-    getline(is, line);
+    std::getline(reader, line);
+    if (line.empty())
+        return reader;
     strip(line);
     std::stringstream stream(line);
 
@@ -120,14 +122,14 @@ std::istream &operator>>(std::istream &is, Turret &turret) {
         separate_parts = separate_parts*10 + character-'0';
 
     turret = Turret(location, turret_size, aura_level, separate_parts, vision);
-    return is;
+    return reader;
 }
 
-std::ostream &operator<<(std::ostream &os, const Turret &turret) {
-    os << turret.get_location() << ",";
-    os << turret.get_size() << ",";
-    os << turret.get_aura_level() << ",";
-    os << turret.get_separate_parts() << ",";
-    os << turret.get_vision();
-    return os;
+std::ostream &operator<<(std::ostream &writer, const Turret &turret) {
+    writer << turret.get_location() << ",";
+    writer << turret.get_size() << ",";
+    writer << turret.get_aura_level() << ",";
+    writer << turret.get_separate_parts() << ",";
+    writer << turret.get_vision();
+    return writer;
 }

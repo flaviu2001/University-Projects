@@ -8,11 +8,11 @@
 #include "../Service/Service.h"
 
 class UI {
-    private:
-        Service service;
-    public:
-        explicit UI(Service &the_service);
-        void start();
+private:
+    Service service;
+public:
+    explicit UI(Service _service);
+    void start();
 };
 
 

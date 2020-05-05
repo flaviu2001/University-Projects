@@ -48,6 +48,8 @@ void Validator::validate_turret_fields(const std::string &location, const std::s
     for (auto x : number2)
         if (x > '9' or x < '0')
             throw ValueError("Separate parts is not a valid number.");
+    if (location.empty() || turret_size.empty() || number1.empty() || number2.empty() || vision.empty())
+        throw ValueError("Cannot have empty fields.");
 }
 
 void Validator::validate_service_next_turret(Service &service) {
@@ -65,4 +67,14 @@ void Validator::validate_service_save_turret(Service &service, const std::string
 void Validator::validate_service_saved_repository_exists(Service &service) {
     if (service.saved_turrets_repository == nullptr)
         throw RepositoryError("Repository not initialised.");
+}
+
+void Validator::validate_service_undo(Service &service) {
+    if (service.stack_pointer < 0)
+        throw ValueError("No more operations to undo.");
+}
+
+void Validator::validate_service_redo(Service &service) {
+    if (service.stack_pointer+1 >= int(service.undo_stack.size()))
+        throw ValueError("No more operations to undo.");
 }

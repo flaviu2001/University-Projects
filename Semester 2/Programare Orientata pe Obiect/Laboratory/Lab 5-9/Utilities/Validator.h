@@ -22,6 +22,8 @@ public:
     static void validate_service_next_turret(Service &service);
     static void validate_service_save_turret(Service &service, const std::string &location);
     static void validate_service_saved_repository_exists(Service &service);
+    static void validate_service_undo(Service &service);
+    static void validate_service_redo(Service &service);
 };
 
 

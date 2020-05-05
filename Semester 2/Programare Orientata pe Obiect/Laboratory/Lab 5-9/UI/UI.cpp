@@ -3,13 +3,12 @@
 //
 
 #include "UI.h"
-#include "../Utilities/Exceptions.h"
 #include "../Utilities/Utils.h"
 #include <iostream>
 #include <sstream>
 #include <cstdlib>
 
-UI::UI(Service &the_service): service{the_service}{}
+UI::UI(Service _service) : service{_service}{}
 
 void UI::start() {
     std::string command;
@@ -146,6 +145,20 @@ void UI::start() {
                 std::cout << ve.what() << "\n";
             }catch (ModeError &me){
                 std::cout << me.what() << "\n";
+            }
+        }else if (argument == "undo"){
+            try{
+                this->service.undo();
+                std::cout << "The operation was successfully undone.\n";
+            }catch (ValueError &ve){
+                std::cout << ve.what() << "\n";
+            }
+        }else if (argument == "redo"){
+            try{
+                this->service.redo();
+                std::cout << "The operation was successfully redone.\n";
+            }catch (ValueError &ve){
+                std::cout << ve.what() << "\n";
             }
         }else if (argument == "exit")
             break;

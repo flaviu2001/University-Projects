@@ -4,7 +4,7 @@
 
 int main() {
     test_all();
-    Repository *repository = new RepositoryCSV;
+    Repository* repository = new RepositoryCSV;
     Service service(repository);
     UI ui(service);
     ui.start();

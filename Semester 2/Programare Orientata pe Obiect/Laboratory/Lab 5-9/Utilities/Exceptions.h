@@ -11,7 +11,7 @@ class ValueError : public std::exception {
 private:
     const char* message;
 public:
-    explicit ValueError(const char* c);
+    explicit ValueError(const char* message);
     [[nodiscard]] const char * what () const noexcept override;
 };
 
@@ -19,7 +19,7 @@ class ModeError : public std::exception {
 private:
     const char* message;
 public:
-    explicit ModeError(const char* c);
+    explicit ModeError(const char* message);
     [[nodiscard]] const char * what () const noexcept override;
 };
 
@@ -27,7 +27,7 @@ class RepositoryError : public std::exception {
 private:
     const char* message;
 public:
-    explicit RepositoryError(const char* c);
+    explicit RepositoryError(const char* message);
     [[nodiscard]] const char * what () const noexcept override;
 };
 
