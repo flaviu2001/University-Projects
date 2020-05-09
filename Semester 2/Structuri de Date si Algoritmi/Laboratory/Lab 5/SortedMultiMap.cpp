@@ -18,6 +18,7 @@ SortedMultiMap::SortedMultiMap(Relation r) {
 void SortedMultiMap::add(TKey c, TValue v) {
     int where = this->hash_function(c);
     Node* now = this->dict[where];
+    Node* prev = nullptr;
     while (now != nullptr){
         if (now->key == c){
             if (now->size == now->capacity)
@@ -27,18 +28,34 @@ void SortedMultiMap::add(TKey c, TValue v) {
             ++this->dict_size;
             break;
         }
+        if (comp(now->key, c) && now->key != c)
+            prev = now;
         now = now->next;
     }
     if (now == nullptr){
-        if (double(this->dict_size+1)/this->capacity >= this->load_factor)
+        if (double(this->dict_size+1)/this->capacity >= this->load_factor) {
             this->resize();
-        where = this->hash_function(c); //recalculates the hash for key because capacity was changed
+            where = this->hash_function(c); //recalculates the hash for key because capacity was changed
+            now = this->dict[where];
+            prev = nullptr;
+            while (now != nullptr){
+                if (comp(now->key, c) && now->key != c){
+                    prev = now;
+                    now = now->next;
+                }else break;
+            }
+        }
         Node *new_node = new Node;
         new_node->values[0] = v;
         new_node->size = 1;
         new_node->key = c;
-        new_node->next = this->dict[where];
-        this->dict[where] = new_node;
+        if (prev == nullptr) {
+            new_node->next = this->dict[where];
+            this->dict[where] = new_node;
+        }else{
+            new_node->next = prev->next;
+            prev->next = new_node;
+        }
         ++this->dict_size;
     }
 }
@@ -141,7 +158,7 @@ void SortedMultiMap::resize() {
         }
     }
     delete[] this->dict;
-    dict = aux;
+    this->dict = aux;
 }
 
 void SortedMultiMap::resize(SortedMultiMap::Node *node) {

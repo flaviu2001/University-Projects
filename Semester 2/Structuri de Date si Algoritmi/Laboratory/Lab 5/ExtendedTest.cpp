@@ -1,5 +1,5 @@
 #include <exception>
-#include <cassert>
+#include <assert.h>
 #include <algorithm>
 #include <vector>
 #include <iostream>
@@ -10,11 +10,19 @@
 using namespace std;
 
 bool asc(TKey c1, TKey c2) {
-    return c1 <= c2;
+    if (c1 <= c2) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 bool desc(TKey c1, TKey c2) {
-    return c1 >= c2;
+    if (c1 >= c2) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 bool rel3(TKey c1, TKey c2) {
@@ -68,10 +76,10 @@ void testRelation(Relation r) {
     TKey first = smit.getCurrent().first;
     smit.next();
     while (smit.valid()) {
-        TKey current_key = smit.getCurrent().first;
-        assert(current_key == smit.getCurrent().second || current_key == smit.getCurrent().second / 2);
-        assert(r(first, current_key));
-        first = current_key;
+        TKey current = smit.getCurrent().first;
+        assert(current == smit.getCurrent().second || current == smit.getCurrent().second / 2);
+        assert(r(first, current));
+        first = current;
         smit.next();
     }
     testIteratorSteps(smm);
@@ -95,12 +103,12 @@ void testCreate() {
 
     for (int i = 0; i < 10; i++) {
         vector<TValue> v= smm.search(i);
-        assert(v.empty());
+        assert(v.size()==0);
     }
 
     for (int i = -10; i < 10; i++) {
         vector<TValue> v= smm.search(i);
-        assert(v.empty());
+        assert(v.size()==0);
     }
 }
 
@@ -121,11 +129,11 @@ void testSearch(Relation r) {
     }
     for (int i = kMin - intervalDim; i < kMin; i++) {
         vector<TValue> v= smm.search(i);
-        assert(v.empty());
+        assert(v.size()==0);
     }
     for (int i = kMax + 1; i < kMax + intervalDim; i++) {
         vector<TValue> v= smm.search(i);
-        assert(v.empty());
+        assert(v.size()==0);
     }
 }
 
@@ -150,19 +158,19 @@ void testRemoveSearch(Relation r) {
     populateSMMEmpty(smm, min, max);
     testIteratorSteps(smm);
     for (int c = min; c <= max; c++) {
-        assert(!smm.remove(c, c + 1));
+        assert(smm.remove(c, c+1) == false);
         if (c%2==0)
-            assert(smm.remove(c, c));
+            assert(smm.remove(c,c) == true);
         testIteratorSteps(smm);
     }
 
     for (int c = min; c <= max; c++) {
         if (c%2==1){
-            assert(!smm.remove(c, c + 1));
-            assert(smm.remove(c, c));
+            assert(smm.remove(c,c+1) == false);
+            assert(smm.remove(c,c) == true);
         }
         else{
-            assert(smm.remove(c, c + 2));
+            assert(smm.remove(c,c+2) == true);
         }
         testIteratorSteps(smm);
     }
@@ -198,14 +206,14 @@ void testIterator(Relation r) {
         assert(false);
     }
     catch (exception& ex) {
-        static_assert(true);
+        assert(true);
     }
     try {
         it.getCurrent();
         assert(false);
     }
     catch (exception& ex) {
-        static_assert(true);
+        assert(true);
     }
     it.first();
     assert(!it.valid());
