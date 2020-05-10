@@ -13,6 +13,7 @@ SMMIterator::SMMIterator(const SortedMultiMap& d) : map(d){
         SortedMultiMap::Node *current_iterable = this->map.dict[i];
         while (this->current != nullptr && current_iterable != nullptr){
             auto *new_node = new SortedMultiMap::Node;
+            delete[] new_node->values;
             if (this->map.comp(this->current->key, current_iterable->key)){
                 new_node->key = this->current->key;
                 new_node->values = this->current->values;
@@ -36,6 +37,7 @@ SMMIterator::SMMIterator(const SortedMultiMap& d) : map(d){
         }
         while (this->current != nullptr){
             auto *new_node = new SortedMultiMap::Node;
+            delete[] new_node->values;
             new_node->key = this->current->key;
             new_node->values = this->current->values;
             new_node->size = this->current->size;
@@ -51,6 +53,7 @@ SMMIterator::SMMIterator(const SortedMultiMap& d) : map(d){
         }
         while (current_iterable != nullptr){
             auto *new_node = new SortedMultiMap::Node;
+            delete[] new_node->values;
             new_node->key = current_iterable->key;
             new_node->values = current_iterable->values;
             new_node->size = current_iterable->size;
