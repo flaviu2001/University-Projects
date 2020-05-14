@@ -111,5 +111,3 @@ SMMIterator::~SMMIterator() {
         this->head = next_node;
     }
 }
-
-

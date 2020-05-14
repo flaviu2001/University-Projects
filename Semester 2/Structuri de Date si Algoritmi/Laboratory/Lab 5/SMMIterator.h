@@ -20,4 +20,3 @@ public:
     [[nodiscard]] bool valid() const;      //Theta(1)
     [[nodiscard]] TElem getCurrent() const; //Theta(1)
 };
-

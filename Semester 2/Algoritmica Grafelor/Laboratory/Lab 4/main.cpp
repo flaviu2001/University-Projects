@@ -73,9 +73,46 @@ void scheduling_problem()
     fin.close();
 }
 
-void bonus_3()
+void bonus_2()
 {
     ifstream fin ("data2.in");
+    int n, m;
+    fin >> n >> m;
+    Graph g(n);
+    for (int i = 0; i < m; ++i){
+        int a, b;
+        fin >> a >> b;
+        g.add_edge(a, b);
+    }
+    vector<int> order = toposort(g);
+    if (order.size() != g.count_vertices()){
+        cout << "Not a DAG!";
+        return;
+    }
+    int where1 = 0, where2 = 0;
+    int source, target;
+    fin >> source >> target;
+    for (int i = 0; i < g.count_vertices(); ++i) {
+        if (source == order[i])
+            where1 = i;
+        if (target == order[i])
+            where2 = i;
+    }
+    vector<int> dp(g.count_vertices(), 0);
+    dp[target] = 1;
+    for (int i = where2-1; i >= where1; --i){
+        int nod = order[i];
+        for (auto x = g.neighbours_begin(nod); x != g.neighbours_end(nod); ++x)
+            dp[nod] += dp[*x];
+    }
+    cout << "There are " << dp[source] << " paths.\n";
+    fin.close();
+}
+
+
+void bonus_3()
+{
+    ifstream fin ("data3.in");
     int n, m;
     fin >> n >> m;
     Graph g(n);
@@ -117,6 +154,7 @@ void bonus_3()
 
 int main() {
     scheduling_problem();
+    bonus_2();
     bonus_3();
     return 0;
 }

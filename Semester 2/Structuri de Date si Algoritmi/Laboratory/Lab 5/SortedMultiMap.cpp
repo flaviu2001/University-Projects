@@ -1,4 +1,5 @@
 #include "SMMIterator.h"
+#include "ValueIterator.h"
 #include "SortedMultiMap.h"
 #include <iostream>
 #include <vector>
@@ -122,6 +123,11 @@ bool SortedMultiMap::isEmpty() const {
 SMMIterator SortedMultiMap::iterator() const {
     return SMMIterator(*this);
 }
+
+ValueIterator SortedMultiMap::iterator(TKey k) const {
+    return ValueIterator(*this, k);
+}
+
 
 SortedMultiMap::~SortedMultiMap() {
     for (int i = 0; i < this->capacity; ++i){
