@@ -48,8 +48,8 @@ Service SettingsParser::get_service() {
         }
     }
     fin.close();
-    if (saved_repo != nullptr && saved_repo->is_file() && main_repo != nullptr && !main_repo->is_file())
-        throw ValueError("Can't store main repo in memory and get saved repo from file");
+//    if (saved_repo != nullptr && saved_repo->is_file() && main_repo != nullptr && !main_repo->is_file())
+//        throw ValueError("Can't store main repo in memory and get saved repo from file");
     return Service(main_repo, saved_repo);
 }
 

@@ -446,6 +446,7 @@ void test__repository_HTML_delete__3_turrets_save_2_remove_1__list_is_size_1()
 void test_all(){
     remove("test_repo.txt");
     remove("test.sql");
+    remove("test.html");
     test__service_add__2_adds__list_has_2_turrets();
     test__service_add__2_adds_with_identical_location__ValueError();
     test__service_add__invalid_mode__ModeError();

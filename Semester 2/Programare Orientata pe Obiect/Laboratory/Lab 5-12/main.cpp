@@ -1,6 +1,5 @@
 #include <QtWidgets/QApplication>
 #include <UI/GUI.h>
-#include "UI/UI.h"
 #include "Tests/tests.h"
 #include <QDialog>
 #include <QtWidgets>

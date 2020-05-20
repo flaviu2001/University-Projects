@@ -44,6 +44,7 @@ private:
     QPushButton* save_button;
     QPushButton* filter_button;
     QPushButton* next_button;
+    QPushButton* mylist_button;
     QComboBox* mode_choice;
     QLabel* label_next;
     QChart *chart;

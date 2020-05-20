@@ -97,8 +97,6 @@ void RepositoryHTML::set_file_name(const std::string &file_name_to_set) {
         return;
     }
     Turret turret;
-    this->size = 0;
-    while (fin >> turret)
-        ++this->size;
+    this->size = this->get_turret_list().size();
     fin.close();
 }

@@ -5,6 +5,7 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QFormLayout>
 #include <QtWidgets/QMessageBox>
+#include <QDebug>
 #include <sstream>
 #include <Utilities/SettingsParser.h>
 #include "Utilities/Utils.h"
@@ -91,18 +92,19 @@ GUI::GUI(Service &_service) : service{_service} {
     this->set_mode_handler();
 
     // Paths
-    if (this->service.is_repo_file()){
+    if (this->service.is_repo_file() || this->service.is_saved_file()){
         auto* paths_widget = new QWidget;
         auto* path_form = new QFormLayout{paths_widget};
         leftVbox->addWidget(paths_widget);
 
         QString default_file_location = SettingsParser::get_main().c_str();
         QString default_mylist_location = SettingsParser::get_mylist().c_str();
-        this->file_location_edit = new QLineEdit(default_file_location);
-        auto* file_label = new QLabel("File location:");
-        path_form->addRow(file_label, this->file_location_edit);
-        this->service.set_file_name_main_repository(default_file_location.toStdString());
-
+        if (this->service.is_repo_file()){
+            this->file_location_edit = new QLineEdit(default_file_location);
+            auto* file_label = new QLabel("File location:");
+            path_form->addRow(file_label, this->file_location_edit);
+            this->service.set_file_name_main_repository(default_file_location.toStdString());
+        }
         if (this->service.is_saved_file()){
             this->mylist_location_edit = new QLineEdit(default_mylist_location);
             auto* mylist_label = new QLabel("Mylist location:");
@@ -115,6 +117,9 @@ GUI::GUI(Service &_service) : service{_service} {
     auto* right_side = new QWidget;
     layout->addWidget(right_side);
     auto* rightVbox = new QVBoxLayout(right_side);
+
+    this->mylist_button = new QPushButton{"Mylist"};
+    rightVbox->addWidget(this->mylist_button);
 
     // Saved list
     auto* saved_list_name = new QLabel{"Saved turrets list"};
@@ -166,9 +171,9 @@ GUI::GUI(Service &_service) : service{_service} {
 
     // Rest of the stuff like connecting buttons
     this->connect_signals_and_slots();
-//    qDebug() << service.get_file_name_main_repository().c_str() << "\n";
     this->populate_turret_list();
-    this->populate_saved_list();
+    if (termination(SettingsParser::get_mylist()) == "sql" || !this->service.is_saved_file())
+        this->populate_saved_list();
 }
 
 void GUI::populate_turret_list() {
@@ -228,6 +233,25 @@ void GUI::connect_signals_and_slots() {
     connect(this->save_button, &QPushButton::clicked, this, &GUI::save_turret_button_handler);
     connect(this->filter_button, &QPushButton::clicked, this, &GUI::filter_turret_button_handler);
     connect(this->next_button, &QPushButton::clicked, this, &GUI::next_button_handler);
+    connect(this->mylist_button, &QPushButton::clicked, [this](){
+        std::string file = this->service.get_file_name_saved_turrets_repository();
+        std::string command_to_execute;
+        if (termination(file) == "html") {
+            command_to_execute = "firefox ";
+            command_to_execute += file;
+            system(command_to_execute.c_str());
+        }else if (termination(file) == "csv") {
+            command_to_execute = "libreoffice --calc ";
+            command_to_execute += file;
+            system(command_to_execute.c_str());
+        }else if (termination(file) == "sql") {
+            this->populate_saved_list();
+        }else{
+            command_to_execute = "subl ";
+            command_to_execute += file;
+            system(command_to_execute.c_str());
+        }
+    });
     connect(this->turrets_list, &QListWidget::itemSelectionChanged, [this]() {this->list_item_changed();});
     connect(this->mode_choice, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &GUI::set_mode_handler);
     if (this->service.is_repo_file())
@@ -285,7 +309,8 @@ void GUI::delete_turret_button_handler() {
     try{
         this->service.remove(location.toStdString());
         this->populate_turret_list();
-        this->populate_saved_list();
+        if (termination(SettingsParser::get_mylist()) == "sql" || !this->service.is_saved_file())
+            this->populate_saved_list();
     }catch (std::exception &e){
         QMessageBox::critical(this, "Error", e.what());
     }
@@ -328,7 +353,8 @@ void GUI::save_turret_button_handler() {
     QString location = this->location_edit->text();
     try{
         this->service.save_turret(location.toStdString());
-        this->populate_saved_list();
+        if (termination(SettingsParser::get_mylist()) == "sql" || !this->service.is_saved_file())
+            this->populate_saved_list();
     }catch (std::exception &e){
         QMessageBox::critical(this, "Error", e.what());
     }
@@ -383,7 +409,10 @@ void GUI::list_item_changed()
 
 void GUI::reset_everything() {
     this->populate_turret_list();
-    this->populate_saved_list();
+    if (this->saved_list->count() > 0)
+        this->saved_list->clear();
+    if (termination(SettingsParser::get_mylist()) == "sql" || !this->service.is_saved_file())
+        this->populate_saved_list();
     this->filtered_list->clear();
     this->label_next->clear();
 }

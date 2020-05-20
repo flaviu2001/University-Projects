@@ -127,6 +127,7 @@ std::vector<Turret> Service::get_saved_turrets_list() {
 
 void Service::set_file_name_main_repository(const std::string &file_name_to_set) {
     this->main_repository->set_file_name(file_name_to_set);
+    this->iterator = 0;
 }
 
 void Service::set_file_name_saved_turrets_repository(const std::string &file_name_to_set) {
