@@ -95,7 +95,7 @@ bool SortedBag::remove(TComp e) {
     return ret;
 }
 
-SortedBag::treap * SortedBag::get_node(SortedBag::treap *n, TComp e) const {
+SortedBag::treap* SortedBag::get_node(SortedBag::treap *n, TComp e) const {
     if (n == nullptr)
         return nullptr;
     if (e == n->key)
@@ -123,6 +123,19 @@ int SortedBag::size() const {
 
 bool SortedBag::isEmpty() const {
     return this->number_of_elements == 0;
+}
+
+int SortedBag::toSetRec(SortedBag::treap *n) {
+    if (n == nullptr)
+        return 0;
+    int deleted = n->frequency-1;
+    n->frequency = 1;
+    this->number_of_elements -= deleted;
+    return deleted + toSetRec(n->left) + toSetRec(n->right);
+}
+
+int SortedBag::toSet() {
+    return toSetRec(root);
 }
 
 SortedBagIterator SortedBag::iterator() const {

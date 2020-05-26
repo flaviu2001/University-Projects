@@ -45,6 +45,8 @@ private:
 
     treap * get_node(treap *n, TComp e) const; //total O(n) but Theta(logn) on average
 
+    int toSetRec(treap *n); //total Theta(n)
+
     static void destroy(treap *&n); //Theta(n) where n is the number of distinct elements
 
 public:
@@ -72,6 +74,10 @@ public:
 
     //checks if the sorted bag is empty
     [[nodiscard]] bool isEmpty() const; //Theta(1)
+
+    //keeps only one occurrence of all elements from the SortedBag
+    //returns the number of removed elements
+    int toSet();    //total Theta(n)
 
     //destructor
     ~SortedBag();    //Theta(n) where n is the number of distinct elements
