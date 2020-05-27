@@ -1,0 +1,4 @@
+Calagron,Hornstone,350,red
+Aragorn,Mythril,800,green
+Gimli,Adamantite,720,blue
+Aragorn,Steel,100,magenta
