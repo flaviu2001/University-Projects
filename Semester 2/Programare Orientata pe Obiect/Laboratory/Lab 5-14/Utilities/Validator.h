@@ -24,6 +24,8 @@ public:
     static void validate_service_saved_repository_exists(Service &service);
     static void validate_service_undo(Service &service);
     static void validate_service_redo(Service &service);
+    static void validate_service_undo_mylist(Service &service);
+    static void validate_service_redo_mylist(Service &service);
 };
 
 

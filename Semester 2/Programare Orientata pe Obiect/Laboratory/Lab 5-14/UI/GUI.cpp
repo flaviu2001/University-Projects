@@ -8,6 +8,8 @@
 #include <QDebug>
 #include <sstream>
 #include <Utilities/SettingsParser.h>
+#include <QtWidgets/QShortcut>
+#include <QtWidgets/QHeaderView>
 #include "Utilities/Utils.h"
 #include "GUI.h"
 
@@ -61,29 +63,6 @@ GUI::GUI(Service &_service) : service{_service} {
     auto* vision_label = new QLabel("Vision:");
     fields_form->addRow(vision_label, this->vision_edit);
 
-
-    // Buttons
-    auto* buttons_widget = new QWidget;
-    auto* buttons_layout = new QHBoxLayout{buttons_widget};
-    this->add_turret_button = new QPushButton("Add turret");
-    this->delete_turret_button = new QPushButton("Delete turret");
-    this->update_turret_button = new QPushButton("Update turret");
-    buttons_layout->addWidget(this->add_turret_button);
-    buttons_layout->addWidget(this->delete_turret_button);
-    buttons_layout->addWidget(this->update_turret_button);
-    leftVbox->addWidget(buttons_widget);
-
-    // Save and filter button
-    auto* other_buttons_widget = new QWidget;
-    auto* other_buttons_layout = new QHBoxLayout{other_buttons_widget};
-    this->save_button = new QPushButton("Save turret");
-    this->filter_button = new QPushButton("Filter turrets");
-    this->next_button = new QPushButton("Next turret");
-    other_buttons_layout->addWidget(this->save_button);
-    other_buttons_layout->addWidget(this->filter_button);
-    other_buttons_layout->addWidget(this->next_button);
-    leftVbox->addWidget(other_buttons_widget);
-
     // Modes
     this->mode_choice = new QComboBox;
     mode_choice->addItem("Mode A");
@@ -118,16 +97,6 @@ GUI::GUI(Service &_service) : service{_service} {
     layout->addWidget(right_side);
     auto* rightVbox = new QVBoxLayout(right_side);
 
-    this->mylist_button = new QPushButton{"Mylist"};
-    rightVbox->addWidget(this->mylist_button);
-
-    // Saved list
-    auto* saved_list_name = new QLabel{"Saved turrets list"};
-    rightVbox->addWidget(saved_list_name);
-    this->saved_list = new QListWidget;
-    this->saved_list->setSelectionMode(QAbstractItemView::SingleSelection);
-    rightVbox->addWidget(this->saved_list);
-
     // Filtered list
     auto* filtered_list_name = new QLabel{"Filtered turrets list"};
     rightVbox->addWidget(filtered_list_name);
@@ -135,11 +104,46 @@ GUI::GUI(Service &_service) : service{_service} {
     this->filtered_list->setSelectionMode(QAbstractItemView::SingleSelection);
     rightVbox->addWidget(this->filtered_list);
 
+    // Buttons
+    if (this->service.is_saved_file()){
+        this->mylist_button = new QPushButton{"Mylist external app"};
+        rightVbox->addWidget(this->mylist_button);
+    }else this->mylist_button = nullptr;
+
+    auto* buttons_layout = new QHBoxLayout;
+    this->add_turret_button = new QPushButton("Add turret");
+    this->delete_turret_button = new QPushButton("Delete turret");
+    this->update_turret_button = new QPushButton("Update turret");
+    buttons_layout->addWidget(this->add_turret_button);
+    buttons_layout->addWidget(this->delete_turret_button);
+    buttons_layout->addWidget(this->update_turret_button);
+    rightVbox->addLayout(buttons_layout);
+
+    // Save and filter button
+    auto* other_buttons_layout = new QHBoxLayout;
+    this->save_button = new QPushButton("Save turret");
+    this->filter_button = new QPushButton("Filter turrets");
+    this->next_button = new QPushButton("Next turret");
+    other_buttons_layout->addWidget(this->save_button);
+    other_buttons_layout->addWidget(this->filter_button);
+    other_buttons_layout->addWidget(this->next_button);
+    rightVbox->addLayout(other_buttons_layout);
+
+    // Undo and Redo buttons
+    auto* last_buttons_layout = new QHBoxLayout;
+    this->undo_button = new QPushButton{"Undo"};
+    this->redo_button = new QPushButton{"Redo"};
+    this->mylist_mvc_button = new QPushButton{"Mylist MVC"};
+    last_buttons_layout->addWidget(this->undo_button);
+    last_buttons_layout->addWidget(this->redo_button);
+    last_buttons_layout->addWidget(this->mylist_mvc_button);
+    rightVbox->addLayout(last_buttons_layout);
+
     // Label next
     auto* next_widget = new QWidget;
     rightVbox->addWidget(next_widget);
     auto* next_layout = new QHBoxLayout{next_widget};
-    this->label_next = new QLabel{""};
+    this->label_next = new QLabel{"Press next:"};
     next_layout->addWidget(this->label_next);
 
     // Chart layout
@@ -170,10 +174,9 @@ GUI::GUI(Service &_service) : service{_service} {
     this->axisY->setRange(0,200);
 
     // Rest of the stuff like connecting buttons
+    this->myview = new TurretsTableView{this->service};
     this->connect_signals_and_slots();
     this->populate_turret_list();
-    if (termination(SettingsParser::get_mylist()) == "sql" || !this->service.is_saved_file())
-        this->populate_saved_list();
 }
 
 void GUI::populate_turret_list() {
@@ -186,18 +189,6 @@ void GUI::populate_turret_list() {
     }
     if (this->turrets_list->count() > 0)
         this->turrets_list->setCurrentRow(this->turrets_list->count()-1);
-}
-
-void GUI::populate_saved_list() {
-    if (this->saved_list->count() > 0)
-        this->saved_list->clear();
-    for (const auto& turret : this->service.get_saved_turrets_list()){
-        QString item_in_list = QString::fromStdString(turret.get_location());
-        auto* item = new QListWidgetItem{item_in_list};
-        this->saved_list->addItem(item);
-    }
-    if (this->saved_list->count() > 0)
-        this->saved_list->setCurrentRow(0);
 }
 
 void GUI::populate_filtered_list(const std::string& size, int parts) {
@@ -233,24 +224,38 @@ void GUI::connect_signals_and_slots() {
     connect(this->save_button, &QPushButton::clicked, this, &GUI::save_turret_button_handler);
     connect(this->filter_button, &QPushButton::clicked, this, &GUI::filter_turret_button_handler);
     connect(this->next_button, &QPushButton::clicked, this, &GUI::next_button_handler);
-    connect(this->mylist_button, &QPushButton::clicked, [this](){
-        std::string file = this->service.get_file_name_saved_turrets_repository();
-        std::string command_to_execute;
-        if (termination(file) == "html") {
-            command_to_execute = "firefox ";
-            command_to_execute += file;
-            system(command_to_execute.c_str());
-        }else if (termination(file) == "csv") {
-            command_to_execute = "libreoffice --calc ";
-            command_to_execute += file;
-            system(command_to_execute.c_str());
-        }else if (termination(file) == "sql") {
-            this->populate_saved_list();
-        }else{
-            command_to_execute = "subl ";
-            command_to_execute += file;
-            system(command_to_execute.c_str());
-        }
+    if (this->mylist_button != nullptr) {
+        connect(this->mylist_button, &QPushButton::clicked, [this]() {
+            std::string file = this->service.get_file_name_saved_turrets_repository();
+            std::string command_to_execute;
+            if (termination(file) == "html") {
+                command_to_execute = "firefox ";
+                command_to_execute += file;
+                system(command_to_execute.c_str());
+            } else if (termination(file) == "csv") {
+                command_to_execute = "libreoffice --calc ";
+                command_to_execute += file;
+                system(command_to_execute.c_str());
+            } else if (termination(file) == "sql") {
+                command_to_execute = "sqlitebrowser ";
+                command_to_execute += file;
+                system(command_to_execute.c_str());
+            } else {
+                command_to_execute = "subl ";
+                command_to_execute += file;
+                system(command_to_execute.c_str());
+            }
+        });
+    }
+    connect(this->mylist_mvc_button, &QPushButton::clicked, [this](){
+        auto *window = new QWidget;
+        auto* tableView = new QTableView;
+        tableView->setModel(this->myview);
+        tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+        window->setMinimumWidth(tableView->width());
+        auto* Vbox = new QVBoxLayout{window};
+        Vbox->addWidget(tableView);
+        window->show();
     });
     connect(this->turrets_list, &QListWidget::itemSelectionChanged, [this]() {this->list_item_changed();});
     connect(this->mode_choice, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &GUI::set_mode_handler);
@@ -267,6 +272,40 @@ void GUI::connect_signals_and_slots() {
             this->reset_everything();
         });
     connect(this->tab_widget, &QTabWidget::currentChanged, [this](){this->build_chart();});
+    connect(this->undo_button, &QPushButton::clicked, [this](){
+        this->undo_button_handler();
+    });
+    connect(this->redo_button, &QPushButton::clicked, [this](){
+        this->redo_button_handler();
+    });
+    auto undo_sc = new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_Z), this);
+    connect(undo_sc, &QShortcut::activated, [this](){
+        this->undo_button_handler();
+    });
+    auto redo_sc = new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_Y), this);
+    connect(redo_sc, &QShortcut::activated, [this](){
+        this->redo_button_handler();
+    });
+}
+
+void GUI::undo_button_handler() {
+    try{
+        this->service.undo();
+        this->populate_turret_list();
+    } catch (std::exception &e){
+        QMessageBox::critical(this, "Error", e.what());
+    }
+    this->myview->propagate();
+}
+
+void GUI::redo_button_handler(){
+    try{
+        this->service.redo();
+        this->populate_turret_list();
+    } catch (std::exception &e){
+        QMessageBox::critical(this, "Error", e.what());
+    }
+    this->myview->propagate();
 }
 
 void GUI::set_mode_handler() {
@@ -309,11 +348,10 @@ void GUI::delete_turret_button_handler() {
     try{
         this->service.remove(location.toStdString());
         this->populate_turret_list();
-        if (termination(SettingsParser::get_mylist()) == "sql" || !this->service.is_saved_file())
-            this->populate_saved_list();
     }catch (std::exception &e){
         QMessageBox::critical(this, "Error", e.what());
     }
+    this->myview->propagate();
 }
 
 void GUI::update_turret_button_handler() {
@@ -332,6 +370,7 @@ void GUI::update_turret_button_handler() {
     }catch (std::exception &e){
         QMessageBox::critical(this, "Error", e.what());
     }
+    this->myview->propagate();
 }
 
 void GUI::filter_turret_button_handler() {
@@ -353,11 +392,10 @@ void GUI::save_turret_button_handler() {
     QString location = this->location_edit->text();
     try{
         this->service.save_turret(location.toStdString());
-        if (termination(SettingsParser::get_mylist()) == "sql" || !this->service.is_saved_file())
-            this->populate_saved_list();
     }catch (std::exception &e){
         QMessageBox::critical(this, "Error", e.what());
     }
+    this->myview->propagate();
 }
 
 void GUI::next_button_handler() {
@@ -409,10 +447,6 @@ void GUI::list_item_changed()
 
 void GUI::reset_everything() {
     this->populate_turret_list();
-    if (this->saved_list->count() > 0)
-        this->saved_list->clear();
-    if (termination(SettingsParser::get_mylist()) == "sql" || !this->service.is_saved_file())
-        this->populate_saved_list();
     this->filtered_list->clear();
     this->label_next->clear();
 }

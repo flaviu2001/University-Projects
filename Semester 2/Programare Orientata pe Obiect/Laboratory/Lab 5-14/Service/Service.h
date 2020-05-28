@@ -53,6 +53,15 @@ public:
     void execute_redo() override;
 };
 
+class ActionSave : public Action{
+private:
+    Turret saved_turret;
+public:
+    ActionSave(Repository *repository, const Turret& turret);
+    void execute_undo() override;
+    void execute_redo() override;
+};
+
 class Service;
 #include "../Utilities/Validator.h"
 
@@ -64,8 +73,8 @@ private:
     friend class Validator;
     Repository *main_repository;
     Repository *saved_turrets_repository;
-    std::vector< std::unique_ptr<Action> > undo_stack;
-    int stack_pointer;
+    std::vector< std::unique_ptr<Action> > undo_stack, mylist_stack;
+    int stack_pointer, mylist_pointer;
     std::string mode;
     int iterator;
 
@@ -78,8 +87,17 @@ private:
      * Prepares in the stack in the sense that if an add/remove/update operation is performed
      * no other operation can be redone, so the stack is shortened until it matches the current
      * stack pointer.
+     * Applies to undo_stack
      */
-    void prepare_stack();
+    void prepare_main_stack();
+
+    /**
+     * Prepares in the stack in the sense that if an add/remove operation is performed
+     * no other operation can be redone, so the stack is shortened until it matches the current
+     * stack pointer.
+     * Applies to mylist_stack
+     */
+    void prepare_mylist_stack();
 
 public:
     Service(Service& other_service);

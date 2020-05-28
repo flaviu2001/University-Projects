@@ -78,3 +78,13 @@ void Validator::validate_service_redo(Service &service) {
     if (service.stack_pointer+1 >= int(service.undo_stack.size()))
         throw ValueError("No more operations to undo.");
 }
+
+void Validator::validate_service_undo_mylist(Service &service) {
+    if (service.mylist_pointer < 0)
+        throw ValueError("No more operations to undo.");
+}
+
+void Validator::validate_service_redo_mylist(Service &service) {
+    if (service.mylist_pointer+1 >= int(service.mylist_stack.size()))
+        throw ValueError("No more operations to undo.");
+}

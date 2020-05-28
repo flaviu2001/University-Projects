@@ -14,6 +14,7 @@
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QLabel>
 #include "Service/Service.h"
+#include "TurretsTableView.h"
 
 #include <QtCharts/QChartView>
 #include <QtCharts/QBarSeries>
@@ -21,6 +22,7 @@
 #include <QtCharts/QLegend>
 #include <QtCharts/QBarCategoryAxis>
 #include <QtCharts/QValueAxis>
+#include <QtWidgets/QTableView>
 
 QT_CHARTS_USE_NAMESPACE
 
@@ -29,7 +31,6 @@ Q_OBJECT
 private:
     Service &service;
     QListWidget* turrets_list;
-    QListWidget* saved_list;
     QListWidget* filtered_list;
     QLineEdit* location_edit;
     QLineEdit* size_edit;
@@ -45,15 +46,18 @@ private:
     QPushButton* filter_button;
     QPushButton* next_button;
     QPushButton* mylist_button;
+    QPushButton* mylist_mvc_button;
+    QPushButton* undo_button;
+    QPushButton* redo_button;
     QComboBox* mode_choice;
     QLabel* label_next;
     QChart *chart;
     QBarSeries *series;
     QValueAxis *axisY;
     QTabWidget *tab_widget;
+    TurretsTableView *myview;
 
     void populate_turret_list();
-    void populate_saved_list();
     void populate_filtered_list(const std::string& size, int parts);
     void build_chart();
     void add_turret_button_handler();
@@ -62,13 +66,15 @@ private:
     void save_turret_button_handler();
     void filter_turret_button_handler();
     void next_button_handler();
+    void undo_button_handler();
+    void redo_button_handler();
     void set_mode_handler();
     int get_selected_index();
     void list_item_changed();
     void reset_everything();
     void connect_signals_and_slots();
 public:
-    GUI(Service &_service);
+    explicit GUI(Service &_service);
 };
 
 
