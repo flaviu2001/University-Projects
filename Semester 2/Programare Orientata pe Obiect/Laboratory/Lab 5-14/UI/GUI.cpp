@@ -270,6 +270,7 @@ void GUI::connect_signals_and_slots() {
             this->service.set_file_name_saved_turrets_repository(this->mylist_location_edit->text().toStdString());
             SettingsParser::set_settings(this->service);
             this->reset_everything();
+            this->myview->propagate();
         });
     connect(this->tab_widget, &QTabWidget::currentChanged, [this](){this->build_chart();});
     connect(this->undo_button, &QPushButton::clicked, [this](){
