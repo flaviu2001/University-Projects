@@ -1,0 +1,22 @@
+select * from Player
+select * from Game
+select * from ChessClubs
+select * from ChessClubsPlayers
+
+insert into Player values (1, 'Garry Kasparov', 2800, 'Russia', 0)
+insert into Player values (2, 'Bobby Fischer', 2900, 'USA', 0)
+insert into Player values (3, 'Magnus Carlsen', 2900, 'Norway', 0)
+insert into Player values (4, 'Craciun Flaviu', 1100, 'Romania', 0)
+insert into Game values (1, 1, 2, '19720226', 'e4 e5 nf4', 1)
+insert into Game values (2, 1, 3, '20100130', 'a4 h5 ng4', 3)
+insert into Game values (3, 1, -4, '19900101', 'no moves', 1) -- Error, no matching player for black_pid
+insert into Game (gid, white_pid, black_pid, game_date, moves, winner_pid) values (3, 2, 3, '19781013', 'nf3 nc3', 2)
+insert into ChessClubs values (1, 'Best chess club', 'Russia', 'Petrozavodsk')
+insert into ChessClubs values (2, 'Second chess club', 'USA', 'Washington DC')
+insert into ChessClubsPlayers values (1, 1)
+insert into ChessClubsPlayers values (2, 2)
+update Player set fide_rating = 2950 where pid = 3
+update ChessClubs set city = 'Moscow' where ccid = 1
+update Game set moves = 'e4 e5 nf3 nc6' where gid = 1
+delete from Player where pid = 4
+delete from Game where gid = 3

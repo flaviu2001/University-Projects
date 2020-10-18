@@ -3,7 +3,8 @@ create table Player
     pid int primary key,
     name varchar(max),
     fide_rating int,
-    country varchar(max)
+    country varchar(max),
+    is_teacher bit
 )
 
 create table Game
@@ -12,7 +13,8 @@ create table Game
     white_pid int references Player(pid),
     black_pid int references Player(pid),
     game_date date,
-	moves varchar(max)
+	moves varchar(max),
+	winner_pid int references Player(pid)
 )
 
 create table MemorableGames --one to many
@@ -62,12 +64,5 @@ create table ChessClubsPlayers --many to many
 (
     pid int references Player(pid),
     ccid int references ChessClubs(ccid),
-    primary key (pid, ccid)
-)
-
-create table ChessClubsTeachers --many to many
-(
-    pid  int references Player (pid),
-    ccid int references ChessClubs (ccid),
     primary key (pid, ccid)
 )
