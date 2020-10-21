@@ -1,0 +1,29 @@
+#3.A
+
+count_elem(l1, l2.. ln, E) = {
+	0, n = 0
+	count_elem(l2, l3.. ln)+1, l1 == E
+	count_elem(l2, l3.. ln), else
+}
+
+rep_rem_aux(l1, l2.. ln, o1, o2.. om) = {
+	[], n=0
+	[l1] + rep_rem_aux(l2, l3, ..ln, o1, o2.. om), count_elem(o1, o2, ..om, l1) == 1
+	rep_rem_aux(l2, l3, ..ln, o1, o2.. om), else
+}
+
+rep_rem(l1, l2, ..ln) = rep_rem_aux(l1, l2.. ln, l1, l2.. ln)
+
+maximum(l1, l2.. ln) = {
+	l1, n=1
+	l1, maximum(l2, l3.. ln) < l1
+	maximum(l2, l3.. ln), else
+}
+
+rem_max_aux(l1, l2.. ln, M) = {
+	[], n = 0
+	rem_max_aux(l2, l3.. ln), M=l1
+	[l1] + rep_max_aux(l2, l3.. ln)
+}
+
+rep_max(l1, l2.. ln) = rep_max_aux(l1, l2.. ln, maximum(l1, l2.. ln))

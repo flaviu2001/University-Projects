@@ -18,8 +18,6 @@
 #include <errno.h>
 // for inet_ntoa
 #include <arpa/inet.h>
-// for close
-#include <unistd.h> 
 #define closesocket close
 typedef int SOCKET;
 #else
