@@ -1,0 +1,225 @@
+'''
+	Examples for possible refactorings
+	Slides in Lecture 08 - Program Testing. Refactoring
+'''
+
+
+'''
+	The name of a method does not reveal its purpose
+	You have a sequence of conditional tests with the same result
+	The same fragment of code is in all branches of a conditional expression
+'''
+def maxx(lista,param):
+    t=""
+    #print(param[0])
+    #gas,heating,electricity,water,other
+    max1=0
+    for i in range(0,len(lista)):
+        cmd=lista[i]
+        if cmd[0]==param[0] and cmd[1]=='gas' and int(cmd[2])>int(max1):
+            max1=cmd[2]
+    t+="The maximum amount for gas is : " + str(max1) + "\n"
+    max1=0
+    for i in range(0,len(lista)):
+        cmd=lista[i]
+        if cmd[0]==param[0] and cmd[1]=='water' and int(cmd[2])>int(max1):
+            max1=cmd[2]
+    t+="The maximum amount for water is : " + str(max1) + "\n"
+    max1=0
+    for i in range(0,len(lista)):
+        cmd=lista[i]
+        if cmd[0]==param[0] and cmd[1]=='electricity' and int(cmd[2])>int(max1):
+            max1=cmd[2]
+    t+="The maximum amount for electricity is : " + str(max1) + "\n"
+    max1=0
+    for i in range(0,len(lista)):
+        cmd=lista[i]
+        if cmd[0]==param[0] and cmd[1]=='heating' and int(cmd[2])>int(max1):
+            max1=cmd[2]
+    t+="The maximum amount for heating is : " + str(max1) + "\n"
+    max1=0
+    for i in range(0,len(lista)):
+        cmd=lista[i]
+        if cmd[0]==param[0] and cmd[1]=='other' and int(cmd[2])>int(max1):
+            max1=cmd[2]
+    t+="The maximum amount for other expenses is : " + str(max1) + "\n"
+    return t
+	
+	
+'''
+	You have a code fragment that can be grouped together
+	Parameter 'param' is not used
+'''
+def sortAP(lista,param):
+    ap=[]
+    for i in range(0,len(lista)):
+        if cautAP(ap,lista[i][0])==1:
+            ap.append(lista[i][0])
+    for i in range(0,len(ap)):
+        s=0
+        for j in range(0,len(lista)):
+            if lista[j][0]==ap[i]:
+                s+=int(lista[j][2])
+        v=ap[i]
+        ap[i]=(v,s)
+    t=sorted(ap,key=lambda ap: ap[1])
+    return t
+        
+def sortT(lista,param):
+    ap=[]
+    for i in range(0,len(lista)):
+        if cautAP(ap,lista[i][1])==1:
+            ap.append(lista[i][1])
+    for i in range(0,len(ap)):
+        s=0
+        for j in range(0,len(lista)):
+            if lista[j][1]==ap[i]:
+                s+=int(lista[j][2])
+        v=ap[i]
+        ap[i]=(v,s)
+    t=sorted(ap,key=lambda ap: ap[1])
+    return t
+	
+'''
+	You have a code fragment that can be grouped together.
+	Turn the fragment into a method whose name explains the purpose of the method
+'''
+def run_cmd_menu():
+    cmds = {"insert": ui_insert_expense, "list": ui_print_all, "add": ui_add_expense, "night": night,
+            "remove": ui_delete, "first": first_expenses, "sum": ui_sum_type, "undo": ui_undo, "max": ui_max_day,
+            "sort": ui_sort_day}
+    current_day = 1
+    expenses = []
+    backup_list = []
+    count = 0
+    first_expenses(expenses)
+    # backup(expenses, backup_list)
+    first_len = len(expenses)
+    while True:
+        (cmd, args) = read_command()
+        if cmd == "exit":
+            break
+        if cmd == "night":
+            current_day = night(current_day)
+
+        if cmd == "remove":
+            count = len(expenses)
+            ui_delete(expenses, args, backup_list)
+
+        if cmd == "list":
+            if len(args) == 0:
+                ui_print_all(expenses)
+            if len(args) == 1:
+                if is_int(args[0]):
+                    ui_print_day(expenses, int(args[0]))
+                else:
+                    ui_print_type(expenses, args[0])
+            if len(args) == 3:
+                if args[1] == "<":
+                    print_smaller(expenses, args[0], args[2])
+                if args[1] == "=":
+                    print_equals(expenses, args[0], args[2])
+                if args[1] == ">":
+                    print_bigger(expenses, args[0], args[2])
+        if cmd == "filter":
+            count = len(expenses)
+            # backup(expenses, backup_list)
+            backup_list.extend(expenses)
+            if len(args) == 1:
+                filter_type(expenses, args[0])
+            if len(args) == 3:
+                if args[1] == "<":
+                    filter_smaller(expenses, args[0], args[2])
+                if args[1] == "=":
+                    filter_equals(expenses, args[0], args[2])
+                if args[1] == ">":
+                    filter_bigger(expenses, args[0], args[2])
+        if cmd == "sort":
+            if is_int(args[0]):
+                ui_sort_day(expenses, int(args[0]))
+            else:
+                ui_sort_type(expenses, args[0])
+        if cmd == "add":
+            count = len(expenses)
+            ui_add_expense(expenses, backup_list, current_day, args)
+
+        if cmd == "undo":
+            ui_undo(expenses, backup_list, count, first_len)
+            count = len(backup_list)
+        if cmd == "backup":
+            ui_print_backup(backup_list)
+        if cmd == "insert":
+            count = len(backup_list)
+            backup_list.extend(expenses)
+            ui_insert_expense(expenses, *args, backup_list)
+        try:
+            if cmd != "insert" and cmd != "backup" and cmd != "night" and cmd != "remove" and cmd != "list" and cmd != "add" and cmd != "undo" and cmd != "sort" and cmd != "filter":
+                cmds[cmd](expenses, *args)
+        except ValueError as ve:
+            print("invalid input.", ve)
+        except KeyError as ke:
+            print("option not yet implemented.", ke)
+        except AttributeError:
+            print("You need to add arguments to an option.")
+        except IndexError:
+            print("You need to add more arguments")
+			
+			
+'''
+	You have a complicated conditional (if-then-else) statement
+'''
+def validation_replace(x,words):
+    """
+    This function checks if the replace command is written as it is supposed to be written.
+    Input:the list of words contained in the command
+    Output: true or false
+    """
+    if len(words)==5:
+        if isInteger(words[1])==True and isInteger(words[4])==True and words[2]=='P1' or words[2]=='P2' or words[2]=='P3' and words[3]=='with':
+            if int(words[4])>=0 and int(words[4])<=10:
+                if int(words[1])<=len(x) and int(words[1])>0:
+                    return True
+    return False
+	
+	
+'''
+You have code fragments that can be grouped together 
+Turn these fragments into methods whose name explains the purpose of the method.
+'''
+def listVal(bank_account, stVal, number, check):
+    if number <= 0:
+        check += 1
+    elif len(bank_account)==0:
+        print("Bank account is empty!")
+    else:
+        if stVal == '=':
+            k = False
+            big = max(bank_account)
+            for day in range(0, big + 1):
+                if day in bank_account:
+                    for obj in bank_account[day]:
+                        if obj[getValue()] == number:
+                            k = True
+                            print("Day", day, ":", obj[getValue()], obj[getType()], "for", obj[getDes()])
+            if k is False:
+                print("You don't have any value that is equal to", number)
+        elif stVal == '>':
+            k = False
+            big = max(bank_account)
+            for day in range(0, big + 1):
+                if day in bank_account:
+                    for obj in bank_account[day]:
+                        if obj[getValue()] > number:
+                            k = True
+                            print("Day", day, ":", obj[getValue()], obj[getType()], "for", obj[getDes()])
+        elif stVal == '<':
+            k = False
+            big = max(bank_account)
+            for day in range(0, big + 1):
+                if day in bank_account:
+                    for obj in bank_account[day]:
+                        if obj[getValue()] < number:
+                            k = True
+                            print("Day", day, ":", obj[getValue()], obj[getType()], "for", obj[getDes()])
+            if k is False:
+                print("You don't have any value that is less to", number)
