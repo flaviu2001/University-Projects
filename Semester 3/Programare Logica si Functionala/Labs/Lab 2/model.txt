@@ -14,6 +14,8 @@ rep_rem_aux(l1, l2.. ln, o1, o2.. om) = {
 
 rep_rem(l1, l2, ..ln) = rep_rem_aux(l1, l2.. ln, l1, l2.. ln)
 
+#3.B
+
 maximum(l1, l2.. ln) = {
 	l1, n=1
 	l1, maximum(l2, l3.. ln) < l1
