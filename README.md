@@ -7,27 +7,27 @@ All of my university lectures, seminaries and laboratories neatly ordered to hel
     <ul>
       <li>
         <a href="https://github.com/flaviu2001/University-Projects/tree/master/Semester%201/Algebra"> 
-			Algebra 
+			:1234: Algebra 
         </a>
       </li>
       <li>
         <a href="https://github.com/flaviu2001/University-Projects/tree/master/Semester%201/Mathematical%20Analysis"> 
-			Mathematical Analysis 
+			:chart: Mathematical Analysis 
         </a>
       </li>
       <li>
         <a href="https://github.com/flaviu2001/University-Projects/tree/master/Semester%201/Computational%20Logic"> 
-			Computational Logic 
+			:keycap_ten: Computational Logic 
         </a>
       </li>
       <li>
         <a href="https://github.com/flaviu2001/University-Projects/tree/master/Semester%201/Fundamentals%20of%20Programming"> 
-			Fundamentals of Programming 
+			:cd: Fundamentals of Programming 
         </a>
       </li>
       <li>
         <a href="https://github.com/flaviu2001/University-Projects/tree/master/Semester%201/Computer%20Systems%20Architecture"> 
-			Computer Systems Architecture
+			:computer: Computer Systems Architecture
         </a>
       </li>
     </ul>
@@ -36,32 +36,32 @@ All of my university lectures, seminaries and laboratories neatly ordered to hel
   	<ul>
   		<li>
         <a href="https://github.com/flaviu2001/University-Projects/tree/master/Semester%202/Dynamical%20Systems"> 
-			Dynamical Systems 
+			:chart_with_downwards_trend:Dynamical Systems 
         </a>
       </li>
       <li>
         <a href="https://github.com/flaviu2001/University-Projects/tree/master/Semester%202/Geometry"> 
-			Geometry
+			:triangular_ruler: Geometry
         </a>
       </li>
       <li>
         <a href="https://github.com/flaviu2001/University-Projects/tree/master/Semester%202/Graph%20Algorithms"> 
-			Graph Algorithms
+			:black_circle: Graph Algorithms
         </a>
       </li>
       <li>
         <a href="https://github.com/flaviu2001/University-Projects/tree/master/Semester%202/Data%20Structures%20and%20Algorithms"> 
-			Data Structures and Algorithms
+			:bowling: Data Structures and Algorithms
         </a>
       </li>
       <li>
         <a href="https://github.com/flaviu2001/University-Projects/tree/master/Semester%202/Operating%20Systems"> 
-			Operating Systems
+			:floppy_disk: Operating Systems
         </a>
       </li>
       <li>
         <a href="https://github.com/flaviu2001/University-Projects/tree/master/Semester%202/Object%20Oriented%20Programming"> 
-			Object Oriented Programming
+			:computer: Object Oriented Programming
         </a>
       </li>
   	</ul>
@@ -70,27 +70,27 @@ All of my university lectures, seminaries and laboratories neatly ordered to hel
   	<ul>
   		<li>
         <a href="https://github.com/flaviu2001/University-Projects/tree/master/Semester%203/Advanced%20Programming%20Methods"> 
-			Advanced Programming Methods 
+			:clipboard: Advanced Programming Methods 
         </a>
       </li>
       <li>
         <a href="https://github.com/flaviu2001/University-Projects/tree/master/Semester%203/Databases"> 
-			Databases
+			:roller_coaster: Databases
         </a>
       </li>
       <li>
         <a href="https://github.com/flaviu2001/University-Projects/tree/master/Semester%203/Computer%20Networks"> 
-			Computer Networks
+			:file_folder: Computer Networks
         </a>
       </li>
       <li>
         <a href="https://github.com/flaviu2001/University-Projects/tree/master/Semester%203/Probabilities%20and%20Statistics"> 
-			Probabilities and Statistics
+			:chart_with_upwards_trend: Probabilities and Statistics
         </a>
       </li>
       <li>
         <a href="https://github.com/flaviu2001/University-Projects/tree/master/Semester%203/Logical%20and%20Functional%20Programming"> 
-			Logical and Functional Programming
+			:briefcase: Logical and Functional Programming
         </a>
       </li>
   	</ul>
