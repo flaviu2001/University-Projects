@@ -14,7 +14,7 @@ cmd=input('command=')
 # The obscure struct_addr is elegantly replaced by
 # a simple pair - very convenient. Replace the IP Address with
 # the one of your server
-s.connect( ("192.168.1.102",4321) )
+s.connect( ("192.168.0.8",4321) )
 
 # pack the value of a as a short int (16 bits) in network representation
 # res = s.send(struct.pack("s", a))
