@@ -1,8 +1,9 @@
 package repository;
 import exceptions.InterpreterError;
-import model.PrgState;
+import model.ProgramState;
 
 public interface IRepository {
-    void addPrg(PrgState newPrg);
-    PrgState getCrtPrg() throws InterpreterError;
+    void addPrg(ProgramState newPrg);
+    ProgramState getCrtPrg() throws InterpreterError;
+    void logProgramStateExecution(ProgramState programState) throws InterpreterError;
 }

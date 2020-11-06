@@ -1,10 +1,11 @@
 package model.adt;
 
-import exceptions.InterpreterError;
+import java.util.Set;
 
 public interface IDict<T1,T2>{
-    void add(T1 v1, T2 v2) throws InterpreterError;
-    void update(T1 v1, T2 v2) throws InterpreterError;
-    T2 lookup(T1 id) throws InterpreterError;
-    boolean isDefined(T1 id);
+    void put(T1 v1, T2 v2);
+    T2 get(T1 id);
+    boolean containsKey(T1 id);
+    Set<T1> keySet();
+    void remove(T1 key);
 }

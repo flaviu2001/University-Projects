@@ -3,7 +3,7 @@
 append_front(E, L, [E|L]).
 
 %increment_aux(L: List, E: Integer, S: List)
-%increment_aux(i,i,o)
+%increment_aux(i,o,o)
 increment_aux([H], C, [R]) :-
 	(
 		CHK1 is H+1,
@@ -70,7 +70,6 @@ increment_sublists([H|T], R) :-
 			!
 		);(
 			increment(H, R2),
-			append_front(R2, R1, R),
-			!
+			append_front(R2, R1, R)
 		)
 	).

@@ -1,18 +1,16 @@
 package model.types;
 
-import exceptions.InterpreterError;
-import model.values.BoolValue;
-import model.values.IValue;
+import model.values.Value;
 import model.values.IntValue;
 
-public class IntType implements IType {
+public class IntType implements Type {
     @Override
-    public boolean equals(IType another) {
+    public boolean equals(Type another) {
         return another instanceof IntType;
     }
 
     @Override
-    public IValue getDefault() {
+    public Value getDefault() {
         return new IntValue(0);
     }
 

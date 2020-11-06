@@ -2,10 +2,11 @@ package model.adt;
 import exceptions.InterpreterError;
 
 import java.util.Deque;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 public class Stack<T> implements IStack<T> {
-    Deque<T> deque;
+    private final Deque<T> deque;
 
     public Stack(){
         deque = new LinkedList<>();
@@ -29,11 +30,7 @@ public class Stack<T> implements IStack<T> {
     }
 
     @Override
-    public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (T elem : deque) {
-            stringBuilder.append("[").append(elem.toString()).append(";]\n");
-        }
-        return stringBuilder.toString();
+    public Iterator<T> iterator() {
+        return deque.iterator();
     }
 }

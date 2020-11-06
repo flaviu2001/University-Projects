@@ -1,10 +1,11 @@
 package model.adt;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
 
 public class List<T> implements IList<T> {
-    Queue<T> list;
+    private final Queue<T> list;
 
     public List() {
         list = new LinkedList<>();
@@ -26,11 +27,7 @@ public class List<T> implements IList<T> {
     }
 
     @Override
-    public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (T obj : list) {
-            stringBuilder.append(obj.toString());
-        }
-        return stringBuilder.toString();
+    public Iterator<T> iterator() {
+        return list.iterator();
     }
 }
