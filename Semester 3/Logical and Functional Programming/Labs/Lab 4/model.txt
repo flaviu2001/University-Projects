@@ -9,3 +9,4 @@ sublists(l1, l2.. ln) = {
 	sublists_aux(l2, l3.. ln, l1, [l1])
 	sublists(l2, l3.. ln)
 }
+all_sublists(l1, l2.. ln) = [sublists(l1, l2.. ln)]

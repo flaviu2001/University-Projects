@@ -21,3 +21,7 @@ sublists([H|T], R) :-
 	sublists_aux(T, H, R, [H]).
 sublists([H|T], R) :-
 	sublists(T, R).
+
+%all_sublists(L: List, B: List)
+all_sublists(L, B) :-
+	findall(R, sublists(L, R), B).
