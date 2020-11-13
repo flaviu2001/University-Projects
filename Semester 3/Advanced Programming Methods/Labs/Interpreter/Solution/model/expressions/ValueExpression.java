@@ -9,10 +9,12 @@ public class ValueExpression implements Expression {
         value = _value;
     }
 
-    public Value eval(IDict<String, Value> symTable) {
+    @Override
+    public Value eval(IDict<String, Value> symTable, IDict<Integer, Value> heap) {
         return value;
     }
 
+    @Override
     public String toString() {
         return String.format("ValueExpression{%s}", value.toString());
     }

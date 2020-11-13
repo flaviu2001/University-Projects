@@ -10,17 +10,17 @@ public class ArithmeticExpression extends BinaryExpression{
         super(_operator, _lhs, _rhs);
     }
 
-    private IntValue getValue(Expression expression, IDict<String, Value> symTable) throws InterpreterError {
-        Value value = expression.eval(symTable);
+    private IntValue getValue(Expression expression, IDict<String, Value> symTable, IDict<Integer, Value> heap) throws InterpreterError {
+        Value value = expression.eval(symTable, heap);
         if (value instanceof IntValue)
             return (IntValue) value;
         throw new InterpreterError(String.format("ERROR: %s is not of type IntType", value.toString()));
     }
 
     @Override
-    public Value eval(IDict<String, Value> symTable) throws InterpreterError {
-        IntValue lhsValue = getValue(lhs, symTable);
-        IntValue rhsValue = getValue(rhs, symTable);
+    public Value eval(IDict<String, Value> symTable, IDict<Integer, Value> heap) throws InterpreterError {
+        IntValue lhsValue = getValue(lhs, symTable, heap);
+        IntValue rhsValue = getValue(rhs, symTable, heap);
         switch (operator) {
             case ADD:
                 return new IntValue(lhsValue.getVal() + rhsValue.getVal());

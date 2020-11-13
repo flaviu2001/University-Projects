@@ -10,17 +10,17 @@ public class LogicExpression extends BinaryExpression {
         super(_operator, _lhs, _rhs);
     }
 
-    private BoolValue getValue(Expression expression, IDict<String, Value> symTable) throws InterpreterError {
-        Value value = expression.eval(symTable);
+    private BoolValue getValue(Expression expression, IDict<String, Value> symTable, IDict<Integer, Value> heap) throws InterpreterError {
+        Value value = expression.eval(symTable, heap);
         if (value instanceof BoolValue)
             return (BoolValue) value;
         throw new InterpreterError(String.format("ERROR: %s is not of type BoolType", value.toString()));
     }
 
     @Override
-    public Value eval(IDict<String, Value> symTable) throws InterpreterError {
-        BoolValue lhsValue = getValue(lhs, symTable);
-        BoolValue rhsValue = getValue(rhs, symTable);
+    public Value eval(IDict<String, Value> symTable, IDict<Integer, Value> heap) throws InterpreterError {
+        BoolValue lhsValue = getValue(lhs, symTable, heap);
+        BoolValue rhsValue = getValue(rhs, symTable, heap);
         return switch (operator) {
             case AND -> new BoolValue(lhsValue.getVal() && rhsValue.getVal());
             case OR -> new BoolValue(lhsValue.getVal() || rhsValue.getVal());

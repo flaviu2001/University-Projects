@@ -16,6 +16,7 @@ import java.io.IOException;
 public class ReadFile implements Statement {
     private final Expression expression;
     private final String varName;
+
     public ReadFile(Expression _expression, String _varName) {
         expression = _expression;
         varName = _varName;
@@ -30,7 +31,7 @@ public class ReadFile implements Statement {
         Value value = symTable.get(varName);
         if (!value.getType().equals(new IntType()))
             throw new InterpreterError(String.format("ERROR: %s is not of type IntType", value));
-        value = expression.eval(symTable);
+        value = expression.eval(symTable, state.getHeap());
         if (!value.getType().equals(new StringType()))
             throw new InterpreterError(String.format("ERROR: %s does not evaluate to StringType", value));
         StringValue castValue = (StringValue) value;

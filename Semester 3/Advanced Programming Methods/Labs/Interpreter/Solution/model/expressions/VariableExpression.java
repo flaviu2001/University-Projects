@@ -9,10 +9,12 @@ public class VariableExpression implements Expression {
         key = _key;
     }
 
-    public Value eval(IDict<String, Value> symTable) {
+    @Override
+    public Value eval(IDict<String, Value> symTable, IDict<Integer, Value> heap) {
         return symTable.get(key);
     }
 
+    @Override
     public String toString() {
         return String.format("VariableExpression{%s}", key);
     }

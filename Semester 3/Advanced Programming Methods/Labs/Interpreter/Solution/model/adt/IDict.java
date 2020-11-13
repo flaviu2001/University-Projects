@@ -1,5 +1,6 @@
 package model.adt;
 
+import java.util.Map;
 import java.util.Set;
 
 public interface IDict<T1,T2>{
@@ -8,4 +9,6 @@ public interface IDict<T1,T2>{
     boolean containsKey(T1 id);
     Set<T1> keySet();
     void remove(T1 key);
+    void setContent(Map<T1, T2> newDict);
+    Map<T1, T2> getContent();
 }

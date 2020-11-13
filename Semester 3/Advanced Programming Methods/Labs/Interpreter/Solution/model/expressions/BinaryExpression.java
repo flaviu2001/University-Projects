@@ -1,9 +1,5 @@
 package model.expressions;
 
-import exceptions.InterpreterError;
-import model.adt.IDict;
-import model.values.Value;
-
 public abstract class BinaryExpression implements Expression {
     protected final OPERATOR operator;
     protected final Expression lhs, rhs;
@@ -28,8 +24,6 @@ public abstract class BinaryExpression implements Expression {
         lhs = _lhs;
         rhs = _rhs;
     }
-
-    public abstract Value eval(IDict<String, Value> symTable) throws InterpreterError;
 
     public String toString() {
         return String.format("BinaryExpression{%s %s %s}", lhs.toString(), operator, rhs.toString());

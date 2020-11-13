@@ -30,13 +30,16 @@ public class Repository implements IRepository {
     }
 
     @Override
-    public void logProgramStateExecution(ProgramState programState) throws InterpreterError {
+    public void logProgramStateExecution(ProgramState programState, boolean beforeGarbageCollector) throws InterpreterError {
         PrintWriter logFile;
         try {
             logFile = new PrintWriter(new BufferedWriter(new FileWriter(logFilePath, true)));
         } catch (IOException e) {
             throw new InterpreterError("ERROR: Failed to log the program state execution");
         }
+        if (beforeGarbageCollector)
+            logFile.println("========BEFORE GARBAGE COLLECTOR========\n");
+        else logFile.println("========AFTER GARBAGE COLLECTOR========\n");
         logFile.println(programState);
         logFile.close();
     }

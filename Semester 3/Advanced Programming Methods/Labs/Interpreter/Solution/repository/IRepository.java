@@ -5,5 +5,5 @@ import model.ProgramState;
 public interface IRepository {
     void addPrg(ProgramState newPrg);
     ProgramState getCrtPrg() throws InterpreterError;
-    void logProgramStateExecution(ProgramState programState) throws InterpreterError;
+    void logProgramStateExecution(ProgramState programState, boolean beforeGarbageCollector) throws InterpreterError;
 }

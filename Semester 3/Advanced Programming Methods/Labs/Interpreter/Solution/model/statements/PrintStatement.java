@@ -14,7 +14,7 @@ public class PrintStatement implements Statement {
     @Override
     public ProgramState execute(ProgramState state) throws InterpreterError {
         state.getOut().add(
-                expression.eval(state.getSymTable())
+                expression.eval(state.getSymTable(), state.getHeap())
                            .toString()
         );
         return state;

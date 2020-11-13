@@ -1,12 +1,10 @@
 package view;
 
-import model.expressions.ArithmeticExpression;
-import model.expressions.BinaryExpression;
-import model.expressions.ValueExpression;
-import model.expressions.VariableExpression;
+import model.expressions.*;
 import model.statements.*;
 import model.types.BoolType;
 import model.types.IntType;
+import model.types.ReferenceType;
 import model.types.StringType;
 import model.values.BoolValue;
 import model.values.IntValue;
@@ -84,6 +82,65 @@ public class Examples {
                 new PrintStatement(new VariableExpression("x")),
                 new CloseReadFile(new VariableExpression("file"))
         );
-        return new Statement[]{example0, example1, example2, example3, example4};
+        Statement example5 = buildExample(
+                new DeclarationStatement("v", new ReferenceType(new IntType())),
+                new New("v", new ValueExpression(new IntValue(20))),
+                new DeclarationStatement("a", new ReferenceType(new ReferenceType(new IntType()))),
+                new New("a", new VariableExpression("v")),
+                new PrintStatement(new VariableExpression("v")),
+                new PrintStatement(new VariableExpression("a"))
+        );
+        Statement example6 = buildExample(
+                new DeclarationStatement("v", new ReferenceType(new IntType())),
+                new New("v", new ValueExpression(new IntValue(20))),
+                new DeclarationStatement("a", new ReferenceType(new ReferenceType(new IntType()))),
+                new New("a", new VariableExpression("v")),
+                new PrintStatement(new ReadHeap(new VariableExpression("v"))),
+                new PrintStatement(
+                        new ArithmeticExpression(
+                                BinaryExpression.OPERATOR.ADD,
+                                new ReadHeap(new ReadHeap(new VariableExpression("a"))),
+                                new ValueExpression(new IntValue(5))
+                        )
+                )
+        );
+        Statement example7 = buildExample(
+                new DeclarationStatement("v", new IntType()),
+                new AssignmentStatement("v", new ValueExpression(new IntValue(4))),
+                new WhileStatement(
+                        new RelationalExpression(
+                                BinaryExpression.OPERATOR.MORE,
+                                new VariableExpression("v"),
+                                new ValueExpression(new IntValue(0))
+                        ),
+                        buildExample(
+                                new PrintStatement(new VariableExpression("v")),
+                                new AssignmentStatement("v",
+                                        new ArithmeticExpression(
+                                            BinaryExpression.OPERATOR.SUBSTR,
+                                            new VariableExpression("v"),
+                                            new ValueExpression(new IntValue(1))
+                                        )
+                                )
+                        )
+                ),
+                new PrintStatement(new VariableExpression("v"))
+        );
+        Statement example8 = buildExample(
+                new DeclarationStatement("v", new ReferenceType(new IntType())),
+                new New("v", new ValueExpression(new IntValue(20))),
+                new DeclarationStatement("a", new ReferenceType(new ReferenceType(new IntType()))),
+                new New("a", new VariableExpression("v")),
+                new New("v", new ValueExpression(new IntValue(30))),
+                new PrintStatement(new ReadHeap(new ReadHeap(new VariableExpression("a"))))
+        );
+        Statement example9 = buildExample(
+                new DeclarationStatement("v", new ReferenceType(new IntType())),
+                new New("v", new ValueExpression(new IntValue(20))),
+                new PrintStatement(new ReadHeap(new VariableExpression("v"))),
+                new New("v", new ValueExpression(new IntValue(30))),
+                new PrintStatement(new ReadHeap(new VariableExpression("v")))
+        );
+        return new Statement[]{example0, example1, example2, example3, example4, example5, example6, example7, example8, example9};
     }
 }

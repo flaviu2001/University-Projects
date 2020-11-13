@@ -20,7 +20,7 @@ public class AssignmentStatement implements Statement {
     public ProgramState execute(ProgramState state) throws InterpreterError {
         IDict<String, Value> symTable = state.getSymTable();
         Type type = symTable.get(key).getType();
-        Value val = expression.eval(symTable);
+        Value val = expression.eval(symTable, state.getHeap());
         if (!val.getType().equals(type))
             throw new InterpreterError(String.format("ERROR: %s is not compatible with %s", val.toString(), type.toString()));
         if (!symTable.containsKey(key))

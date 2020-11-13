@@ -21,7 +21,7 @@ public class OpenReadFile implements Statement{
 
     @Override
     public ProgramState execute(ProgramState state) throws InterpreterError {
-        Value value = expression.eval(state.getSymTable());
+        Value value = expression.eval(state.getSymTable(), state.getHeap());
         if (!value.getType().equals(new StringType()))
             throw new InterpreterError(String.format("ERROR: %s does not evaluate to StringValue", expression));
         StringValue fileName = (StringValue) value;

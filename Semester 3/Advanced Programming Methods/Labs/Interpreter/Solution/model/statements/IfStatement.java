@@ -20,7 +20,7 @@ public class IfStatement implements Statement {
 
     @Override
     public ProgramState execute(ProgramState state) throws InterpreterError {
-        Value value = exp.eval(state.getSymTable());
+        Value value = exp.eval(state.getSymTable(), state.getHeap());
         if (value.getType().equals(new BoolType())) {
             BoolValue condition = (BoolValue)value;
             if (condition.getVal())
