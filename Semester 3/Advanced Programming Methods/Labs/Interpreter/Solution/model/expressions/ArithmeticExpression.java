@@ -2,6 +2,7 @@ package model.expressions;
 
 import exceptions.InterpreterError;
 import model.adt.IDict;
+import model.adt.IHeap;
 import model.values.Value;
 import model.values.IntValue;
 
@@ -10,7 +11,7 @@ public class ArithmeticExpression extends BinaryExpression{
         super(_operator, _lhs, _rhs);
     }
 
-    private IntValue getValue(Expression expression, IDict<String, Value> symTable, IDict<Integer, Value> heap) throws InterpreterError {
+    private IntValue getValue(Expression expression, IDict<String, Value> symTable, IHeap heap) throws InterpreterError {
         Value value = expression.eval(symTable, heap);
         if (value instanceof IntValue)
             return (IntValue) value;
@@ -18,7 +19,7 @@ public class ArithmeticExpression extends BinaryExpression{
     }
 
     @Override
-    public Value eval(IDict<String, Value> symTable, IDict<Integer, Value> heap) throws InterpreterError {
+    public Value eval(IDict<String, Value> symTable, IHeap heap) throws InterpreterError {
         IntValue lhsValue = getValue(lhs, symTable, heap);
         IntValue rhsValue = getValue(rhs, symTable, heap);
         switch (operator) {

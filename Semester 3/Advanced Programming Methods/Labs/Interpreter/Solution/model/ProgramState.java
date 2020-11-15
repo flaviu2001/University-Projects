@@ -5,20 +5,21 @@ import model.statements.Statement;
 import model.values.Value;
 
 import java.io.BufferedReader;
+import java.util.Map;
 
 public class ProgramState {
     private final IStack<Statement> exeStack;
     private final IDict<String, Value> symTable;
     private final IList<String> out;
     private final IDict<String, BufferedReader> fileTable;
-    private final IDict<Integer, Value> heap;
+    private final IHeap heap;
 
     public ProgramState(Statement originalProgram) {
         exeStack = new Stack<>();
         symTable = new Dict<>();
         out = new List<>();
         fileTable = new Dict<>();
-        heap = new Dict<>();
+        heap = new Heap();
         exeStack.push(originalProgram);
     }
 
@@ -26,7 +27,7 @@ public class ProgramState {
                         IDict<String, Value> _symTable,
                         IList<String> _out,
                         IDict<String, BufferedReader> _fileTable,
-                        IDict<Integer, Value> _heap) {
+                        IHeap _heap) {
         exeStack = _exeStack;
         symTable = _symTable;
         out = _out;
@@ -46,7 +47,7 @@ public class ProgramState {
         return out;
     }
 
-    public IDict<Integer, Value> getHeap() {
+    public IHeap getHeap() {
         return heap;
     }
 
@@ -74,8 +75,9 @@ public class ProgramState {
 
     public String heapToString() {
         StringBuilder outStringBuilder = new StringBuilder();
-        for (Integer key : heap.keySet())
-            outStringBuilder.append(key).append(" -> ").append(heap.get(key)).append("\n");
+        Map<Integer, Value> map = heap.getContent();
+        for (Integer key : map.keySet())
+            outStringBuilder.append(key).append(" -> ").append(map.get(key)).append("\n");
         return outStringBuilder.toString();
     }
 

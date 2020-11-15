@@ -1,5 +1,6 @@
 package model.expressions;
 import model.adt.IDict;
+import model.adt.IHeap;
 import model.values.Value;
 
 public class VariableExpression implements Expression {
@@ -10,7 +11,7 @@ public class VariableExpression implements Expression {
     }
 
     @Override
-    public Value eval(IDict<String, Value> symTable, IDict<Integer, Value> heap) {
+    public Value eval(IDict<String, Value> symTable, IHeap heap) {
         return symTable.get(key);
     }
 

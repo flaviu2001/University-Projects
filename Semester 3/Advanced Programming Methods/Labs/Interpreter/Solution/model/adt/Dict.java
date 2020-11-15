@@ -37,14 +37,6 @@ public class Dict<T1,T2> implements IDict<T1,T2> {
     }
 
     @Override
-    public void setContent(Map<T1, T2> newDict) {
-        dictionary.clear();
-        for (T1 i : newDict.keySet()) {
-            dictionary.put(i, newDict.get(i));
-        }
-    }
-
-    @Override
     public Map<T1, T2> getContent() {
         return dictionary;
     }

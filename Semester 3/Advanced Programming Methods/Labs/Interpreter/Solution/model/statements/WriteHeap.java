@@ -3,6 +3,7 @@ package model.statements;
 import exceptions.InterpreterError;
 import model.ProgramState;
 import model.adt.IDict;
+import model.adt.IHeap;
 import model.expressions.Expression;
 import model.values.ReferenceValue;
 import model.values.Value;
@@ -19,19 +20,17 @@ public class WriteHeap implements Statement {
     @Override
     public ProgramState execute(ProgramState state) throws InterpreterError {
         IDict<String, Value> symTable = state.getSymTable();
-        IDict<Integer, Value> heap = state.getHeap();
+        IHeap heap = state.getHeap();
         if (!symTable.containsKey(varName))
             throw new InterpreterError(String.format("ERROR: %s not present in the symTable", varName));
         Value varValue = symTable.get(varName);
         if (!(varValue instanceof ReferenceValue))
             throw new InterpreterError(String.format("ERROR: %s not of ReferenceType", varValue));
         ReferenceValue referenceValue = (ReferenceValue)varValue;
-        if (!heap.containsKey(referenceValue.getAddress()))
-            throw new InterpreterError(String.format("ERROR: %s not present in the heap", referenceValue.getAddress()));
         Value evaluated = expression.eval(symTable, heap);
         if (!evaluated.getType().equals(referenceValue.getLocationType()))
             throw new InterpreterError(String.format("ERROR: %s not of %s", evaluated, referenceValue.getLocationType()));
-        heap.put(referenceValue.getAddress(), evaluated); // update heap value
+        heap.update(referenceValue.getAddress(), evaluated);
         return state;
     }
 
