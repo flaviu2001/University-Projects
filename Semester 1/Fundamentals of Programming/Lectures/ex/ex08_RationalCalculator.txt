@@ -1,0 +1,241 @@
+'''
+Created on Sep 30, 2016
+
+@author: Istvan Czibula / Arthur Molnar
+'''
+
+"""
+   A teacher needs a program for students who learn or use rational numbers.
+  The program shall help students to make basic arithmetic operation
+  
+  NB!
+  User roles:
+      Teacher - your client
+      Students - the users
+      You - Developer / tester
+
+  As a prequel to modular programming, we divide the implementation functions into two categories:
+	1. non-UI functions (communicate via parameters, return types)
+	2. UI functions (they read from/display to the user, or call functions which to this)
+"""
+
+# ----------------------#
+# Non-UI functions here #
+# ----------------------#
+
+'''
+    Helper function(s)
+'''
+def gcd(a, b):
+    """
+    Return the greatest common divisor of two positive integers.
+    a,b integer numbers
+    return an integer number, the  greatest common divisor of a and b
+    """
+    if a < 0 or b < 0:
+        raise ValueError("a and b must be greater than 0")
+    if a == 0 and b == 0:
+        raise ValueError("gcd(0, 0) is undefined")
+    if a == 0:
+        return b
+    if b == 0:
+        return a
+    while a != b:
+        if a > b:
+            a = a - b
+        else:
+            b = b - a
+    return a
+
+'''
+    Rational number functions
+'''
+def createQ(num,denum):
+    if denum == 0:
+        raise ValueError("Fraction denumerator 0")
+
+    d = gcd(num,denum)
+    num = num // d
+    denum = denum // d
+
+    return [num, denum]
+
+def getNum(q):
+    return q[0]
+
+def getDenum(q):
+    return q[1]
+
+def add(q1,q2):
+    """
+    Return the sum of two rational numbers.
+    input: q1, q2 - rational numbers operands
+    return the result
+    """
+    return createQ(getNum(q1)*getDenum(q2)+getNum(q2)*getDenum(q1),getDenum(q1)*getDenum(q2))
+
+def toString(q):
+    return str(getNum(q))+"/"+str(getDenum(q))
+
+'''
+    Calculator status functions
+'''
+
+def createCalc():
+    """
+    Create a new calculator
+    post: the curent total equal 0/1
+    return calculator status
+    """
+    calc_total = createQ(0,1)
+    calc_undo = []
+    return [calc_total, calc_undo]
+
+def getTotal(calc):
+    return calc[0]
+
+def setTotal(calc,value):
+    calc[0] = value
+
+def getUndoList(calc):
+    return calc[1]
+
+
+'''
+    Calculator application functionalities
+'''
+def resetCalc(calc):
+    setTotal(calc,createQ(0,1))
+    getUndoList(calc).clear()
+
+def addCalc(calc, q):
+    """
+    add a rational number to the current total
+    input: calc - calculator
+           q - rational number
+    output: q is added to the calculator
+    """
+    undolist = getUndoList(calc)
+    calc_total = getTotal(calc)
+    # add the current total to the undo list
+    undolist.append(calc_total)
+    # set the current rational number in the calc
+    setTotal(calc,add(calc_total, q))
+
+def undoCalc(calc):
+    """
+      Undo the last user operation
+      calc - calculator
+      post: restore the previous current total
+    """
+    undolist = getUndoList(calc)
+    if len(undolist) == 0:
+        raise ValueError("No more undos.")
+    
+    calc_total = undolist[-1]
+    undolist = undolist[:-1]
+    calc[0] = calc_total
+    calc[1] = undolist
+
+# -------------------------------------------#
+# Test functions here (these are all non-UI) #
+# -------------------------------------------#
+
+def test_gcd():
+    assert gcd(0, 2) == 2
+    assert gcd(2, 0) == 2
+    assert gcd(2, 3) == 1
+    assert gcd(2, 4) == 2
+    assert gcd(6, 4) == 2
+    assert gcd(24, 9) == 3
+    try:
+        gcd(-2, 0)
+        gcd(0, -2)
+        gcd(0, 0)
+        assert False
+    except ValueError:
+        assert True
+
+def test_rational_add():
+    assert add(createQ(1,2), createQ(1,3)) == createQ(5, 6)
+    assert add(createQ(1, 2),createQ(1,2)) == createQ(1, 1)
+    assert add(createQ(500, 1000),createQ(100,200)) == createQ(1, 1)
+
+def test_calculator_add():
+    calc = createCalc()
+    assert getTotal(calc) == createQ(0, 1)
+    addCalc(calc,createQ(1, 2))
+    assert getTotal(calc) == createQ(1, 2)
+    addCalc(calc, createQ(1, 3))
+    assert getTotal(calc) == createQ(5, 6)
+    addCalc(calc, createQ(1, 6))
+    assert getTotal(calc) == createQ(1, 1)
+
+def test_undo():
+    calc = createCalc()
+    addCalc(calc, createQ(1, 3))
+    undoCalc(calc)
+    assert getTotal(calc) == createQ(0, 1)
+
+    calc = createCalc()
+    addCalc(calc, createQ(1, 3))
+    addCalc(calc, createQ(1, 3))
+    addCalc(calc, createQ(1, 3))
+    undoCalc(calc)
+    assert getTotal(calc) == createQ(2, 3)
+
+'''
+    Test functions are run below 
+'''
+test_gcd()
+test_rational_add()
+test_calculator_add()
+test_undo()
+
+# ---------------------------------#
+# UI functions from this point on  #
+# ---------------------------------#
+
+def printMenu():
+    print("Calculator menu:")
+    print("   + for adding a rational number")
+    print("   c to clear the calculator")
+    print("   u to undo the last operation")
+    print("   x to close the calculator")
+
+def addCalcUI(calc):
+    """
+      Read a rational number and add to the current total
+      calc - calculator
+    """
+    m = input("Give nominator:")
+    n = input("Give denominator:")
+    addCalc(calc, createQ(int(m), int(n)))
+        
+def run():
+    """
+      Implement the user interface
+    """
+    commands = {'+':addCalcUI,'u':undoCalc,'c':resetCalc}
+    calc = createCalc()
+    finish = False
+
+    while not finish:
+        print('Total= '+toString(getTotal(calc)))
+        printMenu()
+        m = input().strip()
+
+        try:
+            if m in commands.keys():
+                commands[m](calc)
+            elif m == 'x':
+                return
+            else:
+                print("Invalid command")
+        except Exception as e:
+            print(e)
+
+'''
+    Program entry point
+'''
+run()

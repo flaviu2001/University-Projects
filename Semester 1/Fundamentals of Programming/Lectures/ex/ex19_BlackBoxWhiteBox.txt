@@ -1,0 +1,70 @@
+'''
+Created on Nov 14, 2016
+
+@author: Arthur
+'''
+
+"""
+    An easy function that we assume want tested
+"""
+def isPrime(nr):
+    """
+    Verify if a number is prime
+    return True if nr is prime, False otherwise
+    raise ValueError if nr <= 0
+    """
+    if nr <= 0:
+        raise ValueError("nr needs to be positive")
+    if nr == 1:
+        return False
+    if nr <= 3:
+        return True
+    for i in range(2, nr):
+        if nr % i == 0:
+            return False
+    return True
+
+"""
+    Blackbox testing assumes we only have its specification
+"""
+def testIsPrimeBlackBox():
+    for i in range(-100, 1):
+        try:
+            isPrime(i)
+            assert False
+        except ValueError:
+            pass
+    
+    primes = [2, 3, 5, 7, 11, 13, 17, 19]
+    for i in range(2, 20):
+        assert isPrime(i) == (i in primes), "this is the value where it fails: " + str(i)
+
+"""
+    Whitebox testing - we can see the source code, so we only write the required test cases
+"""
+def testIsPrimeWhiteBox():
+    try:
+        isPrime(-5)
+        assert False
+    except ValueError:
+        pass
+
+    assert isPrime(1) == False, 1
+    assert isPrime(2) == True, 2
+    assert isPrime(3) == True, 3
+    assert isPrime(6) == False, 4
+    assert isPrime(7) == True, 7
+    assert isPrime(8) == False, 8
+
+"""
+    Let's run the tests - they should work regardless
+"""
+testIsPrimeBlackBox()
+testIsPrimeWhiteBox()
+
+
+
+
+
+
+

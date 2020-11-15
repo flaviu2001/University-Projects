@@ -1,0 +1,111 @@
+'''
+Created on Jan 6, 2017
+
+@author: Arthur
+'''
+
+'''
+    Calculate the maximum sum of consecutive elements within an array
+    
+    e.g. for array [-2, -5, 6, -2, -3, 1, 5, -6] the maximum sum is 7 (6-2-3+1+5, as the numbers must be consecutive)
+'''
+arr = [-2, -5, 6, -2, -3, 1, 5, -6]
+
+
+'''
+	1. 1st naive implementation. What is the complexity?
+'''
+def maxSubArraySumVerySlow(arr):
+    maximum = arr[0]
+    for i in range(0, len(arr)):
+        for j in range(i, len(arr)):
+            s = 0
+            for k in range(i, j + 1):
+                s += arr[k]
+                if s > maximum:
+                    maximum = s
+    return maximum
+
+'''
+	2. 2nd naive implementation. What is the complexity?
+'''
+def maxSubArraySumSlow(arr):
+
+    maximum = arr[0]
+    for i in range(0, len(arr)):
+        s = 0
+        for j in range(i, len(arr)):
+            s += arr[j]
+            if s > maximum:
+                maximum = s
+    return maximum
+
+'''
+	3. Divide & conquer implementation
+'''
+def maxCrossingSum(array, low, middle, high):
+    '''
+    Find the maximum possible tempSum in array such that array[middle] is part of it
+    
+    input:
+        low, high - Low and high bounds, respectively
+        middle - the midpoint to consider
+    
+    output:
+        The value of the maximum crossing tempSum
+    '''
+    # Include elements on left of middle
+    tempSum = 0
+    i = middle
+    left_sum = -10 ** 10
+    while i >= low:
+        tempSum = tempSum + array[i]
+        i -= 1
+        if tempSum > left_sum:
+            left_sum = tempSum;
+    # Include elements on right of middle
+    tempSum = 0
+    i = middle + 1
+    right_sum = -10 ** 10
+    while i <= high:
+        tempSum = tempSum + array[i]
+        i += 1
+        if tempSum > right_sum:
+            right_sum = tempSum;
+    return left_sum + right_sum;
+
+def maxSubArraySum(array, low, high):
+    '''
+    Calculate the maximum subarray sum
+    
+    input:
+        array - The input array
+        low, high - Low and high bounds, respectively
+        
+    output:
+        The resulting sum value
+    '''
+    if low == high:
+        return array[low]
+
+    m = (low + high) // 2
+    return max(maxSubArraySum(array, low, m), maxSubArraySum(array, m + 1, high), maxCrossingSum(array, low, m, high))
+
+'''
+	4. Dynamic programming implementation.
+'''
+def max_subarray(X):
+    '''
+    We traverse the array once. For each index i  in the array, we calculate the maximum subarray sum ending at that index. 
+    If that sum is larger than the one previously recorded, we remember it (in the max_so_far variable)
+    '''
+    max_ending_here = max_so_far = X[0]
+    for x in X[1:]:
+        max_ending_here = max(x, max_ending_here + x)
+        max_so_far = max(max_so_far, max_ending_here)
+    return max_so_far
+
+data = [-2, -5, 6, -2, -3, 1, 5, -6]
+print(max_subarray(data))
+	
+	w
