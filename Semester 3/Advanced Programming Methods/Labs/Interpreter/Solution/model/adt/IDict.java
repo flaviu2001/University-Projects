@@ -10,4 +10,5 @@ public interface IDict<T1,T2>{
     Set<T1> keySet();
     void remove(T1 key);
     Map<T1, T2> getContent();
+    IDict<T1, T2> copy();
 }

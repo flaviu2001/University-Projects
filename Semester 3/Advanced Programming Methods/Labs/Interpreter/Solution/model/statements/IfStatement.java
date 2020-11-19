@@ -26,7 +26,7 @@ public class IfStatement implements Statement {
             if (condition.getVal())
                 state.getExeStack().push(first);
             else state.getExeStack().push(second);
-            return state;
+            return null;
         }
         throw new InterpreterError(String.format("ERROR: %s not of type bool inside if", value.toString()));
     }

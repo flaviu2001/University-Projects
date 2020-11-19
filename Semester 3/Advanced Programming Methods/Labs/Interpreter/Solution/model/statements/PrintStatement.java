@@ -17,7 +17,7 @@ public class PrintStatement implements Statement {
                 expression.eval(state.getSymTable(), state.getHeap())
                            .toString()
         );
-        return state;
+        return null;
     }
 
     @Override

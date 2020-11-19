@@ -1,4 +1,7 @@
-append(l1, l2.. ln, r1, r2.. rn) = [l1, l2.. ln, r1, r2.. rn]
+revert(l1, l2.. ln, C) = {
+	Col, n=0
+	revert(l2.. ln, [l1]+C), else
+}
 sublists_aux(l1, l2.. ln, E, C) = {
 	C, n=0
 	sublists_aux(l2, l3.. ln, H, C+[H]), E < H

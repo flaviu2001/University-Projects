@@ -31,7 +31,7 @@ public class WriteHeap implements Statement {
         if (!evaluated.getType().equals(referenceValue.getLocationType()))
             throw new InterpreterError(String.format("ERROR: %s not of %s", evaluated, referenceValue.getLocationType()));
         heap.update(referenceValue.getAddress(), evaluated);
-        return state;
+        return null;
     }
 
     @Override

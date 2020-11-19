@@ -21,7 +21,7 @@ public class DeclarationStatement implements Statement {
         if (symTable.containsKey(name))
             throw new InterpreterError(String.format("ERROR: %s already exists in the symTable", name));
         symTable.put(name, type.getDefault());
-        return state;
+        return null;
     }
 
     @Override

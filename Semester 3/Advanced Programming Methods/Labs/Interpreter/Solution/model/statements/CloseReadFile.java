@@ -34,7 +34,7 @@ public class CloseReadFile implements Statement {
             throw new InterpreterError(String.format("ERROR: Unexpected error in closing %s", value));
         }
         fileTable.remove(fileName.getVal());
-        return state;
+        return null;
     }
 
     @Override

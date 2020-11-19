@@ -141,6 +141,33 @@ public class Examples {
                 new New("v", new ValueExpression(new IntValue(30))),
                 new PrintStatement(new ReadHeap(new VariableExpression("v")))
         );
-        return new Statement[]{example0, example1, example2, example3, example4, example5, example6, example7, example8, example9};
+        Statement example10 = buildExample(
+                new DeclarationStatement("v", new IntType()),
+                new DeclarationStatement("a", new ReferenceType(new IntType())),
+                new AssignmentStatement("v", new ValueExpression(new IntValue(10))),
+                new New("a", new ValueExpression(new IntValue(22))),
+                new Fork(
+                        buildExample(
+                                new WriteHeap("a", new ValueExpression(new IntValue(30))),
+                                new AssignmentStatement("v", new ValueExpression(new IntValue(32))),
+                                new PrintStatement(new VariableExpression("v")),
+                                new PrintStatement(new ReadHeap(new VariableExpression("a")))
+                        )
+                ),
+//                new DeclarationStatement("i", new IntType()),
+//                new AssignmentStatement("i", new ValueExpression(new IntValue(0))),
+//                new WhileStatement(
+//                        new RelationalExpression(
+//                                BinaryExpression.OPERATOR.MORE,
+//                                new VariableExpression("i"),
+//                                new ValueExpression(new IntValue(0))),
+//                        new AssignmentStatement("i",
+//                                new ArithmeticExpression(BinaryExpression.OPERATOR.SUBSTR,
+//                                        new VariableExpression("i"),
+//                                        new ValueExpression(new IntValue(1))))),
+                new PrintStatement(new VariableExpression("v")),
+                new PrintStatement(new ReadHeap(new VariableExpression("a")))
+        );
+        return new Statement[]{example0, example1, example2, example3, example4, example5, example6, example7, example8, example9, example10};
     }
 }

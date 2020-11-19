@@ -1,45 +1,41 @@
 package repository;
-import exceptions.InterpreterError;
-import model.ProgramState;
-import model.adt.List;
 
+import model.ProgramState;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Repository implements IRepository {
-    private final List<ProgramState> myPrgStates;
+    private List<ProgramState> programStates;
     private final String logFilePath;
 
     public Repository(String _logFilePath) {
-        myPrgStates = new List<>();
+        programStates = new ArrayList<>();
         logFilePath = _logFilePath;
     }
 
     @Override
-    public ProgramState getCrtPrg() throws InterpreterError {
-        if (myPrgStates.isEmpty())
-            throw new InterpreterError("REPO ERROR: list of program states is empty");
-        return myPrgStates.pop();
-    }
-
-    @Override
     public void addPrg(ProgramState newPrg) {
-        myPrgStates.add(newPrg);
+        programStates.add(newPrg);
     }
 
     @Override
-    public void logProgramStateExecution(ProgramState programState, boolean beforeGarbageCollector) throws InterpreterError {
+    public List<ProgramState> getProgramStates() {
+        return programStates;
+    }
+
+    @Override
+    public void setProgramStates(List<ProgramState> prgStates) {
+        this.programStates = prgStates;
+    }
+
+    @Override
+    public void logProgramStateExecution(ProgramState programState) throws IOException {
         PrintWriter logFile;
-        try {
-            logFile = new PrintWriter(new BufferedWriter(new FileWriter(logFilePath, true)));
-        } catch (IOException e) {
-            throw new InterpreterError("ERROR: Failed to log the program state execution");
-        }
-        if (beforeGarbageCollector)
-            logFile.println("========BEFORE GARBAGE COLLECTOR========\n");
-        else logFile.println("========AFTER GARBAGE COLLECTOR========\n");
+        logFile = new PrintWriter(new BufferedWriter(new FileWriter(logFilePath, true)));
         logFile.println(programState);
         logFile.close();
     }

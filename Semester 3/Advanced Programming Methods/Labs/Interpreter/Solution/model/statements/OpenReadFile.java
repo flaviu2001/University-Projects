@@ -35,7 +35,7 @@ public class OpenReadFile implements Statement{
             throw new InterpreterError(String.format("ERROR: %s could not be opened", fileName));
         }
         fileTable.put(fileName.getVal(), br);
-        return state;
+        return null;
     }
 
     @Override

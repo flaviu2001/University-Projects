@@ -26,7 +26,7 @@ public class AssignmentStatement implements Statement {
         if (!symTable.containsKey(key))
             throw new InterpreterError(String.format("ERROR: %s does not exist in the symTable", key));
         symTable.put(key, val);
-        return state;
+        return null;
     }
 
     @Override

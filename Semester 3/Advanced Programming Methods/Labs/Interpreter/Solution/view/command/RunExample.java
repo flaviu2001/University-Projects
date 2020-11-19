@@ -2,6 +2,7 @@ package view.command;
 
 import controller.Controller;
 import exceptions.InterpreterError;
+import model.adt.IList;
 
 public class RunExample extends Command {
     private final Controller controller;
@@ -14,7 +15,8 @@ public class RunExample extends Command {
     @Override
     public void execute() {
         try{
-            controller.allSteps();
+            IList<String> out = controller.allSteps();
+            out.forEach(System.out::println);
         }
         catch (InterpreterError error) {
             System.out.println(error.getMessage());

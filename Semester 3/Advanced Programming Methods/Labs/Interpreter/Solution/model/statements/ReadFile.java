@@ -46,7 +46,7 @@ public class ReadFile implements Statement {
         } catch (IOException e) {
             throw new InterpreterError(String.format("ERROR: could not read from file %s", castValue));
         }
-        return state;
+        return null;
     }
 
     @Override

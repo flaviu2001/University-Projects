@@ -26,7 +26,7 @@ public class WhileStatement implements Statement {
             state.getExeStack().push(this);
             state.getExeStack().push(statement);
         }
-        return state;
+        return null;
     }
 
     @Override

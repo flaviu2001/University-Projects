@@ -34,7 +34,7 @@ public class New implements Statement {
             throw new InterpreterError(String.format("ERROR: %s not of %s", varName, evaluated.getType()));
         Integer newPosition = heap.add(evaluated);
         symTable.put(varName, new ReferenceValue(newPosition, locationType)); // Update symTable
-        return state;
+        return null;
     }
 
     @Override

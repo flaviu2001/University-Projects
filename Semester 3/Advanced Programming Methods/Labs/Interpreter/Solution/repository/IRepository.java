@@ -1,9 +1,12 @@
 package repository;
-import exceptions.InterpreterError;
 import model.ProgramState;
+
+import java.io.IOException;
+import java.util.List;
 
 public interface IRepository {
     void addPrg(ProgramState newPrg);
-    ProgramState getCrtPrg() throws InterpreterError;
-    void logProgramStateExecution(ProgramState programState, boolean beforeGarbageCollector) throws InterpreterError;
+    void logProgramStateExecution(ProgramState programState) throws IOException;
+    List<ProgramState> getProgramStates();
+    void setProgramStates(List<ProgramState> prgStates);
 }

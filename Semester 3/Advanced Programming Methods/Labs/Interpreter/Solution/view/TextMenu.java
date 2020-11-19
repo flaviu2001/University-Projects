@@ -4,6 +4,7 @@ import model.adt.Dict;
 import view.command.Command;
 
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class TextMenu {
     private final Dict<String, Command> commands;
@@ -17,7 +18,11 @@ public class TextMenu {
     }
 
     private void printMenu(){
-        for(String command : commands.keySet()){
+        for(String command : commands.keySet().stream().sorted((o1, o2) -> {
+            int i1 = Integer.parseInt(o1);
+            int i2 = Integer.parseInt(o2);
+            return Integer.compare(i1, i2);
+        }).collect(Collectors.toList())){
             String line=String.format("%s:\n%s\n", commands.get(command).getKey(), commands.get(command).getDescription());
             System.out.println(line);
         }

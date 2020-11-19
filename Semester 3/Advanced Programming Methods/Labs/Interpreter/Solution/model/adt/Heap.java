@@ -23,44 +23,56 @@ public class Heap implements IHeap {
 
     @Override
     public Integer getFreeValue() {
-        return freeValue;
+        synchronized (this) {
+            return freeValue;
+        }
     }
 
     @Override
     public Map<Integer, Value> getContent() {
-        return map;
+        synchronized (this) {
+            return map;
+        }
     }
 
     @Override
     public void setContent(Map<Integer, Value> newMap) {
-        map.clear();
-        for (Integer i : newMap.keySet()) {
-            map.put(i, newMap.get(i));
+        synchronized (this) {
+            map.clear();
+            for (Integer i : newMap.keySet()) {
+                map.put(i, newMap.get(i));
+            }
         }
     }
 
     @Override
     public Integer add(Value value) {
-        map.put(freeValue, value);
-        Integer toReturn = freeValue;
-        Random rand = new Random();
-        freeValue = rand.nextInt();
-        if (freeValue == 0 || map.containsKey(freeValue))
+        synchronized (this) {
+            map.put(freeValue, value);
+            Integer toReturn = freeValue;
+            Random rand = new Random();
             freeValue = rand.nextInt();
-        return toReturn;
+            if (freeValue == 0 || map.containsKey(freeValue))
+                freeValue = rand.nextInt();
+            return toReturn;
+        }
     }
 
     @Override
     public void update(Integer position, Value value) throws InterpreterError {
-        if (!map.containsKey(position))
-            throw new InterpreterError(String.format("ERROR: %d is not present in the heap", position));
-        map.put(position, value);
+        synchronized (this) {
+            if (!map.containsKey(position))
+                throw new InterpreterError(String.format("ERROR: %d is not present in the heap", position));
+            map.put(position, value);
+        }
     }
 
     @Override
     public Value get(Integer position) throws InterpreterError {
-        if (!map.containsKey(position))
-            throw new InterpreterError(String.format("ERROR: %s not present in the heap", position));
-        return map.get(position);
+        synchronized (this) {
+            if (!map.containsKey(position))
+                throw new InterpreterError(String.format("ERROR: %s not present in the heap", position));
+            return map.get(position);
+        }
     }
 }
