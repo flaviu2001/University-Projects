@@ -61,14 +61,10 @@ public class ProgramState {
     private static Integer newId() {
         Random random = new Random();
         Integer id;
-        do {
-            id = random.nextInt();
-            synchronized (ids) {
-                if (!ids.contains(id))
-                    break;
-            }
-        }while (true);
         synchronized (ids) {
+            do {
+                id = random.nextInt();
+            } while (ids.contains(id));
             ids.add(id);
         }
         return id;

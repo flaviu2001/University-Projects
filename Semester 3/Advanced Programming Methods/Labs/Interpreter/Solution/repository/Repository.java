@@ -1,11 +1,12 @@
 package repository;
 
 import model.ProgramState;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Repository implements IRepository {
@@ -13,7 +14,7 @@ public class Repository implements IRepository {
     private final String logFilePath;
 
     public Repository(String _logFilePath) {
-        programStates = new ArrayList<>();
+        programStates = new LinkedList<>();
         logFilePath = _logFilePath;
     }
 
