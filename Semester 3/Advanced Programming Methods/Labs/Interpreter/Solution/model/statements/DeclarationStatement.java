@@ -16,6 +16,12 @@ public class DeclarationStatement implements Statement {
     }
 
     @Override
+    public IDict<String, Type> typeCheck(IDict<String, Type> typeTable) {
+        typeTable.put(name, type);
+        return typeTable;
+    }
+
+    @Override
     public ProgramState execute(ProgramState state) throws InterpreterError {
         IDict<String, Value> symTable = state.getSymTable();
         if (symTable.containsKey(name))

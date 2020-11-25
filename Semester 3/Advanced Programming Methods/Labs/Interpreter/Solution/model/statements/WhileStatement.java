@@ -2,8 +2,10 @@ package model.statements;
 
 import exceptions.InterpreterError;
 import model.ProgramState;
+import model.adt.IDict;
 import model.expressions.Expression;
 import model.types.BoolType;
+import model.types.Type;
 import model.values.BoolValue;
 import model.values.Value;
 
@@ -14,6 +16,16 @@ public class WhileStatement implements Statement {
     public WhileStatement(Expression _expression, Statement _statement) {
         expression = _expression;
         statement = _statement;
+    }
+
+    @Override
+    public IDict<String, Type> typeCheck(IDict<String, Type> typeTable) throws InterpreterError {
+        Type type = expression.typeCheck(typeTable);
+        if (type.equals(new BoolType())) {
+            statement.typeCheck(typeTable.copy());
+            return typeTable;
+        }
+        throw new InterpreterError("The condition of While has not the type bool");
     }
 
     @Override

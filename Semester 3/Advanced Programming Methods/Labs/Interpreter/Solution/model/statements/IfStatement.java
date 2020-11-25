@@ -2,8 +2,10 @@ package model.statements;
 
 import exceptions.InterpreterError;
 import model.ProgramState;
+import model.adt.IDict;
 import model.expressions.Expression;
 import model.types.BoolType;
+import model.types.Type;
 import model.values.BoolValue;
 import model.values.Value;
 
@@ -16,6 +18,15 @@ public class IfStatement implements Statement {
         exp = _exp;
         first = _first;
         second = _second;
+    }
+
+    @Override
+    public IDict<String, Type> typeCheck(IDict<String, Type> typeTable) throws InterpreterError {
+        if (!exp.typeCheck(typeTable).equals(new BoolType()))
+            throw new InterpreterError("The condition of If doesn't have the type bool");
+        first.typeCheck(typeTable.copy());
+        second.typeCheck(typeTable.copy());
+        return typeTable;
     }
 
     @Override

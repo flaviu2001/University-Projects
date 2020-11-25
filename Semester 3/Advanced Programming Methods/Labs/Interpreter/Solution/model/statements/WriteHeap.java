@@ -5,6 +5,8 @@ import model.ProgramState;
 import model.adt.IDict;
 import model.adt.IHeap;
 import model.expressions.Expression;
+import model.types.ReferenceType;
+import model.types.Type;
 import model.values.ReferenceValue;
 import model.values.Value;
 
@@ -15,6 +17,13 @@ public class WriteHeap implements Statement {
     public WriteHeap(String _varName, Expression _expression) {
         varName = _varName;
         expression = _expression;
+    }
+
+    @Override
+    public IDict<String, Type> typeCheck(IDict<String, Type> typeTable) throws InterpreterError {
+        if (typeTable.get(varName).equals(new ReferenceType(expression.typeCheck(typeTable))))
+            return typeTable;
+        throw new InterpreterError("WriteHeap: right hand side and left hand side have different types");
     }
 
     @Override

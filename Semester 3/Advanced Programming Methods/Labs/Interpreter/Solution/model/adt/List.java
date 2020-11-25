@@ -4,9 +4,7 @@ import exceptions.InterpreterError;
 
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.Queue;
 import java.util.function.Consumer;
-import java.util.stream.Stream;
 
 public class List<T> implements IList<T> {
     private final java.util.List<T> list;

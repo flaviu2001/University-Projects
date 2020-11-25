@@ -17,6 +17,13 @@ public class AssignmentStatement implements Statement {
     }
 
     @Override
+    public IDict<String, Type> typeCheck(IDict<String, Type> typeTable) throws InterpreterError {
+        if (!typeTable.get(key).equals(expression.typeCheck(typeTable)))
+            throw new InterpreterError("Assignment: right hand side and left hand side have different types");
+        return typeTable;
+    }
+
+    @Override
     public ProgramState execute(ProgramState state) throws InterpreterError {
         IDict<String, Value> symTable = state.getSymTable();
         Type type = symTable.get(key).getType();

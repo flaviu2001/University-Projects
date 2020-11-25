@@ -20,6 +20,13 @@ public class Stack<T> implements IStack<T> {
     }
 
     @Override
+    public T peek() throws InterpreterError {
+        if (deque.isEmpty())
+            throw new InterpreterError("STACK ERROR: Stack is empty");
+        return deque.peek();
+    }
+
+    @Override
     public void push(T v) {
         deque.push(v);
     }

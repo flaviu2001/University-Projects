@@ -6,6 +6,7 @@ import model.adt.IDict;
 import model.expressions.Expression;
 import model.types.IntType;
 import model.types.StringType;
+import model.types.Type;
 import model.values.IntValue;
 import model.values.StringValue;
 import model.values.Value;
@@ -20,6 +21,15 @@ public class ReadFile implements Statement {
     public ReadFile(Expression _expression, String _varName) {
         expression = _expression;
         varName = _varName;
+    }
+
+    @Override
+    public IDict<String, Type> typeCheck(IDict<String, Type> typeTable) throws InterpreterError {
+        if (!expression.typeCheck(typeTable).equals(new StringType()))
+            throw new InterpreterError("ERROR: ReadFile requires a string as expression parameter");
+        if (!typeTable.get(varName).equals(new IntType()))
+            throw new InterpreterError("ERROR: ReadFile requires an int as variable parameter");
+        return typeTable;
     }
 
     @Override

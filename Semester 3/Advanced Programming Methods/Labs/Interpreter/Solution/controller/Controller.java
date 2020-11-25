@@ -2,7 +2,10 @@ package controller;
 
 import exceptions.InterpreterError;
 import model.ProgramState;
+import model.adt.Dict;
+import model.adt.IDict;
 import model.adt.IList;
+import model.types.Type;
 import model.values.ReferenceValue;
 import model.values.Value;
 import repository.IRepository;
@@ -16,8 +19,8 @@ import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
 class Pair {
-    ProgramState first;
-    InterpreterError second;
+    final ProgramState first;
+    final InterpreterError second;
 
     Pair(ProgramState _first, InterpreterError _second) {
         first = _first;
@@ -102,6 +105,10 @@ public class Controller {
     }
 
     public IList<String> allSteps() throws InterpreterError {
+        for (ProgramState state: repository.getProgramStates()) {
+            IDict<String, Type> typeTable = new Dict<>();
+            state.getExeStack().peek().typeCheck(typeTable);
+        }
         executor = Executors.newFixedThreadPool(2);
         List<ProgramState> programList = removeCompletedPrograms(repository.getProgramStates());
         IList<String> out = programList.get(0).getOut();

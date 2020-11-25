@@ -1,0 +1,17 @@
+maxrec(l1, l2.. ln) = {
+	0, n=0
+	max(l1, maxrec(l2.. ln)), l1 is number
+	maxrec(l2.. ln), l1 is non-number atom
+	max(maxrec(l1), maxrec(l2.. ln)), l1 is list
+}
+
+dot(v1, v2.. vn, w1, w2.. wn) = {
+	0, n=0
+	v1*w1 + dot(v2.. vn, w2.. wn), else
+}
+
+even(l1, l2.. ln) = {
+	t, n=0
+	false, even(l2.. ln)
+	true, else
+}

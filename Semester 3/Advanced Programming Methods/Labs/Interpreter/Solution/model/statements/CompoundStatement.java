@@ -1,7 +1,10 @@
 package model.statements;
 
+import exceptions.InterpreterError;
 import model.ProgramState;
+import model.adt.IDict;
 import model.adt.IStack;
+import model.types.Type;
 
 public class CompoundStatement implements Statement {
     private final Statement first;
@@ -10,6 +13,11 @@ public class CompoundStatement implements Statement {
     public CompoundStatement(Statement _first, Statement _second) {
         first = _first;
         second = _second;
+    }
+
+    @Override
+    public IDict<String, Type> typeCheck(IDict<String, Type> typeTable) throws InterpreterError {
+        return second.typeCheck(first.typeCheck(typeTable));
     }
 
     @Override

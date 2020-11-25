@@ -5,6 +5,7 @@ import model.ProgramState;
 import model.adt.IDict;
 import model.expressions.Expression;
 import model.types.StringType;
+import model.types.Type;
 import model.values.StringValue;
 import model.values.Value;
 
@@ -16,6 +17,13 @@ public class CloseReadFile implements Statement {
 
     public CloseReadFile(Expression _expression) {
         expression = _expression;
+    }
+
+    @Override
+    public IDict<String, Type> typeCheck(IDict<String, Type> typeTable) throws InterpreterError {
+        if (!expression.typeCheck(typeTable).equals(new StringType()))
+            throw new InterpreterError("ERROR: CloseReadFile requires a string expression");
+        return typeTable;
     }
 
     @Override

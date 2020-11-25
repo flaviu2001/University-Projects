@@ -3,6 +3,9 @@ package model.expressions;
 import exceptions.InterpreterError;
 import model.adt.IDict;
 import model.adt.IHeap;
+import model.types.BoolType;
+import model.types.IntType;
+import model.types.Type;
 import model.values.BoolValue;
 import model.values.IntValue;
 import model.values.Value;
@@ -10,6 +13,20 @@ import model.values.Value;
 public class RelationalExpression extends BinaryExpression{
     public RelationalExpression(OPERATOR _operator, Expression _lhs, Expression _rhs) {
         super(_operator, _lhs, _rhs);
+    }
+
+    @Override
+    public Type typeCheck(IDict<String, Type> typeTable) throws InterpreterError {
+        Type type1, type2;
+        type1 = lhs.typeCheck(typeTable);
+        type2 = rhs.typeCheck(typeTable);
+        if (type1.equals(new IntType())) {
+            if (type2.equals(new IntType()))
+                return new BoolType();
+            else
+                throw new InterpreterError("ERROR: The second operand is not an integer");
+        }else
+            throw new InterpreterError("ERROR: The first operand is not an integer");
     }
 
     private IntValue getValue(Expression expression, IDict<String, Value> symTable, IHeap heap) throws InterpreterError {

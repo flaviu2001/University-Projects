@@ -1,6 +1,7 @@
 package model.expressions;
 import model.adt.IDict;
 import model.adt.IHeap;
+import model.types.Type;
 import model.values.Value;
 
 public class ValueExpression implements Expression {
@@ -8,6 +9,11 @@ public class ValueExpression implements Expression {
 
     public ValueExpression(Value _value) {
         value = _value;
+    }
+
+    @Override
+    public Type typeCheck(IDict<String, Type> typeTable) {
+        return value.getType();
     }
 
     @Override
