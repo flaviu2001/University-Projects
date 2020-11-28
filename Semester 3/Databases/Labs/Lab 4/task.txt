@@ -1,0 +1,35 @@
+Lab 4. Database Testing
+
+    assigned: week 8; due: week 11
+
+After you finished designing your database, the development team is interested in assessing the performance of your design. To record different test configurations and results, you create the following relational structure:
+
+Tests – holds data about different test configurations;
+Tables – holds data about tables that might take part in a test;
+TestTables – link table between Tests and Tables (which tables take part in which tests);
+Views – holds data about a set of views from the database, used to assess the performance of certain SQL queries;
+TestViews – link table between Tests and Views (which views take part in which tests);
+TestRuns – contains data about different test runs; each test run involves:
+
+    deleting the data from the test’s tables – in the order specified by the Position field (table TestTables);
+    inserting data into the test’s tables – reverse deletion order; the number of records to insert is stored in the NoOfRows field (table TestTables);
+    evaluating the test’s views;
+
+TestRunTables – contains performance data for INSERT operations for every table in the test;
+TestRunViews – contains performance data for every view in the test.
+
+Your task is to implement a set of stored procedures for running tests and storing their results. Your tests must include at least 3 tables:
+
+    a table with a single-column primary key and no foreign keys;
+    a table with a single-column primary key and at least one foreign key;
+    a table with a multicolumn primary key,
+
+and 3 views:
+
+    a view with a SELECT statement operating on one table;
+    a view with a SELECT statement operating on at least 2 tables;
+    a view with a SELECT statement that has a GROUP BY clause and operates on at least 2 tables.
+
+Obs. The way you implement the stored procedures and / or functions is up to you. Results which allow the system to be extended to new tables / views with minimal or no code at all will be more appreciated.
+
+The script for creating the relational structure above can be downloaded here: Script_lab4.
