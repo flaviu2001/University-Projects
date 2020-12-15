@@ -1,0 +1,10 @@
+nrchildren(l1, l2.. ln) = {
+	0, n < 2
+	1, n < 3
+	2, n < 4
+}
+
+conv(l1, l2.. ln) = {
+	[], n=0
+	[l1, nrchildren(l)] (+) conv(l2) (+) conv(l3), else
+}

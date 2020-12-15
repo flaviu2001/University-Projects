@@ -52,14 +52,14 @@ select * from Ta order by aid -- Clustered Index Scan
 select * from Ta where aid = 1 -- Clustered Index Seek
 select x from Ta order by x -- Nonclustered Index Scan
 select a2 from Ta where a2 = 1 -- Nonclustered Index Seek
-select a2, x from Ta where x = 2 -- Key Lookup
+select x from Ta where a2 = 19000 -- Key Lookup
 
-select * from Tb where b2 = 40 -- Clustered Index Scan
+select * from Tb where b2 = 40 -- Clustered Index Scan 0.03 cost
 
 create nonclustered index index2 on Tb(b2) include (bid, x)
 drop index index2 on Tb
 
-select * from Tb where b2 = 40 -- Nonclustered Index Seek
+select * from Tb where b2 = 40 -- Nonclustered Index Seek 0.003 cost
 
 create or alter view view1 as
     select top 1000 T1.x, T2.b2
@@ -68,6 +68,5 @@ create or alter view view1 as
 
 select * from view1
 
--- 40ms without indexes, 0.005 Ta 0.004 Tc 0.006 Tb
--- 38ms with indexes 0.003 Ta 0.004 Tc 0.003 Tb
--- Indexes slightly helpful, inner join hash match is the bulk of the execution
+-- 0.24 total cost without indexes
+-- 0.18 total cost with indexes
