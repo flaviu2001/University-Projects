@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ListViewController">
+   <children>
+      <VBox prefHeight="128.0" prefWidth="431.0">
+         <children>
+            <ListView fx:id="listView" editable="true" prefHeight="100.0" prefWidth="151.0" />
+            <Label fx:id="label" />
+         </children>
+      </VBox>
+   </children>
+</StackPane>

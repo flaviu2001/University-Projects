@@ -1,5 +1,5 @@
 maxrec(l1, l2.. ln) = {
-	0, n=0
+	-1000000, n=0
 	max(l1, maxrec(l2.. ln)), l1 is number
 	maxrec(l2.. ln), l1 is non-number atom
 	max(maxrec(l1), maxrec(l2.. ln)), l1 is list
@@ -18,8 +18,8 @@ even(l1, l2.. ln) = {
 
 expression(l1, l2.. ln) = {
 	[], n=0
-	[eval(l1, l2, l3), expression(l4, l5.. ln)], l1 - operator and l2 = l3 = number
-	[l1, expression(l2, l3.. ln)], else
+	eval(l1, l2, l3) (+) expression(l4, l5.. ln), l1 - operator and l2 = l3 = number
+	l1 (+) expression(l2, l3.. ln), else
 }
 
 solve(l1, l2.. ln) = {
