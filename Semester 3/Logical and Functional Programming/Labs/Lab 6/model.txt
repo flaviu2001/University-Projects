@@ -6,5 +6,7 @@ nrchildren(l1, l2.. ln) = {
 
 conv(l1, l2.. ln) = {
 	[], n=0
+	[l1, nrchildren(l)], n = 1
+	[l1, nrchildren(l)] (+) conv(l2), n = 2
 	[l1, nrchildren(l)] (+) conv(l2) (+) conv(l3), else
 }
