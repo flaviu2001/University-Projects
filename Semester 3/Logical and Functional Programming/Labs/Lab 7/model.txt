@@ -1,0 +1,10 @@
+calc(x) = {
+	x, x is even
+	-x, else
+}
+
+evenodd(l) = {
+	calc(l), l is number
+	0, l is atom
+	evenodd(l1) + evenodd(l2) + .. evenodd(ln), else
+}
