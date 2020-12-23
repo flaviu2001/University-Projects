@@ -37,9 +37,9 @@ public class RelationalExpression extends BinaryExpression{
     }
 
     @Override
-    public Value eval(IDict<String, Value> symTable, IHeap heap) throws InterpreterError {
-        IntValue lhsValue = getValue(lhs, symTable, heap);
-        IntValue rhsValue = getValue(rhs, symTable, heap);
+    public Value eval(IDict<String, Value> symbolTable, IHeap heap) throws InterpreterError {
+        IntValue lhsValue = getValue(lhs, symbolTable, heap);
+        IntValue rhsValue = getValue(rhs, symbolTable, heap);
         return switch (operator) {
             case MORE -> new BoolValue(lhsValue.getVal() > rhsValue.getVal());
             case MORE_EQUAL -> new BoolValue(lhsValue.getVal() >= rhsValue.getVal());

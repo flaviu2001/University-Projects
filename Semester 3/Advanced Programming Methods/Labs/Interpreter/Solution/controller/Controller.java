@@ -40,10 +40,21 @@ public class Controller {
         repository.addPrg(newPrg);
     }
 
+    public ExecutorService getExecutor() {
+        return executor;
+    }
+
+    public void setExecutor(ExecutorService executor) {
+        this.executor = executor;
+    }
+
     List<ProgramState> removeCompletedPrograms(List<ProgramState> programStateList) {
-        return programStateList.stream()
+        List<ProgramState> toReturn = programStateList.stream()
                 .filter(p -> !p.isCompleted())
                 .collect(Collectors.toList());
+        if (toReturn.isEmpty() && !programStateList.isEmpty())
+            toReturn.add(programStateList.get(0));
+        return toReturn;
     }
 
     Map<Integer, Value> garbageCollector(Set<Integer> symTableAddr, Map<Integer, Value> heap){
@@ -64,6 +75,10 @@ public class Controller {
                 }));
 
         return toReturn;
+    }
+
+    public List<ProgramState> getProgramStates() {
+        return repository.getProgramStates();
     }
 
     public void oneStepForEachProgram(List<ProgramState> programStateList) throws InterpreterError {
@@ -104,10 +119,29 @@ public class Controller {
         repository.setProgramStates(programStateList);
     }
 
+    public void oneStepAll() throws InterpreterError {
+        executor = Executors.newFixedThreadPool(2);
+        List<ProgramState> programList = removeCompletedPrograms(repository.getProgramStates());
+        ProgramState state = programList.get(0);
+        state.getHeap().setContent(
+                garbageCollector(
+                        getAddrFromSymTable(
+                                programList.stream().map(programState -> programState.getSymTable().getContent().values()).collect(Collectors.toList()),
+                                state.getHeap().getContent()
+                        ),
+                        state.getHeap().getContent()
+                )
+        );
+        oneStepForEachProgram(programList);
+        programList = removeCompletedPrograms(repository.getProgramStates());
+        executor.shutdownNow();
+        repository.setProgramStates(programList);
+    }
+
     public IList<String> allSteps() throws InterpreterError {
         for (ProgramState state: repository.getProgramStates()) {
             IDict<String, Type> typeTable = new Dict<>();
-            state.getExeStack().peek().typeCheck(typeTable);
+            state.getExecutionStack().peek().typeCheck(typeTable);
         }
         executor = Executors.newFixedThreadPool(2);
         List<ProgramState> programList = removeCompletedPrograms(repository.getProgramStates());

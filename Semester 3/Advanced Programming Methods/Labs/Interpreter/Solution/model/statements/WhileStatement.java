@@ -35,8 +35,8 @@ public class WhileStatement implements Statement {
             throw new InterpreterError(String.format("ERROR: %s is not of BoolType", value));
         BoolValue boolValue = (BoolValue) value;
         if (boolValue.getVal()) {
-            state.getExeStack().push(this);
-            state.getExeStack().push(statement);
+            state.getExecutionStack().push(this);
+            state.getExecutionStack().push(statement);
         }
         return null;
     }

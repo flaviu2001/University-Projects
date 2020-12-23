@@ -1,4 +1,4 @@
-package view.command;
+package view.cli.command;
 
 public class ExitCommand extends Command {
     public ExitCommand(String key, String desc){

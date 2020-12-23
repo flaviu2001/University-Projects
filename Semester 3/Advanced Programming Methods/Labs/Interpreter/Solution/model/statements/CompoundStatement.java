@@ -22,7 +22,7 @@ public class CompoundStatement implements Statement {
 
     @Override
     public ProgramState execute(ProgramState state) {
-        IStack<Statement> stack =  state.getExeStack();
+        IStack<Statement> stack =  state.getExecutionStack();
         stack.push(second);
         stack.push(first);
         return null;

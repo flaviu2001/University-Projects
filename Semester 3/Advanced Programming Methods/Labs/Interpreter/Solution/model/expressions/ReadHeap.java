@@ -26,8 +26,8 @@ public class ReadHeap implements Expression {
     }
 
     @Override
-    public Value eval(IDict<String, Value> symTable, IHeap heap) throws InterpreterError {
-        Value evaluated = expression.eval(symTable, heap);
+    public Value eval(IDict<String, Value> symbolTable, IHeap heap) throws InterpreterError {
+        Value evaluated = expression.eval(symbolTable, heap);
         if (!(evaluated instanceof ReferenceValue))
             throw new InterpreterError(String.format("ERROR: %s not of ReferenceType", evaluated));
         ReferenceValue referenceValue = (ReferenceValue)evaluated;

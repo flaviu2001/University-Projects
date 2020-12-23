@@ -35,9 +35,9 @@ public class LogicExpression extends BinaryExpression {
     }
 
     @Override
-    public Value eval(IDict<String, Value> symTable, IHeap heap) throws InterpreterError {
-        BoolValue lhsValue = getValue(lhs, symTable, heap);
-        BoolValue rhsValue = getValue(rhs, symTable, heap);
+    public Value eval(IDict<String, Value> symbolTable, IHeap heap) throws InterpreterError {
+        BoolValue lhsValue = getValue(lhs, symbolTable, heap);
+        BoolValue rhsValue = getValue(rhs, symbolTable, heap);
         return switch (operator) {
             case AND -> new BoolValue(lhsValue.getVal() && rhsValue.getVal());
             case OR -> new BoolValue(lhsValue.getVal() || rhsValue.getVal());

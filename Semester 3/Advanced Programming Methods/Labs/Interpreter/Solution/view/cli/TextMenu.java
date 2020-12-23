@@ -1,7 +1,7 @@
-package view;
+package view.cli;
 
 import model.adt.Dict;
-import view.command.Command;
+import view.cli.command.Command;
 
 import java.util.Scanner;
 import java.util.stream.Collectors;

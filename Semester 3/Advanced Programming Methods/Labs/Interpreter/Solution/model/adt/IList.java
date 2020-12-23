@@ -10,4 +10,5 @@ public interface IList<T> extends Iterable<T>{
     boolean isEmpty();
     @Override
     void forEach(Consumer<? super T> action);
+    java.util.List<T> getList();
 }

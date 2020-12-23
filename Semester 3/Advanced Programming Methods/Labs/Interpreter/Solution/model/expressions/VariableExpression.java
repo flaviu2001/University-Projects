@@ -17,8 +17,8 @@ public class VariableExpression implements Expression {
     }
 
     @Override
-    public Value eval(IDict<String, Value> symTable, IHeap heap) {
-        return symTable.get(key);
+    public Value eval(IDict<String, Value> symbolTable, IHeap heap) {
+        return symbolTable.get(key);
     }
 
     @Override

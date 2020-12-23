@@ -35,8 +35,8 @@ public class IfStatement implements Statement {
         if (value.getType().equals(new BoolType())) {
             BoolValue condition = (BoolValue)value;
             if (condition.getVal())
-                state.getExeStack().push(first);
-            else state.getExeStack().push(second);
+                state.getExecutionStack().push(first);
+            else state.getExecutionStack().push(second);
             return null;
         }
         throw new InterpreterError(String.format("ERROR: %s not of type bool inside if", value.toString()));

@@ -11,7 +11,7 @@ import java.util.Random;
 import java.util.TreeSet;
 
 public class ProgramState {
-    private final IStack<Statement> exeStack;
+    private final IStack<Statement> executionStack;
     private final IDict<String, Value> symTable;
     private final IList<String> out;
     private final IDict<String, BufferedReader> fileTable;
@@ -20,12 +20,12 @@ public class ProgramState {
     public final Integer id;
 
     public ProgramState(Statement originalProgram) {
-        exeStack = new Stack<>();
+        executionStack = new Stack<>();
         symTable = new Dict<>();
         out = new List<>();
         fileTable = new Dict<>();
         heap = new Heap();
-        exeStack.push(originalProgram);
+        executionStack.push(originalProgram);
         id = newId();
     }
 
@@ -34,7 +34,7 @@ public class ProgramState {
                         IList<String> _out,
                         IDict<String, BufferedReader> _fileTable,
                         IHeap _heap) {
-        exeStack = _exeStack;
+        executionStack = _exeStack;
         symTable = _symTable;
         out = _out;
         fileTable = _fileTable;
@@ -42,8 +42,8 @@ public class ProgramState {
         id = newId();
     }
 
-    public IStack<Statement> getExeStack() {
-        return exeStack;
+    public IStack<Statement> getExecutionStack() {
+        return executionStack;
     }
 
     public IDict<String, Value> getSymTable() {
@@ -71,19 +71,19 @@ public class ProgramState {
     }
 
     public boolean isCompleted() {
-        return exeStack.isEmpty();
+        return executionStack.isEmpty();
     }
 
     public ProgramState oneStep() throws InterpreterError {
-        if (exeStack.isEmpty())
+        if (executionStack.isEmpty())
             throw new InterpreterError("ERROR: Execution stack is empty when attempting to execute one step");
-        Statement top = exeStack.pop();
+        Statement top = executionStack.pop();
         return top.execute(this);
     }
 
     public String exeStackToString() {
         StringBuilder exeStackStringBuilder = new StringBuilder();
-        for (Statement elem : exeStack) {
+        for (Statement elem : executionStack) {
             exeStackStringBuilder.append("[\n").append(elem.toString()).append("\n]\n");
         }
         return exeStackStringBuilder.toString();

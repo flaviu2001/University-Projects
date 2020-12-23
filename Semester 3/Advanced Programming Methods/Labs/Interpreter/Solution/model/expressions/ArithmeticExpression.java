@@ -35,9 +35,9 @@ public class ArithmeticExpression extends BinaryExpression{
     }
 
     @Override
-    public Value eval(IDict<String, Value> symTable, IHeap heap) throws InterpreterError {
-        IntValue lhsValue = getValue(lhs, symTable, heap);
-        IntValue rhsValue = getValue(rhs, symTable, heap);
+    public Value eval(IDict<String, Value> symbolTable, IHeap heap) throws InterpreterError {
+        IntValue lhsValue = getValue(lhs, symbolTable, heap);
+        IntValue rhsValue = getValue(rhs, symbolTable, heap);
         switch (operator) {
             case ADD:
                 return new IntValue(lhsValue.getVal() + rhsValue.getVal());

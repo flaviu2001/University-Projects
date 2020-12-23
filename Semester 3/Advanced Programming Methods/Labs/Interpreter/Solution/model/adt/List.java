@@ -55,4 +55,8 @@ public class List<T> implements IList<T> {
             list.forEach(action);
         }
     }
+    @Override
+    public java.util.List<T> getList() {
+        return list;
+    }
 }

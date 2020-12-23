@@ -40,4 +40,9 @@ public class Stack<T> implements IStack<T> {
     public Iterator<T> iterator() {
         return deque.iterator();
     }
+
+    @Override
+    public Deque<T> getStack() {
+        return deque;
+    }
 }

@@ -1,4 +1,4 @@
-package view.command;
+package view.cli.command;
 
 import controller.Controller;
 import exceptions.InterpreterError;

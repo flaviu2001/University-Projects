@@ -17,7 +17,7 @@ public class ValueExpression implements Expression {
     }
 
     @Override
-    public Value eval(IDict<String, Value> symTable, IHeap heap) {
+    public Value eval(IDict<String, Value> symbolTable, IHeap heap) {
         return value;
     }
 
