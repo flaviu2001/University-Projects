@@ -1,10 +1,14 @@
 package view.gui.list;
 
 import controller.Controller;
+import exceptions.InterpreterError;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.Region;
 import model.ProgramState;
 import model.statements.Statement;
 import repository.IRepository;
@@ -36,7 +40,14 @@ public class ListController {
             IRepository repository = new Repository("log.txt");
             Controller controller = new Controller(repository);
             controller.addProgram(state);
-            programController.setController(controller);
+            try{
+                controller.runTypeChecker();
+                programController.setController(controller);
+            } catch (InterpreterError interpreterError) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, interpreterError.getMessage(), ButtonType.OK);
+                alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+                alert.showAndWait();
+            }
         });
     }
 }

@@ -11,14 +11,22 @@ public class Heap implements IHeap {
     private final Map<Integer, Value> map;
     private Integer freeValue;
 
+    public Integer newValue() {
+        Random rand = new Random();
+        freeValue = rand.nextInt();
+        if (freeValue == 0 || map.containsKey(freeValue))
+            freeValue = rand.nextInt();
+        return freeValue;
+    }
+
     public Heap(Map<Integer, Value> _map) {
         map = _map;
-        freeValue = 1;
+        freeValue = newValue();
     }
 
     public Heap() {
         map = new HashMap<>();
-        freeValue = 1;
+        freeValue = newValue();
     }
 
     @Override
@@ -50,10 +58,7 @@ public class Heap implements IHeap {
         synchronized (this) {
             map.put(freeValue, value);
             Integer toReturn = freeValue;
-            Random rand = new Random();
-            freeValue = rand.nextInt();
-            if (freeValue == 0 || map.containsKey(freeValue))
-                freeValue = rand.nextInt();
+            freeValue = newValue();
             return toReturn;
         }
     }

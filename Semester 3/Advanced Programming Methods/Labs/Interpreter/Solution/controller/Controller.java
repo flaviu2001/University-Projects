@@ -138,11 +138,15 @@ public class Controller {
         repository.setProgramStates(programList);
     }
 
-    public IList<String> allSteps() throws InterpreterError {
+    public void runTypeChecker() throws InterpreterError {
         for (ProgramState state: repository.getProgramStates()) {
             IDict<String, Type> typeTable = new Dict<>();
             state.getExecutionStack().peek().typeCheck(typeTable);
         }
+    }
+
+    public IList<String> allSteps() throws InterpreterError {
+        runTypeChecker();
         executor = Executors.newFixedThreadPool(2);
         List<ProgramState> programList = removeCompletedPrograms(repository.getProgramStates());
         IList<String> out = programList.get(0).getOut();

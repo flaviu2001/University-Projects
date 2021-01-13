@@ -17,17 +17,27 @@ import model.values.Value;
 import java.util.*;
 import java.util.stream.Collectors;
 
+class Pair<T1, T2> {
+    T1 first;
+    T2 second;
+
+    public Pair(T1 first, T2 second) {
+        this.first = first;
+        this.second = second;
+    }
+}
+
 public class ProgramController {
     private Controller controller;
 
     @FXML
-    private TableView<Map.Entry<Integer, String>> heapTable;
+    private TableView<Pair<Integer, Value>> heapTable;
 
     @FXML
-    private TableColumn<Map.Entry<Integer, String>, Integer> addressColumn;
+    private TableColumn<Pair<Integer, Value>, Integer> addressColumn;
 
     @FXML
-    private TableColumn<Map.Entry<Integer, String>, String> valueColumn;
+    private TableColumn<Pair<Integer, Value>, String> valueColumn;
 
     @FXML
     private ListView<String> outputList;
@@ -42,13 +52,13 @@ public class ProgramController {
     private ListView<String> executionStackList;
 
     @FXML
-    private TableView<Map.Entry<String, String>> symbolTable;
+    private TableView<Pair<String, Value>> symbolTable;
 
     @FXML
-    private TableColumn<Map.Entry<String, String>, String> symVariableColumn;
+    private TableColumn<Pair<String, Value>, String> symVariableColumn;
 
     @FXML
-    private TableColumn<Map.Entry<String, String>, String> symValueColumn;
+    private TableColumn<Pair<String, Value>, String> symValueColumn;
 
     @FXML
     private TextField numberOfProgramStates;
@@ -58,10 +68,10 @@ public class ProgramController {
 
     @FXML
     public void initialize() {
-        addressColumn.setCellValueFactory(p -> new SimpleIntegerProperty(p.getValue().getKey()).asObject());
-        valueColumn.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().getValue()));
-        symVariableColumn.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().getKey()));
-        symValueColumn.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().getValue()));
+        addressColumn.setCellValueFactory(p -> new SimpleIntegerProperty(p.getValue().first).asObject());
+        valueColumn.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().second.toString()));
+        symVariableColumn.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().first));
+        symValueColumn.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().second.toString()));
         oneStep.setOnAction(actionEvent -> {
             if(controller == null){
                 Alert alert = new Alert(Alert.AlertType.ERROR, "The program was not selected", ButtonType.OK);
@@ -91,13 +101,8 @@ public class ProgramController {
             return null;
         int currentId = programStateList.getSelectionModel().getSelectedIndex();
         if (currentId == -1)
-            currentId = controller.getProgramStates().get(0).id;
-        else currentId = controller.getProgramStates().get(currentId).id;
-        ProgramState stateToReturn = null;
-        for (ProgramState state: controller.getProgramStates())
-            if (state.id == currentId)
-                stateToReturn = state;
-        return stateToReturn;
+            return controller.getProgramStates().get(0);
+        return controller.getProgramStates().get(currentId);
     }
 
     public void setController(Controller controller) {
@@ -119,10 +124,9 @@ public class ProgramController {
         if (controller.getProgramStates().size() > 0)
             heap = controller.getProgramStates().get(0).getHeap();
         else heap = new Heap();
-        Map<Integer, String> heapMap = new HashMap<>();
+        List<Pair<Integer, Value>> heapTableList = new ArrayList<>();
         for (Map.Entry<Integer, Value> entry : heap.getContent().entrySet())
-            heapMap.put(entry.getKey(), entry.getValue().toString());
-        List<Map.Entry<Integer, String>> heapTableList = new ArrayList<>(heapMap.entrySet());
+            heapTableList.add(new Pair<>(entry.getKey(), entry.getValue()));
         heapTable.setItems(FXCollections.observableList(heapTableList));
         heapTable.refresh();
     }
@@ -153,11 +157,10 @@ public class ProgramController {
 
     private void populateSymbolTable() {
         ProgramState state = getCurrentProgramState();
-        Map<String, String> symTableMap = new HashMap<>();
+        List<Pair<String, Value>> symbolTableList = new ArrayList<>();
         if (state != null)
             for (Map.Entry<String, Value> entry : state.getSymTable().getContent().entrySet())
-                symTableMap.put(entry.getKey(), entry.getValue().toString());
-        List<Map.Entry<String, String>> symbolTableList = new ArrayList<>(symTableMap.entrySet());
+                symbolTableList.add(new Pair<>(entry.getKey(), entry.getValue()));
         symbolTable.setItems(FXCollections.observableList(symbolTableList));
         symbolTable.refresh();
     }

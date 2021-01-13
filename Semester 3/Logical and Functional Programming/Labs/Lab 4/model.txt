@@ -1,5 +1,5 @@
 revert(l1, l2.. ln, C) = {
-	Col, n=0
+	C, n=0
 	revert(l2.. ln, [l1]+C), else
 }
 sublists_aux(l1, l2.. ln, E, C) = {
