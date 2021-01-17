@@ -5,6 +5,6 @@ calc(x) = {
 
 evenodd(l) = {
 	calc(l), l is number
-	0, l is atom
-	evenodd(l1) + evenodd(l2) + .. evenodd(ln), else
+	0, l is atom which is not a number
+	evenodd(l1) + evenodd(l2) + .. evenodd(ln), l=l1..ln
 }
