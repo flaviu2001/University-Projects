@@ -98,18 +98,23 @@ All of my university lectures, seminaries and laboratories neatly ordered to hel
   <li>:open_file_folder: Semester 4
     <ul>
       <li>
+        <a href="https://github.com/flaviu2001/University-Projects/tree/master/Semester%204/Artificial%20Intelligence">
         :bulb: Artificial Intelligence
       <\li>
       <li>
+        <a href="https://github.com/flaviu2001/University-Projects/tree/master/Semester%204/Database%20Management%20Systems">
         :memo: Database Management Systems
       <\li>
       <li>
+        <a href="https://github.com/flaviu2001/University-Projects/tree/master/Semester%204/Software%20Engineering">
         :wrench: Software Engineering
       <\li>
       <li>
+        <a href="https://github.com/flaviu2001/University-Projects/tree/master/Semester%204/Systems%20for%20Design%20and%20Implementation">
         :key: Systems for Design and Implementation
       <\li>
       <li>
+        <a href="https://github.com/flaviu2001/University-Projects/tree/master/Semester%204/Web%20Programming">
         :tv: Web Programming
       <\li>
     </ul>
