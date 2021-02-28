@@ -95,4 +95,23 @@ All of my university lectures, seminaries and laboratories neatly ordered to hel
       </li>
   	</ul>
   </li>
+  <li>:open_file_folder: Semester 4
+    <ul>
+      <li>
+        :bulb: Artificial Intelligence
+      <\li>
+      <li>
+        :memo: Database Management Systems
+      <\li>
+      <li>
+        :wrench: Software Engineering
+      <\li>
+      <li>
+        :key: Systems for Design and Implementation
+      <\li>
+      <li>
+        :tv: Web Programming
+      <\li>
+    </ul>
+  </li>
 </ul>
