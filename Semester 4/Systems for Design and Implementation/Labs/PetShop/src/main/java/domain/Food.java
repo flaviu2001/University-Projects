@@ -6,6 +6,7 @@ public class Food extends BaseEntity<Long>{
     String name, producer;
     Date expirationDate;
 
+
     public Food(Long id, String name, String producer, Date expirationDate) {
         this.setId(id);
         this.name = name;

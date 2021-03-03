@@ -4,10 +4,7 @@ import domain.BaseEntity;
 import domain.exceptions.ValidatorException;
 import domain.validators.Validator;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 public class InMemoryRepository<ID, T extends BaseEntity<ID>> implements IRepository<ID, T> {
 
@@ -17,6 +14,10 @@ public class InMemoryRepository<ID, T extends BaseEntity<ID>> implements IReposi
     public InMemoryRepository(Validator<T> validator) {
         this.validator = validator;
         entities = new HashMap<>();
+    }
+
+    protected void loadEntities(List<T> newEntities) {
+        newEntities.forEach((e) -> entities.put(e.getId(), e));
     }
 
     @Override

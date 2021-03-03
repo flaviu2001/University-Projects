@@ -5,7 +5,13 @@ import domain.exceptions.PetShopException;
 import domain.validators.CatFoodValidator;
 import domain.validators.CatValidator;
 import domain.validators.FoodValidator;
+import repository.csvRepository.CatCSVRepository;
+import repository.csvRepository.CatFoodCSVRepository;
+import repository.csvRepository.FoodCSVRepository;
 import repository.InMemoryRepository;
+import repository.xmlRepository.CatFoodXMLRepository;
+import repository.xmlRepository.CatXMLRepository;
+import repository.xmlRepository.FoodXMLRepository;
 import service.Service;
 
 import java.text.ParseException;
@@ -14,8 +20,8 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class UI {
-    Service service;
-    Map<Integer, Runnable> menuTable;
+    private Service service;
+    private final Map<Integer, Runnable> menuTable;
 
     public UI() {
         menuTable = new HashMap<>();
@@ -33,12 +39,28 @@ public class UI {
         );
     }
 
+    /**
+     * One of the functions that must be called to instantiate the service.
+     * It instantiates CSV repositories for each entity
+     */
     void initialiseFileApplication() {
-        // TODO
+        service = new Service(
+                new CatCSVRepository(new CatValidator(), "data/programData/csvData/cats.csv"),
+                new FoodCSVRepository(new FoodValidator(), "data/programData/csvData/foods.csv"),
+                new CatFoodCSVRepository(new CatFoodValidator(), "data/programData/csvData/catFoods.csv")
+                );
     }
 
     void initialiseDatabaseApplication() {
         // TODO
+    }
+
+    void initialiseXMLApplication() {
+        service = new Service(
+                new CatXMLRepository(new CatValidator(), "data/programData/xmlData/cats.xml"),
+                new FoodXMLRepository(new FoodValidator(), "data/programData/xmlData/foods.xml"),
+                new CatFoodXMLRepository(new CatFoodValidator(), "data/programData/xmlData/catFoods.xml")
+                );
     }
 
     static void printMenu() {
@@ -49,6 +71,13 @@ public class UI {
         writeConsole("4. Show all cats");
         writeConsole("5. Show all the food");
         writeConsole("6. Show all ");
+        writeConsole("7. Delete cat");
+        writeConsole("8. Delete food");
+        writeConsole("9. Stop feeding a cat");
+        writeConsole("10. Update cat");
+        writeConsole("11. Update food");
+        writeConsole("12. Update cat food");
+        writeConsole("13. Filter cats that eat a certain food");
         writeConsole("0. Exit");
     }
 
@@ -56,8 +85,9 @@ public class UI {
         writeConsole("Welcome to the Wild Cats Pet Shop");
         writeConsole("Choose type of storage");
         writeConsole("1. Memory");
-        writeConsole("2. File - in progress");
+        writeConsole("2. File");
         writeConsole("3. Database - in progress");
+        writeConsole("4. XML File");
         writeConsole("0. Exit");
     }
 
@@ -79,6 +109,7 @@ public class UI {
         applicationStyleTable.put(1, this::initialiseMemoryApplication);
         applicationStyleTable.put(2, this::initialiseFileApplication);
         applicationStyleTable.put(3, this::initialiseDatabaseApplication);
+        applicationStyleTable.put(4, this::initialiseXMLApplication);
         applicationStyleTable.put(0, () -> System.exit(0));
         int application = readNumberFromConsole();
         applicationStyleTable.get(application).run();
@@ -159,6 +190,139 @@ public class UI {
     }
 
     /**
+     * This function deletes a cat entity
+     */
+    public void deleteCat(){
+        Scanner stdin = new Scanner(System.in);
+        writeConsole("Cat id: ");
+        Long catId = stdin.nextLong();
+        try{
+            service.deleteCat(catId);
+        }
+        catch (PetShopException petShopException){
+            petShopException.printStackTrace();
+            System.out.println(petShopException.getMessage());
+        }
+    }
+
+    /**
+     * This function deletes a food entity
+     */
+    public void deleteFood(){
+        Scanner stdin = new Scanner(System.in);
+        writeConsole("Food id: ");
+        Long foodId = stdin.nextLong();
+        try{
+            service.deleteFood(foodId);
+        }
+        catch (PetShopException petShopException){
+            petShopException.printStackTrace();
+            System.out.println(petShopException.getMessage());
+        }
+    }
+
+    /**
+     * This function deletes a CatFood entity
+     */
+    public void stopFeedingCat() {
+        Scanner stdin = new Scanner(System.in);
+        writeConsole("Cat id: ");
+        Long catId = stdin.nextLong();
+        writeConsole("Food id: ");
+        Long foodId = stdin.nextLong();
+        try {
+            service.deleteCatFood(catId, foodId);
+        } catch (PetShopException petShopException) {
+            petShopException.printStackTrace();
+            System.out.println(petShopException.getMessage());
+        }
+    }
+
+    /**
+     * This function prints the result of the join between cats and foods
+     */
+    public void showAll(){
+        service.getCatFoodJoin().forEach(
+                catFoodPair -> writeConsole(catFoodPair.getLeft() + "\n" + catFoodPair.getRight() + "\n")
+        );
+    }
+
+    /**
+     * This function updates a cat
+     */
+    public void updateCat(){
+        Scanner stdin = new Scanner(System.in);
+        writeConsole("Id: ");
+        Long id = stdin.nextLong();
+        writeConsole("Name: ");
+        String name = stdin.next();
+        writeConsole("Owner: ");
+        String owner = stdin.next();
+        writeConsole("Age (in cat years): ");
+        int age = stdin.nextInt();
+        try{
+            service.updateCat(id, name, owner, age);
+        } catch (PetShopException petShopException) {
+            petShopException.printStackTrace();
+            System.out.println(petShopException.getMessage());
+        }
+    }
+
+    /**
+     * This function updates a food
+     */
+    public void updateFood(){
+        Scanner stdin = new Scanner(System.in);
+        writeConsole("Id: ");
+        Long id = stdin.nextLong();
+        writeConsole("Name: ");
+        String name = stdin.next();
+        writeConsole("Producer: ");
+        String producer = stdin.next();
+        writeConsole("Expiration date (dd-mm-yyyy): ");
+        String dateString = stdin.next();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        try {
+            Date date = dateFormat.parse(dateString);
+            service.updateFood(id, name, producer, date);
+        } catch (ParseException parseException) {
+            parseException.printStackTrace();
+            System.out.println("Could not add");
+        } catch (PetShopException petShopException) {
+            petShopException.printStackTrace();
+            System.out.println(petShopException.getMessage());
+        }
+    }
+
+    /**
+     * This function updates a cat food
+     */
+    public void updateCatFood(){
+        Scanner stdin = new Scanner(System.in);
+        writeConsole("Cat id: ");
+        Long catId = stdin.nextLong();
+        writeConsole("Food id: ");
+        Long foodId = stdin.nextLong();
+        writeConsole("New food id: ");
+        Long newFoodId = stdin.nextLong();
+        try {
+            service.updateCatFood(catId, foodId, newFoodId);
+        } catch (PetShopException petShopException) {
+            petShopException.printStackTrace();
+            System.out.println("Could not feed the cat");
+        }
+    }
+
+    public void filterCatsBasedOnFood(){
+        Scanner stdin = new Scanner(System.in);
+        writeConsole("Food id: ");
+        Long foodId = stdin.nextLong();
+
+        service.filterCatsThatEatCertainFood(foodId)
+                .forEach(cat->writeConsole(cat.toString()));
+    }
+
+    /**
      * The main function which processes the input
      */
     public void runProgram() {
@@ -169,13 +333,24 @@ public class UI {
         menuTable.put(3, this::feedCat);
         menuTable.put(4, this::showCats);
         menuTable.put(5, this::showFood);
+        menuTable.put(6, this::showAll);
+        menuTable.put(7, this::deleteCat);
+        menuTable.put(8, this::deleteFood);
+        menuTable.put(9, this::stopFeedingCat);
+        menuTable.put(10, this::updateCat);
+        menuTable.put(11, this::updateFood);
+        menuTable.put(12, this::updateCatFood);
+        menuTable.put(13, this::filterCatsBasedOnFood);
         menuTable.put(0, () -> System.exit(0));
 
         //noinspection InfiniteLoopStatement
         while (true) {
             printMenu();
             int choice = readNumberFromConsole();
-            menuTable.get(choice).run();
+            if(menuTable.containsKey(choice))
+                menuTable.get(choice).run();
+            else
+                System.out.println("Bad choice");
         }
     }
 }

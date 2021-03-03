@@ -46,6 +46,7 @@ public class ServiceTest {
     private static final String newFoodName = "cat2";
     private static final String newFoodProducer = "o2";
 
+
     @Before
     public void setUp(){
         service = new Service(catsRepository, foodRepository, catFoodRepository);

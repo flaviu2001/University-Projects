@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Objects;
+
 public class Pair<L, R> {
     L left;
     R right;
@@ -36,5 +38,10 @@ public class Pair<L, R> {
             return false;
         return  this.left.equals(((Pair<?, ?>) obj).left)&&
                 this.right.equals(((Pair<?, ?>) obj).right);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.left, this.right);
     }
 }

@@ -2,6 +2,7 @@ package domain;
 
 
 public class CatFood extends BaseEntity<Pair<Long, Long>>{
+
     public CatFood(Long catId, Long foodId) {
         this.setId(new Pair<>(catId, foodId));
     }

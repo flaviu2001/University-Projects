@@ -4,6 +4,7 @@ public class Cat extends BaseEntity<Long>{
     String name, owner;
     Integer catYears;
 
+
     public Cat(Long id, String name, String owner, Integer catYears) {
         this.setId(id);
         this.name = name;
