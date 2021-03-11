@@ -1,11 +1,10 @@
 package domain;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 
-
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class CatTest {
     private static final Long id = 1L;
@@ -19,69 +18,69 @@ public class CatTest {
 
     private Cat cat;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         cat = new Cat(id, name, owner, age);
     }
 
-    @After
+    @AfterEach
     public void tearDown() {
         cat = null;
     }
 
     @Test
     public void testGetName() {
-        assertEquals(name, cat.getName());
+        Assertions.assertEquals(name, cat.getName());
     }
 
     @Test
     public void testSetName() {
         cat.setName(newName);
-        assertEquals(newName, cat.getName());
+        Assertions.assertEquals(newName, cat.getName());
     }
 
     @Test
     public void testGetOwner() {
-        assertEquals(owner, cat.getOwner());
+        Assertions.assertEquals(owner, cat.getBreed());
     }
 
     @Test
     public void testSetOwner() {
-        cat.setOwner(newOwner);
-        assertEquals(newOwner, cat.getOwner());
+        cat.setBreed(newOwner);
+        Assertions.assertEquals(newOwner, cat.getBreed());
     }
 
     @Test
     public void testGetAge() {
-        assertEquals(age, cat.getCatYears());
+        Assertions.assertEquals(age, cat.getCatYears());
     }
 
     @Test
     public void testSetAge() {
         cat.setCatYears(newAge);
-        assertEquals(newAge, cat.getCatYears());
+        Assertions.assertEquals(newAge, cat.getCatYears());
     }
 
     @Test
     public void testGetHumanYears(){
         Integer expectedHumanYears = age*15;
-        assertEquals(expectedHumanYears, cat.getHumanYears());
+        Assertions.assertEquals(expectedHumanYears, cat.getHumanYears());
     }
 
     @Test
     public void testEqualForDifferentCatsShouldReturnFalse(){
         Cat newCat = new Cat(newId, newName, newOwner, newAge);
-        assertNotEquals(cat, newCat);
+        Assertions.assertNotEquals(cat, newCat);
     }
 
     @Test
     public void testEqualForSameCatsShouldReturnTrue(){
         Cat newCat = new Cat(id, name, owner, age);
-        assertEquals(cat, newCat);
+        Assertions.assertEquals(cat, newCat);
     }
 
     @Test
     public void testEqualForDifferentClass(){
-        assertNotEquals(cat, new BaseEntity<Long>());
+        Assertions.assertNotEquals(cat, new BaseEntity<Long>());
     }
 }

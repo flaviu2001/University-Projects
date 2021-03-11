@@ -2,7 +2,12 @@
 <cats>
     <cat id="0">
         <name>Tom</name>
-        <owner>Mary</owner>
-        <age>2</age>
+        <breed>Woman</breed>
+        <age>10</age>
+    </cat>
+    <cat id="1">
+        <name>Kitty</name>
+        <breed>Mom</breed>
+        <age>3</age>
     </cat>
 </cats>

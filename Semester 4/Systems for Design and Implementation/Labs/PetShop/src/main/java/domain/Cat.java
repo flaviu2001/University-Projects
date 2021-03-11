@@ -1,14 +1,14 @@
 package domain;
 
 public class Cat extends BaseEntity<Long>{
-    String name, owner;
+    String name, breed;
     Integer catYears;
 
 
-    public Cat(Long id, String name, String owner, Integer catYears) {
+    public Cat(Long id, String name, String breed, Integer catYears) {
         this.setId(id);
         this.name = name;
-        this.owner = owner;
+        this.breed = breed;
         this.catYears = catYears;
     }
 
@@ -16,8 +16,8 @@ public class Cat extends BaseEntity<Long>{
         return name;
     }
 
-    public String getOwner() {
-        return owner;
+    public String getBreed() {
+        return breed;
     }
 
     public Integer getCatYears() {
@@ -28,8 +28,8 @@ public class Cat extends BaseEntity<Long>{
         this.name = name;
     }
 
-    public void setOwner(String owner) {
-        this.owner = owner;
+    public void setBreed(String breed) {
+        this.breed = breed;
     }
 
     public void setCatYears(Integer catYears) {
@@ -44,15 +44,13 @@ public class Cat extends BaseEntity<Long>{
     public String toString() {
         return super.toString() +
                 " Cat{name: " + this.name +
-                "; owner: " + this.owner +
+                "; breed: " + this.breed +
                 "; catYears: " + this.catYears +
                 "}";
     }
 
     @Override
     public boolean equals(Object obj) {
-        if(!(obj instanceof Cat))
-            return false;
-        return this.getId().equals(((Cat) obj).getId());
+        return obj instanceof Cat && this.getId().equals(((Cat) obj).getId());
     }
 }

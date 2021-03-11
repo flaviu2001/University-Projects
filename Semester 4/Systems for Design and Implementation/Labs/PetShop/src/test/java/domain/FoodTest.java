@@ -1,13 +1,13 @@
 package domain;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.Calendar;
 import java.util.Date;
-
-import static org.junit.Assert.*;
 
 public class FoodTest {
     private static final Long id = 1L;
@@ -21,7 +21,7 @@ public class FoodTest {
 
     private Food food;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         Calendar calendar = Calendar.getInstance();
         calendar.set(1999, Calendar.FEBRUARY, 1);
@@ -32,59 +32,59 @@ public class FoodTest {
         food = new Food(id, name, producer, date);
     }
 
-    @After
+    @AfterEach
     public void tearDown() {
         food = null;
     }
 
     @Test
     public void testGetName() {
-        assertEquals(name, food.getName());
+        Assertions.assertEquals(name, food.getName());
     }
 
     @Test
     public void testSetName() {
         food.setName(newName);
-        assertEquals(newName, food.getName());
+        Assertions.assertEquals(newName, food.getName());
     }
 
     @Test
     public void testGetProducer() {
-        assertEquals(producer, food.getProducer());
+        Assertions.assertEquals(producer, food.getProducer());
     }
 
     @Test
     public void testSetProducer() {
         food.setProducer(producer);
-        assertEquals(producer, food.getProducer());
+        Assertions.assertEquals(producer, food.getProducer());
     }
 
 
     @Test
     public void testGetDate() {
-        assertEquals(date, food.getExpirationDate());
+        Assertions.assertEquals(date, food.getExpirationDate());
     }
 
     @Test
     public void testSetDate() {
         food.setExpirationDate(newDate);
-        assertEquals(newDate, food.getExpirationDate());
+        Assertions.assertEquals(newDate, food.getExpirationDate());
     }
 
     @Test
     public void testEqualForDifferentFoodsShouldReturnFalse(){
         Food newFood = new Food(newId, newName, newProducer, newDate);
-        assertNotEquals(food, newFood);
+        Assertions.assertNotEquals(food, newFood);
     }
 
     @Test
     public void testEqualForSameFoodsShouldReturnTrue(){
         Food newFood = new Food(id, name, producer, date);
-        assertEquals(food, newFood);
+        Assertions.assertEquals(food, newFood);
     }
 
     @Test
     public void testEqualForDifferentClass(){
-        assertNotEquals(food, new BaseEntity<Long>());
+        Assertions.assertNotEquals(food, new BaseEntity<Long>());
     }
 }

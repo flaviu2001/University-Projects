@@ -49,8 +49,6 @@ public class Food extends BaseEntity<Long>{
 
     @Override
     public boolean equals(Object obj) {
-        if(!(obj instanceof Food))
-            return false;
-        return this.getId().equals(((Food) obj).getId());
+        return obj instanceof Food && this.getId().equals(((Food) obj).getId());
     }
 }

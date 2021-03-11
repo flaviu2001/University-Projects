@@ -3,5 +3,7 @@ domain
 domain.exceptions
 domain.validators
 repository
+repository.csvRepository
+repository.xmlRepository
 service
 ui

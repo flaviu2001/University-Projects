@@ -1,10 +1,10 @@
 package domain;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class PairTest {
     private static final Long leftId = 1L;
@@ -14,57 +14,59 @@ public class PairTest {
 
     private static Pair<Long, Long> pair;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         pair = new Pair<>(leftId, rightId);
     }
 
-    @After
+    @AfterEach
     public void tearDown() {
         pair = null;
     }
 
     @Test
     public void testGetLeft() {
-        assertEquals(leftId, pair.getLeft());
+        Assertions.assertEquals(leftId, pair.getLeft());
     }
 
     @Test
     public void testSetLeft() {
         pair.setLeft(newLeftId);
-        assertEquals(newLeftId, pair.getLeft());
+        Assertions.assertEquals(newLeftId, pair.getLeft());
     }
 
     @Test
     public void testGetRight() {
-        assertEquals(rightId, pair.getRight());
+        Assertions.assertEquals(rightId, pair.getRight());
     }
 
     @Test
     public void testSetRight() {
         pair.setRight(newRightId);
-        assertEquals(newRightId, pair.getRight());
+        Assertions.assertEquals(newRightId, pair.getRight());
     }
 
     @Test
     public void testEqualForDifferentPairsShouldReturnFalse(){
         Pair<Long, Long> newPair = new Pair<>(newLeftId, newRightId);
-        assertNotEquals(pair, newPair);
+        Assertions.assertNotEquals(pair, newPair);
     }
 
     @Test
     public void testEqualForSamePairsShouldReturnTrue(){
         Pair<Long, Long> newPair = new Pair<>(leftId, rightId);
-        assertEquals(pair, newPair);
+        Assertions.assertEquals(pair, newPair);
     }
 
     @Test
     public void testEqualForDifferentPairTypesShouldReturnFalse(){
-        assertNotEquals(pair, new Pair<>(1L, "a"));
+        //noinspection AssertBetweenInconvertibleTypes
+        Assertions.assertNotEquals(pair, new Pair<>(1L, "a"));
     }
 
     @Test
     public void testEqualForDifferentClassShouldReturnFalse(){
-        assertNotEquals(pair, new BaseEntity<>());
+        //noinspection AssertBetweenInconvertibleTypes
+        Assertions.assertNotEquals(pair, new BaseEntity<>());
     }
 }

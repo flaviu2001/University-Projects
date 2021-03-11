@@ -2,22 +2,18 @@ package ui;
 
 import domain.BaseEntity;
 import domain.exceptions.PetShopException;
-import domain.validators.CatFoodValidator;
-import domain.validators.CatValidator;
-import domain.validators.FoodValidator;
-import repository.csvRepository.CatCSVRepository;
-import repository.csvRepository.CatFoodCSVRepository;
-import repository.csvRepository.FoodCSVRepository;
+import domain.validators.*;
+import repository.csvRepository.*;
 import repository.InMemoryRepository;
-import repository.xmlRepository.CatFoodXMLRepository;
-import repository.xmlRepository.CatXMLRepository;
-import repository.xmlRepository.FoodXMLRepository;
+import repository.xmlRepository.*;
 import service.Service;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class UI {
     private Service service;
@@ -35,7 +31,9 @@ public class UI {
         service = new Service(
                 new InMemoryRepository<>(new CatValidator()),
                 new InMemoryRepository<>(new FoodValidator()),
-                new InMemoryRepository<>(new CatFoodValidator())
+                new InMemoryRepository<>(new CatFoodValidator()),
+                new InMemoryRepository<>(new CustomerValidator()),
+                new InMemoryRepository<>(new PurchaseValidator())
         );
     }
 
@@ -47,7 +45,9 @@ public class UI {
         service = new Service(
                 new CatCSVRepository(new CatValidator(), "data/programData/csvData/cats.csv"),
                 new FoodCSVRepository(new FoodValidator(), "data/programData/csvData/foods.csv"),
-                new CatFoodCSVRepository(new CatFoodValidator(), "data/programData/csvData/catFoods.csv")
+                new CatFoodCSVRepository(new CatFoodValidator(), "data/programData/csvData/catFoods.csv"),
+                new CustomerCSVRepository(new CustomerValidator(), "data/programData/csvData/customers.csv"),
+                new PurchaseCSVRepository(new PurchaseValidator(), "data/programData/csvData/purchases.csv")
                 );
     }
 
@@ -59,7 +59,9 @@ public class UI {
         service = new Service(
                 new CatXMLRepository(new CatValidator(), "data/programData/xmlData/cats.xml"),
                 new FoodXMLRepository(new FoodValidator(), "data/programData/xmlData/foods.xml"),
-                new CatFoodXMLRepository(new CatFoodValidator(), "data/programData/xmlData/catFoods.xml")
+                new CatFoodXMLRepository(new CatFoodValidator(), "data/programData/xmlData/catFoods.xml"),
+                new CustomerXMLRepository(new CustomerValidator(), "data/programData/xmlData/customers.xml"),
+                new PurchaseXMLRepository(new PurchaseValidator(), "data/programData/xmlData/purchases.xml")
                 );
     }
 
@@ -68,16 +70,27 @@ public class UI {
         writeConsole("1. Add a cat");
         writeConsole("2. Add food");
         writeConsole("3. Feed a cat");
-        writeConsole("4. Show all cats");
-        writeConsole("5. Show all the food");
-        writeConsole("6. Show all ");
-        writeConsole("7. Delete cat");
-        writeConsole("8. Delete food");
-        writeConsole("9. Stop feeding a cat");
-        writeConsole("10. Update cat");
-        writeConsole("11. Update food");
-        writeConsole("12. Update cat food");
-        writeConsole("13. Filter cats that eat a certain food");
+        writeConsole("4. Add a customer");
+        writeConsole("5. Make a purchase");
+        writeConsole("6. Show all cats");
+        writeConsole("7. Show all the food");
+        writeConsole("8. Show all cat food pairs");
+        writeConsole("9. Show all customers");
+        writeConsole("10. Show all purchases");
+        writeConsole("11. Delete cat");
+        writeConsole("12. Delete food");
+        writeConsole("13. Stop feeding a cat");
+        writeConsole("14. Delete a customer");
+        writeConsole("15. Return a purchase");
+        writeConsole("16. Update cat");
+        writeConsole("17. Update food");
+        writeConsole("18. Update cat food");
+        writeConsole("19. Update customer");
+        writeConsole("20. Change purchase review");
+        writeConsole("21. Filter cats that eat a certain food");
+        writeConsole("22. Filter customers that bought at least a cat of a certain breed");
+        writeConsole("23. Filter purchases based on the minimum number of stars");
+        writeConsole("24. Report customers and their spent cash sorted by that amount");
         writeConsole("0. Exit");
     }
 
@@ -111,8 +124,19 @@ public class UI {
         applicationStyleTable.put(3, this::initialiseDatabaseApplication);
         applicationStyleTable.put(4, this::initialiseXMLApplication);
         applicationStyleTable.put(0, () -> System.exit(0));
-        int application = readNumberFromConsole();
-        applicationStyleTable.get(application).run();
+        try {
+            int application = readNumberFromConsole();
+            Stream.of(applicationStyleTable.get(application))
+                    .filter(Objects::nonNull)
+                    .findAny()
+                    .ifPresentOrElse(Runnable::run, () -> {
+                        System.out.println("Invalid choice");
+                        chooseApplicationStyle();
+                    });
+        } catch (InputMismatchException inputMismatchException) {
+            System.out.println("Invalid integer, try again");
+            chooseApplicationStyle();
+        }
     }
 
     /**
@@ -154,8 +178,40 @@ public class UI {
             service.addFood(id.get(), name, producer, date);
         } catch (ParseException parseException) {
             parseException.printStackTrace();
-            System.out.println("Could not add");
+            System.out.println("Incorrect date format");
         }
+    }
+
+    /**
+     * This function adds a customer entity with the input from the user and id as maximum up until now plus 1
+     */
+    public void addCustomer(){
+        Scanner stdin = new Scanner(System.in);
+        AtomicReference<Long> id = new AtomicReference<>(0L);
+        service.getCustomersFromRepository()
+                .stream()
+                .max(Comparator.comparingLong(BaseEntity::getId)).ifPresent(customer -> id.set(customer.getId()+1));
+        writeConsole("Name: ");
+        String name = stdin.next();
+        writeConsole("Phone number (10 digits): ");
+        String phoneNumber = stdin.next();
+        service.addCustomer(id.get(), name, phoneNumber);
+    }
+
+    /**
+     * This function adds a purchase entity with the input from user and current date
+     */
+    public void addPurchase() {
+        Scanner stdin = new Scanner(System.in);
+        writeConsole("Cat id: ");
+        Long catId = stdin.nextLong();
+        writeConsole("Customer id: ");
+        Long customerId = stdin.nextLong();
+        writeConsole("Price: ");
+        int price = stdin.nextInt();
+        writeConsole("Review: ");
+        int review = stdin.nextInt();
+        service.addPurchase(catId, customerId, price, new Date(), review);
     }
 
     /**
@@ -172,6 +228,16 @@ public class UI {
         service.getCatsFromRepository().forEach(cat -> System.out.println(cat.toString()));
     }
 
+    /**
+     * This function prints the customers to the console
+     */
+    public void showCustomers(){
+        service.getCustomersFromRepository().forEach(customer -> System.out.println(customer.toString()));
+    }
+
+    public void showPurchases() {
+        service.getPurchasesFromRepository().forEach(purchase -> System.out.println(purchase.toString()));
+    }
     /**
      * This function adds a CatFood entity
      */
@@ -239,9 +305,36 @@ public class UI {
     }
 
     /**
+     * This function deletes a CatFood entity
+     */
+    public void deleteCustomer(){
+        Scanner stdin = new Scanner(System.in);
+        writeConsole("Customer id: ");
+        Long customerId = stdin.nextLong();
+        try{
+            service.deleteCustomer(customerId);
+        }
+        catch (PetShopException petShopException){
+            petShopException.printStackTrace();
+            System.out.println(petShopException.getMessage());
+        }
+    }
+
+    /**
+     * This function deletes a purchase entity
+     */
+    public void deletePurchase() {
+        Scanner stdin = new Scanner(System.in);
+        writeConsole("Cat id: ");
+        Long catId = stdin.nextLong();
+        writeConsole("Customer id: ");
+        Long customerId = stdin.nextLong();
+        service.deletePurchase(catId, customerId);
+    }
+    /**
      * This function prints the result of the join between cats and foods
      */
-    public void showAll(){
+    public void showCatFoodPairs(){
         service.getCatFoodJoin().forEach(
                 catFoodPair -> writeConsole(catFoodPair.getLeft() + "\n" + catFoodPair.getRight() + "\n")
         );
@@ -313,13 +406,61 @@ public class UI {
         }
     }
 
-    public void filterCatsBasedOnFood(){
+    /**
+     * This function updates a customer entity
+     */
+    public void updateCustomer(){
+        Scanner stdin = new Scanner(System.in);
+        writeConsole("Id: ");
+        Long id = stdin.nextLong();
+        writeConsole("Name: ");
+        String name = stdin.next();
+        writeConsole("Phone number (10 digits): ");
+        String phoneNumber = stdin.next();
+        try{
+            service.updateCustomer(id, name, phoneNumber);
+        } catch (PetShopException petShopException) {
+            petShopException.printStackTrace();
+            System.out.println(petShopException.getMessage());
+        }
+
+    }
+
+    public void updatePurchase() {
+        Scanner stdin = new Scanner(System.in);
+        writeConsole("Cat id: ");
+        Long catId = stdin.nextLong();
+        writeConsole("Customer Id: ");
+        Long customerId = stdin.nextLong();
+        writeConsole("Give review: ");
+        int review = stdin.nextInt();
+        service.updatePurchase(catId, customerId, review);
+    }
+
+    public void filterCatsBasedOnFood() {
         Scanner stdin = new Scanner(System.in);
         writeConsole("Food id: ");
         Long foodId = stdin.nextLong();
 
         service.filterCatsThatEatCertainFood(foodId)
                 .forEach(cat->writeConsole(cat.toString()));
+    }
+
+    public void filterCustomersBasedOnBreedPurchase() {
+        writeConsole("Breed: ");
+        Scanner stdin = new Scanner(System.in);
+        String breed = stdin.next();
+        service.filterCustomersThatBoughtBreedOfCat(breed).forEach(customer -> writeConsole(customer.toString()));
+    }
+
+    public void filterPurchasesBasedOnReview() {
+        writeConsole("Minimum stars: ");
+        int minStars = readNumberFromConsole();
+        service.filterPurchasesWithMinStars(minStars).forEach(purchase -> System.out.println(purchase.toString()));
+    }
+
+    public void reportCustomersSortedBySpentCash() {
+        service.reportCustomersSortedBySpentCash().forEach(pair -> System.out.printf("%s\nSpent money: %s\n\n", pair.getLeft(), pair.getRight()));
     }
 
     /**
@@ -331,26 +472,44 @@ public class UI {
         menuTable.put(1, this::addCat);
         menuTable.put(2, this::addFood);
         menuTable.put(3, this::feedCat);
-        menuTable.put(4, this::showCats);
-        menuTable.put(5, this::showFood);
-        menuTable.put(6, this::showAll);
-        menuTable.put(7, this::deleteCat);
-        menuTable.put(8, this::deleteFood);
-        menuTable.put(9, this::stopFeedingCat);
-        menuTable.put(10, this::updateCat);
-        menuTable.put(11, this::updateFood);
-        menuTable.put(12, this::updateCatFood);
-        menuTable.put(13, this::filterCatsBasedOnFood);
+        menuTable.put(4, this::addCustomer);
+        menuTable.put(5, this::addPurchase);
+        menuTable.put(6, this::showCats);
+        menuTable.put(7, this::showFood);
+        menuTable.put(8, this::showCatFoodPairs);
+        menuTable.put(9, this::showCustomers);
+        menuTable.put(10, this::showPurchases);
+        menuTable.put(11, this::deleteCat);
+        menuTable.put(12, this::deleteFood);
+        menuTable.put(13, this::stopFeedingCat);
+        menuTable.put(14, this::deleteCustomer);
+        menuTable.put(15, this::deletePurchase);
+        menuTable.put(16, this::updateCat);
+        menuTable.put(17, this::updateFood);
+        menuTable.put(18, this::updateCatFood);
+        menuTable.put(19, this::updateCustomer);
+        menuTable.put(20, this::updatePurchase);
+        menuTable.put(21, this::filterCatsBasedOnFood);
+        menuTable.put(22, this::filterCustomersBasedOnBreedPurchase);
+        menuTable.put(23, this::filterPurchasesBasedOnReview);
+        menuTable.put(24, this::reportCustomersSortedBySpentCash);
         menuTable.put(0, () -> System.exit(0));
 
-        //noinspection InfiniteLoopStatement
-        while (true) {
-            printMenu();
-            int choice = readNumberFromConsole();
-            if(menuTable.containsKey(choice))
-                menuTable.get(choice).run();
-            else
-                System.out.println("Bad choice");
-        }
+        //noinspection EndlessStream
+        IntStream.generate(() -> 0)
+            .forEach(i -> {
+                printMenu();
+                try {
+                    int choice = readNumberFromConsole();
+                    Stream.of(menuTable.get(choice))
+                            .filter(Objects::nonNull)
+                            .findAny()
+                            .ifPresentOrElse(Runnable::run, () -> System.out.println("Bad choice"));
+                } catch (InputMismatchException inputMismatchException) {
+                    System.out.println("Invalid integer");
+                } catch (Exception exception) {
+                    System.out.println(exception.getMessage());
+                }
+            });
     }
 }

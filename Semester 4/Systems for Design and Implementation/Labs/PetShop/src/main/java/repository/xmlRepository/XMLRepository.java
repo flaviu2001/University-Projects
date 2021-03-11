@@ -19,6 +19,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public abstract class XMLRepository<ID, E extends BaseEntity<ID>> extends PersistentRepository<ID, E, Element> {
     protected final String documentRootName;
@@ -42,12 +43,10 @@ public abstract class XMLRepository<ID, E extends BaseEntity<ID>> extends Persis
             rootDocument = documentBuilder.parse(filePath);
             NodeList nodeList = rootDocument.getDocumentElement().getChildNodes();
             List<E> entities = new ArrayList<>();
-            for (int i = 0; i < nodeList.getLength(); ++i) {
-                if (!(nodeList.item(i) instanceof Element)) {
-                    continue;
-                }
-                entities.add(extractEntity((Element) nodeList.item(i)));
-            }
+            IntStream
+                    .range(0, nodeList.getLength())
+                    .filter((i) -> nodeList.item(i) instanceof Element)
+                    .forEach((i) -> entities.add(extractEntity((Element) nodeList.item(i))));
             loadEntities(entities);
         } catch (ParserConfigurationException e) {
             throw new PetShopException("Parser Configuration Exception: " + e.getMessage());

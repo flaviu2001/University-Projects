@@ -21,9 +21,9 @@ public class CatCSVRepository extends CSVRepository<Long, Cat>{
         List<String> tokens = Arrays.asList(dataTransferObject.split(","));
         Long id = Long.parseLong(tokens.get(0));
         String name = tokens.get(1);
-        String owner = tokens.get(2);
+        String breed = tokens.get(2);
         Integer catYears = Integer.parseInt(tokens.get(3));
-        return new Cat(id, name, owner, catYears);
+        return new Cat(id, name, breed, catYears);
     }
 
     /**
@@ -34,7 +34,7 @@ public class CatCSVRepository extends CSVRepository<Long, Cat>{
     protected String convertEntity(Cat entity) {
         return  entity.getId() + "," +
                 entity.getName() + "," +
-                entity.getOwner() + "," +
+                entity.getBreed() + "," +
                 entity.getCatYears();
     }
 }

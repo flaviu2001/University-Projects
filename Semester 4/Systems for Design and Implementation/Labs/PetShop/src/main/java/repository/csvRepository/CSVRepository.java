@@ -6,15 +6,18 @@ import domain.validators.Validator;
 import repository.PersistentRepository;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public abstract class CSVRepository<ID, E extends BaseEntity<ID>> extends PersistentRepository<ID, E, String> {
-    private final String filePath;
+    private final Path filePath;
 
     public CSVRepository(Validator<E> validator, String filePath) {
         super(validator);
-        this.filePath = filePath;
+        this.filePath = Paths.get(filePath);
         loadData();
     }
 
@@ -23,7 +26,7 @@ public abstract class CSVRepository<ID, E extends BaseEntity<ID>> extends Persis
      */
     @Override
     protected void loadData() {
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+        try(BufferedReader reader = Files.newBufferedReader(filePath)){
             List<E> entities = reader.lines().map(this::extractEntity).collect(Collectors.toList());
             loadEntities(entities);
         } catch (IOException e) {
@@ -36,7 +39,7 @@ public abstract class CSVRepository<ID, E extends BaseEntity<ID>> extends Persis
      */
     @Override
     protected void saveData() {
-        try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(filePath, false)))) {
+        try (PrintWriter writer = new PrintWriter(Files.newBufferedWriter(filePath))) {
             findAll().forEach(entity -> writer.println(convertEntity(entity)));
         } catch (IOException e) {
             throw new PetShopException(e.getMessage());

@@ -1,10 +1,10 @@
 package domain;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class CatFoodTest {
     private static final Long catId = 1L;
@@ -14,53 +14,54 @@ public class CatFoodTest {
 
     private static CatFood catFood;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         catFood = new CatFood(catId, foodId);
     }
 
-    @After
+    @AfterEach
     public void tearDown() {
         catFood = null;
     }
 
     @Test
     public void testGetCatId() {
-        assertEquals(catId, catFood.getCatId());
+        Assertions.assertEquals(catId, catFood.getCatId());
     }
 
     @Test
     public void testSetCatId() {
         catFood.setCatId(newCatId);
-        assertEquals(newCatId, catFood.getCatId());
+        Assertions.assertEquals(newCatId, catFood.getCatId());
     }
 
     @Test
     public void testGetFoodId() {
-        assertEquals(foodId, catFood.getFoodId());
+        Assertions.assertEquals(foodId, catFood.getFoodId());
     }
 
     @Test
     public void testSetFoodId() {
         catFood.setFoodId(newFooId);
-        assertEquals(newFooId, catFood.getFoodId());
+        Assertions.assertEquals(newFooId, catFood.getFoodId());
     }
 
     @Test
     public void testEqualForDifferentCatFoodsShouldReturnFalse(){
         CatFood newCatFood = new CatFood(newCatId, newFooId);
-        assertNotEquals(catFood, newCatFood);
+        Assertions.assertNotEquals(catFood, newCatFood);
     }
 
     @Test
     public void testEqualForSameCatFoodsShouldReturnTrue(){
         CatFood newCatFood = new CatFood(catId, foodId);
-        assertEquals(catFood, newCatFood);
+        Assertions.assertEquals(catFood, newCatFood);
     }
 
     @Test
     public void testEqualForDifferentClassShouldReturnFalse(){
-        assertNotEquals(catFood, new BaseEntity<>());
+        //noinspection AssertBetweenInconvertibleTypes
+        Assertions.assertNotEquals(catFood, new BaseEntity<>());
     }
 
 }

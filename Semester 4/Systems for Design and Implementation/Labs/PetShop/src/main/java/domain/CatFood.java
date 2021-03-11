@@ -25,9 +25,7 @@ public class CatFood extends BaseEntity<Pair<Long, Long>>{
 
     @Override
     public boolean equals(Object obj) {
-        if(!(obj instanceof CatFood))
-            return false;
-        return this.getId().equals(((CatFood) obj).getId());
+        return obj instanceof CatFood && this.getId().equals(((CatFood) obj).getId());
     }
 }
 

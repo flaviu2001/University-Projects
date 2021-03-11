@@ -1,0 +1,51 @@
+/*red, orange , yellow, green, blue, indigo, violet*/
+
+div#d0 {
+	transform:
+		rotate(2deg)
+		perspective(200px)
+	    rotateY(4deg)
+	    translateX(300px)
+	    translateY(100px);
+}
+
+div.c {
+	width: 500px;
+	height: 100px;
+}
+
+div#d1 {
+	background: linear-gradient(0deg, orange, red);
+	transform:
+	    translateX(500px)
+}
+
+div#d2 {
+	background: linear-gradient(0deg, yellow, orange);
+	transform:
+	    translateX(400px)
+}
+
+div#d3 {
+	background: linear-gradient(0deg, green, yellow);
+	transform:
+	    translateX(300px)
+}
+
+div#d4 {
+	background: linear-gradient(0deg, blue, green);
+	transform:
+	    translateX(200px)
+}
+
+div#d5 {
+	background: linear-gradient(0deg, indigo, blue);
+	transform:
+	    translateX(100px)
+}
+
+div#d6 {
+	background: linear-gradient(0deg, violet, indigo);
+	transform:
+	    translateX(000px)
+}

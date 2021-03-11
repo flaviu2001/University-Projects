@@ -18,9 +18,9 @@ public class CatXMLRepository extends XMLRepository<Long, Cat> {
     protected Cat extractEntity(Element dataTransferObject) {
         Long id = Long.parseLong(dataTransferObject.getAttribute("id"));
         String name = dataTransferObject.getElementsByTagName("name").item(0).getTextContent();
-        String owner = dataTransferObject.getElementsByTagName("owner").item(0).getTextContent();
+        String breed = dataTransferObject.getElementsByTagName("breed").item(0).getTextContent();
         int years = Integer.parseInt(dataTransferObject.getElementsByTagName("age").item(0).getTextContent());
-        return new Cat(id, name, owner, years);
+        return new Cat(id, name, breed, years);
     }
 
     /**
@@ -33,7 +33,7 @@ public class CatXMLRepository extends XMLRepository<Long, Cat> {
         Element catElement = rootDocument.createElement("cat");
         catElement.setAttribute("id", entity.getId().toString());
         addChildWithTextContent(catElement, "name", entity.getName());
-        addChildWithTextContent(catElement, "owner", entity.getOwner());
+        addChildWithTextContent(catElement, "breed", entity.getBreed());
         addChildWithTextContent(catElement, "age", entity.getCatYears().toString());
         return catElement;
     }

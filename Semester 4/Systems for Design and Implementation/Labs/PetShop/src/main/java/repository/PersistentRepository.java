@@ -42,8 +42,7 @@ public abstract class PersistentRepository<ID, E extends BaseEntity<ID>, DTO> ex
     @Override
     public Optional<E> save(E entity){
         Optional<E> optionalE = super.save(entity);
-        if(optionalE.isEmpty())
-            saveData();
+        optionalE.ifPresentOrElse((e)->{}, this::saveData);
         return optionalE;
     }
 
@@ -55,8 +54,7 @@ public abstract class PersistentRepository<ID, E extends BaseEntity<ID>, DTO> ex
     @Override
     public Optional<E> delete(ID id) {
         Optional<E> optionalE = super.delete(id);
-        if(optionalE.isPresent())
-            saveData();
+        optionalE.ifPresent((e)-> saveData());
         return optionalE;
     }
 
@@ -68,8 +66,7 @@ public abstract class PersistentRepository<ID, E extends BaseEntity<ID>, DTO> ex
     @Override
     public Optional<E> update(E entity){
         Optional<E> optionalE = super.update(entity);
-        if(optionalE.isPresent())
-            saveData();
+        optionalE.ifPresent((e)->saveData());
         return optionalE;
     }
 }

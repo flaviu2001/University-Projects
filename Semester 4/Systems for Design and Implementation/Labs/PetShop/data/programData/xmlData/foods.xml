@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <foods>
+    <food id="1">
+        <name>MeowMix</name>
+        <producer>UsaCompany</producer>
+        <expirationDate>10-03-2021</expirationDate>
+    </food>
     <food id="0">
         <name>Whiskas</name>
         <producer>MarsInc</producer>

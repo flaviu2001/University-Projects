@@ -1,11 +1,8 @@
 package service;
 
-import domain.Cat;
-import domain.CatFood;
+import domain.*;
 import domain.exceptions.PetShopException;
 import domain.exceptions.ValidatorException;
-import domain.Food;
-import domain.Pair;
 import repository.IRepository;
 
 import java.util.*;
@@ -16,13 +13,18 @@ public class Service {
     final IRepository<Long, Cat> catsRepository;
     final IRepository<Long, Food> foodRepository;
     final IRepository<Pair<Long, Long>, CatFood> catFoodRepository;
-
+    final IRepository<Long, Customer> customerRepository;
+    final IRepository<Pair<Long, Long>, Purchase> purchaseRepository;
 
     public Service(IRepository<Long, Cat> catsRepository, IRepository<Long, Food> foodRepository,
-                   IRepository<Pair<Long, Long>, CatFood> catFoodRepository) {
+                   IRepository<Pair<Long, Long>, CatFood> catFoodRepository,
+                   IRepository<Long, Customer> customerRepository,
+                   IRepository<Pair<Long, Long>, Purchase> purchaseRepository) {
         this.catsRepository = catsRepository;
         this.foodRepository = foodRepository;
         this.catFoodRepository = catFoodRepository;
+        this.customerRepository = customerRepository;
+        this.purchaseRepository = purchaseRepository;
     }
 
     /**
@@ -33,8 +35,8 @@ public class Service {
      * @throws ValidatorException       if the cat entity is not valid.
      */
 
-    public void addCat(Long id, String name, String owner, Integer catYears) {
-        Cat catToBeAdded = new Cat(id, name, owner, catYears);
+    public void addCat(Long id, String name, String breed, Integer catYears) {
+        Cat catToBeAdded = new Cat(id, name, breed, catYears);
         catsRepository.save(catToBeAdded);
     }
 
@@ -73,6 +75,48 @@ public class Service {
     }
 
     /**
+     * Saves the customer with the given attributes to the repository of customers
+     *
+     * @param id must not be null
+     * @throws IllegalArgumentException if the given id is null.
+     * @throws ValidatorException       if the cat entity is not valid.
+     */
+    public void addCustomer(Long id, String name, String phoneNumber) {
+        Customer customerToBeAdded = new Customer(id, name, phoneNumber);
+        customerRepository.save(customerToBeAdded);
+    }
+
+    /**
+     * Saves the purchase with the given attributes to the repository of purchases
+     *
+     * @param catId        must not be null
+     * @param customerId   must not be null
+     * @param price        price of the purchase
+     * @param dateAcquired date when it was made
+     * @param review       number of stars given by the customer
+     * @throws PetShopException if catId or customerId does not exist
+     */
+    public void addPurchase(Long catId, Long customerId, int price, Date dateAcquired, int review) {
+        List<Long> catIds = new ArrayList<>();
+        purchaseRepository.findAll().forEach(purchase -> catIds.add(purchase.getCatId()));
+        catIds.stream().filter(cat -> cat.equals(catId)).findAny().ifPresent(cat -> {
+            throw new PetShopException("The cat is already purchased");
+        });
+        Optional<Cat> cat = catsRepository.findOne(catId);
+        cat.ifPresentOrElse((Cat c) -> {
+            Optional<Customer> customer = customerRepository.findOne(customerId);
+            customer.ifPresentOrElse((Customer cust) -> {
+                Purchase purchase = new Purchase(catId, customerId, price, dateAcquired, review);
+                purchaseRepository.save(purchase);
+            }, () -> {
+                throw new PetShopException("Customer id does not exist");
+            });
+        }, () -> {
+            throw new PetShopException("Cat id does not exist");
+        });
+    }
+
+    /**
      * @return all cats from the repository.
      */
     public Set<Cat> getCatsFromRepository() {
@@ -91,6 +135,20 @@ public class Service {
      */
     public Set<CatFood> getCatFoodFromRepository() {
         return (Set<CatFood>) catFoodRepository.findAll();
+    }
+
+    /**
+     * @return all customers from the repository
+     */
+    public Set<Customer> getCustomersFromRepository() {
+        return (Set<Customer>) customerRepository.findAll();
+    }
+
+    /**
+     * @return all purchases from the repository
+     */
+    public Set<Purchase> getPurchasesFromRepository() {
+        return (Set<Purchase>) purchaseRepository.findAll();
     }
 
     /**
@@ -120,6 +178,12 @@ public class Service {
                 .findAny()
                 .ifPresent((catFood) -> {
                     throw new PetShopException("Cat is currently fed");
+                });
+        StreamSupport.stream(purchaseRepository.findAll().spliterator(), false)
+                .filter(purchase -> purchase.getCatId().equals(id))
+                .findAny()
+                .ifPresent(purchase -> {
+                    throw new PetShopException("The cat is purchased, can't delete");
                 });
         catsRepository.delete(id).orElseThrow(() -> new PetShopException("Cat does not exist"));
     }
@@ -156,6 +220,31 @@ public class Service {
     }
 
     /**
+     * Deletes a customer based on it's id
+     *
+     * @param id - id of the customer to be deleted
+     * @throws IllegalArgumentException if the given id is null.
+     * @throws PetShopException         if the customer does not exist
+     */
+    public void deleteCustomer(Long id) {
+        customerRepository.delete(id).orElseThrow(() -> {
+            throw new PetShopException("Customer does not exist");
+        });
+    }
+
+    /**
+     * Deletes a purchase based on id
+     * @param catId must not be null
+     * @param customerId must not be null
+     * @throws IllegalArgumentException if the given id is null.
+     * @throws PetShopException         if the purchase does not exist
+     */
+    public void deletePurchase(Long catId, Long customerId) {
+        purchaseRepository.delete(new Pair<>(catId, customerId))
+                .orElseThrow(() -> new PetShopException("Purchase does not exist"));
+    }
+
+    /**
      * Updates the cat with the given attributes.
      *
      * @param id must not be null
@@ -163,8 +252,8 @@ public class Service {
      * @throws ValidatorException       if the cat entity is not valid.
      */
 
-    public void updateCat(Long id, String name, String owner, Integer catYears) {
-        catsRepository.update(new Cat(id, name, owner, catYears))
+    public void updateCat(Long id, String name, String breed, Integer catYears) {
+        catsRepository.update(new Cat(id, name, breed, catYears))
                 .orElseThrow(() -> new PetShopException("Cat does not exist"));
     }
 
@@ -194,12 +283,37 @@ public class Service {
         catsRepository.findOne(catId).orElseThrow(() -> new PetShopException("Cat does not exist"));
         foodRepository.findOne(foodId).orElseThrow(() -> new PetShopException("Food does not exist"));
         foodRepository.findOne(newFoodId).orElseThrow(() -> new PetShopException("New food does not exist"));
-
         catFoodRepository.delete(new Pair<>(catId, foodId))
                 .orElseThrow(() -> new PetShopException("Cat food does not exist"));
         addCatFood(catId, newFoodId);
     }
 
+    /**
+     * @param id must not be null
+     * @throws IllegalArgumentException if the given id is null.
+     * @throws ValidatorException       if the customer entity is not valid.
+     * @throws PetShopException         if the customer does not exist
+     */
+    public void updateCustomer(Long id, String name, String phoneNumber) {
+        customerRepository.update(new Customer(id, name, phoneNumber))
+                .orElseThrow(() -> new PetShopException("Customer does not exist"));
+    }
+
+    /**
+     *
+     * @param catId must not be null
+     * @param customerId must not be null
+     * @throws IllegalArgumentException if the given id is null.
+     * @throws ValidatorException       if the purchase entity is not valid.
+     * @throws PetShopException         if the purchase does not exist / cat does not exist / customer does not exist
+     */
+    public void updatePurchase(Long catId, Long customerId, int newReview) {
+        catsRepository.findOne(catId).orElseThrow(() -> new PetShopException("Cat does not exist"));
+        customerRepository.findOne(customerId).orElseThrow(() -> new PetShopException("Customer does not exist"));
+        Purchase purchase = purchaseRepository.findOne(new Pair<>(catId, customerId))
+                .orElseThrow(() -> new PetShopException("Purchase does not exist"));
+        purchaseRepository.update(new Purchase(catId, customerId, purchase.getPrice(), purchase.getDateAcquired(), newReview));
+    }
     /**
      * @param foodId - identifies the required food
      * @return a list of cats that eat the required food
@@ -213,5 +327,44 @@ public class Service {
                         )
                 )
                 .collect(Collectors.toList());
+    }
+
+    /**
+     * @param breed - the breed of cat by which to filter
+     * @return a list of all customers who bought at least a cat of a certain breed
+     */
+    public List<Customer> filterCustomersThatBoughtBreedOfCat(String breed) {
+        return getCustomersFromRepository().stream()
+            .filter((customer) ->
+                getPurchasesFromRepository().stream().anyMatch((purchase) ->
+                    getCatsFromRepository().stream().anyMatch((cat) ->
+                        purchase.getCatId().equals(cat.getId()) && purchase.getCustomerId().equals(customer.getId()) && cat.getBreed().equals(breed))))
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * @param minStars - the minimum amount of stars by which you filter, must be between 1 and 5
+     * @return a list of all purchases with a minimum amount of stars
+     */
+    public List<Purchase> filterPurchasesWithMinStars(int minStars) {
+        return getPurchasesFromRepository().stream()
+                .filter(purchase -> purchase.getReview() >= minStars)
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * @return a list of Customer - Integer pairs with spent money from each customer sorted by money spent
+     */
+    public List<Pair<Customer, Integer>> reportCustomersSortedBySpentCash() {
+        List<Pair<Customer, Integer>> toReturn = new ArrayList<>();
+        getCustomersFromRepository().forEach((customer) -> {
+            int moneySpent = getPurchasesFromRepository().stream()
+                    .filter(purchase -> purchase.getCustomerId().equals(customer.getId()))
+                    .map(Purchase::getPrice)
+                    .reduce(0, Integer::sum);
+            toReturn.add(new Pair<>(customer, moneySpent));
+        });
+        toReturn.sort((p1, p2) -> -p1.getRight().compareTo(p2.getRight()));
+        return toReturn;
     }
 }
