@@ -5,9 +5,14 @@ import domain.exceptions.PetShopException;
 import domain.validators.*;
 import repository.csvRepository.*;
 import repository.InMemoryRepository;
+import repository.databaseRepository.CatDatabaseRepository;
+import repository.databaseRepository.CustomerDatabaseRepository;
+import repository.databaseRepository.FoodDatabaseRepository;
 import repository.xmlRepository.*;
 import service.Service;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -23,6 +28,31 @@ public class UI {
         menuTable = new HashMap<>();
     }
 
+    private HashMap<String, String> readSettingsFile() {
+        HashMap<String, String> propertiesMap = new HashMap<>();
+        Properties properties = new Properties();
+
+        String configFile = "data/programData/settings.properties";
+        FileInputStream fileInputStream;
+        try {
+            fileInputStream = new FileInputStream(configFile);
+        } catch (IOException exception) {
+            System.out.println(exception.getMessage());
+            return propertiesMap;
+        }
+        Stream.ofNullable(fileInputStream).findAny().ifPresentOrElse((el) ->  {
+            try {
+                properties.load(fileInputStream);
+                propertiesMap.put("database", properties.getProperty("database"));
+                propertiesMap.put("user", properties.getProperty("user"));
+                propertiesMap.put("password", properties.getProperty("password"));
+            } catch (IOException ioException) {
+                System.out.println("IOException: " + ioException.getMessage());
+            }
+        }, () -> System.out.println("Invalid config file"));
+
+        return propertiesMap;
+    }
     /**
      * One of the functions that must be called to instantiate the service.
      * It instantiates in memory repositories for each entity
@@ -52,7 +82,14 @@ public class UI {
     }
 
     void initialiseDatabaseApplication() {
-        // TODO
+        HashMap<String, String> configurations = readSettingsFile();
+        service = new Service(
+                new CatDatabaseRepository(new CatValidator(), configurations.get("database"), configurations.get("user"), configurations.get("password")),
+                new FoodDatabaseRepository(new FoodValidator(), configurations.get("database"), configurations.get("user"), configurations.get("password")),
+                new InMemoryRepository<>(new CatFoodValidator()),
+                new CustomerDatabaseRepository(new CustomerValidator(), configurations.get("database"), configurations.get("user"), configurations.get("password")),
+                new InMemoryRepository<>(new PurchaseValidator())
+        );
     }
 
     void initialiseXMLApplication() {
@@ -129,7 +166,13 @@ public class UI {
             Stream.of(applicationStyleTable.get(application))
                     .filter(Objects::nonNull)
                     .findAny()
-                    .ifPresentOrElse(Runnable::run, () -> {
+                    .ifPresentOrElse((val) -> { try {
+                        val.run();
+                    } catch (Exception exception) {
+                        System.out.println("Error on initialising repo: " + exception.getMessage());
+                        chooseApplicationStyle();
+                    }
+            }, () -> {
                         System.out.println("Invalid choice");
                         chooseApplicationStyle();
                     });
@@ -150,11 +193,11 @@ public class UI {
                 .max(Comparator.comparingLong(BaseEntity::getId)).ifPresent(cat -> id.set(cat.getId()+1));
         writeConsole("Name: ");
         String name = stdin.next();
-        writeConsole("Owner: ");
-        String owner = stdin.next();
+        writeConsole("Breed: ");
+        String breed = stdin.next();
         writeConsole("Age (in cat years): ");
         int age = stdin.nextInt();
-        service.addCat(id.get(), name, owner, age);
+        service.addCat(id.get(), name, breed, age);
     }
 
     /**
@@ -349,12 +392,12 @@ public class UI {
         Long id = stdin.nextLong();
         writeConsole("Name: ");
         String name = stdin.next();
-        writeConsole("Owner: ");
-        String owner = stdin.next();
+        writeConsole("Breed: ");
+        String breed = stdin.next();
         writeConsole("Age (in cat years): ");
         int age = stdin.nextInt();
         try{
-            service.updateCat(id, name, owner, age);
+            service.updateCat(id, name, breed, age);
         } catch (PetShopException petShopException) {
             petShopException.printStackTrace();
             System.out.println(petShopException.getMessage());
