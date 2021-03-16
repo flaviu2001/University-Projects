@@ -6,14 +6,20 @@ from constants import DIRECTIONS
 
 
 class Service:
-    def __init__(self, drone_map, drone, initial_x, initial_y, final_x, final_y):
+    def __init__(self, drone_map, drone, initial_x, initial_y, final_x, final_y, which):
         self.drone_map = drone_map
         self.drone = drone
         self.initial_x = initial_x
         self.initial_y = initial_y
         self.final_x = final_x
         self.final_y = final_y
-        self.path = self.search_simulated_annealing()
+        self.path = None
+        if which == 1:
+            self.path = self.search_greedy()
+        elif which == 2:
+            self.path = self.search_a_star()
+        else:
+            self.path = self.search_simulated_annealing()
         self.iterator = iter(self.path)
         self.incomplete_path = [next(self.iterator)]
         self.finished_simulation = False

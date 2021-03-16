@@ -1,6 +1,5 @@
-from random import randint, randrange
+from random import randrange
 
-from constants import ROWS, COLUMNS
 from domain import Drone, DroneMap
 from gui import GUI
 from service import Service
@@ -23,8 +22,10 @@ def main():
     while drone_map.surface[fx][fy] == 1 or fx == sx and fy == sy:
         fx = randrange(0, n)
         fy = randrange(0, m)
-    service = Service(drone_map, drone, sx, sy, fx, fy)
-    gui = GUI(service)
+    service1 = Service(drone_map, drone, sx, sy, fx, fy, 1)
+    service2 = Service(drone_map, drone, sx, sy, fx, fy, 2)
+    service3 = Service(drone_map, drone, sx, sy, fx, fy, 3)
+    gui = GUI([service1, service2, service3])
     gui.start()
 
 

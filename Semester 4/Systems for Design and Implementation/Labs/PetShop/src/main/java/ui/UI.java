@@ -5,9 +5,7 @@ import domain.exceptions.PetShopException;
 import domain.validators.*;
 import repository.csvRepository.*;
 import repository.InMemoryRepository;
-import repository.databaseRepository.CatDatabaseRepository;
-import repository.databaseRepository.CustomerDatabaseRepository;
-import repository.databaseRepository.FoodDatabaseRepository;
+import repository.databaseRepository.*;
 import repository.xmlRepository.*;
 import service.Service;
 
@@ -86,9 +84,9 @@ public class UI {
         service = new Service(
                 new CatDatabaseRepository(new CatValidator(), configurations.get("database"), configurations.get("user"), configurations.get("password")),
                 new FoodDatabaseRepository(new FoodValidator(), configurations.get("database"), configurations.get("user"), configurations.get("password")),
-                new InMemoryRepository<>(new CatFoodValidator()),
+                new CatFoodDatabaseRepository(new CatFoodValidator(), configurations.get("database"), configurations.get("user"), configurations.get("password")),
                 new CustomerDatabaseRepository(new CustomerValidator(), configurations.get("database"), configurations.get("user"), configurations.get("password")),
-                new InMemoryRepository<>(new PurchaseValidator())
+                new PurchaseDatabaseRepository(new PurchaseValidator(), configurations.get("database"), configurations.get("user"), configurations.get("password"))
         );
     }
 
@@ -136,7 +134,7 @@ public class UI {
         writeConsole("Choose type of storage");
         writeConsole("1. Memory");
         writeConsole("2. File");
-        writeConsole("3. Database - in progress");
+        writeConsole("3. Database");
         writeConsole("4. XML File");
         writeConsole("0. Exit");
     }

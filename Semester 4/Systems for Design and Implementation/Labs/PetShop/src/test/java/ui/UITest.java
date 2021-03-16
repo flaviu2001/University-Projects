@@ -103,6 +103,82 @@ public class UITest {
     }
 
     @Test
+    public void testAddFood() {
+        inputStream = new ByteArrayInputStream("1".getBytes(StandardCharsets.UTF_8));
+        System.setIn(inputStream);
+        ui.chooseApplicationStyle();
+        inputStream = new ByteArrayInputStream("Whiskas Coca-Cola 23-02-2030".getBytes(StandardCharsets.UTF_8));
+        System.setIn(inputStream);
+        ui.addFood();
+        outputStreamCaptor.reset();
+        ui.showFood();
+        Assertions.assertEquals(outputStreamCaptor.toString().trim(), "BaseEntity{id=0} Food{name: Whiskas; producer: Coca-Cola; expirationDate: Sat Feb 23 00:00:00 EET 2030}");
+    }
+
+    @Test
+    public void testFeedCat() {
+        inputStream = new ByteArrayInputStream("1".getBytes(StandardCharsets.UTF_8));
+        System.setIn(inputStream);
+        ui.chooseApplicationStyle();
+
+        inputStream = new ByteArrayInputStream("George b1 3".getBytes(StandardCharsets.UTF_8));
+        System.setIn(inputStream);
+        ui.addCat();
+
+        inputStream = new ByteArrayInputStream("Whiskas Coca-Cola 23-02-2030".getBytes(StandardCharsets.UTF_8));
+        System.setIn(inputStream);
+        ui.addFood();
+
+        inputStream = new ByteArrayInputStream("0 0".getBytes(StandardCharsets.UTF_8));
+        System.setIn(inputStream);
+        ui.feedCat();
+
+        outputStreamCaptor.reset();
+        ui.showCatFoodPairs();
+        Assertions.assertEquals(outputStreamCaptor.toString().trim(), "BaseEntity{id=0} Cat{name: George; breed: b1; catYears: 3}\n" +
+                "BaseEntity{id=0} Food{name: Whiskas; producer: Coca-Cola; expirationDate: Sat Feb 23 00:00:00 EET 2030}");
+    }
+
+    @Test
+    public void testAddCustomer() {
+        inputStream = new ByteArrayInputStream("1".getBytes(StandardCharsets.UTF_8));
+        System.setIn(inputStream);
+        ui.chooseApplicationStyle();
+
+        inputStream = new ByteArrayInputStream("Tavi 0123456789".getBytes(StandardCharsets.UTF_8));
+        System.setIn(inputStream);
+        ui.addCustomer();
+
+        outputStreamCaptor.reset();
+        ui.showCustomers();
+        Assertions.assertEquals(outputStreamCaptor.toString().trim(), "BaseEntity{id=0} Customer{name='Tavi', phoneNumber='0123456789'}");
+
+    }
+
+    @Test
+    public void testMakePurchase() {
+        inputStream = new ByteArrayInputStream("1".getBytes(StandardCharsets.UTF_8));
+        System.setIn(inputStream);
+        ui.chooseApplicationStyle();
+
+        inputStream = new ByteArrayInputStream("Tavi 0123456789".getBytes(StandardCharsets.UTF_8));
+        System.setIn(inputStream);
+        ui.addCustomer();
+
+        inputStream = new ByteArrayInputStream("George b1 3".getBytes(StandardCharsets.UTF_8));
+        System.setIn(inputStream);
+        ui.addCat();
+
+        inputStream = new ByteArrayInputStream("0 0 100 3".getBytes(StandardCharsets.UTF_8));
+        System.setIn(inputStream);
+        ui.addPurchase();
+
+        outputStreamCaptor.reset();
+        ui.showPurchases();
+        Assertions.assertTrue(outputStreamCaptor.toString().trim().endsWith("3}"));
+    }
+
+    @Test
     public void testRemoveCat() {
         inputStream = new ByteArrayInputStream("1".getBytes(StandardCharsets.UTF_8));
         System.setIn(inputStream);
@@ -119,21 +195,217 @@ public class UITest {
     }
 
     @Test
+    public void testDeleteFood() {
+        inputStream = new ByteArrayInputStream("1".getBytes(StandardCharsets.UTF_8));
+        System.setIn(inputStream);
+        ui.chooseApplicationStyle();
+
+        inputStream = new ByteArrayInputStream("Whiskas Coca-Cola 23-02-2030".getBytes(StandardCharsets.UTF_8));
+        System.setIn(inputStream);
+        ui.addFood();
+
+        inputStream = new ByteArrayInputStream("0".getBytes(StandardCharsets.UTF_8));
+        System.setIn(inputStream);
+        ui.deleteFood();
+
+        outputStreamCaptor.reset();
+        ui.showFood();
+        Assertions.assertEquals(outputStreamCaptor.toString().trim(), "");
+
+    }
+
+    @Test
+    public void testDeleteCatFood() {
+        inputStream = new ByteArrayInputStream("1".getBytes(StandardCharsets.UTF_8));
+        System.setIn(inputStream);
+        ui.chooseApplicationStyle();
+
+        inputStream = new ByteArrayInputStream("George b1 3".getBytes(StandardCharsets.UTF_8));
+        System.setIn(inputStream);
+        ui.addCat();
+
+        inputStream = new ByteArrayInputStream("Whiskas Coca-Cola 23-02-2030".getBytes(StandardCharsets.UTF_8));
+        System.setIn(inputStream);
+        ui.addFood();
+
+        inputStream = new ByteArrayInputStream("0 0".getBytes(StandardCharsets.UTF_8));
+        System.setIn(inputStream);
+        ui.feedCat();
+
+        inputStream = new ByteArrayInputStream("0 0".getBytes(StandardCharsets.UTF_8));
+        System.setIn(inputStream);
+        ui.stopFeedingCat();
+
+        outputStreamCaptor.reset();
+        ui.showCatFoodPairs();
+        Assertions.assertEquals(outputStreamCaptor.toString().trim(), "");
+
+    }
+
+    @Test
+    public void testDeleteCustomer() {
+        inputStream = new ByteArrayInputStream("1".getBytes(StandardCharsets.UTF_8));
+        System.setIn(inputStream);
+        ui.chooseApplicationStyle();
+
+        inputStream = new ByteArrayInputStream("Tavi 0123456789".getBytes(StandardCharsets.UTF_8));
+        System.setIn(inputStream);
+        ui.addCustomer();
+
+        inputStream = new ByteArrayInputStream("0".getBytes(StandardCharsets.UTF_8));
+        System.setIn(inputStream);
+        ui.deleteCustomer();
+
+        outputStreamCaptor.reset();
+        ui.showCustomers();
+        Assertions.assertEquals(outputStreamCaptor.toString().trim(), "");
+
+    }
+
+    @Test
+    public void testDeletePurchase() {
+        inputStream = new ByteArrayInputStream("1".getBytes(StandardCharsets.UTF_8));
+        System.setIn(inputStream);
+        ui.chooseApplicationStyle();
+
+        inputStream = new ByteArrayInputStream("Tavi 0123456789".getBytes(StandardCharsets.UTF_8));
+        System.setIn(inputStream);
+        ui.addCustomer();
+
+        inputStream = new ByteArrayInputStream("George b1 3".getBytes(StandardCharsets.UTF_8));
+        System.setIn(inputStream);
+        ui.addCat();
+
+        inputStream = new ByteArrayInputStream("0 0 100 3".getBytes(StandardCharsets.UTF_8));
+        System.setIn(inputStream);
+        ui.addPurchase();
+
+        inputStream = new ByteArrayInputStream("0 0".getBytes(StandardCharsets.UTF_8));
+        System.setIn(inputStream);
+        ui.deletePurchase();
+
+        outputStreamCaptor.reset();
+        ui.showPurchases();
+        Assertions.assertEquals(outputStreamCaptor.toString().length(), 0);
+
+    }
+
+    @Test
     public void testUpdateCat() {
         inputStream = new ByteArrayInputStream("1".getBytes(StandardCharsets.UTF_8));
         System.setIn(inputStream);
         ui.chooseApplicationStyle();
+
         inputStream = new ByteArrayInputStream("George b1 3".getBytes(StandardCharsets.UTF_8));
         System.setIn(inputStream);
         ui.addCat();
+
         inputStream = new ByteArrayInputStream("0 Georgian b2 3".getBytes(StandardCharsets.UTF_8));
         System.setIn(inputStream);
         ui.updateCat();
+
         outputStreamCaptor.reset();
         ui.showCats();
         Assertions.assertEquals(outputStreamCaptor.toString().trim(), "BaseEntity{id=0} Cat{name: Georgian; breed: b2; catYears: 3}");
     }
 
+    @Test
+    public void testUpdateFood() {
+        inputStream = new ByteArrayInputStream("1".getBytes(StandardCharsets.UTF_8));
+        System.setIn(inputStream);
+        ui.chooseApplicationStyle();
 
+        inputStream = new ByteArrayInputStream("Whiskas Coca-Cola 23-02-2030".getBytes(StandardCharsets.UTF_8));
+        System.setIn(inputStream);
+        ui.addFood();
 
+        inputStream = new ByteArrayInputStream("0 Whiskas2 Coca-Cola2 23-02-2030".getBytes(StandardCharsets.UTF_8));
+        System.setIn(inputStream);
+        ui.updateFood();
+
+        outputStreamCaptor.reset();
+        ui.showFood();
+        Assertions.assertEquals(outputStreamCaptor.toString().trim(), "BaseEntity{id=0} Food{name: Whiskas2; producer: Coca-Cola2; expirationDate: Sat Feb 23 00:00:00 EET 2030}");
+    }
+
+    @Test
+    public void testUpdateCatFood() {
+        inputStream = new ByteArrayInputStream("1".getBytes(StandardCharsets.UTF_8));
+        System.setIn(inputStream);
+        ui.chooseApplicationStyle();
+
+        inputStream = new ByteArrayInputStream("George b1 3".getBytes(StandardCharsets.UTF_8));
+        System.setIn(inputStream);
+        ui.addCat();
+
+        inputStream = new ByteArrayInputStream("Whiskas Coca-Cola 23-02-2030".getBytes(StandardCharsets.UTF_8));
+        System.setIn(inputStream);
+        ui.addFood();
+
+        inputStream = new ByteArrayInputStream("0 0".getBytes(StandardCharsets.UTF_8));
+        System.setIn(inputStream);
+        ui.feedCat();
+
+        inputStream = new ByteArrayInputStream("Whiskas2 Coca-Cola2 23-02-2030".getBytes(StandardCharsets.UTF_8));
+        System.setIn(inputStream);
+        ui.addFood();
+
+        inputStream = new ByteArrayInputStream("0 0 1".getBytes(StandardCharsets.UTF_8));
+        System.setIn(inputStream);
+        ui.updateCatFood();
+
+        outputStreamCaptor.reset();
+        ui.showCatFoodPairs();
+        Assertions.assertEquals(outputStreamCaptor.toString().trim(), "BaseEntity{id=0} Cat{name: George; breed: b1; catYears: 3}\n" +
+                "BaseEntity{id=1} Food{name: Whiskas2; producer: Coca-Cola2; expirationDate: Sat Feb 23 00:00:00 EET 2030}");
+
+    }
+
+    @Test
+    public void testUpdateCustomer() {
+        inputStream = new ByteArrayInputStream("1".getBytes(StandardCharsets.UTF_8));
+        System.setIn(inputStream);
+        ui.chooseApplicationStyle();
+
+        inputStream = new ByteArrayInputStream("Tavi 0123456789".getBytes(StandardCharsets.UTF_8));
+        System.setIn(inputStream);
+        ui.addCustomer();
+
+        inputStream = new ByteArrayInputStream("0 Ana 0123456789".getBytes(StandardCharsets.UTF_8));
+        System.setIn(inputStream);
+        ui.updateCustomer();
+
+        outputStreamCaptor.reset();
+        ui.showCustomers();
+        Assertions.assertEquals(outputStreamCaptor.toString().trim(), "BaseEntity{id=0} Customer{name='Ana', phoneNumber='0123456789'}");
+
+    }
+
+    @Test
+    public void testUpdatePurchase() {
+        inputStream = new ByteArrayInputStream("1".getBytes(StandardCharsets.UTF_8));
+        System.setIn(inputStream);
+        ui.chooseApplicationStyle();
+
+        inputStream = new ByteArrayInputStream("Tavi 0123456789".getBytes(StandardCharsets.UTF_8));
+        System.setIn(inputStream);
+        ui.addCustomer();
+
+        inputStream = new ByteArrayInputStream("George b1 3".getBytes(StandardCharsets.UTF_8));
+        System.setIn(inputStream);
+        ui.addCat();
+
+        inputStream = new ByteArrayInputStream("0 0 100 3".getBytes(StandardCharsets.UTF_8));
+        System.setIn(inputStream);
+        ui.addPurchase();
+
+        inputStream = new ByteArrayInputStream("0 0 5".getBytes(StandardCharsets.UTF_8));
+        System.setIn(inputStream);
+        ui.updatePurchase();
+
+        outputStreamCaptor.reset();
+        ui.showPurchases();
+        Assertions.assertTrue(outputStreamCaptor.toString().trim().endsWith("5}"));
+
+    }
 }

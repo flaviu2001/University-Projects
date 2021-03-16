@@ -11,6 +11,9 @@ import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.function.BinaryOperator;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class CatDatabaseRepository implements IRepository<Long, Cat> {
@@ -59,14 +62,26 @@ public class CatDatabaseRepository implements IRepository<Long, Cat> {
                             try (var connection = DriverManager.getConnection(url, user, password);
                                  var preparedStatement = connection.prepareStatement(sqlCommand);
                                  var rs = preparedStatement.executeQuery()) {
-                                if (rs.next()) {
-                                    Long id = rs.getLong("ID");
-                                    String name = rs.getString("Name");
-                                    String breed = rs.getString("Breed");
-                                    int catYears = rs.getInt("CatYears");
-                                    Cat cat = new Cat(id, name, breed, catYears);
-                                    catToReturn.set(Optional.of(cat));
-                                }
+                                Stream.of(rs.next()).filter((cond) -> cond).findAny().ifPresent((value) -> {
+                                    try {
+                                        Long id = rs.getLong("ID");
+                                        String name = rs.getString("Name");
+                                        String breed = rs.getString("Breed");
+                                        int catYears = rs.getInt("CatYears");
+                                        Cat cat = new Cat(id, name, breed, catYears);
+                                        catToReturn.set(Optional.of(cat));
+                                    } catch (SQLException exception) {
+                                        exception.printStackTrace();
+                                    }
+                                });
+//                                if (rs.next()) {
+//                                    Long id = rs.getLong("ID");
+//                                    String name = rs.getString("Name");
+//                                    String breed = rs.getString("Breed");
+//                                    int catYears = rs.getInt("CatYears");
+//                                    Cat cat = new Cat(id, name, breed, catYears);
+//                                    catToReturn.set(Optional.of(cat));
+//                                }
 
                             } catch (SQLException throwables) {
                                 throw new PetShopException("SQL Exception: " + throwables.getMessage());
@@ -90,14 +105,42 @@ public class CatDatabaseRepository implements IRepository<Long, Cat> {
         try (var connection = DriverManager.getConnection(url, user, password);
              var preparedStatement = connection.prepareStatement(sqlCommand);
              var rs = preparedStatement.executeQuery()) {
-            while (rs.next()) {
-                Long id = rs.getLong("ID");
-                String name = rs.getString("Name");
-                String breed = rs.getString("Breed");
-                int catYears = rs.getInt("CatYears");
-                Cat cat = new Cat(id, name, breed, catYears);
-                catList.add(cat);
-            }
+
+            try {
+                //noinspection EndlessStream
+                Stream.generate(() -> {
+                    try {
+                        return rs.next();
+                    } catch (SQLException exception) {
+                        exception.printStackTrace();
+                        return false;
+                    }
+                }).forEach (i -> {
+                    Stream.of(i).filter((val) -> !val).findAny().ifPresent((val) -> {
+                        throw new PetShopException("Exit");
+                    });
+                    try {
+                        Long id = rs.getLong("ID");
+                        String name = rs.getString("Name");
+                        String breed = rs.getString("Breed");
+                        int catYears = rs.getInt("CatYears");
+                        Cat cat = new Cat(id, name, breed, catYears);
+                        catList.add(cat);
+                    } catch (SQLException exception) {
+                        exception.printStackTrace();
+                    }
+            });
+
+
+            } catch (PetShopException ignored) {}
+//            while (rs.next()) {
+//                Long id = rs.getLong("ID");
+//                String name = rs.getString("Name");
+//                String breed = rs.getString("Breed");
+//                int catYears = rs.getInt("CatYears");
+//                Cat cat = new Cat(id, name, breed, catYears);
+//                catList.add(cat);
+//            }
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
