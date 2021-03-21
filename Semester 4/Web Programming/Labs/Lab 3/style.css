@@ -3,10 +3,12 @@ body {
     max-width: 1620px;
     margin-left: auto;
     margin-right: auto;
+    background: #ffffff;
 }
 
 html {
     font-family: "OracleSansVF","OracleSansVFCyGr",-apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif;
+    background: #ebeae7;
 }
 
 .headerFirstPart {
@@ -20,10 +22,6 @@ html {
     font-size: 16px;
     margin-left: 1.5%;
     margin-top: 20px;
-}
-
-.headerText:hover {
-    text-decoration: underline;
 }
 
 .logo {
@@ -133,7 +131,6 @@ img.phone {
 
 .images {
     width: 10%;
-    float: left;
     margin-top: 20px;
 }
 
@@ -151,10 +148,6 @@ img.phone {
     text-align: center;
 }
 
-.images .text:hover {
-    text-decoration: underline;
-}
-
 .bodyContent .bodyThirdPart {
     width: 100%;
     height: 100px;
@@ -162,6 +155,7 @@ img.phone {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    background: #ffffff;
 }
 
 .fimages {
@@ -188,15 +182,10 @@ img.phone {
     float: left;
 }
 
-.fimages .text:hover {
-    text-decoration: underline;
-}
-
 #background_img {
     background-image: url("background.jpg");
     width: 100%;
     height: 12px;
-    background-size: contain;
 }
 
 .bodyFourthPart {
@@ -215,10 +204,6 @@ img.phone {
     color: #ffffff;
     line-height: 1.2;
     padding-bottom: 8px;
-}
-
-.list_div ul li:hover {
-    text-decoration: underline;
 }
 
 .list_div {
@@ -276,16 +261,8 @@ img.phone {
     width: 13px;
 }
 
-#country_region:hover {
-    text-decoration: underline;
-}
-
 #trademark {
     padding-left: 10%;
-}
-
-#trademark:hover {
-    text-decoration: underline;
 }
 
 #site_map {
@@ -294,32 +271,16 @@ img.phone {
     margin-left: 19px;
 }
 
-#site_map:hover {
-    text-decoration: underline;
-}
-
 #privacy {
     padding-left: 20px;
-}
-
-#privacy:hover {
-    text-decoration: underline;
 }
 
 #adchoices {
     padding-left: 20px;
 }
 
-#adchoices:hover {
-    text-decoration: underline;
-}
-
 #careers {
     padding-left: 20px;
-}
-
-#careers:hover {
-    text-decoration: underline;
 }
 
 .footer_logo {
