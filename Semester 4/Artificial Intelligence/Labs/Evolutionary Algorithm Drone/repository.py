@@ -8,8 +8,8 @@ class Repository:
         self.population = None
         self.drone_map = DroneMap()
 
-    def create_population(self, battery, population_size, individual_size):
-        self.population = Population(self.drone_map, battery, population_size, individual_size)
+    def create_population(self, battery, population_size, individual_size, going_back):
+        self.population = Population(self.drone_map, battery, population_size, individual_size, going_back)
 
     def set_new_population(self, population_list):
         self.population = Population(self.drone_map, population=population_list)
@@ -24,6 +24,3 @@ class Repository:
     def load_map(self):
         with open("file.map", "rb") as file:
             self.drone_map = pickle.load(file)
-
-    # TO DO : add the other components for the repository: 
-    #    load and save from file, etc
