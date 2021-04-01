@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ListView?>
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+          prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="10.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="318.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="10.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="10.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="10.0"/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints maxHeight="342.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="342.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="342.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="342.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="342.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="342.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="342.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="342.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES"/>
+
+    </rowConstraints>
+    <children>
+        <ListView fx:id="conferenceListView" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0"
+                  prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="5"
+                  GridPane.columnIndex="1"/>
+
+        <Label text="Conference name" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+        <TextField fx:id="nameField" maxWidth="-Infinity" prefWidth="200.0" GridPane.halignment="CENTER"
+                   GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+        <Label text="Price" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.columnIndex="3"/>
+        <TextField fx:id="priceField" maxWidth="-Infinity" prefWidth="200.0" GridPane.halignment="CENTER"
+                   GridPane.rowIndex="3" GridPane.columnIndex="3"/>
+        <Label text="Date" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.columnIndex="3"/>
+        <DatePicker fx:id="dateField" maxWidth="-Infinity" prefWidth="200.0" GridPane.halignment="CENTER"
+                    GridPane.rowIndex="5" GridPane.columnIndex="3"/>
+        <Button fx:id="addConferenceButton" mnemonicParsing="false" text="Add conference" GridPane.halignment="CENTER"
+                GridPane.rowIndex="6" GridPane.columnIndex="3"/>
+
+        <Label text="Username" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.columnIndex="5"/>
+        <TextField fx:id="chairNameField" maxWidth="-Infinity" prefWidth="200.0" GridPane.halignment="CENTER"
+                   GridPane.rowIndex="1" GridPane.columnIndex="5"/>
+        <RadioButton fx:id="coChairRadioButton" text="Co-Chair" GridPane.rowIndex="2" GridPane.columnIndex="5"/>
+        <Button fx:id="inviteChairButton" mnemonicParsing="false" text="Invite chairperson" GridPane.halignment="CENTER"
+                GridPane.columnIndex="5" GridPane.rowIndex="6"/>
+        <Button fx:id="logoutButton" mnemonicParsing="false" text="Logout" GridPane.halignment="CENTER"
+                GridPane.columnIndex="0" GridPane.columnSpan="7" GridPane.rowIndex="7"/>
+    </children>
+</GridPane>
