@@ -18,38 +18,6 @@ import java.util.stream.Stream;
 
 @Configuration
 public class ServerConfig {
-    private HashMap<String, String> readSettingsFile() { // this should be removed at the end
-        HashMap<String, String> propertiesMap = new HashMap<>();
-        Properties properties = new Properties();
-
-        String configFile = "data/programData/settings.properties";
-        FileInputStream fileInputStream;
-        try {
-            fileInputStream = new FileInputStream(configFile);
-        } catch (IOException exception) {
-            System.out.println(exception.getMessage());
-            return propertiesMap;
-        }
-        Stream.ofNullable(fileInputStream).findAny().ifPresentOrElse((el) ->  {
-            try {
-                properties.load(fileInputStream);
-                propertiesMap.put("database", properties.getProperty("database"));
-                propertiesMap.put("user", properties.getProperty("user"));
-                propertiesMap.put("password", properties.getProperty("password"));
-            } catch (IOException ioException) {
-                System.out.println("IOException: " + ioException.getMessage());
-            }
-        }, () -> System.out.println("Invalid config file"));
-
-        return propertiesMap;
-    }
-
-    HashMap<String, String> configurations = readSettingsFile();
-    final IRepository<Pair<Long, Long>, CatFood> catFoodRepository = new CatFoodDatabaseRepository(new CatFoodValidator(), configurations.get("database"), configurations.get("user"), configurations.get("password"));
-    final IRepository<Long, Customer> customerRepository = new CustomerDatabaseRepository(new CustomerValidator(), configurations.get("database"), configurations.get("user"), configurations.get("password"));
-    final IRepository<Pair<Long, Long>, Purchase> purchaseRepository = new PurchaseDatabaseRepository(new PurchaseValidator(), configurations.get("database"), configurations.get("user"), configurations.get("password"));
-    // ^ these too ^
-
     @Bean
     CatDatabaseRepository getCatDatabaseRepository(){
         return new CatDatabaseRepository(new CatValidator());
@@ -61,13 +29,28 @@ public class ServerConfig {
     }
 
     @Bean
+    CustomerDatabaseRepository getCustomerDatabaseRepository(){
+        return new CustomerDatabaseRepository(new CustomerValidator());
+    }
+
+    @Bean
+    CatFoodDatabaseRepository getCatFoodDatabaseRepository(){
+        return new CatFoodDatabaseRepository(new CatFoodValidator());
+    }
+
+    @Bean
+    PurchaseDatabaseRepository getPurchaseRepository(){
+        return new PurchaseDatabaseRepository(new PurchaseValidator());
+    }
+
+    @Bean
     RmiServiceExporter rmiCatServiceExporter() {
         RmiServiceExporter rmiServiceExporter = new RmiServiceExporter();
         rmiServiceExporter.setServiceInterface(ICatService.class);
         rmiServiceExporter.setService(new CatServiceServerImpl(
                 getCatDatabaseRepository(),
-                purchaseRepository,
-                catFoodRepository
+                getPurchaseRepository(),
+                getCatFoodDatabaseRepository()
         ));
         rmiServiceExporter.setServiceName("ICatService");
         return rmiServiceExporter;
@@ -78,7 +61,7 @@ public class ServerConfig {
         rmiServiceExporter.setServiceInterface(IFoodService.class);
         rmiServiceExporter.setService(new FoodServiceServerImpl(
                 getFoodDatabaseRepository(),
-                catFoodRepository
+                getCatFoodDatabaseRepository()
         ));
         rmiServiceExporter.setServiceName("IFoodService");
         return rmiServiceExporter;
@@ -88,7 +71,7 @@ public class ServerConfig {
         RmiServiceExporter rmiServiceExporter = new RmiServiceExporter();
         rmiServiceExporter.setServiceInterface(ICatFoodService.class);
         rmiServiceExporter.setService(new CatFoodServiceServerImpl(
-                catFoodRepository,
+                getCatFoodDatabaseRepository(),
                 getCatDatabaseRepository(),
                 getFoodDatabaseRepository()
         ));
@@ -100,9 +83,9 @@ public class ServerConfig {
         RmiServiceExporter rmiServiceExporter = new RmiServiceExporter();
         rmiServiceExporter.setServiceInterface(IPurchaseService.class);
         rmiServiceExporter.setService(new PurchaseServiceServerImpl(
-                purchaseRepository,
+                getPurchaseRepository(),
                 getCatDatabaseRepository(),
-                customerRepository
+                getCustomerDatabaseRepository()
         ));
         rmiServiceExporter.setServiceName("IPurchaseService");
         return rmiServiceExporter;
@@ -112,7 +95,7 @@ public class ServerConfig {
         RmiServiceExporter rmiServiceExporter = new RmiServiceExporter();
         rmiServiceExporter.setServiceInterface(ICustomerService.class);
         rmiServiceExporter.setService(new CustomerServiceServerImpl(
-                customerRepository
+                getCustomerDatabaseRepository()
         ));
         rmiServiceExporter.setServiceName("ICustomerService");
         return rmiServiceExporter;

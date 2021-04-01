@@ -1,9 +1,12 @@
 package repository.databaseRepository;
 
+import common.domain.Cat;
 import common.domain.Customer;
 import common.exceptions.PetShopException;
 import common.exceptions.ValidatorException;
 import common.domain.validators.Validator;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcOperations;
 import repository.IRepository;
 
 import java.sql.DriverManager;
@@ -17,37 +20,13 @@ import java.util.stream.Stream;
 
 public class CustomerDatabaseRepository implements IRepository<Long, Customer> {
 
-    private final String url;
-    private final String user;
-    private final String password;
+    @Autowired
+    private JdbcOperations jdbcOperations;
+
     private final Validator<Customer> validator;
 
-    public CustomerDatabaseRepository(Validator<Customer> validator, String url, String user, String password) {
-        this.url = url;
-        this.user = user;
-        this.password = password;
+    public CustomerDatabaseRepository(Validator<Customer> validator) {
         this.validator = validator;
-
-        String sqlCreateTableCustomerQuery = """
-                CREATE TABLE IF NOT EXISTS Customers (
-                ID INT PRIMARY KEY,
-                Name VARCHAR(50),
-                PhoneNumber VARCHAR(11)
-                )""";
-
-        try (var connection = DriverManager.getConnection(this.url, this.user, this.password)){
-            var preparedStatement = connection.prepareStatement(sqlCreateTableCustomerQuery);
-            preparedStatement.executeUpdate();
-        }catch (SQLException exception){
-            throw new PetShopException("SQL Exception: " + exception);
-        }
-    }
-
-    private Customer getCustomerFromResultSet(ResultSet resultSet) throws SQLException {
-        Long id = resultSet.getLong("ID");
-        String name = resultSet.getString("Name");
-        String phoneNumber = resultSet.getString("PhoneNumber");
-        return new Customer(id, name, phoneNumber);
     }
 
     /**
@@ -59,42 +38,12 @@ public class CustomerDatabaseRepository implements IRepository<Long, Customer> {
      */
     @Override
     public Optional<Customer> findOne(Long aLong) {
-        AtomicReference<Customer> customerWithGivenId = new AtomicReference<>();
-
-        Stream.ofNullable(aLong)
-                .findAny()
-                .ifPresentOrElse(
-                        (id) -> {
-                            String findCustomerWithGivenIdCommand =
-                                    "SELECT * FROM Customers WHERE ID = " + id.toString();
-                            try (var connection = DriverManager.getConnection(url, user, password);
-                                 var preparedStatement = connection.prepareStatement(findCustomerWithGivenIdCommand);
-                                 var resultSet = preparedStatement.executeQuery()
-                            ){
-                                Stream.of(resultSet.next())
-                                        .filter((r) -> r)
-                                        .forEach( (result) -> {
-                                                    try {
-                                                        Customer customer = getCustomerFromResultSet(resultSet);
-                                                        customerWithGivenId.set(customer);
-                                                    } catch (SQLException exception) {
-                                                        throw new PetShopException("Sql exception: " + exception.getMessage());
-                                                    }
-                                                }
-                                        );
-
-                            }catch (SQLException exception){
-                                throw new PetShopException("Sql exception: " + exception.getMessage());
-                            }
-
-                        }
-                        ,
-                        () -> {
-                            throw new IllegalArgumentException("Id must not be null");
-                        }
-                );
-
-        return Optional.of(customerWithGivenId.get());
+        return jdbcOperations.query("select * from customers where id=" + aLong, (rs, i)->
+                new Customer(
+                        rs.getLong("ID"),
+                        rs.getString("Name"),
+                        rs.getString("PhoneNumber")))
+                .stream().findFirst();
     }
 
     /**
@@ -102,23 +51,12 @@ public class CustomerDatabaseRepository implements IRepository<Long, Customer> {
      */
     @Override
     public Iterable<Customer> findAll() {
-        Set<Customer> customers = new HashSet<>();
-        String selectCustomersCommand = "SELECT * FROM Customers";
-
-        try (var connection = DriverManager.getConnection(url, user, password);
-            var preparedStatement = connection.prepareStatement(selectCustomersCommand);
-            var resultSet = preparedStatement.executeQuery()
-        ){
-            while (resultSet.next()){
-                Customer customer = getCustomerFromResultSet(resultSet);
-                customers.add(customer);
-            }
-
-        }catch (SQLException exception){
-            throw new PetShopException("SQL Exception: " + exception);
-        }
-
-        return customers;
+        return new HashSet<>(jdbcOperations.query("select * from customers", (rs, i) ->
+                new Customer(
+                        rs.getLong("ID"),
+                        rs.getString("Name"),
+                        rs.getString("PhoneNumber"))
+        ));
     }
 
     /**
@@ -132,21 +70,13 @@ public class CustomerDatabaseRepository implements IRepository<Long, Customer> {
     @Override
     public Optional<Customer> save(Customer entity) throws ValidatorException {
         validator.validate(entity);
-
-        String insertCustomerCommand = "INSERT INTO Customers(ID, Name, PhoneNumber) VALUES (?, ?, ?)";
-
-        try (var connection = DriverManager.getConnection(url, user, password);
-             var preparedStatement = connection.prepareStatement(insertCustomerCommand)
-        ){
-            preparedStatement.setLong(1, entity.getId());
-            preparedStatement.setString(2, entity.getName());
-            preparedStatement.setString(3, entity.getPhoneNumber());
-
-            preparedStatement.executeUpdate();
-        }catch (SQLException exception){
-            throw new PetShopException("Sql exception: " + exception.getMessage());
-        }
-        return Optional.empty();
+        Integer rowsAffected = jdbcOperations.update("INSERT INTO customers (ID, Name, phonenumber) VALUES (?, ?, ?)",
+                entity.getId(),
+                entity.getName(),
+                entity.getPhoneNumber());
+        if(rowsAffected.equals(1))
+            return Optional.empty();
+        return Optional.of(entity);
     }
 
     /**
@@ -158,25 +88,9 @@ public class CustomerDatabaseRepository implements IRepository<Long, Customer> {
      */
     @Override
     public Optional<Customer> delete(Long aLong) {
-        Optional<Customer> customerWithGivenId = findOne(aLong);
-        AtomicReference<Customer> removedCustomer = new AtomicReference<>();
-
-
-        customerWithGivenId.ifPresentOrElse( (customer) -> {
-            String deleteCustomerCommand = "DELETE FROM Customers WHERE ID = ?";
-                    try (var connection = DriverManager.getConnection(url, user, password);
-                         var preparedStatement = connection.prepareStatement(deleteCustomerCommand)
-                    ){
-                        preparedStatement.setLong(1, aLong);
-                        preparedStatement.executeUpdate();
-                        removedCustomer.set(customer);
-                    }catch (SQLException exception){
-                        throw new PetShopException("Sql exception: " + exception.getMessage());
-                    }
-        }, () -> removedCustomer.set(null)
-        );
-
-        return Optional.of(removedCustomer.get());
+        Optional<Customer> toBeRemoved = findOne(aLong);
+        toBeRemoved.ifPresent((customer)->jdbcOperations.update("DELETE FROM Customers WHERE ID = ?", customer.getId()));
+        return toBeRemoved;
     }
 
     /**
@@ -191,25 +105,14 @@ public class CustomerDatabaseRepository implements IRepository<Long, Customer> {
     @Override
     public Optional<Customer> update(Customer entity) throws ValidatorException {
         validator.validate(entity);
-        Optional<Customer> customerWithGivenId = findOne(entity.getId());
-        AtomicReference<Customer> updatedCustomer = new AtomicReference<>();
-
-        customerWithGivenId.ifPresentOrElse( (customer) -> {
-                    String updateCustomerCommand = "UPDATE Customers SET Name = ?, PhoneNumber = ? WHERE ID = ?";
-                    try (var connection = DriverManager.getConnection(url, user, password);
-                         var preparedStatement = connection.prepareStatement(updateCustomerCommand)
-                    ){
-                        preparedStatement.setString(1, entity.getName());
-                        preparedStatement.setString(2, entity.getPhoneNumber());
-                        preparedStatement.setLong(3, entity.getId());
-                        preparedStatement.executeUpdate();
-                        updatedCustomer.set(customer);
-                    }catch (SQLException exception){
-                        throw new PetShopException("Sql exception: " + exception.getMessage());
-                    }
-                }, () -> updatedCustomer.set(null)
+        Integer rowsAffected = jdbcOperations.update(
+                "UPDATE customers SET Name = ?, phonenumber = ? WHERE ID = ?",
+                entity.getName(),
+                entity.getPhoneNumber(),
+                entity.getId()
         );
-
-        return Optional.of(updatedCustomer.get());
+        if(rowsAffected.equals(0))
+            return Optional.empty();
+        return Optional.of(entity);
     }
 }

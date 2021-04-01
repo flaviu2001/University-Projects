@@ -2,10 +2,14 @@ package client.config;
 
 import client.service.*;
 import client.ui.UI;
+import client.ui.controller.async.*;
 import common.service.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.remoting.rmi.RmiProxyFactoryBean;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @Configuration
 public class ClientConfig {
@@ -52,12 +56,16 @@ public class ClientConfig {
 
     @Bean
     UI ui() {
+        ExecutorService executorService = Executors.newFixedThreadPool(
+                Runtime.getRuntime().availableProcessors()
+        );
+
         return new UI(
-                catServiceClient(),
-                foodServiceClient(),
-                catFoodServiceClient(),
-                customerServiceClient(),
-                purchaseServiceClient()
+                new AsyncCatController(executorService, catServiceClient()),
+                new AsyncFoodController(executorService, foodServiceClient()),
+                new AsyncCatFoodController(executorService, catFoodServiceClient()),
+                new AsyncCustomerController(executorService, customerServiceClient()),
+                new AsyncPurchaseController(executorService, purchaseServiceClient())
         );
     }
 

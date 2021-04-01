@@ -1,10 +1,14 @@
 package repository.databaseRepository;
 
+import common.domain.Cat;
 import common.domain.CatFood;
+import common.domain.Food;
 import common.domain.Pair;
 import common.exceptions.PetShopException;
 import common.exceptions.ValidatorException;
 import common.domain.validators.Validator;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcOperations;
 import repository.IRepository;
 
 import java.sql.DriverManager;
@@ -17,29 +21,13 @@ import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Stream;
 
 public class CatFoodDatabaseRepository implements IRepository<Pair<Long, Long>, CatFood> {
-    private final String url;
-    private final String user;
-    private final String password;
+    @Autowired
+    JdbcOperations jdbcOperations;
+
     private final Validator<CatFood> validator;
 
-    public CatFoodDatabaseRepository(Validator<CatFood> validator, String url, String user, String password) {
-        this.url = url;
-        this.user = user;
-        this.password = password;
+    public CatFoodDatabaseRepository(Validator<CatFood> validator) {
         this.validator = validator;
-
-        String sqlCreateTableQuery =  """
-                CREATE TABLE IF NOT EXISTS CatFoods (
-                CatId int,
-                FoodId int,
-                PRIMARY Key(CatId, FoodId)
-                )""";
-        try (var connect = DriverManager.getConnection(url, user, password)) {
-            var preparedStatement = connect.prepareStatement(sqlCreateTableQuery);
-            preparedStatement.executeUpdate();
-        } catch (SQLException exception) {
-            throw new PetShopException("SQL Exception: " + exception);
-        }
     }
 
     /**
@@ -51,55 +39,28 @@ public class CatFoodDatabaseRepository implements IRepository<Pair<Long, Long>, 
      */
     @Override
     public Optional<CatFood> findOne(Pair<Long, Long> longLongPair) {
-        AtomicReference<Optional<CatFood>> catFoodToReturn = new AtomicReference<>();
-        catFoodToReturn.set(Optional.empty());
-        Stream.ofNullable(longLongPair)
-                .findAny()
-                .ifPresentOrElse(
-                        (val) -> {
-                            String sqlCommand = "SELECT * FROM CatFoods WHERE CatId = " + val.getLeft().toString() + " AND " +
-                                    "FoodId = " + val.getRight().toString();
-                            try (var connection = DriverManager.getConnection(url, user, password);
-                                 var preparedStatement = connection.prepareStatement(sqlCommand);
-                                 var rs = preparedStatement.executeQuery()) {
-                                if (rs.next()) {
-                                    Long catId = rs.getLong("CatId");
-                                    Long foodId = rs.getLong("FoodId");
-                                    CatFood catFood = new CatFood(catId, foodId);
-                                    catFoodToReturn.set(Optional.of(catFood));
-                                }
-
-                            } catch (SQLException throwables) {
-                                throw new PetShopException("SQL Exception: " + throwables.getMessage());
-                            }
-                        },
-                        () -> {
-                            throw new IllegalArgumentException("ID must not be null");
-                        }
-                );
-        return catFoodToReturn.get();
+        return jdbcOperations.query("select * from catfoods where catid=" + longLongPair.getLeft() +
+                "&& foodid=" + longLongPair.getRight(), (rs, i)->
+                new CatFood(
+                        rs.getLong("CatId"),
+                        rs.getLong("FoodId")))
+                .stream().findFirst();
     }
 
+    /*
+    "SELECT * FROM CatFoods WHERE CatId = " + val.getLeft().toString() + " AND " +
+                                    "FoodId = " + val.getRight().toString()
+     */
     /**
      * @return all entities.
      */
     @Override
     public Iterable<CatFood> findAll() {
-        Set<CatFood> catFoodList = new HashSet<>();
-        String sqlCommand = "SELECT * FROM CatFoods";
-        try (var connection = DriverManager.getConnection(url, user, password);
-             var preparedStatement = connection.prepareStatement(sqlCommand);
-             var rs = preparedStatement.executeQuery()) {
-            while (rs.next()) {
-                Long catId = rs.getLong("CatId");
-                Long foodId = rs.getLong("FoodId");
-                CatFood catFood = new CatFood(catId, foodId);
-                catFoodList.add(catFood);
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return catFoodList;
+        return new HashSet<>(jdbcOperations.query("select * from catfoods", (rs, i) ->
+                new CatFood(
+                        rs.getLong("CatId"),
+                        rs.getLong("FoodId"))
+        ));
     }
 
     /**
@@ -113,18 +74,12 @@ public class CatFoodDatabaseRepository implements IRepository<Pair<Long, Long>, 
     @Override
     public Optional<CatFood> save(CatFood entity) throws ValidatorException {
         validator.validate(entity);
-        String sqlCommand = "INSERT INTO CatFoods (CatId, FoodId) VALUES (?, ?)";
-        try (var connection = DriverManager.getConnection(url, user, password);
-             var preparedStatement = connection.prepareStatement(sqlCommand)) {
-            preparedStatement.setLong(1, entity.getCatId());
-            preparedStatement.setLong(2, entity.getFoodId());
-            preparedStatement.executeUpdate();
+        Integer rowsAffected = jdbcOperations.update("insert into catfoods (catid, foodid) VALUES (?, ?)",
+                entity.getCatId(),
+                entity.getFoodId());
+        if(rowsAffected.equals(1))
             return Optional.empty();
-        } catch (SQLIntegrityConstraintViolationException sqlIntegrityConstraintViolationException) {
-            return Optional.ofNullable(entity);
-        } catch (SQLException exception) {
-            throw new PetShopException("SQLException: " + exception.getMessage());
-        }
+        return Optional.of(entity);
     }
 
     /**
@@ -136,23 +91,10 @@ public class CatFoodDatabaseRepository implements IRepository<Pair<Long, Long>, 
      */
     @Override
     public Optional<CatFood> delete(Pair<Long, Long> longLongPair) {
-        Optional<CatFood> entity = findOne(longLongPair);
-        AtomicReference<Optional<CatFood>> returnedEntity = new AtomicReference<>();
-        entity.ifPresentOrElse((catFood) -> {
-                    String sql = "DELETE FROM CatFoods WHERE CatId = ? AND FoodId = ?";
-                    try (var connection = DriverManager.getConnection(url, user, password);
-                         var preparedStatement = connection.prepareStatement(sql)) {
-                        preparedStatement.setLong(1, catFood.getCatId());
-                        preparedStatement.setLong(2, catFood.getFoodId());
-                        preparedStatement.executeUpdate();
-                        returnedEntity.set(entity);
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
-                },
-                () -> returnedEntity.set(Optional.empty())
-        );
-        return returnedEntity.get();
+        Optional<CatFood> toBeRemoved = findOne(longLongPair);
+        toBeRemoved.ifPresent((catFood)->jdbcOperations.update("DELETE FROM catfoods WHERE catid = ? && foodid = ?",
+                catFood.getCatId(), catFood.getFoodId()));
+        return toBeRemoved;
     }
 
     /**
@@ -167,18 +109,13 @@ public class CatFoodDatabaseRepository implements IRepository<Pair<Long, Long>, 
     @Override
     public Optional<CatFood> update(CatFood entity) throws ValidatorException {
         validator.validate(entity);
-        String sqlCommand = "UPDATE CatFoods SET FoodId = ? WHERE CatId = ?";
-        try (var connection = DriverManager.getConnection(url, user, password);
-             var preparedStatement = connection.prepareStatement(sqlCommand)) {
-            preparedStatement.setLong(1, entity.getFoodId());
-            preparedStatement.setLong(2, entity.getCatId());
-            preparedStatement.executeUpdate();
-            return Optional.of(entity);
-        } catch (SQLIntegrityConstraintViolationException sqlIntegrityConstraintViolationException) {
-            System.out.println("Integrity constraint violation");
+        Integer rowsAffected = jdbcOperations.update(
+                "UPDATE catfoods SET foodid = ?WHERE catid = ?",
+                entity.getFoodId(),
+                entity.getCatId()
+        );
+        if(rowsAffected.equals(0))
             return Optional.empty();
-        } catch (SQLException exception) {
-            throw new PetShopException("SQLException: " + exception.getMessage());
-        }
+        return Optional.of(entity);
     }
 }

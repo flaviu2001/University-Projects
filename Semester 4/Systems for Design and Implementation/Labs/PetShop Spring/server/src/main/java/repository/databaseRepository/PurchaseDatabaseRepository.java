@@ -1,10 +1,13 @@
 package repository.databaseRepository;
 
+import common.domain.CatFood;
 import common.domain.Pair;
 import common.domain.Purchase;
 import common.exceptions.PetShopException;
 import common.exceptions.ValidatorException;
 import common.domain.validators.Validator;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcOperations;
 import repository.IRepository;
 
 import java.sql.DriverManager;
@@ -19,32 +22,13 @@ import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Stream;
 
 public class PurchaseDatabaseRepository implements IRepository<Pair<Long, Long>, Purchase>{
-    private final String url;
-    private final String user;
-    private final String password;
+    @Autowired
+    JdbcOperations jdbcOperations;
+
     private final Validator<Purchase> validator;
 
-    public PurchaseDatabaseRepository(Validator<Purchase> validator, String url, String user, String password) {
-        this.url = url;
-        this.user = user;
-        this.password = password;
+    public PurchaseDatabaseRepository(Validator<Purchase> validator) {
         this.validator = validator;
-
-        String sqlCreateTableQuery =  """
-                CREATE TABLE IF NOT EXISTS Purchases (
-                CatId int,
-                CustomerId int,
-                Price int,
-                Review int,
-                DateAcquired Date,
-                PRIMARY Key(CatId, CustomerId)
-                )""";
-        try (var connect = DriverManager.getConnection(url, user, password)) {
-            var preparedStatement = connect.prepareStatement(sqlCreateTableQuery);
-            preparedStatement.executeUpdate();
-        } catch (SQLException exception) {
-            throw new PetShopException("SQL Exception: " + exception);
-        }
     }
 
     /**
@@ -56,30 +40,15 @@ public class PurchaseDatabaseRepository implements IRepository<Pair<Long, Long>,
      */
     @Override
     public Optional<Purchase> findOne(Pair<Long, Long> longLongPair) {
-        AtomicReference<Optional<Purchase>> purchaseToReturn = new AtomicReference<>();
-        Stream.ofNullable(longLongPair)
-                .findAny()
-                .ifPresentOrElse(
-                        (val) -> {
-                            String sqlCommand = "SELECT * FROM Purchases WHERE CatId = " + val.getLeft().toString() + " AND " +
-                                    "CustomerId = " + val.getRight().toString();
-                            try (var connection = DriverManager.getConnection(url, user, password);
-                                 var preparedStatement = connection.prepareStatement(sqlCommand);
-                                 var rs = preparedStatement.executeQuery()) {
-                                if (rs.next()) {
-                                    Purchase purchase = getPurchaseFromResultSet(rs);
-                                    purchaseToReturn.set(Optional.of(purchase));
-                                }
-
-                            } catch (SQLException throwables) {
-                                throw new PetShopException("SQL Exception: " + throwables.getMessage());
-                            }
-                        },
-                        () -> {
-                            throw new IllegalArgumentException("ID must not be null");
-                        }
-                );
-        return purchaseToReturn.get();
+        return jdbcOperations.query("select * from purchases where catid=" + longLongPair.getLeft() +
+                "&& purchases.customerid=" + longLongPair.getRight(), (rs, i)->
+                new Purchase(
+                        rs.getLong("CatId"),
+                        rs.getLong("CustomerId"),
+                        rs.getInt("Review"),
+                        rs.getDate("DateAcquired"),
+                        rs.getInt("Price")))
+                .stream().findFirst();
     }
 
     /**
@@ -87,29 +56,16 @@ public class PurchaseDatabaseRepository implements IRepository<Pair<Long, Long>,
      */
     @Override
     public Iterable<Purchase> findAll() {
-        Set<Purchase> purchaseList = new HashSet<>();
-        String sqlCommand = "SELECT * FROM Purchases";
-        try (var connection = DriverManager.getConnection(url, user, password);
-             var preparedStatement = connection.prepareStatement(sqlCommand);
-             var rs = preparedStatement.executeQuery()) {
-            while (rs.next()) {
-                Purchase purchase = getPurchaseFromResultSet(rs);
-                purchaseList.add(purchase);
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return purchaseList;
+        return new HashSet<>(jdbcOperations.query("select * from purchases", (rs, i) ->
+                new Purchase(
+                        rs.getLong("CatId"),
+                        rs.getLong("CustomerId"),
+                        rs.getInt("Review"),
+                        rs.getDate("DateAcquired"),
+                        rs.getInt("Price"))
+        ));
     }
 
-    private Purchase getPurchaseFromResultSet(ResultSet rs) throws SQLException {
-        Long catId = rs.getLong("CatId");
-        Long customerId = rs.getLong("CustomerId");
-        int review = rs.getInt("Review");
-        int price = rs.getInt("Price");
-        Date acquiredDate = rs.getDate("DateAcquired");
-        return new Purchase(catId, customerId, price, acquiredDate, review);
-    }
 
     /**
      * Saves the given entity.
@@ -122,21 +78,16 @@ public class PurchaseDatabaseRepository implements IRepository<Pair<Long, Long>,
     @Override
     public Optional<Purchase> save(Purchase entity) throws ValidatorException {
         validator.validate(entity);
-        String sqlCommand = "INSERT INTO Purchases (CatId, CustomerId, Price, DateAcquired, Review) VALUES (?, ?, ?, ?, ?)";
-        try (var connection = DriverManager.getConnection(url, user, password);
-             var preparedStatement = connection.prepareStatement(sqlCommand)) {
-            preparedStatement.setLong(1, entity.getCatId());
-            preparedStatement.setLong(2, entity.getCustomerId());
-            preparedStatement.setInt(3, entity.getPrice());
-            preparedStatement.setDate(4, new java.sql.Date(entity.getDateAcquired().getTime()));
-            preparedStatement.setInt(5, entity.getReview());
-            preparedStatement.executeUpdate();
+        Integer rowsAffected = jdbcOperations.update("insert into purchases (catid, customerid, price, dateacquired, review) VALUES (?, ?, ?, ?)",
+                entity.getCatId(),
+                entity.getCustomerId(),
+                entity.getPrice(),
+                entity.getDateAcquired(),
+                entity.getReview()
+                );
+        if(rowsAffected.equals(1))
             return Optional.empty();
-        } catch (SQLIntegrityConstraintViolationException sqlIntegrityConstraintViolationException) {
-            return Optional.ofNullable(entity);
-        } catch (SQLException exception) {
-            throw new PetShopException("SQLException: " + exception.getMessage());
-        }
+        return Optional.of(entity);
     }
 
     /**
@@ -148,23 +99,10 @@ public class PurchaseDatabaseRepository implements IRepository<Pair<Long, Long>,
      */
     @Override
     public Optional<Purchase> delete(Pair<Long, Long> longLongPair) {
-        Optional<Purchase> entity = findOne(longLongPair);
-        AtomicReference<Optional<Purchase>> returnedEntity = new AtomicReference<>();
-        entity.ifPresentOrElse((catFood) -> {
-                    String sql = "DELETE FROM Purchases WHERE CatId = ? AND Customerid = ?";
-                    try (var connection = DriverManager.getConnection(url, user, password);
-                         var preparedStatement = connection.prepareStatement(sql)) {
-                        preparedStatement.setLong(1, catFood.getCatId());
-                        preparedStatement.setLong(2, catFood.getCustomerId());
-                        preparedStatement.executeUpdate();
-                        returnedEntity.set(entity);
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
-                },
-                () -> returnedEntity.set(Optional.empty())
-        );
-        return returnedEntity.get();
+        Optional<Purchase> toBeRemoved = findOne(longLongPair);
+        toBeRemoved.ifPresent((catFood)->jdbcOperations.update("DELETE FROM purchases WHERE catid = ? && customerid = ?",
+                catFood.getCatId(), catFood.getCustomerId()));
+        return toBeRemoved;
     }
 
     /**
@@ -179,25 +117,18 @@ public class PurchaseDatabaseRepository implements IRepository<Pair<Long, Long>,
     @Override
     public Optional<Purchase> update(Purchase entity) throws ValidatorException {
         validator.validate(entity);
-        String sqlCommand = "UPDATE Purchases SET " +
-                "Price = ?," +
-                "DateAcquired = ?," +
-                "Review = ?" +
-                "WHERE CatId = ? AND CustomerId = ?";
-        try (var connection = DriverManager.getConnection(url, user, password);
-             var preparedStatement = connection.prepareStatement(sqlCommand)) {
-            preparedStatement.setInt(1, entity.getPrice());
-            preparedStatement.setDate(2, new java.sql.Date(entity.getDateAcquired().getTime()));
-            preparedStatement.setInt(3, entity.getReview());
-            preparedStatement.setLong(4, entity.getCatId());
-            preparedStatement.setLong(5, entity.getCustomerId());
-            preparedStatement.executeUpdate();
-            return Optional.of(entity);
-        } catch (SQLIntegrityConstraintViolationException sqlIntegrityConstraintViolationException) {
-            System.out.println("Integrity constraint violation");
+
+        Integer rowsAffected = jdbcOperations.update(
+                "UPDATE purchases SET price = ?, dateacquired = ?, review = ?" +
+                        "WHERE catid = ? && customerid = ?",
+                entity.getPrice(),
+                entity.getDateAcquired(),
+                entity.getReview(),
+                entity.getCatId(),
+                entity.getCustomerId()
+        );
+        if(rowsAffected.equals(0))
             return Optional.empty();
-        } catch (SQLException exception) {
-            throw new PetShopException("SQLException: " + exception.getMessage());
-        }
+        return Optional.of(entity);
     }
 }
