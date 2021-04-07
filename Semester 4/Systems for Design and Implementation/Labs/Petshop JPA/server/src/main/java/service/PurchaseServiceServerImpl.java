@@ -1,93 +1,120 @@
 package service;
 
-import common.domain.Cat;
-import common.domain.Customer;
-import common.domain.Pair;
-import common.domain.Purchase;
+import common.domain.*;
 import common.exceptions.PetShopException;
 import common.service.IPurchaseService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import repository.ICatRepository;
-import repository.databaseRepository.CustomerDatabaseRepository;
-import repository.databaseRepository.PurchaseDatabaseRepository;
+import repository.ICustomerRepository;
+import repository.IPurchaseRepository;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
+@Service
 public class PurchaseServiceServerImpl implements IPurchaseService {
-    final PurchaseDatabaseRepository purchaseRepository;
+    public static final Logger logger = LoggerFactory.getLogger(CatFoodServiceServerImpl.class);
+
+    @Autowired
+    private IPurchaseRepository purchaseRepository;
+
     @Autowired
     private ICatRepository catsRepository;
-    final CustomerDatabaseRepository customerRepository;
 
-    public PurchaseServiceServerImpl(PurchaseDatabaseRepository purchaseRepository, CustomerDatabaseRepository customerRepository) {
-        this.purchaseRepository = purchaseRepository;
-        this.customerRepository = customerRepository;
-    }
+    @Autowired
+    private ICustomerRepository customerRepository;
 
     @Override
     public void addPurchase(Long catId, Long customerId, int price, Date dateAcquired, int review) {
-        List<Long> catIds = new ArrayList<>();
-        purchaseRepository.findAllEntities().forEach(purchase -> catIds.add(purchase.getCatId()));
-        catIds.stream().filter(cat -> cat.equals(catId)).findAny().ifPresent(cat -> {
-            throw new PetShopException("The cat is already purchased");
-        });
+        logger.trace("addPurchase - method entered - catId: " + catId + ", customerId: " + customerId + ", price: " + price + ", date acquired: " + dateAcquired + ", review: " + review);
         Optional<Cat> cat = catsRepository.findById(catId);
         cat.ifPresentOrElse((Cat c) -> {
-            Optional<Customer> customer = customerRepository.findOne(customerId);
+            Optional<Customer> customer = customerRepository.findById(customerId);
             customer.ifPresentOrElse((Customer cust) -> {
-                Purchase purchase = new Purchase(catId, customerId, price, dateAcquired, review);
-                purchaseRepository.saveEntity(purchase);
+                Purchase purchase = new Purchase(
+                        new CustomerPurchasePrimaryKey(cust.getId(), c.getId()),
+                        cust,
+                        c,
+                        price,
+                        dateAcquired,
+                        review
+                );
+                System.out.println(purchase);
+                purchaseRepository.save(purchase);
             }, () -> {
                 throw new PetShopException("Customer id does not exist");
             });
         }, () -> {
             throw new PetShopException("Cat id does not exist");
         });
+        logger.trace("addPurchase - method finished");
+
     }
 
     @Override
-    public Set<Purchase> getPurchasesFromRepository() {
-        return (Set<Purchase>) purchaseRepository.findAllEntities();
+    public List<Purchase> getPurchasesFromRepository() {
+        logger.trace("getPurchasesFromRepository - method entered");
+        List<Purchase> purchases = purchaseRepository.findAll();
+        logger.trace("getPurchasesFromRepository: " + purchases.toString());
+
+        return purchases;
     }
 
 
     @Override
     public void deletePurchase(Long catId, Long customerId) {
-        purchaseRepository.deleteEntity(new Pair<>(catId, customerId))
-                .orElseThrow(() -> new PetShopException("Purchase does not exist"));
+        logger.trace("delete purchase - method entered - catId: " + catId + ", customerId: " + customerId);
+        purchaseRepository.findById(new CustomerPurchasePrimaryKey(customerId, catId))
+                .ifPresentOrElse(
+                        purchase -> purchaseRepository.deleteById(purchase.getId()),
+                        () -> {throw new PetShopException("Purchase does not exist");}
+                );
+        logger.trace("delete purchase - method finished");
     }
 
     @Override
     public void updatePurchase(Long catId, Long customerId, int newReview) {
-        catsRepository.findById(catId).orElseThrow(() -> new PetShopException("Cat does not exist"));
-        customerRepository.findOne(customerId).orElseThrow(() -> new PetShopException("Customer does not exist"));
-        Purchase purchase = purchaseRepository.findOne(new Pair<>(catId, customerId))
-                .orElseThrow(() -> new PetShopException("Purchase does not exist"));
-        purchaseRepository.update(new Purchase(catId, customerId, purchase.getPrice(), purchase.getDateAcquired(), newReview));
+        logger.trace("updatePurchase - method entered - catId: " + catId + ", customerId: " + customerId + " ,newReview" + newReview);
+        purchaseRepository.findById(new CustomerPurchasePrimaryKey(customerId, catId))
+                .ifPresentOrElse(
+                        (purchase) -> purchase.setReview(newReview),
+                        () -> {throw new PetShopException("Purchase does not exist");}
+                );
+        logger.trace("updatePurchase - method finished");
     }
 
     @Override
     public List<Customer> filterCustomersThatBoughtBreedOfCat(String breed) {
-        return  ((Set<Customer>) customerRepository.findAllEntities()).stream()
+
+        logger.trace("filterCustomersThatBoughBreedOfCat - method entered - breed: " + breed);
+        List<Customer> customers = customerRepository.findAll().stream()
                 .filter((customer) ->
                         getPurchasesFromRepository().stream().anyMatch((purchase) ->
-                                (catsRepository.findAll()).stream().anyMatch((cat) ->
-                                        purchase.getCatId().equals(cat.getId()) && purchase.getCustomerId().equals(customer.getId()) && cat.getBreed().equals(breed))))
+                                (catsRepository.findAll()).stream().anyMatch((cat) ->purchase.getCatId().equals(cat.getId()) && purchase.getCustomerId().equals(customer.getId()) && cat.getBreed().equals(breed))))
                 .collect(Collectors.toList());
+        logger.trace("filterCustomersThatBoughBreedOfCat - method finished");
+        return customers;
+
     }
 
     @Override
     public List<Purchase> filterPurchasesWithMinStars(int minStars) {
-        return getPurchasesFromRepository().stream()
+        logger.trace("filterPurchasesWithMinStars - method entered - min stars: " + minStars);
+        List<Purchase> purchases = getPurchasesFromRepository().stream()
                 .filter(purchase -> purchase.getReview() >= minStars)
                 .collect(Collectors.toList());
+        logger.trace("filterPurchasesWithMinStars - method finished");
+        return purchases;
     }
 
     @Override
     public List<Pair<Customer, Integer>> reportCustomersSortedBySpentCash() {
+        logger.trace("reportCustomersSortedBySpentCash - method entered");
         List<Pair<Customer, Integer>> toReturn = new ArrayList<>();
-        customerRepository.findAllEntities().forEach((customer) -> {
+        customerRepository.findAll().forEach((customer) -> {
             int moneySpent = getPurchasesFromRepository().stream()
                     .filter(purchase -> purchase.getCustomerId().equals(customer.getId()))
                     .map(Purchase::getPrice)
@@ -95,6 +122,8 @@ public class PurchaseServiceServerImpl implements IPurchaseService {
             toReturn.add(new Pair<>(customer, moneySpent));
         });
         toReturn.sort((p1, p2) -> -p1.getRight().compareTo(p2.getRight()));
+        logger.trace("reportCustomersSortedBySpentCash - method finished");
+
         return toReturn;
     }
 }

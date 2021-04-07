@@ -3,44 +3,75 @@ package service;
 import common.domain.Customer;
 import common.exceptions.PetShopException;
 import common.service.ICustomerService;
-import repository.databaseRepository.CustomerDatabaseRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import repository.ICustomerRepository;
 
+import java.util.List;
 import java.util.Set;
 
+import static java.lang.Math.log;
 import static java.lang.Math.max;
 
+@Service
 public class CustomerServiceServerImpl implements ICustomerService {
-    final CustomerDatabaseRepository customerRepository;
+    public static final Logger logger = LoggerFactory.getLogger(CatServiceServerImpl.class);
 
-    public CustomerServiceServerImpl(CustomerDatabaseRepository customerRepository) {
-        this.customerRepository = customerRepository;
-    }
+    @Autowired
+    private ICustomerRepository customerRepository;
 
     @Override
     public void addCustomer(String name, String phoneNumber) {
+        logger.trace("addCustomer - method entered - name: " + name + ", phoneNumber: " + phoneNumber);
         long id = 0;
-        for (Customer customer:this.customerRepository.findAllEntities())
-            id = max(id, customer.getId()+1);
+        for (Customer customer : this.customerRepository.findAll())
+            id = max(id, customer.getId() + 1);
         Customer customerToBeAdded = new Customer(id, name, phoneNumber);
-        customerRepository.saveEntity(customerToBeAdded);
+        customerRepository.save(customerToBeAdded);
+        logger.trace("addCustomer - method finished");
+
     }
 
     @Override
-    public Set<Customer> getCustomersFromRepository() {
-        return (Set<Customer>) customerRepository.findAllEntities();
+    public List<Customer> getCustomersFromRepository() {
+        logger.trace("getCustomersFromRepository - method entered");
+        List<Customer> customers = customerRepository.findAll();
+        logger.trace("getCustomersFromRepository: " + customers.toString());
+        return customers;
+
     }
 
 
     @Override
     public void deleteCustomer(Long id) {
-        customerRepository.deleteEntity(id).orElseThrow(() -> {
-            throw new PetShopException("Customer does not exist");
-        });
+        logger.trace("deleteCustomer - method entered - id: " + id);
+
+        customerRepository.findById(id)
+                .ifPresentOrElse((customer) -> customerRepository.deleteById(customer.getId()),
+                        () -> {
+                            throw new PetShopException("Customer does not exist");
+                        });
+        logger.trace("deleteCustomer - method finished");
+
     }
 
     @Override
     public void updateCustomer(Long id, String name, String phoneNumber) {
-        customerRepository.update(new Customer(id, name, phoneNumber))
-                .orElseThrow(() -> new PetShopException("Customer does not exist"));
+        logger.trace("updateCustomer - method entered - id: " + id + ", name: " + name + ", phoneNumber: " + phoneNumber);
+
+        customerRepository.findById(id)
+                .ifPresentOrElse(
+                        (customer) -> {
+                            customer.setName(name);
+                            customer.setPhoneNumber(phoneNumber);
+                        },
+                        () -> {
+                            throw new PetShopException("Customer does not exist");
+                        }
+                );
+
+        logger.trace("updateCustomer - method finished");
     }
 }

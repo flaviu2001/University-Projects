@@ -1,20 +1,29 @@
 package common.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Food extends BaseEntity<Long>{
     String name, producer;
     Date expirationDate;
 
+    public Food() {
 
+    }
     public Food(Long id, String name, String producer, Date expirationDate) {
         this.setId(id);
         this.name = name;
         this.producer = producer;
         this.expirationDate = expirationDate;
     }
+
+    @OneToMany(mappedBy = "food", cascade = {CascadeType.ALL})
+    Set<CatFood> catFoodList;
 
     public String getName() {
         return name;

@@ -7,9 +7,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import repository.ICatFoodRepository;
 import repository.ICatRepository;
-import repository.databaseRepository.CatFoodDatabaseRepository;
-import repository.databaseRepository.PurchaseDatabaseRepository;
+import repository.IPurchaseRepository;
+
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -24,22 +25,18 @@ public class CatServiceServerImpl implements ICatService {
     @Autowired
     private ICatRepository catsRepository;
 
-    final PurchaseDatabaseRepository purchaseRepository;
-    final CatFoodDatabaseRepository catFoodRepository;
+    @Autowired
+    private IPurchaseRepository purchaseRepository;
 
-    public CatServiceServerImpl(PurchaseDatabaseRepository purchaseRepository, CatFoodDatabaseRepository catFoodRepository) {
-        logger.trace("CatServiceServerImpl constructor - method entered");
-        this.purchaseRepository = purchaseRepository;
-        this.catFoodRepository = catFoodRepository;
-        logger.trace("CatServiceServerImpl constructor - method finished");
-    }
+    @Autowired
+    private ICatFoodRepository catFoodRepository;
 
     @Override
     public void addCat(String name, String breed, Integer catYears) {
         logger.trace("add cat - method entered - name: " + name + ", breed: " + breed + ", catYears: " + catYears);
         long id = 0;
-        for (Cat cat :this.catsRepository.findAll())
-            id = max(id, cat.getId()+1);
+        for (Cat cat : this.catsRepository.findAll())
+            id = max(id, cat.getId() + 1);
         Cat catToBeAdded = new Cat(id, name, breed, catYears);
         catsRepository.save(catToBeAdded);
         logger.trace("add cat - method finished");
@@ -57,7 +54,7 @@ public class CatServiceServerImpl implements ICatService {
     @Override
     public void deleteCat(Long id) {
         logger.trace("deleteCat - method entered - id: " + id);
-        StreamSupport.stream(catFoodRepository.findAllEntities().spliterator(), false)
+        /*catFoodRepository.findAll().stream()
                 .filter(catFood -> catFood.getCatId().equals(id))
                 .findAny()
                 .ifPresent((catFood) -> {
@@ -70,12 +67,14 @@ public class CatServiceServerImpl implements ICatService {
                     throw new PetShopException("The cat is purchased, can't delete");
                 });
 
+         */
+
         catsRepository.findById(id)
                 .ifPresentOrElse((cat) -> catsRepository.deleteById(cat.getId()),
                         () -> {
-                    throw new PetShopException("Cat does not exist");
-                }
-        );
+                            throw new PetShopException("Cat does not exist");
+                        }
+                );
 
 //        catsRepository.deleteById(id).orElseThrow(() -> new PetShopException("Cat does not exist"));
         logger.trace("deleteCat - method finished");
@@ -89,16 +88,14 @@ public class CatServiceServerImpl implements ICatService {
 
         catsRepository.findById(id)
                 .ifPresentOrElse((cat) -> {
-                    cat.setName(name);
-                    cat.setBreed(breed);
-                    cat.setCatYears(catYears);
-                },
+                            cat.setName(name);
+                            cat.setBreed(breed);
+                            cat.setCatYears(catYears);
+                        },
                         () -> {
-                    throw new PetShopException("Cat does not exist");
-                }
-        );
-//        catsRepository.update(new Cat(id, name, breed, catYears))
-//                .orElseThrow(() -> new PetShopException("Cat does not exist"));
+                            throw new PetShopException("Cat does not exist");
+                        }
+                );
         logger.trace("updateCat - method finished");
     }
 }

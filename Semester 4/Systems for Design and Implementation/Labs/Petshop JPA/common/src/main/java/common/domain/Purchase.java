@@ -1,27 +1,44 @@
 package common.domain;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
-public class Purchase extends BaseEntity<Pair<Long, Long>> {
+public class Purchase extends BaseEntity<CustomerPurchasePrimaryKey> {
+    public  Purchase(){
+
+    }
+
+    @ManyToOne
+    @MapsId("customerId")
+    @JoinColumn(name = "customerId")
+    Customer customer;
+
+    @ManyToOne
+    @MapsId("catId")
+    @JoinColumn(name = "catId")
+    Cat cat;
+
     private int price;
     private Date dateAcquired;
     private int review;
 
-    public Purchase(Long catId, Long customerId, int price, Date dateAcquired, int review) {
-        this.setId(new Pair<>(catId, customerId));
+    public Purchase(CustomerPurchasePrimaryKey customerPurchasePrimaryKey, Customer customer, Cat cat, int price, Date dateAcquired, int review) {
+        this.setId(customerPurchasePrimaryKey);
+        this.customer = customer;
+        this.cat = cat;
         this.price = price;
         this.dateAcquired = dateAcquired;
         this.review = review;
     }
 
     public Long getCatId() {
-        return getId().getLeft();
+        return getId().getCatId();
     }
 
     public Long getCustomerId() {
-        return getId().getRight();
+        return getId().getCustomerId();
     }
 
     public int getPrice() {
@@ -50,6 +67,22 @@ public class Purchase extends BaseEntity<Pair<Long, Long>> {
 
     public boolean equals(Object obj) {
         return obj instanceof Purchase && this.getId().equals(((Purchase) obj).getId());
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Cat getCat() {
+        return cat;
+    }
+
+    public void setCat(Cat cat) {
+        this.cat = cat;
     }
 
     @Override

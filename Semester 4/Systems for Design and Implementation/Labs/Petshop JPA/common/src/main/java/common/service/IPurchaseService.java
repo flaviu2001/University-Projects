@@ -27,7 +27,7 @@ public interface IPurchaseService {
     /**
      * @return all purchases from the repository
      */
-    Set<Purchase> getPurchasesFromRepository();
+    List<Purchase> getPurchasesFromRepository();
 
     /**
      * Deletes a purchase based on id

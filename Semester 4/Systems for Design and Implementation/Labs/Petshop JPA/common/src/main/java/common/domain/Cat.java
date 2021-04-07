@@ -1,6 +1,10 @@
 package common.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Cat extends BaseEntity<Long> {
@@ -17,6 +21,12 @@ public class Cat extends BaseEntity<Long> {
         this.breed = breed;
         this.catYears = catYears;
     }
+
+    @OneToMany(mappedBy = "cat", cascade = {CascadeType.ALL})
+    Set<CatFood> catFoods;
+
+    @OneToMany(mappedBy = "cat", cascade = {CascadeType.ALL})
+    Set<Purchase> purchases;
 
     public String getName() {
         return name;

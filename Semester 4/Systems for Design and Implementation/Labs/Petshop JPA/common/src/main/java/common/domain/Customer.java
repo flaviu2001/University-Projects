@@ -1,17 +1,27 @@
 package common.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import java.util.Set;
 
 @Entity
 public class Customer extends BaseEntity<Long>{
     String name;
     String phoneNumber;
 
+    public Customer(){
+
+    }
+
     public Customer(Long id, String name, String phoneNumber) {
         this.setId(id);
         this.name = name;
         this.phoneNumber = phoneNumber;
     }
+
+    @OneToMany(mappedBy = "customer", cascade = {CascadeType.ALL})
+    Set<Purchase> purchaseSet;
 
     public String getName() {
         return name;

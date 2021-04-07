@@ -5,6 +5,7 @@ import common.exceptions.PetShopException;
 import common.exceptions.ValidatorException;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 public interface IFoodService {
@@ -20,7 +21,7 @@ public interface IFoodService {
      * @return all the food from the repository.
      */
 
-    Set<Food> getFoodFromRepository();
+    List<Food> getFoodFromRepository();
 
     /**
      * Deletes a food based on it's id

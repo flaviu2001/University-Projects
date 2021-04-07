@@ -3,53 +3,73 @@ package service;
 import common.domain.Food;
 import common.exceptions.PetShopException;
 import common.service.IFoodService;
-import repository.databaseRepository.CatFoodDatabaseRepository;
-import repository.databaseRepository.FoodDatabaseRepository;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import repository.IFoodRepository;
 
 import java.util.Date;
-import java.util.Set;
-import java.util.stream.StreamSupport;
+import java.util.List;
 
 import static java.lang.Math.max;
 
+@Service
 public class FoodServiceServerImpl implements IFoodService {
-    final FoodDatabaseRepository foodRepository;
-    final CatFoodDatabaseRepository catFoodRepository;
+    @Autowired
+    private IFoodRepository foodRepository;
 
-    public FoodServiceServerImpl(FoodDatabaseRepository foodRepository, CatFoodDatabaseRepository catFoodRepository) {
-        this.foodRepository = foodRepository;
-        this.catFoodRepository = catFoodRepository;
-    }
+    public static final Logger logger = LoggerFactory.getLogger(FoodServiceServerImpl.class);
 
     @Override
     public void addFood(String name, String producer, Date expirationDate) {
+        logger.trace("add food - method entered - name: " + name + ", producer: " + producer + ", expiration date: " + expirationDate.toString());
         long id = 0;
-        for (Food food:this.foodRepository.findAllEntities())
-            id = max(id, food.getId()+1);
+        for (Food food : this.foodRepository.findAll())
+            id = max(id, food.getId() + 1);
         Food foodToBeAdded = new Food(id, name, producer, expirationDate);
-        foodRepository.saveEntity(foodToBeAdded);
+        foodRepository.save(foodToBeAdded);
+        logger.trace("add food - method finished");
     }
 
     @Override
-    public Set<Food> getFoodFromRepository() {
-        return (Set<Food>) foodRepository.findAllEntities();
+    public List<Food> getFoodFromRepository() {
+        logger.trace("getFoodFromRepository - method entered");
+        List<Food> food = foodRepository.findAll();
+        logger.trace("getFoodFromRepository: " + food.toString());
+        return food;
     }
 
 
     @Override
     public void deleteFood(Long id) {
-        StreamSupport.stream(catFoodRepository.findAllEntities().spliterator(), false)
-                .filter(catFood -> catFood.getFoodId().equals(id))
-                .findAny()
-                .ifPresent((catFood) -> {
-                    throw new PetShopException("Food is currently eaten");
-                });
-        foodRepository.deleteEntity(id).orElseThrow(() -> new PetShopException("Food does not exist"));
+        logger.trace("deleteFood - method entered - id: " + id);
+        foodRepository.findById(id)
+                .ifPresentOrElse((food) -> foodRepository.deleteById(food.getId()),
+                        () -> {
+                            throw new PetShopException("Food does not exist");
+                        }
+                );
+        logger.trace("deleteFood - method finished");
+
     }
 
     @Override
     public void updateFood(Long id, String name, String producer, Date expirationDate) {
-        foodRepository.update(new Food(id, name, producer, expirationDate))
-                .orElseThrow(() -> new PetShopException("Food does not exist"));
+        logger.trace("updateFood - method entered - id: " + id + ", name: " + name + ", producer: " + producer + ", expiration date: " + expirationDate.toString());
+
+        foodRepository.findById(id)
+                .ifPresentOrElse(
+                        (food) -> {
+                            food.setName(name);
+                            food.setProducer(producer);
+                            food.setExpirationDate(expirationDate);
+                        },
+                        () -> {
+                            throw new PetShopException("Food does not exist");
+                        }
+                );
+        logger.trace("update food - method finished");
+
     }
 }

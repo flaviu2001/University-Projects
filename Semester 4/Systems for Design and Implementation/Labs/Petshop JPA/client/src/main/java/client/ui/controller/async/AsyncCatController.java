@@ -26,7 +26,7 @@ public class AsyncCatController {
     }
 
     public CompletableFuture<String> addCat(String name, String breed, Integer catYears){
-        logger.trace("addCat - method entered and returned a completeable future");
+        logger.trace("addCat - method entered and returned a completable future");
         return CompletableFuture.supplyAsync(()->{
             try{
                 catService.addCat(name, breed, catYears);
@@ -39,7 +39,7 @@ public class AsyncCatController {
     }
 
     public CompletableFuture<String> deleteCat(Long id){
-        logger.trace("deleteCat - method entered and returned a completeable future");
+        logger.trace("deleteCat - method entered and returned a completable future");
         return CompletableFuture.supplyAsync(()->{
             try{
                 catService.deleteCat(id);
@@ -52,7 +52,7 @@ public class AsyncCatController {
     }
 
     public CompletableFuture<String> updateCat(Long id, String name, String breed, Integer catYears){
-        logger.trace("updateCat - method entered and returned a completeable future");
+        logger.trace("updateCat - method entered and returned a completable future");
         return CompletableFuture.supplyAsync(()->{
             try{
                 catService.updateCat(id, name, breed, catYears);

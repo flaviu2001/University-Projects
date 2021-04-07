@@ -7,7 +7,6 @@ import common.domain.Pair;
 import common.exceptions.PetShopException;
 
 import java.util.List;
-import java.util.Set;
 
 public interface ICatFoodService {
     /**
@@ -22,7 +21,7 @@ public interface ICatFoodService {
     /**
      * @return the cats with the food they eat from the repository
      */
-    Set<CatFood> getCatFoodFromRepository();
+    List<CatFood> getCatFoodFromRepository();
 
     /**
      * @return the join between cats and the food they eat

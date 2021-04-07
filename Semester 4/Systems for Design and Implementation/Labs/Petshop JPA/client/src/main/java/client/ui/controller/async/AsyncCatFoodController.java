@@ -6,6 +6,8 @@ import common.domain.Food;
 import common.domain.Pair;
 import common.exceptions.PetShopException;
 import common.service.ICatFoodService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,8 @@ import java.util.concurrent.ExecutorService;
 
 @Service
 public class AsyncCatFoodController {
+    public static final Logger logger = LoggerFactory.getLogger(AsyncCatFoodController.class);
+
     @Autowired
     ExecutorService executorService;
 
@@ -25,6 +29,7 @@ public class AsyncCatFoodController {
     }
 
     public CompletableFuture<String> addCatFood(Long catId, Long foodId) {
+        logger.trace("addCatFood - method entered and returned a completable future");
         return CompletableFuture.supplyAsync(() -> {
             try {
                 catFoodService.addCatFood(catId, foodId);
@@ -36,6 +41,7 @@ public class AsyncCatFoodController {
     }
 
     public CompletableFuture<String> deleteCatFood(Long catId, Long foodId) {
+        logger.trace("deleteCatFood - method entered and returned a completable future");
         return CompletableFuture.supplyAsync(() -> {
             try {
                 catFoodService.deleteCatFood(catId, foodId);
@@ -47,6 +53,7 @@ public class AsyncCatFoodController {
     }
 
     public CompletableFuture<String> updateCatFood(Long catId, Long foodId, Long newFoodId) {
+        logger.trace("updateCatFood - method entered and returned a completable future");
         return CompletableFuture.supplyAsync(() -> {
             try {
                 catFoodService.updateCatFood(catId, foodId, newFoodId);
@@ -58,10 +65,12 @@ public class AsyncCatFoodController {
     }
 
     public CompletableFuture<Iterable<Pair<Cat, Food>>> getCatFoodJoin() {
+        logger.trace("getCatFoodJoin - method entered and returned a completable future");
         return CompletableFuture.supplyAsync(catFoodService::getCatFoodJoin, executorService);
     }
 
     public CompletableFuture<Iterable<Cat>> filterCatsThatEatCertainFood(Long foodId) {
+        logger.trace("filterCatsThatEatCertainFood - method entered and returned a completable future");
         return CompletableFuture.supplyAsync(() -> catFoodService.filterCatsThatEatCertainFood(foodId), executorService);
     }
 }

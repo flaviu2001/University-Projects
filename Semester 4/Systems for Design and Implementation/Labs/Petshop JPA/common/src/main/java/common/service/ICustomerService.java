@@ -4,6 +4,7 @@ import common.domain.Customer;
 import common.exceptions.PetShopException;
 import common.exceptions.ValidatorException;
 
+import java.util.List;
 import java.util.Set;
 
 public interface ICustomerService {
@@ -18,7 +19,7 @@ public interface ICustomerService {
     /**
      * @return all customers from the repository
      */
-    Set<Customer> getCustomersFromRepository();
+    List<Customer> getCustomersFromRepository();
 
     /**
      * Deletes a customer based on it's id
