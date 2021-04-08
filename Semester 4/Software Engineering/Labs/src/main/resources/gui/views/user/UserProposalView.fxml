@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
+          prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0"/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints maxHeight="128.0" minHeight="0.0" prefHeight="23.0" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="319.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="354.0" minHeight="10.0" prefHeight="318.0" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="354.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES"/>
+    </rowConstraints>
+    <VBox GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.rowSpan="2" GridPane.halignment="CENTER"
+          alignment="TOP_CENTER">
+        <Label text="Choose proposal"/>
+        <ListView fx:id="proposalListView" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0"
+                  prefWidth="200.0"/>
+    </VBox>
+    <VBox GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.rowSpan="2" GridPane.halignment="CENTER"
+          alignment="TOP_CENTER">
+        <TextArea fx:id="abstractText" maxHeight="10" promptText="Enter abstract here:">
+            <VBox.margin>
+                <Insets>
+                    <bottom>20</bottom>
+                    <right>40</right>
+                </Insets>
+            </VBox.margin>
+        </TextArea>
+        <TextArea fx:id="paperText" maxHeight="10" promptText="Enter paper here:">
+            <VBox.margin>
+                <Insets>
+                    <bottom>20</bottom>
+                    <right>40</right>
+                </Insets>
+            </VBox.margin>
+        </TextArea>
+        <TextField fx:id="paperTitle" promptText="Enter title here:">
+            <VBox.margin>
+                <Insets>
+                    <bottom>20</bottom>
+                    <right>40</right>
+                </Insets>
+            </VBox.margin>
+        </TextField>
+        <TextField fx:id="authors" promptText="List of authors:">
+            <VBox.margin>
+                <Insets>
+                    <bottom>20</bottom>
+                    <right>40</right>
+                </Insets>
+            </VBox.margin>
+        </TextField>
+        <TextField fx:id="keywords" promptText="Keywords:">
+            <VBox.margin>
+                <Insets>
+                    <bottom>20</bottom>
+                    <right>40</right>
+                </Insets>
+            </VBox.margin>
+        </TextField>
+        <Button fx:id="updateProposal" mnemonicParsing="false" text="Update proposal"/>
+        <VBox.margin>
+            <Insets>
+                <bottom>20</bottom>
+            </Insets>
+        </VBox.margin>
+    </VBox>
+    <Button GridPane.columnIndex="1" GridPane.rowIndex="3" fx:id="backButton" mnemonicParsing="false" text="Back"
+            GridPane.halignment="CENTER"/>
+</GridPane>

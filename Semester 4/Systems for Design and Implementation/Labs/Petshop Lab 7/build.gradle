@@ -1,0 +1,66 @@
+//noinspection GroovyAssignabilityCheck
+allprojects {
+    apply plugin: 'java'
+
+    group 'ro.ubb.pisicilesalbatice'
+    version '1.0-SNAPSHOT'
+
+    repositories {
+        mavenCentral()
+    }
+
+    ext {
+        springVersion = '5.1.5.RELEASE'
+        postgresqlVersion = '42.2.5'
+        dbcpVersion = '2.2.0'
+
+        slf4jVersion = '1.7.25'
+        log4jVersion = '2.10.0'
+
+        springDataVersion = '2.1.6.RELEASE'
+        hibernateVersion = '5.4.2.Final'
+        hikariVersion = '2.7.7'
+        jaxbapiVersion = '2.3.0'
+    }
+
+    dependencies {
+        implementation 'junit:junit:4.12'
+        testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+        testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+        implementation group: 'org.postgresql', name: 'postgresql', version: '42.2.5'
+        // https://mvnrepository.com/artifact/org.springframework/spring-context
+        implementation group: 'org.springframework', name: 'spring-context', version: '5.2.9.RELEASE'
+
+        // https://mvnrepository.com/artifact/org.springframework/spring-jdbc
+        implementation group: 'org.springframework', name: 'spring-jdbc', version: '5.3.5'
+// https://mvnrepository.com/artifact/org.apache.commons/commons-dbcp2
+        implementation group: 'org.apache.commons', name: 'commons-dbcp2', version: '2.8.0'
+
+        //logging
+        compile group: 'org.slf4j', name: 'slf4j-api', version: "$slf4jVersion"
+        testCompile group: 'org.slf4j', name: 'slf4j-simple', version: "$slf4jVersion"
+
+        compile group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: "$log4jVersion"
+        compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: "$log4jVersion"
+        compile group: 'org.apache.logging.log4j', name: 'log4j-1.2-api', version: "$log4jVersion"
+
+
+        //jpa
+        compile group: 'org.springframework', name: 'spring-context-support', version: "$springVersion"
+        compile group: 'org.springframework', name: 'spring-orm', version: "$springVersion"
+        compile group: 'org.springframework.data', name: 'spring-data-jpa', version: "$springDataVersion"
+
+        compile group: 'org.hibernate', name: 'hibernate-core', version:"$hibernateVersion"
+
+        compile group: 'org.postgresql', name: 'postgresql', version: "$postgresqlVersion"
+
+        compile group: 'com.zaxxer', name: 'HikariCP', version: "$hikariVersion"
+
+        compile group: 'javax.xml.bind', name: 'jaxb-api', version: "$jaxbapiVersion"
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+
+}

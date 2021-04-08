@@ -1,10 +1,9 @@
 package service
 
-import domain.Conference
-import domain.Role
-import domain.User
+import domain.*
 import exceptions.ConferenceException
 import repository.ConferenceRepository
+import repository.ProposalRepository
 import repository.UserConferenceRepository
 import repository.UserRepository
 import java.io.FileInputStream
@@ -18,12 +17,15 @@ class Service {
     private val userRepository: UserRepository
     private val conferenceRepository: ConferenceRepository
     private val userConferenceRepository: UserConferenceRepository
+    private val proposalRepository: ProposalRepository
 
     init {
         val configs = readSettingsFile()
         userRepository = UserRepository(configs["database"]!!, configs["user"]!!, configs["password"]!!)
         conferenceRepository = ConferenceRepository(configs["database"]!!, configs["user"]!!, configs["password"]!!)
-        userConferenceRepository = UserConferenceRepository(configs["database"]!!, configs["user"]!!, configs["password"]!!)
+        userConferenceRepository =
+            UserConferenceRepository(configs["database"]!!, configs["user"]!!, configs["password"]!!)
+        proposalRepository = ProposalRepository(configs["database"]!!, configs["user"]!!, configs["password"]!!)
     }
 
     private fun readSettingsFile(): HashMap<String, String> {
@@ -47,29 +49,51 @@ class Service {
         return propertiesMap
     }
 
+    private fun getUsers() = userRepository.getUsers()
     fun findUserById(id: Int) = userRepository.findUserById(id)
-    fun getUsers() = userRepository.getUsers()
-    fun addUser(name: String, password: String, email: String, fullName: String, affiliation: String,
-                personalWebsite: String, domainOfInterest: String){
-        if(isUsernameExistent(name))
+    fun addUser(
+        name: String, password: String, email: String, fullName: String, affiliation: String,
+        personalWebsite: String, domainOfInterest: String
+    ) {
+        if (isUsernameExistent(name))
             throw ConferenceException("Username already exists")
 
-        var id= 0
+        var id = 0
         for (user in userRepository.getUsers()) id = max(id, user.id + 1)
 
-        userRepository.addUser(User(id, name, password, email, fullName, affiliation, personalWebsite, domainOfInterest))
+        userRepository.addUser(
+            User(
+                id,
+                name,
+                password,
+                email,
+                fullName,
+                affiliation,
+                personalWebsite,
+                domainOfInterest
+            )
+        )
     }
+
     fun findConferenceById(id: Int) = conferenceRepository.findConferenceById(id)
     fun getConferences() = conferenceRepository.getConferences()
     fun addConference(name: String, date: Date, attendancePrice: Int) {
-        var id= 0
+        var id = 0
         for (conference in conferenceRepository.getConferences()) id = max(id, conference.id + 1)
         conferenceRepository.addConference(Conference(id, name, date, attendancePrice))
     }
 
     fun getConferencesOfUser(uid: Int) = userConferenceRepository.getConferencesOfUser(uid)
     fun getUsersOfConference(cid: Int) = userConferenceRepository.getUsersOfConference(cid)
-    fun addUserToConference(uid: Int, cid: Int, role: Role, paid: Boolean) = userConferenceRepository.addPair(uid, cid, role, paid)
+    fun addUserToConference(uid: Int, cid: Int, role: Role, paid: Boolean) = userConferenceRepository.addPair(
+        UserConference(
+            userConferenceRepository.getAll().map { userConference -> userConference.id }.maxOrNull() ?: 0 + 1,
+            uid,
+            cid,
+            role,
+            paid
+        )
+    )
 
     fun usersWithNameAndPassword(username: String, password: String): List<User> {
         return getUsers().stream().filter {
@@ -82,7 +106,8 @@ class Service {
             (it.name == username)
         }.findFirst().get().email
     }
-    fun isUsernameExistent(username: String): Boolean{
+
+    fun isUsernameExistent(username: String): Boolean {
         return getUsers().stream().filter {
             (it.name == username)
         }.toList().isNotEmpty()
@@ -93,4 +118,41 @@ class Service {
             (it.name == username)
         }.findFirst().get().id
     }
+
+    fun addProposal(
+        userConferenceId: Int,
+        abstractText: String,
+        paperText: String,
+        title: String,
+        authors: String,
+        keywords: String,
+        accepted: Boolean = false
+    ) =
+        proposalRepository.addProposal(Proposal(proposalRepository.getProposals().map { proposal -> proposal.id }
+            .maxOrNull() ?: 0 + 1, userConferenceId, abstractText, paperText, title, authors, keywords, accepted))
+
+    fun updateProposal(
+        id: Int, userConferenceId: Int,
+        abstractText: String,
+        paperText: String,
+        title: String,
+        authors: String,
+        keywords: String,
+        accepted: Boolean = false
+    ) {
+        proposalRepository.updateProposal(
+            Proposal(
+                id,
+                userConferenceId,
+                abstractText,
+                paperText,
+                title,
+                authors,
+                keywords,
+                accepted
+            )
+        )
+    }
+
+    fun getProposalsOfUser(uid: Int) = proposalRepository.getProposalsOfUser(uid)
 }

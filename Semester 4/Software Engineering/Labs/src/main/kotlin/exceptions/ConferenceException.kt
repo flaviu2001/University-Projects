@@ -1,3 +1,3 @@
 package exceptions
 
-class ConferenceException(override val message: String) : RuntimeException(message)
+class ConferenceException(override val message: String) : Exception(message)

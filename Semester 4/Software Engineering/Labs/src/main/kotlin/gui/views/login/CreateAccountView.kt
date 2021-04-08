@@ -36,8 +36,8 @@ class CreateAccountView(private val service: Service) : View("Create account") {
         if(emailField.text.isEmpty() || usernameField.text.isEmpty() || passwordField.text.isEmpty()
             || confirmPasswordField.text.isEmpty() || fullNameField.text.isEmpty() || affiliationField.text.isEmpty()
             || personalWebsiteField.text.isEmpty() || domainOfInterestField.text.isEmpty())
-                return false;
-        return true;
+                return false
+        return true
     }
 
     private fun handleCreateAccount(){

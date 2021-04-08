@@ -4,15 +4,11 @@ import domain.Conference
 import domain.Role
 import exceptions.ConferenceException
 import gui.views.login.LoginView
-import javafx.collections.FXCollections
-import javafx.collections.ObservableList
 import javafx.scene.control.*
 import javafx.scene.layout.GridPane
-
 import service.Service
 import tornadofx.*
 import java.sql.Date
-import java.util.*
 import javax.mail.Message
 import javax.mail.MessagingException
 import javax.mail.Session
@@ -22,7 +18,6 @@ import javax.mail.internet.MimeMessage
 
 
 class AdminView(private val service: Service) : View() {
-
     override val root: GridPane by fxml()
     private val nameField: TextField by fxid()
     private val priceField: TextField by fxid()
@@ -30,7 +25,7 @@ class AdminView(private val service: Service) : View() {
     private val addConferenceButton: Button by fxid()
     private val conferenceListView: ListView<Conference> by fxid()
     private val chairNameField: TextField by fxid()
-    private val coChairRadioButton: RadioButton by fxid()
+    private val coChairRadioButton: CheckBox by fxid()
     private val inviteChairButton: Button by fxid()
     private val logoutButton: Button by fxid()
 

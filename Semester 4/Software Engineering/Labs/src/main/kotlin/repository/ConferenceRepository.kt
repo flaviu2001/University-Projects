@@ -1,7 +1,6 @@
 package repository
 
 import domain.Conference
-import java.sql.Date
 import java.sql.DriverManager
 
 class ConferenceRepository (private val url: String, private val db_user: String, private val db_password: String){

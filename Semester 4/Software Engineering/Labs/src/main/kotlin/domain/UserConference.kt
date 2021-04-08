@@ -11,4 +11,4 @@ enum class Role {
     SPEAKER
 }
 
-data class UserConference (val userId: Int, val conferenceId: Int, val roles: Role, val paid: Boolean)
+data class UserConference (val id: Int, val userId: Int, val conferenceId: Int, val role: Role, val paid: Boolean)
