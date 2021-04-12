@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Enterprise System</title>
+    <link rel="stylesheet" type="text/css" href="showUsers.css">
+    <script src="jquery-3.6.0.js"></script>
+    <script src="showUsers.js"></script>
+</head>
+
+<body>
+<div class="container">
+    <div class="details">
+        <h1>Users</h1>
+
+        <input type="text" placeholder="Role:" id="role"/>
+
+        <input type="text" placeholder="name:" id="name"/>
+
+        <button class="add" onclick="window.location.href='addUser.php'">
+            Add new user
+        </button>
+        <p id="info">hi</p>
+    </div>
+    <table>
+        <tr>
+            <th> NAME </th>
+            <th> USERNAME </th>
+            <th> AGE </th>
+            <th> ROLE </th>
+            <th> EMAIL </th>
+            <th> WEBPAGE </th>
+            <th> ACTION </th>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
