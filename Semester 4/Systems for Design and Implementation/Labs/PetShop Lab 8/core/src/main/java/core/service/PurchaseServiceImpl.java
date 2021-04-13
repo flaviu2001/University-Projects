@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -75,6 +76,7 @@ public class PurchaseServiceImpl implements IPurchaseService {
     }
 
     @Override
+    @Transactional
     public void updatePurchase(Long catId, Long customerId, int newReview) {
         logger.trace("updatePurchase - method entered - catId: " + catId + ", customerId: " + customerId + " ,newReview" + newReview);
         purchaseRepository.findById(new CustomerPurchasePrimaryKey(customerId, catId))

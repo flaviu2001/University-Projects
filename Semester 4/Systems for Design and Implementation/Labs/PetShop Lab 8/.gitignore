@@ -8,6 +8,7 @@ node_modules
 data/programData/settings.properties
 data/testData/settings.properties
 server/src/main/resources/programData/settings.properties
+web/src/main/resources/programData/settings.properties
 
 # Eclipse
 .classpath

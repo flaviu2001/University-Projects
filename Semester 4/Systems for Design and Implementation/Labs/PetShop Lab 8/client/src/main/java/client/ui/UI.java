@@ -20,17 +20,17 @@ public class UI {
     @Autowired
     private AsyncCatController asyncCatController;
 
-//    @Autowired
-//    private AsyncFoodController asyncFoodController;
-//
-//    @Autowired
-//    private AsyncCatFoodController asyncCatFoodController;
-//
-//    @Autowired
-//    private AsyncCustomerController asyncCustomerController;
-//
-//    @Autowired
-//    private AsyncPurchaseController asyncPurchaseController;
+    @Autowired
+    private AsyncFoodController asyncFoodController;
+
+    @Autowired
+    private AsyncCatFoodController asyncCatFoodController;
+
+    @Autowired
+    private AsyncCustomerController asyncCustomerController;
+
+    @Autowired
+    private AsyncPurchaseController asyncPurchaseController;
 
     public UI() {
         menuTable = new HashMap<>();
@@ -94,84 +94,84 @@ public class UI {
         logger.trace("addCat - method finished");
     }
 
-//    /**
-//     * This function adds a food entity with the input from the user and id as maximum up until now plus 1
-//     */
-//    void addFood() {
-//        Scanner stdin = new Scanner(System.in);
-//        writeConsole("Name: ");
-//        String name = stdin.next();
-//        writeConsole("Producer: ");
-//        String producer = stdin.next();
-//        writeConsole("Expiration date (dd-mm-yyyy): ");
-//        String dateString = stdin.next();
-//        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-//        try {
-//            Date date = dateFormat.parse(dateString);
-//            asyncFoodController.addFood(name, producer, date).whenComplete((status, exception) -> {
-//                if (exception == null) {
-//                    System.out.println(status);
-//                } else {
-//                    System.out.println(exception.getMessage());
-//                }
-//            });
-//        } catch (ParseException e) {
-//            System.out.println("Wrong date format");
-//        }
-//    }
-//
-//    /**
-//     * This function adds a customer entity with the input from the user and id as maximum up until now plus 1
-//     */
-//    public void addCustomer() {
-//        Scanner stdin = new Scanner(System.in);
-//        writeConsole("Name: ");
-//        String name = stdin.next();
-//        writeConsole("Phone number (10 digits): ");
-//        String phoneNumber = stdin.next();
-//        asyncCustomerController.addCustomer(name, phoneNumber).whenComplete((status, exception) -> {
-//            if (exception == null)
-//                System.out.println(status);
-//            else System.out.println(exception.getMessage());
-//        });
-//    }
-//
-//    /**
-//     * This function adds a purchase entity with the input from user and current date
-//     */
-//    public void addPurchase() {
-//        Scanner stdin = new Scanner(System.in);
-//        writeConsole("Cat id: ");
-//        Long catId = stdin.nextLong();
-//        writeConsole("Customer id: ");
-//        Long customerId = stdin.nextLong();
-//        writeConsole("Price: ");
-//        int price = stdin.nextInt();
-//        writeConsole("Review: ");
-//        int review = stdin.nextInt();
-//        asyncPurchaseController.addPurchase(catId, customerId, price, new Date(), review).whenComplete((status, exception) -> {
-//            if (exception == null)
-//                System.out.println(status);
-//            else System.out.println(exception.getMessage());
-//        });
-//    }
-//
-//
-//    /**
-//     * This function prints the food to the console
-//     */
-//    public void showFood() {
-//        asyncFoodController.getFoodFromRepository().whenComplete((status, exception) -> {
-//            if (exception == null) {
-//                StreamSupport.stream(
-//                        status.spliterator(),
-//                        false
-//                ).forEach(System.out::println);
-//            } else {
-//                System.out.println(exception.getMessage());
-//            }
-//        });
-//    }
+    /**
+     * This function adds a food entity with the input from the user and id as maximum up until now plus 1
+     */
+    void addFood() {
+        Scanner stdin = new Scanner(System.in);
+        writeConsole("Name: ");
+        String name = stdin.next();
+        writeConsole("Producer: ");
+        String producer = stdin.next();
+        writeConsole("Expiration date (dd-mm-yyyy): ");
+        String dateString = stdin.next();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        try {
+            Date date = dateFormat.parse(dateString);
+            asyncFoodController.addFood(name, producer, date).whenComplete((status, exception) -> {
+                if (exception == null) {
+                    System.out.println(status);
+                } else {
+                    System.out.println(exception.getMessage());
+                }
+            });
+        } catch (ParseException e) {
+            System.out.println("Wrong date format");
+        }
+    }
+
+    /**
+     * This function adds a customer entity with the input from the user and id as maximum up until now plus 1
+     */
+    public void addCustomer() {
+        Scanner stdin = new Scanner(System.in);
+        writeConsole("Name: ");
+        String name = stdin.next();
+        writeConsole("Phone number (10 digits): ");
+        String phoneNumber = stdin.next();
+        asyncCustomerController.addCustomer(name, phoneNumber).whenComplete((status, exception) -> {
+            if (exception == null)
+                System.out.println(status);
+            else System.out.println(exception.getMessage());
+        });
+    }
+
+    /**
+     * This function adds a purchase entity with the input from user and current date
+     */
+    public void addPurchase() {
+        Scanner stdin = new Scanner(System.in);
+        writeConsole("Cat id: ");
+        Long catId = stdin.nextLong();
+        writeConsole("Customer id: ");
+        Long customerId = stdin.nextLong();
+        writeConsole("Price: ");
+        int price = stdin.nextInt();
+        writeConsole("Review: ");
+        int review = stdin.nextInt();
+        asyncPurchaseController.addPurchase(catId, customerId, price, new Date(), review).whenComplete((status, exception) -> {
+            if (exception == null)
+                System.out.println(status);
+            else System.out.println(exception.getMessage());
+        });
+    }
+
+
+    /**
+     * This function prints the food to the console
+     */
+    public void showFood() {
+        asyncFoodController.getFoodFromRepository().whenComplete((status, exception) -> {
+            if (exception == null) {
+                StreamSupport.stream(
+                        status.spliterator(),
+                        false
+                ).forEach(System.out::println);
+            } else {
+                System.out.println(exception.getMessage());
+            }
+        });
+    }
 
     /**
      * This function prints the cats to the console
@@ -187,42 +187,47 @@ public class UI {
         logger.trace("showCat - method finished");
     }
 
-//    /**
-//     * This function prints the customers to the console
-//     */
-//    public void showCustomers() {
-//        asyncCustomerController.getCustomersFromRepository().whenComplete((result, exception) -> {
-//            if (exception == null)
-//                StreamSupport.stream(result.spliterator(), false).forEach(System.out::println);
-//            else System.out.println(exception.getMessage());
-//        });
-//    }
-//
-//    public void showPurchases() {
-//        asyncPurchaseController.getPurchasesFromRepository().whenComplete((result, exception) -> {
-//            if (exception == null)
-//                StreamSupport.stream(result.spliterator(), false).forEach(System.out::println);
-//            else System.out.println(exception.getMessage());
-//        });
-//    }
-//
-//    /**
-//     * This function adds a CatFood entity
-//     */
-//    public void feedCat() {
-//        Scanner stdin = new Scanner(System.in);
-//        writeConsole("Cat id: ");
-//        Long catId = stdin.nextLong();
-//        writeConsole("Food id: ");
-//        Long foodId = stdin.nextLong();
-//        asyncCatFoodController.addCatFood(catId, foodId).whenComplete((status, exception) -> {
-//            if (exception == null) {
-//                System.out.println(status);
-//            } else {
-//                System.out.println(exception.getMessage());
-//            }
-//        });
-//    }
+    /**
+     * This function prints the customers to the console
+     */
+    public void showCustomers() {
+        asyncCustomerController.getCustomersFromRepository().whenComplete((result, exception) -> {
+            if (exception == null)
+                StreamSupport.stream(result.spliterator(), false).forEach(System.out::println);
+            else System.out.println(exception.getMessage());
+        });
+    }
+
+    public void showPurchases() {
+        asyncPurchaseController.getPurchasesFromRepository().whenComplete((result, exception) -> {
+            if (exception == null)
+                StreamSupport.stream(result.spliterator(), false).forEach(purchase -> {
+                    System.out.println(purchase.getCat());
+                    System.out.println(purchase.getCustomer());
+                    System.out.println("For " + purchase.getPrice() + " at " + purchase.getDateAcquired() + " with review " + purchase.getReview());
+                    System.out.println();
+                });
+            else System.out.println(exception.getMessage());
+        });
+    }
+
+    /**
+     * This function adds a CatFood entity
+     */
+    public void feedCat() {
+        Scanner stdin = new Scanner(System.in);
+        writeConsole("Cat id: ");
+        Long catId = stdin.nextLong();
+        writeConsole("Food id: ");
+        Long foodId = stdin.nextLong();
+        asyncCatFoodController.addCatFood(catId, foodId).whenComplete((status, exception) -> {
+            if (exception == null) {
+                System.out.println(status);
+            } else {
+                System.out.println(exception.getMessage());
+            }
+        });
+    }
 
 
     /**
@@ -241,88 +246,88 @@ public class UI {
         logger.trace("deleteCat - method finished");
     }
 
-//    /**
-//     * This function deletes a food entity
-//     */
-//    public void deleteFood() {
-//        Scanner stdin = new Scanner(System.in);
-//        writeConsole("Food id: ");
-//        Long foodId = stdin.nextLong();
-//        asyncFoodController.deleteFood(foodId).whenComplete((status, exception) -> {
-//            if (exception == null) {
-//                System.out.println(status);
-//            } else {
-//                System.out.println(exception.getMessage());
-//            }
-//        });
-//    }
-//
-//    /**
-//     * This function deletes a CatFood entity
-//     */
-//    public void stopFeedingCat() {
-//        Scanner stdin = new Scanner(System.in);
-//        writeConsole("Cat id: ");
-//        Long catId = stdin.nextLong();
-//        writeConsole("Food id: ");
-//        Long foodId = stdin.nextLong();
-//        asyncCatFoodController.deleteCatFood(catId, foodId).whenComplete((status, exception) -> {
-//            if (exception == null) {
-//                System.out.println(status);
-//            } else {
-//                System.out.println(exception.getMessage());
-//            }
-//        });
-//    }
-//
-//    /**
-//     * This function deletes a CatFood entity
-//     */
-//    public void deleteCustomer() {
-//        Scanner stdin = new Scanner(System.in);
-//        writeConsole("Customer id: ");
-//        Long customerId = stdin.nextLong();
-//        asyncCustomerController.deleteCustomer(customerId).whenComplete((status, exception) -> {
-//            if (exception == null)
-//                System.out.println(status);
-//            else System.out.println(exception.getMessage());
-//        });
-//    }
-//
-//    /**
-//     * This function deletes a purchase entity
-//     */
-//    public void deletePurchase() {
-//        Scanner stdin = new Scanner(System.in);
-//        writeConsole("Cat id: ");
-//        Long catId = stdin.nextLong();
-//        writeConsole("Customer id: ");
-//        Long customerId = stdin.nextLong();
-//        asyncPurchaseController.deletePurchase(catId, customerId).whenComplete((status, exception) -> {
-//            if (exception == null)
-//                System.out.println(status);
-//            else System.out.println(exception.getMessage());
-//        });
-//    }
-//
-//    /**
-//     * This function prints the result of the join between cats and foods
-//     */
-//    public void showCatFoodPairs() {
-//        asyncCatFoodController.getCatFoodJoin().whenComplete((status, exception) -> {
-//            if (exception == null) {
-//                StreamSupport.stream(
-//                        status.spliterator(),
-//                        false
-//                ).forEach(catFoodPair -> {
-//                    System.out.println(catFoodPair.getLeft());
-//                    System.out.println(catFoodPair.getRight() + "\n");
-//                });
-//            } else {
-//                System.out.println(exception.getMessage());
-//            }
-//        });
-//    }
+    /**
+     * This function deletes a food entity
+     */
+    public void deleteFood() {
+        Scanner stdin = new Scanner(System.in);
+        writeConsole("Food id: ");
+        Long foodId = stdin.nextLong();
+        asyncFoodController.deleteFood(foodId).whenComplete((status, exception) -> {
+            if (exception == null) {
+                System.out.println(status);
+            } else {
+                System.out.println(exception.getMessage());
+            }
+        });
+    }
+
+    /**
+     * This function deletes a CatFood entity
+     */
+    public void stopFeedingCat() {
+        Scanner stdin = new Scanner(System.in);
+        writeConsole("Cat id: ");
+        Long catId = stdin.nextLong();
+        writeConsole("Food id: ");
+        Long foodId = stdin.nextLong();
+        asyncCatFoodController.deleteCatFood(catId, foodId).whenComplete((status, exception) -> {
+            if (exception == null) {
+                System.out.println(status);
+            } else {
+                System.out.println(exception.getMessage());
+            }
+        });
+    }
+
+    /**
+     * This function deletes a Customer entity
+     */
+    public void deleteCustomer() {
+        Scanner stdin = new Scanner(System.in);
+        writeConsole("Customer id: ");
+        Long customerId = stdin.nextLong();
+        asyncCustomerController.deleteCustomer(customerId).whenComplete((status, exception) -> {
+            if (exception == null)
+                System.out.println(status);
+            else System.out.println(exception.getMessage());
+        });
+    }
+
+    /**
+     * This function deletes a purchase entity
+     */
+    public void deletePurchase() {
+        Scanner stdin = new Scanner(System.in);
+        writeConsole("Cat id: ");
+        Long catId = stdin.nextLong();
+        writeConsole("Customer id: ");
+        Long customerId = stdin.nextLong();
+        asyncPurchaseController.deletePurchase(catId, customerId).whenComplete((status, exception) -> {
+            if (exception == null)
+                System.out.println(status);
+            else System.out.println(exception.getMessage());
+        });
+    }
+
+    /**
+     * This function prints the result of the join between cats and foods
+     */
+    public void showCatFoodPairs() {
+        asyncCatFoodController.getCatFoodFromRepository().whenComplete((status, exception) -> {
+            if (exception == null) {
+                StreamSupport.stream(
+                        status.spliterator(),
+                        false
+                ).forEach(catFood -> {
+                    System.out.println(catFood.getCat());
+                    System.out.println(catFood.getFood() + "\n");
+                });
+            } else {
+                System.out.println(exception.getMessage());
+            }
+        });
+    }
 
 
     /**
@@ -347,107 +352,107 @@ public class UI {
         logger.trace("updateCat - method finished");
     }
 
-//    /**
-//     * This function updates a food
-//     */
-//    public void updateFood() {
-//        Scanner stdin = new Scanner(System.in);
-//        writeConsole("Id: ");
-//        Long id = stdin.nextLong();
-//        writeConsole("Name: ");
-//        String name = stdin.next();
-//        writeConsole("Producer: ");
-//        String producer = stdin.next();
-//        writeConsole("Expiration date (dd-mm-yyyy): ");
-//        String dateString = stdin.next();
-//        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-//        try {
-//            Date date = dateFormat.parse(dateString);
-//            asyncFoodController.updateFood(id, name, producer, date).whenComplete((status, exception) -> {
-//                if (exception == null) {
-//                    System.out.println(status);
-//                } else {
-//                    System.out.println(exception.getMessage());
-//                }
-//            });
-//        } catch (ParseException parseException) {
-//            parseException.printStackTrace();
-//            System.out.println("Could not add");
-//        }
-//    }
-//
-//    /**
-//     * This function updates a cat food
-//     */
-//    public void updateCatFood() {
-//        Scanner stdin = new Scanner(System.in);
-//        writeConsole("Cat id: ");
-//        Long catId = stdin.nextLong();
-//        writeConsole("Food id: ");
-//        Long foodId = stdin.nextLong();
-//        writeConsole("New food id: ");
-//        Long newFoodId = stdin.nextLong();
-//        asyncCatFoodController.updateCatFood(catId, foodId, newFoodId).whenComplete((status, exception) -> {
-//            if (exception == null) {
-//                System.out.println(status);
-//            } else {
-//                System.out.println(exception.getMessage());
-//            }
-//        });
-//    }
-//
-//    /**
-//     * This function updates a customer entity
-//     */
-//    public void updateCustomer() {
-//        Scanner stdin = new Scanner(System.in);
-//        writeConsole("Id: ");
-//        Long id = stdin.nextLong();
-//        writeConsole("Name: ");
-//        String name = stdin.next();
-//        writeConsole("Phone number (10 digits): ");
-//        String phoneNumber = stdin.next();
-//        asyncCustomerController.updateCustomer(id, name, phoneNumber).whenComplete((status, exception) -> {
-//            if (exception == null)
-//                System.out.println(status);
-//            else System.out.println(exception.getMessage());
-//        });
-//    }
-//
-//
-//    public void updatePurchase() {
-//        Scanner stdin = new Scanner(System.in);
-//        writeConsole("Cat id: ");
-//        Long catId = stdin.nextLong();
-//        writeConsole("Customer Id: ");
-//        Long customerId = stdin.nextLong();
-//        writeConsole("Give review: ");
-//        int review = stdin.nextInt();
-//        asyncPurchaseController.updatePurchase(catId, customerId, review).whenComplete((status, exception) -> {
-//            if (exception == null)
-//                System.out.println(status);
-//            else System.out.println(exception.getMessage());
-//        });
-//    }
-//
-//    public void filterCatsBasedOnFood() {
-//        Scanner stdin = new Scanner(System.in);
-//        writeConsole("Food id: ");
-//        Long foodId = stdin.nextLong();
-//
-//        asyncCatFoodController.filterCatsThatEatCertainFood(foodId).whenComplete((result, exception) -> {
-//            if (exception == null) {
-//                StreamSupport.stream(
-//                        result.spliterator(),
-//                        false
-//                ).forEach(System.out::println);
-//            } else {
-//                System.out.println(exception.getMessage());
-//            }
-//        });
-//
-//    }
-//
+    /**
+     * This function updates a food
+     */
+    public void updateFood() {
+        Scanner stdin = new Scanner(System.in);
+        writeConsole("Id: ");
+        Long id = stdin.nextLong();
+        writeConsole("Name: ");
+        String name = stdin.next();
+        writeConsole("Producer: ");
+        String producer = stdin.next();
+        writeConsole("Expiration date (dd-mm-yyyy): ");
+        String dateString = stdin.next();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        try {
+            Date date = dateFormat.parse(dateString);
+            asyncFoodController.updateFood(id, name, producer, date).whenComplete((status, exception) -> {
+                if (exception == null) {
+                    System.out.println(status);
+                } else {
+                    System.out.println(exception.getMessage());
+                }
+            });
+        } catch (ParseException parseException) {
+            parseException.printStackTrace();
+            System.out.println("Could not add");
+        }
+    }
+
+    /**
+     * This function updates a cat food
+     */
+    public void updateCatFood() {
+        Scanner stdin = new Scanner(System.in);
+        writeConsole("Cat id: ");
+        Long catId = stdin.nextLong();
+        writeConsole("Food id: ");
+        Long foodId = stdin.nextLong();
+        writeConsole("New food id: ");
+        Long newFoodId = stdin.nextLong();
+        asyncCatFoodController.updateCatFood(catId, foodId, newFoodId).whenComplete((status, exception) -> {
+            if (exception == null) {
+                System.out.println(status);
+            } else {
+                System.out.println(exception.getMessage());
+            }
+        });
+    }
+
+    /**
+     * This function updates a customer entity
+     */
+    public void updateCustomer() {
+        Scanner stdin = new Scanner(System.in);
+        writeConsole("Id: ");
+        Long id = stdin.nextLong();
+        writeConsole("Name: ");
+        String name = stdin.next();
+        writeConsole("Phone number (10 digits): ");
+        String phoneNumber = stdin.next();
+        asyncCustomerController.updateCustomer(id, name, phoneNumber).whenComplete((status, exception) -> {
+            if (exception == null)
+                System.out.println(status);
+            else System.out.println(exception.getMessage());
+        });
+    }
+
+
+    public void updatePurchase() {
+        Scanner stdin = new Scanner(System.in);
+        writeConsole("Cat id: ");
+        Long catId = stdin.nextLong();
+        writeConsole("Customer Id: ");
+        Long customerId = stdin.nextLong();
+        writeConsole("Give review: ");
+        int review = stdin.nextInt();
+        asyncPurchaseController.updatePurchase(catId, customerId, review).whenComplete((status, exception) -> {
+            if (exception == null)
+                System.out.println(status);
+            else System.out.println(exception.getMessage());
+        });
+    }
+
+    public void filterCatsBasedOnFood() {
+        Scanner stdin = new Scanner(System.in);
+        writeConsole("Food id: ");
+        Long foodId = stdin.nextLong();
+
+        asyncCatFoodController.filterCatsThatEatCertainFood(foodId).whenComplete((result, exception) -> {
+            if (exception == null) {
+                StreamSupport.stream(
+                        result.spliterator(),
+                        false
+                ).forEach(catFood -> System.out.println(catFood.getCat()));
+            } else {
+                System.out.println(exception.getMessage());
+            }
+        });
+
+    }
+
 //    public void filterCustomersBasedOnBreedPurchase() {
 //        writeConsole("Breed: ");
 //        Scanner stdin = new Scanner(System.in);
@@ -483,26 +488,26 @@ public class UI {
      */
     public void runProgram() {
         menuTable.put(1, this::addCat);
-//        menuTable.put(2, this::addFood);
-//        menuTable.put(3, this::feedCat);
-//        menuTable.put(4, this::addCustomer);
-//        menuTable.put(5, this::addPurchase);
+        menuTable.put(2, this::addFood);
+        menuTable.put(3, this::feedCat);
+        menuTable.put(4, this::addCustomer);
+        menuTable.put(5, this::addPurchase);
         menuTable.put(6, this::showCats);
-//        menuTable.put(7, this::showFood);
-//        menuTable.put(8, this::showCatFoodPairs);
-//        menuTable.put(9, this::showCustomers);
-//        menuTable.put(10, this::showPurchases);
+        menuTable.put(7, this::showFood);
+        menuTable.put(8, this::showCatFoodPairs);
+        menuTable.put(9, this::showCustomers);
+        menuTable.put(10, this::showPurchases);
         menuTable.put(11, this::deleteCat);
-//        menuTable.put(12, this::deleteFood);
-//        menuTable.put(13, this::stopFeedingCat);
-//        menuTable.put(14, this::deleteCustomer);
-//        menuTable.put(15, this::deletePurchase);
+        menuTable.put(12, this::deleteFood);
+        menuTable.put(13, this::stopFeedingCat);
+        menuTable.put(14, this::deleteCustomer);
+        menuTable.put(15, this::deletePurchase);
         menuTable.put(16, this::updateCat);
-//        menuTable.put(17, this::updateFood);
-//        menuTable.put(18, this::updateCatFood);
-//        menuTable.put(19, this::updateCustomer);
-//        menuTable.put(20, this::updatePurchase);
-//        menuTable.put(21, this::filterCatsBasedOnFood);
+        menuTable.put(17, this::updateFood);
+        menuTable.put(18, this::updateCatFood);
+        menuTable.put(19, this::updateCustomer);
+        menuTable.put(20, this::updatePurchase);
+        menuTable.put(21, this::filterCatsBasedOnFood);
 //        menuTable.put(22, this::filterCustomersBasedOnBreedPurchase);
 //        menuTable.put(23, this::filterPurchasesWithMinStars);
 //        menuTable.put(24, this::reportCustomersSortedBySpentCash);

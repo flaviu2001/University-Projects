@@ -30,16 +30,16 @@ import javax.sql.DataSource;
 //@EnableCaching
 public class JPAConfig {
 
-    @Value("${database}")
+    @Value("${db.database}")
     private String jdbcUrl;
 
-    @Value("${username}")
+    @Value("${db.username}")
     private String username;
 
-    @Value("${password}")
+    @Value("${db.password}")
     private String password;
 
-    @Value("${generateDDL}")
+    @Value("${db.generateDDL}")
     private Boolean generateDDL;
 
     /**

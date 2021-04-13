@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -55,6 +56,7 @@ public class CustomerServiceImpl implements ICustomerService {
     }
 
     @Override
+    @Transactional
     public void updateCustomer(Long id, String name, String phoneNumber) {
         logger.trace("updateCustomer - method entered - id: " + id + ", name: " + name + ", phoneNumber: " + phoneNumber);
 

@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -41,7 +42,7 @@ public class CatFoodServiceImpl implements ICatFoodService {
         }, () -> {
             throw new PetShopException("Cat id does not exist!");
         });
-        logger.trace("add cat - method finished");
+        logger.trace("add catFood - method finished");
     }
 
     @Override
@@ -77,6 +78,7 @@ public class CatFoodServiceImpl implements ICatFoodService {
     }
 
     @Override
+    @Transactional
     public void updateCatFood(Long catId, Long foodId, Long newFoodId) {
         logger.trace("updateCatFood - method entered - catId: " + catId + " - foodId: " + foodId + " - newFoodId: " + newFoodId);
 
@@ -90,9 +92,9 @@ public class CatFoodServiceImpl implements ICatFoodService {
 
 
     @Override
-    public List<Cat> filterCatsThatEatCertainFood(Long foodId) {
+    public List<CatFood> filterCatsThatEatCertainFood(Long foodId) {
         logger.trace("filterCatsThatEatCertainFood - method entered - foodId: " + foodId);
-        List<Cat> cats = catsRepository.findAll().stream()
+        /*List<Cat> cats = catsRepository.findAll().stream()
                 .filter(
                         cat -> getCatFoodFromRepository().stream().anyMatch(
                                 catFood -> catFood.getCatId().equals(cat.getId()) &&
@@ -100,7 +102,11 @@ public class CatFoodServiceImpl implements ICatFoodService {
                         )
                 )
                 .collect(Collectors.toList());
-        logger.trace("filterCatsThatEatCertainFood: " + cats.toString());
-        return cats;
+         */
+        Food food = new Food();
+        food.setId(foodId);
+        List<CatFood> catFoods = catFoodRepository.findAllByFood(food);
+        logger.trace("filterCatsThatEatCertainFood: " + catFoods.toString());
+        return catFoods;
     }
 }

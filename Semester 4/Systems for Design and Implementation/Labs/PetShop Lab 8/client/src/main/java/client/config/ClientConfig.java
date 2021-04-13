@@ -9,7 +9,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @Configuration
-@ComponentScan("client.ui")
+@ComponentScan({"client.ui"})
 public class ClientConfig {
     @Bean
     RestTemplate restTemplate() {

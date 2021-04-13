@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -54,15 +55,15 @@ public class FoodServiceImpl implements IFoodService {
     }
 
     @Override
+    @Transactional
     public void updateFood(Long id, String name, String producer, Date expirationDate) {
         logger.trace("updateFood - method entered - id: " + id + ", name: " + name + ", producer: " + producer + ", expiration date: " + expirationDate.toString());
-
         foodRepository.findById(id)
-                .ifPresentOrElse(
-                        (food) -> {
+                .ifPresentOrElse((food) -> {
                             food.setName(name);
                             food.setProducer(producer);
                             food.setExpirationDate(expirationDate);
+                            System.out.println(food);
                         },
                         () -> {
                             throw new PetShopException("Food does not exist");

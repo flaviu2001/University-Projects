@@ -55,6 +55,6 @@ public interface ICatFoodService {
      * @param foodId - identifies the required food
      * @return a list of cats that eat the required food
      */
-    List<Cat> filterCatsThatEatCertainFood(Long foodId);
+    List<CatFood> filterCatsThatEatCertainFood(Long foodId);
 }
 
