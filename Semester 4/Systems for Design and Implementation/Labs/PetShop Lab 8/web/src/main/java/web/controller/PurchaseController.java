@@ -1,9 +1,7 @@
 package web.controller;
 
 
-import core.domain.CatFood;
-import core.domain.CustomerPurchasePrimaryKey;
-import core.domain.Purchase;
+import core.domain.*;
 import core.service.IPurchaseService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,10 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import web.converter.CustomerConverter;
 import web.converter.PurchaseConverter;
 import web.dto.*;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @RestController
 public class PurchaseController {
@@ -25,6 +26,9 @@ public class PurchaseController {
 
     @Autowired
     private PurchaseConverter purchaseConverter;
+
+    @Autowired
+    private CustomerConverter customerConverter;
 
     @RequestMapping(value = "/purchases")
     PurchasesDTO getPurchasesFromRepository(){
@@ -59,5 +63,34 @@ public class PurchaseController {
     ResponseEntity<?> deleteCatFood(@PathVariable Long catId, @PathVariable Long customerId) {
         purchaseService.deletePurchase(catId, customerId);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/purchases/breed={breed}")
+    CustomersDTO getCustomersThatBoughtBreed(@PathVariable String breed){
+        logger.trace("getCustomersThatBoughtBreed - method entered");
+        Set<Customer> customers = purchaseService.filterCustomersThatBoughtBreedOfCat(breed);
+        CustomersDTO purchasesDTO = new CustomersDTO(customerConverter.convertModelsToDTOs(customers));
+        logger.trace("getCustomersThatBoughtBreed: " + customers);
+        return purchasesDTO;
+    }
+
+    @RequestMapping(value = "/sortedCustomers")
+    CustomersSpentCashDTO getSortedCustomers(){
+        logger.trace("getCustomersThatBoughtBreed - method entered");
+        List<CustomerSpentCashDTO> customers = purchaseService.reportCustomersSortedBySpentCash().stream()
+                .map(pair-> new CustomerSpentCashDTO(pair.getLeft(), pair.getRight()))
+                .collect(Collectors.toList());
+        CustomersSpentCashDTO customersDTO = new CustomersSpentCashDTO(customers);
+        logger.trace("getCustomersThatBoughtBreed: " + customers);
+        return customersDTO;
+    }
+
+    @RequestMapping(value = "/purchases/minReview={minReview}")
+    PurchasesDTO getPurchasesWithMinReview(@PathVariable Integer minReview){
+        logger.trace("getPurchasesWithMinReview - method entered");
+        List<Purchase> purchases = purchaseService.filterPurchasesWithMinStars(minReview);
+        PurchasesDTO purchasesDTO = new PurchasesDTO(purchaseConverter.convertModelsToDTOs(purchases));
+        logger.trace("getPurchasesWithMinReview: " + purchases);
+        return purchasesDTO;
     }
 }

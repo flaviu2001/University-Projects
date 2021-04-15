@@ -102,17 +102,64 @@ public class AsyncPurchaseController {
     }
 
 
-    /*
+
     public CompletableFuture<Iterable<Customer>> filterCustomersThatBoughtBreedOfCat(String breed) {
-        return CompletableFuture.supplyAsync(() -> purchaseService.filterCustomersThatBoughtBreedOfCat(breed), executorService);
+        return CompletableFuture.supplyAsync(() -> {
+                    try {
+                        String url = "http://localhost:8080/api/purchases";
+                        CustomersDTO customers = restTemplate.getForObject(url + "/breed=" + breed, CustomersDTO.class);
+                        if (customers == null)
+                            throw new PetShopException("Could not retrieve customers from server");
+                        return customers.getCustomers()
+                                .stream()
+                                .map(customerDTO -> new Customer(customerDTO.getId(), customerDTO.getName(), customerDTO.getPhoneNumber()))
+                                .collect(Collectors.toSet());
+                    }catch (ResourceAccessException resourceAccessException){
+                        throw new PetShopException("Inaccessible server");
+                    }
+                }
+                , executorService);
     }
+
 
     public CompletableFuture<Iterable<Purchase>> filterPurchasesWithMinStars(int minStars) {
-        return CompletableFuture.supplyAsync(() -> purchaseService.filterPurchasesWithMinStars(minStars), executorService);
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                String url = "http://localhost:8080/api/purchases";
+                PurchasesDTO purchases = restTemplate.getForObject(url + "/minReview=" + minStars, PurchasesDTO.class);
+                if (purchases == null)
+                    throw new PetShopException("Could not retrieve purchases from server");
+                return purchases.getPurchases().stream()
+                        .map(DTO -> new Purchase(
+                                DTO.getId(),
+                                DTO.getCustomer(),
+                                DTO.getCat(),
+                                DTO.getPrice(),
+                                DTO.getDateAcquired(),
+                                DTO.getReview()
+                        ))
+                        .collect(Collectors.toSet());
+            }catch (ResourceAccessException resourceAccessException){
+                throw new PetShopException("Inaccessible server");
+            }
+        }, executorService);
     }
 
+
     public CompletableFuture<Iterable<Pair<Customer, Integer>>> reportCustomersSortedBySpentCash() {
-        return CompletableFuture.supplyAsync(purchaseService::reportCustomersSortedBySpentCash, executorService);
+        return CompletableFuture.supplyAsync(()->{
+            try {
+                String url = "http://localhost:8080/api/sortedCustomers";
+                CustomersSpentCashDTO purchases = restTemplate.getForObject(url, CustomersSpentCashDTO.class);
+                if (purchases == null)
+                    throw new PetShopException("Could not retrieve purchases from server");
+                return purchases.getCustomersSpentCash().stream()
+                        .map(DTO -> new Pair<>(DTO.getCustomer(), DTO.getTotalCash()))
+                        .collect(Collectors.toList());
+            }catch (ResourceAccessException resourceAccessException){
+                throw new PetShopException("Inaccessible server");
+            }
+        }, executorService);
     }
-     */
+
 }

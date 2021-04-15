@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigInteger;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -88,33 +89,38 @@ public class PurchaseServiceImpl implements IPurchaseService {
     }
 
     @Override
-    public List<Customer> filterCustomersThatBoughtBreedOfCat(String breed) {
+    public Set<Customer> filterCustomersThatBoughtBreedOfCat(String breed) {
 
         logger.trace("filterCustomersThatBoughBreedOfCat - method entered - breed: " + breed);
-        List<Customer> customers = customerRepository.findAll().stream()
+        /*List<Customer> customers = customerRepository.findAll().stream()
                 .filter((customer) ->
                         getPurchasesFromRepository().stream().anyMatch((purchase) ->
                                 (catsRepository.findAll()).stream().anyMatch((cat) ->purchase.getCatId().equals(cat.getId()) && purchase.getCustomerId().equals(customer.getId()) && cat.getBreed().equals(breed))))
                 .collect(Collectors.toList());
-        logger.trace("filterCustomersThatBoughBreedOfCat - method finished");
-        return customers;
-
+         */
+        Set<Customer> purchases = purchaseRepository.findAllByCat_Breed(breed).stream()
+                .map(Purchase::getCustomer)
+                .collect(Collectors.toSet());
+        logger.trace("filterCustomersThatBoughBreedOfCat - method finished - " + purchases);
+        return purchases;
     }
 
     @Override
     public List<Purchase> filterPurchasesWithMinStars(int minStars) {
         logger.trace("filterPurchasesWithMinStars - method entered - min stars: " + minStars);
-        List<Purchase> purchases = getPurchasesFromRepository().stream()
+        /*List<Purchase> purchases = getPurchasesFromRepository().stream()
                 .filter(purchase -> purchase.getReview() >= minStars)
                 .collect(Collectors.toList());
-        logger.trace("filterPurchasesWithMinStars - method finished");
+        */
+        List<Purchase> purchases = purchaseRepository.findAllByReviewGreaterThanEqual(minStars);
+        logger.trace("filterPurchasesWithMinStars - method finished - " + purchases);
         return purchases;
     }
 
     @Override
     public List<Pair<Customer, Integer>> reportCustomersSortedBySpentCash() {
         logger.trace("reportCustomersSortedBySpentCash - method entered");
-        List<Pair<Customer, Integer>> toReturn = new ArrayList<>();
+        /*List<Pair<Customer, Integer>> toReturn = new ArrayList<>();
         customerRepository.findAll().forEach((customer) -> {
             int moneySpent = getPurchasesFromRepository().stream()
                     .filter(purchase -> purchase.getCustomerId().equals(customer.getId()))
@@ -123,8 +129,11 @@ public class PurchaseServiceImpl implements IPurchaseService {
             toReturn.add(new Pair<>(customer, moneySpent));
         });
         toReturn.sort((p1, p2) -> -p1.getRight().compareTo(p2.getRight()));
-        logger.trace("reportCustomersSortedBySpentCash - method finished");
-
+        */
+        List<Pair<Customer, Integer>> toReturn = customerRepository.getCustomersSortedSpentCashInterface().stream()
+                .map(obj -> new Pair<>(new Customer(((BigInteger)obj[0]).longValue(), (String)obj[1], (String)obj[2]), ((BigInteger)obj[3]).intValue()))
+                .collect(Collectors.toList());
+        logger.trace("reportCustomersSortedBySpentCash - method finished - " + toReturn);
         return toReturn;
     }
 }

@@ -453,35 +453,35 @@ public class UI {
 
     }
 
-//    public void filterCustomersBasedOnBreedPurchase() {
-//        writeConsole("Breed: ");
-//        Scanner stdin = new Scanner(System.in);
-//        String breed = stdin.next();
-//
-//        asyncPurchaseController.filterCustomersThatBoughtBreedOfCat(breed).whenComplete((result, exception) -> {
-//            if (exception == null)
-//                StreamSupport.stream(result.spliterator(), false).forEach(System.out::println);
-//            else System.out.println(exception.getMessage());
-//        });
-//    }
-//
-//    public void filterPurchasesWithMinStars() {
-//        writeConsole("Minimum stars: ");
-//        int minStars = readNumberFromConsole();
-//        asyncPurchaseController.filterPurchasesWithMinStars(minStars).whenComplete((result, exception) -> {
-//            if (exception == null)
-//                StreamSupport.stream(result.spliterator(), false).forEach(System.out::println);
-//            else System.out.println(exception.getMessage());
-//        });
-//    }
-//
-//    public void reportCustomersSortedBySpentCash() {
-//        asyncPurchaseController.reportCustomersSortedBySpentCash().whenComplete((result, exception) -> {
-//            if (exception == null)
-//                StreamSupport.stream(result.spliterator(), false).forEach(System.out::println);
-//            else System.out.println(exception.getMessage());
-//        });
-//    }
+    public void filterCustomersBasedOnBreedPurchase() {
+        writeConsole("Breed: ");
+        Scanner stdin = new Scanner(System.in);
+        String breed = stdin.next();
+
+        asyncPurchaseController.filterCustomersThatBoughtBreedOfCat(breed).whenComplete((result, exception) -> {
+            if (exception == null)
+                StreamSupport.stream(result.spliterator(), false).forEach(System.out::println);
+            else System.out.println(exception.getMessage());
+        });
+    }
+
+    public void filterPurchasesWithMinStars() {
+        writeConsole("Minimum stars: ");
+        int minStars = readNumberFromConsole();
+        asyncPurchaseController.filterPurchasesWithMinStars(minStars).whenComplete((result, exception) -> {
+            if (exception == null)
+                StreamSupport.stream(result.spliterator(), false).forEach(System.out::println);
+            else System.out.println(exception.getMessage());
+        });
+    }
+
+    public void reportCustomersSortedBySpentCash() {
+        asyncPurchaseController.reportCustomersSortedBySpentCash().whenComplete((result, exception) -> {
+            if (exception == null)
+                StreamSupport.stream(result.spliterator(), false).forEach(System.out::println);
+            else System.out.println(exception.getMessage());
+        });
+    }
 
     /**
      * The main function which processes the input
@@ -508,9 +508,9 @@ public class UI {
         menuTable.put(19, this::updateCustomer);
         menuTable.put(20, this::updatePurchase);
         menuTable.put(21, this::filterCatsBasedOnFood);
-//        menuTable.put(22, this::filterCustomersBasedOnBreedPurchase);
-//        menuTable.put(23, this::filterPurchasesWithMinStars);
-//        menuTable.put(24, this::reportCustomersSortedBySpentCash);
+        menuTable.put(22, this::filterCustomersBasedOnBreedPurchase);
+        menuTable.put(23, this::filterPurchasesWithMinStars);
+        menuTable.put(24, this::reportCustomersSortedBySpentCash);
 
         while (true) {
             printMenu();

@@ -8,6 +8,7 @@ import core.exceptions.ValidatorException;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 public interface IPurchaseService {
     /**
@@ -51,7 +52,7 @@ public interface IPurchaseService {
      * @param breed - the breed of cat by which to filter
      * @return a list of all customers who bought at least a cat of a certain breed
      */
-    List<Customer> filterCustomersThatBoughtBreedOfCat(String breed);
+    Set<Customer> filterCustomersThatBoughtBreedOfCat(String breed);
 
     /**
      * @param minStars - the minimum amount of stars by which you filter, must be between 1 and 5
