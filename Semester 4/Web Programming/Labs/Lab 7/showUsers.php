@@ -1,5 +1,5 @@
 <?php
-require_once 'configuration.php';
+require_once 'utils/configuration.php';
 $sql_query = "SELECT * FROM user;";
 global $connection;
 $result = mysqli_query($connection, $sql_query);

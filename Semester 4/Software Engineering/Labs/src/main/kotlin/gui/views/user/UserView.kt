@@ -3,6 +3,7 @@ package gui.views.user
 import domain.Conference
 import domain.Role
 import domain.User
+import gui.views.conference.RolesView
 import gui.views.login.LoginView
 import javafx.collections.FXCollections
 import javafx.scene.control.*
@@ -24,6 +25,10 @@ class UserView(private val user: User, private val service: Service) : View(user
     private val viewProposals: Button by fxid()
 
     init {
+        conferenceListView.onDoubleClick {
+            handleChooseConference()
+        }
+
         logoutButton.apply {
             action {
                 handleLogout()
@@ -45,6 +50,17 @@ class UserView(private val user: User, private val service: Service) : View(user
             }
         }
         loadData()
+    }
+
+    private fun handleChooseConference(){
+        val conference = conferenceListView.selectionModel.selectedItem
+        val conferencesOfUser = service.getConferencesOfUser(user.id)
+        if (!conferencesOfUser.any { userConference -> userConference.conferenceId == conference.id })
+            alert(Alert.AlertType.INFORMATION, "User must participate in conference")
+        else {
+            replaceWith(RolesView(user, service, this, conference),
+                ViewTransition.Slide(0.3.seconds, ViewTransition.Direction.RIGHT))
+        }
     }
 
     private fun handleLogout() {

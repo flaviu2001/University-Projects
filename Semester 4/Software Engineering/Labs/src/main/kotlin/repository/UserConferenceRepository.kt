@@ -20,6 +20,21 @@ class UserConferenceRepository (private val url: String, private val db_user: St
         }
     }
 
+    fun getRolesOfUser(uid: Int, cid: Int): List<String>{
+        val roles = mutableListOf<String>()
+        val sqlCommand = "SELECT role FROM UserConference WHERE uid=? AND cid=?"
+        DriverManager.getConnection(url, db_user, db_password).use { connection ->
+            val preparedStatement = connection.prepareStatement(sqlCommand)
+            preparedStatement.setInt(1, uid)
+            preparedStatement.setInt(2, cid)
+            val rs = preparedStatement.executeQuery()
+            while (rs.next()) {
+                roles.add(rs.getString("role"))
+            }
+        }
+        return roles
+    }
+
     fun getConferencesOfUser(uid: Int) : List<UserConference> {
         val pairs = mutableListOf<UserConference>()
         val sqlCommand = "SELECT * FROM UserConference WHERE uid=?"

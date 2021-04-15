@@ -2,10 +2,7 @@ package service
 
 import domain.*
 import exceptions.ConferenceException
-import repository.ConferenceRepository
-import repository.ProposalRepository
-import repository.UserConferenceRepository
-import repository.UserRepository
+import repository.*
 import java.io.FileInputStream
 import java.io.IOException
 import java.lang.Integer.max
@@ -18,6 +15,8 @@ class Service {
     private val conferenceRepository: ConferenceRepository
     private val userConferenceRepository: UserConferenceRepository
     private val proposalRepository: ProposalRepository
+    private val pcMemberProposalRepository: PcMemberProposalRepository
+    private val reviewRepository: ReviewRepository
 
     init {
         val configs = readSettingsFile()
@@ -26,6 +25,8 @@ class Service {
         userConferenceRepository =
             UserConferenceRepository(configs["database"]!!, configs["user"]!!, configs["password"]!!)
         proposalRepository = ProposalRepository(configs["database"]!!, configs["user"]!!, configs["password"]!!)
+        pcMemberProposalRepository = PcMemberProposalRepository(configs["database"]!!, configs["user"]!!, configs["password"]!!)
+        reviewRepository = ReviewRepository(configs["database"]!!, configs["user"]!!, configs["password"]!!)
     }
 
     private fun readSettingsFile(): HashMap<String, String> {
@@ -87,7 +88,7 @@ class Service {
     fun getUsersOfConference(cid: Int) = userConferenceRepository.getUsersOfConference(cid)
     fun addUserToConference(uid: Int, cid: Int, role: Role, paid: Boolean) = userConferenceRepository.addPair(
         UserConference(
-            userConferenceRepository.getAll().map { userConference -> userConference.id }.maxOrNull() ?: 0 + 1,
+            (userConferenceRepository.getAll().map { userConference -> userConference.id }.maxOrNull() ?: 0) + 1,
             uid,
             cid,
             role,
@@ -128,8 +129,10 @@ class Service {
         keywords: String,
         accepted: Boolean = false
     ) =
-        proposalRepository.addProposal(Proposal(proposalRepository.getProposals().map { proposal -> proposal.id }
-            .maxOrNull() ?: 0 + 1, userConferenceId, abstractText, paperText, title, authors, keywords, accepted))
+        proposalRepository.addProposal(Proposal((proposalRepository.getProposals().map { proposal -> proposal.id }
+            .maxOrNull()?: 0)+ 1, userConferenceId, abstractText, paperText, title, authors, keywords, accepted))
+
+    fun getProposals() = proposalRepository.getProposals()
 
     fun updateProposal(
         id: Int, userConferenceId: Int,
@@ -154,5 +157,42 @@ class Service {
         )
     }
 
+    fun addPcMemberProposal(pcMemberId: Int, proposalId: Int, availability: Availability){
+        pcMemberProposalRepository.addPair(PCMemberProposal(pcMemberId, proposalId, availability, false))
+    }
+
+    fun addReview(pcMemberId: Int, proposalId: Int, reviewResult: ReviewResult){
+        reviewRepository.addPair(Review(pcMemberId, proposalId, reviewResult));
+    }
+
+
     fun getProposalsOfUser(uid: Int) = proposalRepository.getProposalsOfUser(uid)
+
+    fun getRolesOfUser(uid: Int, cid: Int) = userConferenceRepository.getRolesOfUser(uid, cid)
+
+    fun getProposalsForPcMember(pcMemberId: Int, conferenceId: Int) = proposalRepository.getProposalsForPcMember(pcMemberId, conferenceId)
+
+    fun getReviewsForPaper(proposalId: Int): List<Review> {
+        return reviewRepository.getAll().filter {
+            (it.proposalId == proposalId)
+        }.toList()
+    }
+
+    fun getAssignedPapers(pcMemberId: Int) : List<Proposal>{
+        val proposalIds :List<Int> = pcMemberProposalRepository
+            .getAll()
+            .stream()
+            .filter{
+                (it.pcMemberId == pcMemberId && it.assigned)
+            }
+            .map {
+                it.proposalId
+            }
+            .toList()
+        return proposalIds.map { proposalRepository.getProposalWithGivenId(it) }.toList()
+    }
+
+    fun assignPaper(proposalId: Int, reviewerId: Int){
+        pcMemberProposalRepository.assignPaper(proposalId, reviewerId)
+    }
 }

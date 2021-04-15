@@ -1,6 +1,7 @@
 package repository
 
 import domain.Proposal
+import exceptions.ConferenceException
 import java.sql.DriverManager
 
 class ProposalRepository(private val url: String, private val db_user: String, private val db_password: String) {
@@ -79,6 +80,32 @@ class ProposalRepository(private val url: String, private val db_user: String, p
         return proposals
     }
 
+    fun getProposalsForPcMember(pcMemberId: Int, conferenceId: Int): List<Proposal> {
+        val proposals = mutableListOf<Proposal>()
+        val sqlCommand = "SELECT * FROM Proposals WHERE ucid NOT IN (SELECT ucid FROM UserConference WHERE uid=? AND cid=?)"
+        DriverManager.getConnection(url, db_user, db_password).use { connection ->
+            val preparedStatement = connection.prepareStatement(sqlCommand)
+            preparedStatement.setInt(1, pcMemberId)
+            preparedStatement.setInt(2, conferenceId)
+
+            val rs = preparedStatement.executeQuery()
+            while (rs.next()) {
+                val proposal = Proposal(
+                    rs.getInt("id"),
+                    rs.getInt("ucid"),
+                    rs.getString("abstractText"),
+                    rs.getString("paperText"),
+                    rs.getString("title"),
+                    rs.getString("authors"),
+                    rs.getString("keywords"),
+                    rs.getBoolean("accepted")
+                )
+                proposals.add(proposal)
+            }
+        }
+        return proposals
+    }
+
     fun getProposalsOfUser(userId: Int): List<Proposal> {
         val proposals = mutableListOf<Proposal>()
         val sqlCommand =
@@ -102,5 +129,30 @@ class ProposalRepository(private val url: String, private val db_user: String, p
             }
         }
         return proposals
+    }
+
+    fun getProposalWithGivenId(id : Int): Proposal {
+        var sqlCommand = "SELECT * FROM Proposals WHERE id= ?";
+        DriverManager.getConnection(url, db_user, db_password).use{connection ->
+            val preparedStatement = connection.prepareStatement(sqlCommand)
+            preparedStatement.setInt(1, id)
+            val resultSet = preparedStatement.executeQuery()
+            if(resultSet.next()){
+                val proposal = Proposal(
+                    resultSet.getInt("id"),
+                    resultSet.getInt("ucid"),
+                    resultSet.getString("abstractText"),
+                    resultSet.getString("paperText"),
+                    resultSet.getString("title"),
+                    resultSet.getString("authors"),
+                    resultSet.getString("keywords"),
+                    resultSet.getBoolean("accepted")
+                )
+
+                return proposal
+            }
+            throw ConferenceException("Proposal with given id does not exist")
+        }
+
     }
 }

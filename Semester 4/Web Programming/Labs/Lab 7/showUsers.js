@@ -5,7 +5,6 @@ $((function () {
         $.getJSON("showUsers.php", {role: role.val(), name: name.val()}, function (json) {
             $("table tr:gt(0)").remove()
             json.forEach(function (thing) {
-                console.log(thing)
                 $("table").append(`<tr>
                                 <td>${thing[1]}</td>
                                 <td>${thing[2]}</td>

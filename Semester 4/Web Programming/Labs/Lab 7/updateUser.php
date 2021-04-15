@@ -1,5 +1,5 @@
 <?php
-require_once "configuration.php";
+require_once "utils/configuration.php";
 global $connection;
 $id = "";
 $name = "";

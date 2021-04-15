@@ -1,5 +1,5 @@
 <?php
-require_once "configuration.php";
+require_once "utils/configuration.php";
 $userID = $_POST['id'];
 $name = $_POST['name'];
 $username = $_POST['username'];

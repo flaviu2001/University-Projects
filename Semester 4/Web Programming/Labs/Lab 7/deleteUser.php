@@ -5,9 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Delete User</title>
-    <style>
-        <?php include "deleteUser.css" ?>
-    </style>
+    <link rel="stylesheet" type="text/css" href="deleteUser.css">
 </head>
 
 <body>

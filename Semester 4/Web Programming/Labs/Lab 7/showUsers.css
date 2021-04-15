@@ -51,7 +51,6 @@ html, body {
 }
 
 #info {
-    display: none;
     margin-top: 5px;
     grid-column-start: 1;
     grid-column-end: 5;
