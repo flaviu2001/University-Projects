@@ -1,0 +1,15 @@
+<div class="container">
+  <h1>Create Customer</h1>
+  <p><b>Please fill this form and submit to add the customer to the database.</b></p>
+
+  <form #customerForm = "ngForm" class="formWrapper" (ngSubmit)="addCustomer(customerForm.value)">
+    <input type="text" name="name" placeholder="Name:" ngModel> <br>
+    <input type="text" name="phoneNumber" placeholder="Phone Number:" ngModel> <br>
+    <div class="button_container">
+      <button type="submit">
+        Add Cat
+      </button>
+      <button (click)="onCancel()">Cancel</button>
+    </div>
+  </form>
+</div>
