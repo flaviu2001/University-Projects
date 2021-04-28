@@ -1,6 +1,7 @@
 package repository
 
 import domain.Availability
+import domain.Conference
 import domain.PCMemberProposal
 import java.sql.DriverManager
 
@@ -50,12 +51,33 @@ class PcMemberProposalRepository (private val url: String, private val db_user: 
     }
 
     fun assignPaper(proposal: Int, memberId: Int){
-        val sqlCommand = "UPDATE  PcMemberProposal SET assigned = true WHERE pcMemberId = ? AND proposalId = ? "
+        print(proposal)
+        print("\n")
+        print(memberId)
+        val sqlCommand = "UPDATE  PcMemberProposal SET assigned = true WHERE pcmemberid = ? AND proposalid = ? "
         DriverManager.getConnection(url, db_user, db_password).use { connection ->
             val preparedStatement = connection.prepareStatement(sqlCommand)
-            preparedStatement.setInt(1, proposal)
-            preparedStatement.setInt(2, memberId)
+            preparedStatement.setInt(1, memberId)
+            preparedStatement.setInt(2, proposal)
             preparedStatement.executeUpdate()
         }
+    }
+
+    fun getPcMemberProposalsOfConferenceNotRefused(conferenceId: Int): List<PCMemberProposal> {
+        val pairs = mutableListOf<PCMemberProposal>()
+        val sqlCommand = "SELECT PMP.* FROM PcMemberProposal PMP JOIN proposals p on p.id = PMP.proposalid JOIN userconference u on p.ucid = u.ucid WHERE u.cid = ? AND PMP.availability != 'REFUSED'"
+        DriverManager.getConnection(url, db_user, db_password).use { connection ->
+            val preparedStatement = connection.prepareStatement(sqlCommand)
+            preparedStatement.setInt(1, conferenceId)
+            val rs = preparedStatement.executeQuery()
+            while (rs.next())
+                pairs.add(PCMemberProposal(
+                    rs.getInt("pcMemberId"),
+                    rs.getInt("proposalId"),
+                    Availability.valueOf(rs.getString("availability")),
+                    rs.getBoolean("assigned")
+                ))
+        }
+        return pairs
     }
 }

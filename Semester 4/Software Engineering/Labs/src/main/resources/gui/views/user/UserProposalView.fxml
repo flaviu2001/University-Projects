@@ -63,6 +63,13 @@
                 </Insets>
             </VBox.margin>
         </TextField>
+        <CheckBox fx:id="finalized" text="Final paper">
+            <VBox.margin>
+                <Insets>
+                    <bottom>20</bottom>
+                </Insets>
+            </VBox.margin>
+        </CheckBox>
         <Button fx:id="updateProposal" mnemonicParsing="false" text="Update proposal"/>
         <VBox.margin>
             <Insets>

@@ -32,8 +32,6 @@ dependencies {
 
 // https://mvnrepository.com/artifact/javax.activation/activation
     implementation group: 'javax.activation', name: 'activation', version: '1.1.1'
-
-
 }
 
 test {

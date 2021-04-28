@@ -1,23 +1,30 @@
 package gui.views.user
 
-import domain.*
+import domain.Conference
+import domain.Proposal
+import domain.ReviewResult
+import domain.User
 import gui.views.conference.BidProposalView
 import javafx.collections.FXCollections
 import javafx.scene.control.*
 import javafx.scene.layout.GridPane
 import service.Service
 import tornadofx.*
+import java.util.*
 
-class ReviewerView(private val user: User,
-                    private val service: Service,
-                    private val parent: View,
-                    private val conference: Conference
-                    ) : View(user.name + " - " + conference.name){
+class ReviewerView(
+    private val user: User,
+    private val service: Service,
+    private val parent: View,
+    private val conference: Conference
+) : View(user.name + " - " + conference.name) {
     override val root: GridPane by fxml()
     private val goBackButton: Button by fxid()
     private val submitResultButton: Button by fxid()
     private val bidProposalButton: Button by fxid()
+    private val attachRecommendations: Button by fxid()
 
+    private val recommendationField: TextField by fxid()
     private val assignedProposalsListView: ListView<Proposal> by fxid()
     private val reviewResultOptions: ComboBox<ReviewResult> by fxid()
 
@@ -29,20 +36,20 @@ class ReviewerView(private val user: User,
 
     init {
         goBackButton.apply {
-            action{
+            action {
                 goBackHandle()
             }
         }
 
         submitResultButton.apply {
-            action{
+            action {
                 submitResultHandle()
             }
         }
 
-        bidProposalButton.apply{
+        bidProposalButton.apply {
             action {
-               bidProposalHandle()
+                bidProposalHandle()
             }
         }
 
@@ -50,41 +57,54 @@ class ReviewerView(private val user: User,
             selectProposalHandle()
         }
 
-        loadData()
+        attachRecommendations.apply {
+            action {
+                attachRecommendationsHandle()
+
+            }
+        }
+        if (Calendar.getInstance().time.before(conference.reviewPaperDeadline)) {
+            loadData()
+        } else {
+            alert(Alert.AlertType.ERROR, "Review deadline has passed. You can no longer review papers.")
+        }
     }
 
-    private fun goBackHandle(){
-        replaceWith(parent,
-            ViewTransition.Slide(0.3.seconds, ViewTransition.Direction.LEFT))
-    }
-
-    private fun bidProposalHandle(){
+    private fun goBackHandle() {
         replaceWith(
-            BidProposalView(user, service,this, conference),
-            ViewTransition.Slide(0.3.seconds, ViewTransition.Direction.LEFT))
+            parent,
+            ViewTransition.Slide(0.3.seconds, ViewTransition.Direction.LEFT)
+        )
     }
 
-    private fun selectProposalHandle(){
-        val proposal = assignedProposalsListView.selectionModel.selectedItem
+    private fun bidProposalHandle() {
+        replaceWith(
+            BidProposalView(user, service, this, conference),
+            ViewTransition.Slide(0.3.seconds, ViewTransition.Direction.LEFT)
+        )
+    }
+
+    private fun selectProposalHandle() {
+        val proposal = assignedProposalsListView.selectionModel.selectedItem ?: return
         abstractLabel.text = proposal.abstractText
         paperLabel.text = proposal.paperText
-        titleLabel.text =  proposal.title
+        titleLabel.text = proposal.title
         authorsLabel.text = proposal.authors
         keywordsLabel.text = proposal.keywords
     }
 
-    private fun populateComboBox(){
+    private fun populateComboBox() {
         val observable = FXCollections.observableArrayList(enumValues<ReviewResult>().toList())
         reviewResultOptions.items.addAll(observable)
     }
 
-    private fun loadAssignedProposals(){
+    private fun loadAssignedProposals() {
         val observable = FXCollections.observableArrayList(service.getAssignedPapers(user.id))
         assignedProposalsListView.items.removeAll()
         assignedProposalsListView.items.addAll(observable)
     }
 
-    private fun loadData(){
+    private fun loadData() {
         populateComboBox()
         loadAssignedProposals()
     }
@@ -100,7 +120,33 @@ class ReviewerView(private val user: User,
             alert(Alert.AlertType.INFORMATION, "Please select a paper")
             return
         }
-        service.addReview(user.id, paper.id, result)
-        alert(Alert.AlertType.INFORMATION, "Paper was reviewed");
+        try {
+            service.addReview(user.id, paper.id, result)
+            alert(Alert.AlertType.INFORMATION, "Paper was reviewed");
+        } catch (e: Exception) {
+            alert(Alert.AlertType.ERROR, "Paper was already reviewed");
+        }
     }
+
+    private fun attachRecommendationsHandle() {
+        val recommendation = recommendationField.text;
+        if (recommendation == null) {
+            alert(Alert.AlertType.INFORMATION, "Please select a recommendation")
+            return
+        }
+        val paper = assignedProposalsListView.selectedItem
+        if (paper == null) {
+            alert(Alert.AlertType.INFORMATION, "Please select a paper")
+            return
+        }
+
+        if (service.getReviewsForPaper(paper.id).find { review -> review.pcMemberId == user.id } != null) {
+            alert(Alert.AlertType.INFORMATION, "Cannot attach recommendations to already reviewed paper")
+            return
+        }
+
+        service.attachRecommendations(paper.id, user.id, recommendation)
+        alert(Alert.AlertType.CONFIRMATION, "Recommendations attached")
+    }
+
 }

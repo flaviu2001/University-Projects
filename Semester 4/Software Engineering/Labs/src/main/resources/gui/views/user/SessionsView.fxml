@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0"
+          prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints maxHeight="128.99999237060547" minHeight="0.0" prefHeight="15.000001907348633"
+                        vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="353.3333314259847" minHeight="10.0" prefHeight="332.33333333333326"
+                        vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="108.0" minHeight="10.0" prefHeight="102.0" vgrow="SOMETIMES"/>
+    </rowConstraints>
+    <ListView fx:id="FinalPapers" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1"/>
+    <ListView fx:id="Sessions" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+    <Label text="FinalPapers" GridPane.halignment="CENTER"/>
+    <Label text="Sessions" GridPane.columnIndex="2" GridPane.halignment="CENTER"/>
+    <ListView fx:id="PapersOfSession" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1"
+              GridPane.rowIndex="1"/>
+    <Label text="PapersForSession" GridPane.columnIndex="1" GridPane.halignment="CENTER"/>
+    <Button fx:id="addToSession" mnemonicParsing="false" text="AddPaperToSession" GridPane.columnIndex="1"
+            GridPane.halignment="CENTER" GridPane.rowIndex="2"/>
+    <Button fx:id="goBack" mnemonicParsing="false" text="Back" GridPane.halignment="CENTER" GridPane.rowIndex="2"/>
+    <Button fx:id="addSession" mnemonicParsing="false" text="AddSession" GridPane.columnIndex="2"
+            GridPane.halignment="CENTER" GridPane.rowIndex="2"/>
+    <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+        <Label text="Topic"/>
+        <TextField fx:id="topic"/>
+        <Label text="Time"/>
+        <TextField fx:id="time"/>
+    </VBox>
+</GridPane>

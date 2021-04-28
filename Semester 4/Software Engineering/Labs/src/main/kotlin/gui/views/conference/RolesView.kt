@@ -18,7 +18,7 @@ class RolesView(
     private val user: User,
     private val service: Service,
     private val parent: View,
-    private val conference: Conference
+    private var conference: Conference
 ) : View(user.name + " - " + conference.name) {
 
     override val root: GridPane by fxml()
@@ -48,6 +48,9 @@ class RolesView(
                 ReviewerView(user, service, this, conference),
                 ViewTransition.Slide(0.3.seconds, ViewTransition.Direction.RIGHT)
             )
+            null -> {
+
+            }
             else -> {
                 alert(Alert.AlertType.INFORMATION, "Not implemented")
             }

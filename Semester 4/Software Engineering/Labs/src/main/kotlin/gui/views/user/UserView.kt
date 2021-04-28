@@ -10,6 +10,8 @@ import javafx.scene.control.*
 import javafx.scene.layout.GridPane
 import service.Service
 import tornadofx.*
+import java.time.LocalDateTime
+import java.util.*
 
 class UserView(private val user: User, private val service: Service) : View(user.name) {
     override val root: GridPane by fxml()
@@ -53,7 +55,7 @@ class UserView(private val user: User, private val service: Service) : View(user
     }
 
     private fun handleChooseConference(){
-        val conference = conferenceListView.selectionModel.selectedItem
+        val conference = conferenceListView.selectionModel.selectedItem ?: return
         val conferencesOfUser = service.getConferencesOfUser(user.id)
         if (!conferencesOfUser.any { userConference -> userConference.conferenceId == conference.id })
             alert(Alert.AlertType.INFORMATION, "User must participate in conference")
@@ -83,6 +85,10 @@ class UserView(private val user: User, private val service: Service) : View(user
 
     private fun handleSubmitProposal() {
         val conference = conferenceListView.selectionModel.selectedItem
+        if (Calendar.getInstance().time.after(conference.submitPaperDeadline)) {
+            alert(Alert.AlertType.ERROR, "Deadline for this conference has passed. Cannot send new submissions")
+            return
+        }
         if (conference == null) {
             alert(Alert.AlertType.INFORMATION, "Select a conference")
             return

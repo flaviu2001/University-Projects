@@ -7,7 +7,9 @@ import java.io.FileInputStream
 import java.io.IOException
 import java.lang.Integer.max
 import java.sql.Date
+import java.sql.Time
 import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.streams.toList
 
 class Service {
@@ -17,6 +19,9 @@ class Service {
     private val proposalRepository: ProposalRepository
     private val pcMemberProposalRepository: PcMemberProposalRepository
     private val reviewRepository: ReviewRepository
+    private val paperRecommendationRepository: PaperRecommendationRepository
+    private val sessionRepository: SessionRepository
+    private val proposalSessionRepository: ProposalSessionRepository
 
     init {
         val configs = readSettingsFile()
@@ -27,6 +32,9 @@ class Service {
         proposalRepository = ProposalRepository(configs["database"]!!, configs["user"]!!, configs["password"]!!)
         pcMemberProposalRepository = PcMemberProposalRepository(configs["database"]!!, configs["user"]!!, configs["password"]!!)
         reviewRepository = ReviewRepository(configs["database"]!!, configs["user"]!!, configs["password"]!!)
+        paperRecommendationRepository = PaperRecommendationRepository(configs["database"]!!, configs["user"]!!, configs["password"]!!)
+        sessionRepository = SessionRepository(configs["database"]!!, configs["user"]!!, configs["password"]!!)
+        proposalSessionRepository = ProposalSessionRepository(configs["database"]!!, configs["user"]!!, configs["password"]!!)
     }
 
     private fun readSettingsFile(): HashMap<String, String> {
@@ -78,10 +86,10 @@ class Service {
 
     fun findConferenceById(id: Int) = conferenceRepository.findConferenceById(id)
     fun getConferences() = conferenceRepository.getConferences()
-    fun addConference(name: String, date: Date, attendancePrice: Int) {
+    fun addConference(name: String, date: Date, attendancePrice: Int, submitPaperDeadline: Date, reviewPaperDeadline: Date, biddingPhaseDeadline: Date) {
         var id = 0
         for (conference in conferenceRepository.getConferences()) id = max(id, conference.id + 1)
-        conferenceRepository.addConference(Conference(id, name, date, attendancePrice))
+        conferenceRepository.addConference(Conference(id, name, date, attendancePrice, submitPaperDeadline, reviewPaperDeadline, biddingPhaseDeadline))
     }
 
     fun getConferencesOfUser(uid: Int) = userConferenceRepository.getConferencesOfUser(uid)
@@ -95,6 +103,10 @@ class Service {
             paid
         )
     )
+
+    fun getConferenceOfProposal(proposal: Proposal) = conferenceRepository.getConferenceOfProposal(proposal)
+
+    fun getProposalsOfConference(conferenceId: Int) = proposalRepository.getProposalsOfConference(conferenceId)
 
     fun usersWithNameAndPassword(username: String, password: String): List<User> {
         return getUsers().stream().filter {
@@ -127,10 +139,11 @@ class Service {
         title: String,
         authors: String,
         keywords: String,
+        finalized: Boolean = false,
         accepted: Boolean = false
     ) =
         proposalRepository.addProposal(Proposal((proposalRepository.getProposals().map { proposal -> proposal.id }
-            .maxOrNull()?: 0)+ 1, userConferenceId, abstractText, paperText, title, authors, keywords, accepted))
+            .maxOrNull()?: 0)+ 1, userConferenceId, abstractText, paperText, title, authors, keywords, finalized, accepted))
 
     fun getProposals() = proposalRepository.getProposals()
 
@@ -141,6 +154,7 @@ class Service {
         title: String,
         authors: String,
         keywords: String,
+        finalized: Boolean = false,
         accepted: Boolean = false
     ) {
         proposalRepository.updateProposal(
@@ -152,6 +166,7 @@ class Service {
                 title,
                 authors,
                 keywords,
+                finalized,
                 accepted
             )
         )
@@ -162,11 +177,13 @@ class Service {
     }
 
     fun addReview(pcMemberId: Int, proposalId: Int, reviewResult: ReviewResult){
-        reviewRepository.addPair(Review(pcMemberId, proposalId, reviewResult));
+        reviewRepository.addPair(Review(pcMemberId, proposalId, reviewResult))
     }
 
 
-    fun getProposalsOfUser(uid: Int) = proposalRepository.getProposalsOfUser(uid)
+    fun getNonFinalizedProposalsOfUser(uid: Int) = proposalRepository.getProposalsOfUser(uid).filter {
+        !it.finalized
+    }
 
     fun getRolesOfUser(uid: Int, cid: Int) = userConferenceRepository.getRolesOfUser(uid, cid)
 
@@ -194,5 +211,82 @@ class Service {
 
     fun assignPaper(proposalId: Int, reviewerId: Int){
         pcMemberProposalRepository.assignPaper(proposalId, reviewerId)
+    }
+
+    fun attachRecommendations(proposalId: Int, reviewerId: Int, recommendation: String) {
+        paperRecommendationRepository.addPair(
+            PaperRecommendation(
+                id = (paperRecommendationRepository.getAll().map { paperRecommendation -> paperRecommendation.id }.maxOrNull() ?: 0) + 1,
+                proposalId = proposalId,
+                reviewerId = reviewerId,
+                recommendation = recommendation
+            )
+        )
+    }
+
+    fun getProposalWithUserConferenceId(ucid: Int): List<Proposal> {
+        return proposalRepository.getProposals()
+            .filter { (it.userConferenceId == ucid) }
+            .toList()
+    }
+
+    fun updateConferenceDeadlines(conference: Conference) = conferenceRepository.updateDeadlines(conference)
+    fun getAcceptedPapers(cid: Int): List<Proposal> {
+        val userConferenceIds :List<Int> = userConferenceRepository
+            .getAll()
+            .stream()
+            .filter{
+                (it.conferenceId == cid)
+            }
+            .map {
+                it.id
+            }
+            .toList()
+
+        val proposals: MutableList<Proposal> = ArrayList()
+
+        userConferenceIds.forEach {
+            proposals.addAll(getProposalWithUserConferenceId(it))
+        }
+
+        return proposals.stream().filter {
+            (it.accepted)
+        }.toList()
+    }
+
+    fun getEmailOfAuthor(proposal: Proposal): String{
+        val userConference = userConferenceRepository.getAll()
+            .first {
+                it.id == proposal.userConferenceId
+            }
+
+        return userRepository.getUsers()
+            .first{
+                it.id == userConference.userId
+            }.email
+    }
+
+    fun addSession(conferenceId: Int, topic:String){
+        var id = 0
+        for (session in sessionRepository.getSessions()) id = max(id, session.sessionId + 1)
+        sessionRepository.addSession(Session(id, conferenceId, topic))
+    }
+
+    fun getSessionsOfAConference(conferenceId: Int):List<Session>
+    {
+        return sessionRepository.findSessionsByConferecenceId(conferenceId)
+    }
+
+    fun getPcMemberProposalsOfConferenceNotRefused(conferenceId: Int) = pcMemberProposalRepository.getPcMemberProposalsOfConferenceNotRefused(conferenceId)
+
+    fun getProposalSessionsOfSession(sessionId: Int) = proposalSessionRepository.getProposalSessionsOfSession(sessionId)
+
+    fun addProposalSession(proposalSession: ProposalSession) {
+        if (proposalSessionRepository.getAllProposalSessions().any{
+            it.proposalId == proposalSession.proposalId
+        }) {
+            throw ConferenceException("Paper already attributed to a session")
+        }
+        proposalSessionRepository.addProposalSession(proposalSession)
     }
 }

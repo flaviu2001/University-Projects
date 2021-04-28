@@ -12,6 +12,7 @@ import javafx.scene.control.ListView
 import javafx.scene.layout.GridPane
 import service.Service
 import tornadofx.*
+import java.util.*
 
 class BidProposalView(private val user: User,
                       private val service: Service,
@@ -58,6 +59,10 @@ class BidProposalView(private val user: User,
 
     private fun bidProposalHandle(){
         val proposal = proposalsListView.selectionModel.selectedItem
+        if (Calendar.getInstance().time.after(conference.biddingPhaseDeadline)) {
+            alert(Alert.AlertType.ERROR, "Bidding phase is over");
+            return;
+        }
         if(proposal == null) {
             alert(Alert.AlertType.INFORMATION, "Select a proposal")
             return
@@ -74,7 +79,7 @@ class BidProposalView(private val user: User,
     }
 
     private fun selectProposalHandle(){
-        val proposal = proposalsListView.selectionModel.selectedItem
+        val proposal = proposalsListView.selectionModel.selectedItem ?: return
         abstractLabel.text = proposal.abstractText
         paperLabel.text = proposal.paperText
         titleLabel.text =  proposal.title

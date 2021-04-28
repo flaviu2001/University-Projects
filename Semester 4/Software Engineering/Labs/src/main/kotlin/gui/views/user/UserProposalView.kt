@@ -7,6 +7,7 @@ import javafx.scene.control.*
 import javafx.scene.layout.GridPane
 import service.Service
 import tornadofx.*
+import java.util.*
 
 class UserProposalView(private val user: User, private val service: Service) : View(user.name) {
     override val root: GridPane by fxml()
@@ -16,6 +17,7 @@ class UserProposalView(private val user: User, private val service: Service) : V
     private val paperTitle: TextField by fxid()
     private val authors: TextField by fxid()
     private val keywords: TextField by fxid()
+    private val finalized: CheckBox by fxid()
     private val updateProposal: Button by fxid()
     private val backButton: Button by fxid()
 
@@ -46,6 +48,16 @@ class UserProposalView(private val user: User, private val service: Service) : V
             alert(Alert.AlertType.INFORMATION, "Select a proposal")
             return
         }
+        val conference = service.getConferenceOfProposal(proposal)
+        if (conference == null) {
+            alert(Alert.AlertType.INFORMATION, "The conference of this proposal does not exist")
+            return
+        }
+        if (finalized.isSelected && Date() > conference.submitPaperDeadline) {
+            alert(Alert.AlertType.INFORMATION, "The period for finalising proposals is over")
+            return
+        }
+        print(finalized.isSelected)
         service.updateProposal(
             proposal.id,
             proposal.userConferenceId,
@@ -53,13 +65,14 @@ class UserProposalView(private val user: User, private val service: Service) : V
             paperText.text,
             paperTitle.text,
             authors.text,
-            keywords.text
+            keywords.text,
+            finalized = finalized.isSelected
         )
         loadData()
     }
 
     private fun loadData() {
-        val observable = FXCollections.observableArrayList(service.getProposalsOfUser(user.id))
+        val observable = FXCollections.observableArrayList(service.getNonFinalizedProposalsOfUser(user.id))
         proposalListView.items.removeAll(proposalListView.items)
         proposalListView.items.addAll(observable)
     }

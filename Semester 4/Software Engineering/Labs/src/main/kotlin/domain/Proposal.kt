@@ -8,6 +8,7 @@ data class Proposal(
     val title: String,
     val authors: String,
     val keywords: String,
+    val finalized: Boolean,
     val accepted: Boolean
 ) {
     override fun toString(): String {

@@ -23,10 +23,16 @@
         <RowConstraints maxHeight="342.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES"/>
         <RowConstraints maxHeight="342.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES"/>
         <RowConstraints maxHeight="342.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="342.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="342.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="342.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="342.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="342.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="342.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES"/>
 
     </rowConstraints>
     <ListView fx:id="conferenceListView" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0"
-              prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="5"
+              prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="8"
               GridPane.columnIndex="1"/>
 
     <Label text="Conference name" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
@@ -49,4 +55,13 @@
             GridPane.columnIndex="5" GridPane.rowIndex="6" prefWidth="150.0"/>
     <Button fx:id="logoutButton" mnemonicParsing="false" text="Logout" GridPane.halignment="CENTER"
             GridPane.columnIndex="0" GridPane.columnSpan="7" GridPane.rowIndex="7"/>
+    <Label text="Submit Paper Deadline" GridPane.rowIndex="8" GridPane.columnIndex="3"/>
+    <DatePicker fx:id="submitPaperDeadline" maxWidth="-Infinity" prefWidth="200.0" GridPane.halignment="CENTER"
+                GridPane.rowIndex="9" GridPane.columnIndex="3"/>
+    <Label text="Review Paper Deadline" GridPane.rowIndex="10" GridPane.columnIndex="3"/>
+    <DatePicker fx:id="reviewPaperDeadline" maxWidth="-Infinity" prefWidth="200.0" GridPane.halignment="CENTER"
+                GridPane.rowIndex="11" GridPane.columnIndex="3"/>
+    <Label text="Bidding Phase Deadline" GridPane.rowIndex="12" GridPane.columnIndex="3"/>
+    <DatePicker fx:id="biddingPhaseDeadline" maxWidth="-Infinity" prefWidth="200.0" GridPane.halignment="CENTER"
+                GridPane.rowIndex="13" GridPane.columnIndex="3"/>
 </GridPane>
