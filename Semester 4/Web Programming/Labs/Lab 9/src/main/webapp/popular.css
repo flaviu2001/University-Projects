@@ -1,0 +1,42 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background: linear-gradient(45deg, #49a09d, #5f2c82);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapper {
+    background-color: rgba(255,255,255,0.3);
+    border: 5px solid rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: x-large;
+}
+
+th {
+    font-size: x-large;
+    margin-bottom: 10px;
+}
+
+td {
+    font-size: x-large;
+}
+
+.first_column {
+    text-align: start;
+}
+
+.second_column {
+    text-align: center;
+}

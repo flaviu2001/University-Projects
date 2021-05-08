@@ -1,0 +1,76 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background: linear-gradient(45deg, #49a09d, #5f2c82);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrapper {
+    height: fit-content;
+    width: 40%;
+    background-color: rgba(255,255,255,0.3);
+    border: 5px solid rgba(255, 255, 255, 0.2);
+    border-radius: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.wrapper h5 {
+    margin: 0;
+}
+
+.wrapper form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.wrapper form label {
+    margin-top: 20px;
+}
+
+.wrapper form p {
+    margin: 20px 0 0;
+}
+
+input {
+    background: transparent;
+    border: 0 solid lightblue;
+    border-bottom-width: 2px;
+    font-weight: bold;
+    font-size: large;
+    color: black;
+}
+
+button {
+    background: #5f2c82;
+    color: white;
+    border-radius: 5px;
+    border-color: transparent;
+    font-weight: bolder;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-size: larger;
+}
+
+#buttons {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    align-items: center;
+}
+
+#buttons button {
+    margin-left: auto;
+    margin-right: auto;
+}
