@@ -1,0 +1,27 @@
+target
+classes
+bin
+*.log
+dist
+node_modules
+*.DS_Store
+
+# Eclipse
+.classpath
+.project
+.settings
+.metadata
+
+# IntelliJ IDEA
+*.iml
+*.ipr
+*.iws
+.idea
+build
+out
+generated
+MANIFEST.MF
+
+#gradle
+gradle
+.gradle

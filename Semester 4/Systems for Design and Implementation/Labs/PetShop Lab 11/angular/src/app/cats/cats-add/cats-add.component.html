@@ -1,0 +1,16 @@
+<div class="container">
+  <h1>Create Cat</h1>
+  <p><b>Please fill this form and submit to add the cat to the database.</b></p>
+
+  <form [formGroup]="addCatForm" class="formWrapper" (submit)="addCat()">
+    <input type="text" name="name" placeholder="Name:" formControlName="name"> <br>
+    <input type="text" name="breed" placeholder="Breed:" formControlName="breed"> <br>
+    <input type="number" name="catYears" placeholder="Age:" formControlName="catYears"> <br>
+    <div class="button_container">
+      <button type="submit">
+        Add Cat
+      </button>
+      <button (click)="onCancel()">Cancel</button>
+    </div>
+  </form>
+</div>
