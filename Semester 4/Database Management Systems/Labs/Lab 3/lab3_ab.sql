@@ -1,4 +1,4 @@
-create or alter procedure populateTableChessBook (@name varchar(100), @author varchar(100), @price float) as
+create or alter procedure addRowChessBook (@name varchar(100), @author varchar(100), @price float) as
     DECLARE @maxId INT
 	SET @maxId = 0
 	SELECT TOP 1 @maxId = bid + 1 FROM ChessBook ORDER BY bid DESC
@@ -15,9 +15,10 @@ create or alter procedure populateTableChessBook (@name varchar(100), @author va
 		RAISERROR('Chess book price must not be negative', 24, 1);
 	END
 	insert into ChessBook (bid, name, author, price) values (@maxId, @name, @author, @price)
+    EXEC sp_log_changes null, @name, 'Added row to chess book'
 go
 
-create or alter procedure populateTableChessClub (@name varchar(100), @country varchar(100), @city varchar(100)) as
+create or alter procedure addRowChessClub (@name varchar(100), @country varchar(100), @city varchar(100)) as
     DECLARE @maxId INT
 	SET @maxId = 0
 	SELECT TOP 1 @maxId = ccid + 1 FROM ChessClub ORDER BY ccid DESC
@@ -34,15 +35,16 @@ create or alter procedure populateTableChessClub (@name varchar(100), @country v
 		RAISERROR('Chess club city must not be null', 24, 1);
 	END
     insert into ChessClub (ccid, name, country, city) values (@maxId, @name, @country, @city)
+    exec sp_log_changes null, @name, 'Added row to chess club'
 go
 
-CREATE OR ALTER PROCEDURE populateTableChessBookInChessClub(@ChessBookName VARCHAR(50) , @ChessClubName VARCHAR(50))
+CREATE OR ALTER PROCEDURE addRowChessBookInChessClub(@ChessBookName VARCHAR(50) , @ChessClubName VARCHAR(50))
 AS
 	IF (@ChessBookName is null)
 	BEGIN
 		RAISERROR('Chess book name must not be null', 24, 1);
 	END
-	
+
 	IF (@ChessClubName is null)
 	BEGIN
 		RAISERROR('Chess book name must not be null', 24, 1);
@@ -61,15 +63,18 @@ AS
 		RAISERROR('Chess club does not exist', 24, 1);
 	END
 	INSERT INTO ChessBookInChessClub VALUES (@ChessBookID, @ChessClubID)
+	declare @newData varchar(100)
+    set @newData = @ChessBookName + ' ' + @ChessClubName
+	exec sp_log_changes null, @newData, 'Connected chess book with chess club'
 GO
 
-CREATE OR ALTER PROCEDURE addRollbackScenarioNoFail
+CREATE OR ALTER PROCEDURE rollbackScenarioNoFail
 AS
 	BEGIN TRAN
 	BEGIN TRY
-		EXEC populateTableChessBook 'Chess in 10 easy steps', 'Garry Kasparov', 150
-		EXEC populateTableChessClub 'yuri', 'kazakstan', 'nur-sultan'
-		EXEC populateTableChessBookInChessClub 'Chess in 10 easy steps', 'yuri'
+		EXEC addRowChessBook 'Chess in 10 easy steps', 'Garry Kasparov', 150
+		EXEC addRowChessClub 'yuri', 'kazakstan', 'nur-sultan'
+		EXEC addRowChessBookInChessClub 'Chess in 10 easy steps', 'yuri'
 	END TRY
 	BEGIN CATCH
 		ROLLBACK TRAN
@@ -78,13 +83,13 @@ AS
 	COMMIT TRAN
 GO
 
-CREATE OR ALTER PROCEDURE addRollbackScenarioFail
+CREATE OR ALTER PROCEDURE rollbackScenarioFail
 AS
 	BEGIN TRAN
 	BEGIN TRY
-		EXEC populateTableChessBook 'Chess in 10 easy steps', 'Garry Kasparov', 150
-		EXEC populateTableChessClub 'yuri gagarin', 'kazakstan', 'nur-sultan'
-		EXEC populateTableChessBookInChessClub 'Chess in 10 easy steps', 'yuri'
+		EXEC addRowChessBook 'Chess in 10 easy steps', 'Garry Kasparov', 150
+		EXEC addRowChessClub 'yuri gagarin', 'kazakstan', 'nur-sultan'
+		EXEC addRowChessBookInChessClub 'Chess in 10 easy steps', 'yuri'
 	END TRY
 	BEGIN CATCH
 		ROLLBACK TRAN
@@ -93,19 +98,19 @@ AS
 	COMMIT TRAN
 GO
 
-CREATE OR ALTER PROCEDURE addNoRollbackScenarioManyToMany
+CREATE OR ALTER PROCEDURE noRollbackScenarioManyToManyNoFail
 AS
 	DECLARE @ERRORS INT
 	SET @ERRORS = 0
 	BEGIN TRY
-		EXEC populateTableChessBook 'Chess in 10 easy steps', 'Garry Kasparov', 150
+		EXEC addRowChessBook 'Chess in 10 easy steps', 'Garry Kasparov', 150
 	END TRY
 	BEGIN CATCH
 		SET @ERRORS = @ERRORS + 1
 	END CATCH
 
 	BEGIN TRY
-		EXEC populateTableChessClub 'yuri', 'kazakstan', 'nur-sultan'
+		EXEC addRowChessClub 'yuri', 'kazakstan', 'nur-sultan'
 	END TRY
 	BEGIN CATCH
 		SET @ERRORS = @ERRORS + 1
@@ -113,7 +118,34 @@ AS
 
 	IF (@ERRORS = 0) BEGIN
 		BEGIN TRY
-			EXEC populateTableChessBookInChessClub 'Chess in 10 easy steps', 'yuri'
+			EXEC addRowChessBookInChessClub 'Chess in 10 easy steps', 'yuri'
+		END TRY
+		BEGIN CATCH
+		END CATCH
+	END
+GO
+
+CREATE OR ALTER PROCEDURE noRollbackScenarioManyToManyFail
+AS
+	DECLARE @ERRORS INT
+	SET @ERRORS = 0
+	BEGIN TRY
+		EXEC addRowChessBook 'Chess in 10 easy steps', 'Garry Kasparov', 150
+	END TRY
+	BEGIN CATCH
+		SET @ERRORS = @ERRORS + 1
+	END CATCH
+
+	BEGIN TRY
+		EXEC addRowChessClub 'yuri', 'kazakstan', 'nur-sultan'
+	END TRY
+	BEGIN CATCH
+		SET @ERRORS = @ERRORS + 1
+	END CATCH
+
+	IF (@ERRORS = 0) BEGIN
+		BEGIN TRY
+			EXEC addRowChessBookInChessClub 'Chess in 10 easy steps', 'yury'
 		END TRY
 		BEGIN CATCH
 		END CATCH
@@ -128,6 +160,7 @@ DELETE FROM ChessBookInChessClub
 DELETE FROM ChessBook
 DELETE FROM ChessClub
 
-exec addRollbackScenarioFail
-exec addRollbackScenarioNoFail
-exec addNoRollbackScenarioManyToMany
+exec rollbackScenarioFail
+exec rollbackScenarioNoFail
+exec noRollbackScenarioManyToManyFail
+exec noRollbackScenarioManyToManyNoFail
