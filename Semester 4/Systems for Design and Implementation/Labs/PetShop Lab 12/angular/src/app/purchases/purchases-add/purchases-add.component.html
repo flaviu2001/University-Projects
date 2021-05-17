@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="details">
+    <div class="insideDetails">
+      <button (click)="onBack()">Back</button>
+      <h1>Purchases</h1>
+    </div>
+    <div class="insideDetailsRight">
+      <input type="number" class="price" placeholder="Price:" [(ngModel)]="price" />
+      <input type="number" class="review" placeholder="Review:" [(ngModel)]="review" />
+      <input type="date" class="purchase" placeholder="Purchase date:" [(ngModel)]="dateAcquired" />
+    </div>
+  </div>
+  <table *ngIf="catId == null">
+    <tr>
+      <th> NAME </th>
+      <th> BREED </th>
+      <th> AGE </th>
+      <th> ACTION </th>
+    </tr>
+    <tr *ngFor="let cat of cats">
+      <td>{{cat.name}}</td>
+      <td>{{cat.breed}}</td>
+      <td>{{cat.catYears}}</td>
+      <td>
+        <button class="addButton" (click)="addPurchase(cat.id)">Purchase</button>
+      </td>
+    </tr>
+  </table>
+  <table *ngIf="customerId == null">
+    <tr>
+      <th> NAME </th>
+      <th> PHONE NUMBER </th>
+      <th> PET HOUSE </th>
+      <th> ACTION </th>
+    </tr>
+    <tr *ngFor="let customer of customers">
+      <td>{{customer.name}}</td>
+      <td>{{customer.phoneNumber}}</td>
+      <td>{{customer.petHouseDTO | petHousePipe}}</td>
+      <td>
+        <button class="addButton" (click)="addPurchase(customer.id)">Purchase</button>
+      </td>
+    </tr>
+  </table>
+</div>

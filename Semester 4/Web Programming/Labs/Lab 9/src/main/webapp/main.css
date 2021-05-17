@@ -43,6 +43,26 @@ label button {
     float: right;
 }
 
+#errorMsg {
+    color: red;
+    font-size: large;
+    display: none;
+    margin-bottom: 0;
+}
+
+.topWrapper {
+    width: 100%;
+    display: flex;
+}
+
+.topWrapper h3 {
+    margin-left: 20px;
+}
+
+.topWrapper button {
+    margin-left: auto;
+}
+
 button {
     background: #5f2c82;
     color: white;

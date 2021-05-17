@@ -12,9 +12,12 @@
 </head>
 <body>
 <div class="wrapper">
-    <%
-        out.println("<h3>Hi, " + ((User) request.getSession().getAttribute("user")).getUsername() + "!</h3>");
-    %>
+    <div class="topWrapper">
+        <%
+            out.println("<h3>Hi, " + ((User) request.getSession().getAttribute("user")).getUsername() + "!</h3>");
+        %>
+        <button onclick="logout()">Logout</button>
+    </div>
     <label>
         <input type="number" id="cntText" placeholder="Count:">
         <%
@@ -27,6 +30,9 @@
             out.println("<button onclick=\"add(" + ((User) request.getSession().getAttribute("user")).getId() + ")\">Add</button>");
         %>
     </label>
+    <p id="errorMsg">
+        Invalid url! Try another one
+    </p>
     <ul>
         <%
             //noinspection unchecked

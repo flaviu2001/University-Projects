@@ -1,0 +1,11 @@
+# Lab 12: handling the n + 1 select problem; testing
+- continue to work individually on the previous project (same repo)
+- all associations must be lazily loaded
+- after switching to Lazy fetching, check if the LazyInitializationException actually appears before trying to ‘handle' it (in SpringBoot some settings might be needed in this sense - otherwise everything is fetched eagerly)
+- query the entities using: Spring Queries with Named Entity Graphs,  JPQL, Criteria API, Native SQL
+- in each core.repository (e.g: BookRepository, ClientRepository etc) there should be at least two methods using NamedEntityGraphs
+- for each core.repository (e.g: BookRepository, ClientRepository etc), in the corresponding fragment/customized interface, there should be at least two additional methods; these  additional methods should have three different implementations with: JPQL, CriteriaAPI, NativeSql
+- in the services only the 'main' repositories should be used (e.g: BookRepository and ClientRepository, not the fragment/customized ones)
+- the application should work alternatively with all of the following configurations: EntityGraphs + JPQL, EntityGraphs + CriteriaAPI, EntityGraphs + NativeSql. The configuration switch should be possible by changing annotations or property files, but not java code
+- write integration tests for your repositories and services; use DbUnit, xml datasets
+- write unit tests for your controllers using Mockito 
