@@ -11,53 +11,47 @@
         <RowConstraints maxHeight="525.0" minHeight="10.0" prefHeight="525.0" vgrow="SOMETIMES"/>
         <RowConstraints maxHeight="295.0" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES"/>
     </rowConstraints>
-    <children>
-        <GridPane prefHeight="598.0" prefWidth="800.0" GridPane.rowIndex="1">
-            <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0"/>
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-            </rowConstraints>
-            <children>
-                <Button fx:id="goBackButton" mnemonicParsing="false" text="Go back" GridPane.halignment="CENTER"/>
-                <Button fx:id="sendPaperButton" mnemonicParsing="false" text="SendPaper" GridPane.columnIndex="1"
-                        GridPane.halignment="CENTER"/>
-                <Button fx:id="postponeDeadlinesButton" mnemonicParsing="false" text="Postpone deadlines"
-                        GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER"/>
-                <Button fx:id="sendResultsButton" mnemonicParsing="false" text="Send results" GridPane.columnIndex="4"
-                        GridPane.halignment="CENTER"/>
-                <Button fx:id="ViewSessions" mnemonicParsing="false" text="ViewSessions" GridPane.columnIndex="5"
-                        GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
-                <Button fx:id="payButton" mnemonicParsing="false" text="Pay" GridPane.columnIndex="6"
-                        GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
-                <Button fx:id="modifySpeakers" mnemonicParsing="false" text="Speakers" GridPane.columnIndex="7"
-                        GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
-            </children>
-        </GridPane>
-        <GridPane>
-            <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints maxHeight="170.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES"/>
-                <RowConstraints maxHeight="350.0" minHeight="10.0" prefHeight="350.0" vgrow="SOMETIMES"/>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-            </rowConstraints>
-            <children>
-                <ListView fx:id="ListOfPCMembers" layoutX="10.0" layoutY="185.0" prefHeight="200.0" prefWidth="200.0"
-                          GridPane.columnIndex="0" GridPane.columnSpan="3" GridPane.rowIndex="1"/>
-                <Label text="List of PC Members" GridPane.columnIndex="0" GridPane.columnSpan="3"
-                       GridPane.halignment="CENTER"/>
-            </children>
-        </GridPane>
-    </children>
+    <GridPane prefHeight="598.0" prefWidth="800.0" GridPane.rowIndex="1">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0"/>
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+        </rowConstraints>
+        <Button fx:id="goBackButton" mnemonicParsing="false" text="Go back" GridPane.halignment="CENTER"/>
+        <Button fx:id="sendPaperButton" mnemonicParsing="false" text="SendPaper" GridPane.columnIndex="1"
+                GridPane.halignment="CENTER"/>
+        <Button fx:id="postponeDeadlinesButton" mnemonicParsing="false" text="Postpone deadlines"
+                GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER"/>
+        <Button fx:id="sendResultsButton" mnemonicParsing="false" text="Send results" GridPane.columnIndex="4"
+                GridPane.halignment="CENTER"/>
+        <Button fx:id="viewSessions" mnemonicParsing="false" text="ViewSessions" GridPane.columnIndex="5"
+                GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
+        <Button fx:id="payButton" mnemonicParsing="false" text="Pay" GridPane.columnIndex="6"
+                GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
+        <Button fx:id="modifySpeakers" mnemonicParsing="false" text="Speakers" GridPane.columnIndex="7"
+                GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
+    </GridPane>
+    <GridPane>
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints maxHeight="170.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES"/>
+            <RowConstraints maxHeight="350.0" minHeight="10.0" prefHeight="350.0" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+        </rowConstraints>
+        <ListView fx:id="listOfPCMembers" layoutX="10.0" layoutY="185.0" prefHeight="200.0" prefWidth="200.0"
+                  GridPane.columnIndex="0" GridPane.columnSpan="3" GridPane.rowIndex="1"/>
+        <Label text="List of PC Members" GridPane.columnIndex="0" GridPane.columnSpan="3"
+               GridPane.halignment="CENTER"/>
+    </GridPane>
 </GridPane>

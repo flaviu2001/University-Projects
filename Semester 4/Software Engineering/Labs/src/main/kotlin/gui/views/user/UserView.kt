@@ -6,12 +6,12 @@ import domain.User
 import gui.views.conference.RolesView
 import gui.views.login.LoginView
 import javafx.collections.FXCollections
-import javafx.scene.control.*
+import javafx.scene.control.Alert
+import javafx.scene.control.Button
+import javafx.scene.control.ListView
 import javafx.scene.layout.GridPane
 import service.Service
 import tornadofx.*
-import java.time.LocalDateTime
-import java.util.*
 
 class UserView(private val user: User, private val service: Service) : View(user.name) {
     override val root: GridPane by fxml()
@@ -19,13 +19,6 @@ class UserView(private val user: User, private val service: Service) : View(user
     private val conferenceListView: ListView<Conference> by fxid()
     private val registerAuthor: Button by fxid()
     private val registerAsListener: Button by fxid()
-    private val abstractText: TextArea by fxid()
-    private val paperText: TextArea by fxid()
-    private val paperTitle: TextField by fxid()
-    private val authors: TextField by fxid()
-    private val keywords: TextField by fxid()
-    private val submitProposal: Button by fxid()
-    private val viewProposals: Button by fxid()
 
     init {
         conferenceListView.onDoubleClick {
@@ -45,16 +38,6 @@ class UserView(private val user: User, private val service: Service) : View(user
         registerAsListener.apply {
             action {
                 handleRegisterAsListener()
-            }
-        }
-        submitProposal.apply {
-            action {
-                handleSubmitProposal()
-            }
-        }
-        viewProposals.apply {
-            action {
-                handleViewProposals()
             }
         }
         loadData()
@@ -96,49 +79,11 @@ class UserView(private val user: User, private val service: Service) : View(user
             return
         }
         val conferencesOfUser = service.getConferencesOfUser(user.id)
-        if (!conferencesOfUser.any { userConference -> userConference.conferenceId == conference.id })
+        if (!conferencesOfUser.any { userConference -> userConference.conferenceId == conference.id && userConference.role == Role.AUTHOR || userConference.role == Role.SPEAKER })
             service.addUserToConference(user.id, conference.id, Role.AUTHOR, false)
         else {
             alert(Alert.AlertType.INFORMATION, "User already registered to conference")
         }
-    }
-
-    private fun handleSubmitProposal() {
-        val conference = conferenceListView.selectionModel.selectedItem
-        if (Calendar.getInstance().time.after(conference.submitPaperDeadline)) {
-            alert(Alert.AlertType.ERROR, "Deadline for this conference has passed. Cannot send new submissions")
-            return
-        }
-        if (conference == null) {
-            alert(Alert.AlertType.INFORMATION, "Select a conference")
-            return
-        }
-        val conferencesOfUser = service.getConferencesOfUser(user.id)
-        val userConference =
-            conferencesOfUser.find { userConference -> userConference.conferenceId == conference.id && userConference.role == Role.AUTHOR }
-        if (userConference == null) {
-            alert(Alert.AlertType.INFORMATION, "User is not registered as author")
-            return
-        }
-        if (abstractText.text.isEmpty()) {
-            alert(Alert.AlertType.INFORMATION, "The abstract text cannot be empty")
-            return
-        }
-        service.addProposal(
-            userConference.id,
-            abstractText.text,
-            paperText.text,
-            paperTitle.text,
-            authors.text,
-            keywords.text
-        )
-    }
-
-    private fun handleViewProposals() {
-        replaceWith(
-            UserProposalView(user, service),
-            ViewTransition.Dissolve(0.5.seconds)
-        )
     }
 
     private fun loadData() {

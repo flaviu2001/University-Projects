@@ -9,7 +9,7 @@ import service.Service
 import tornadofx.*
 import java.util.*
 
-class UserProposalView(private val user: User, private val service: Service) : View(user.name) {
+class UserProposalView(private val user: User, private val service: Service, private val parent: View) : View(user.name) {
     override val root: GridPane by fxml()
     private val proposalListView: ListView<Proposal> by fxid()
     private val abstractText: TextArea by fxid()
@@ -37,7 +37,7 @@ class UserProposalView(private val user: User, private val service: Service) : V
 
     private fun handleBackButton() {
         replaceWith(
-            UserView(user, service),
+            parent,
             ViewTransition.Metro(1.seconds)
         )
     }

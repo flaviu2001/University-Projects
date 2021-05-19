@@ -62,7 +62,6 @@ class Service {
     }
 
     fun getUsers() = userRepository.getUsers()
-    fun findUserById(id: Int) = userRepository.findUserById(id)
     fun addUser(
         name: String, password: String, email: String, fullName: String, affiliation: String,
         personalWebsite: String, domainOfInterest: String
@@ -87,7 +86,6 @@ class Service {
         )
     }
 
-    fun findConferenceById(id: Int) = conferenceRepository.findConferenceById(id)
     fun getConferences() = conferenceRepository.getConferences()
     fun addConference(
         name: String,
@@ -118,36 +116,39 @@ class Service {
 
     fun pay(uid: Int, cid: Int) = userConferenceRepository.pay(uid, cid)
 
-    fun getUsersOfConference(cid: Int) = userConferenceRepository.getUsersOfConference(cid)
-    fun addUserToConference(uid: Int, cid: Int, role: Role, paid: Boolean) = userConferenceRepository.addPair(
-        UserConference(
-            (userConferenceRepository.getAll().map { userConference -> userConference.id }.maxOrNull() ?: 0) + 1,
-            uid,
-            cid,
-            role,
-            paid
+    fun addUserToConference(uid: Int, cid: Int, role: Role, paid: Boolean) {
+        if (userConferenceRepository.getAll().any {
+                it.userId == uid && it.conferenceId == cid && it.role == role
+            }) throw ConferenceException("User is already reviewer to that conference")
+        userConferenceRepository.addPair(
+            UserConference(
+                (userConferenceRepository.getAll().map { userConference -> userConference.id }.maxOrNull() ?: 0) + 1,
+                uid,
+                cid,
+                role,
+                paid
+            )
         )
-    )
+
+    }
 
     fun addUserToSection(uid: Int, sid: Int) = userSectionRepository.addPair(UserSection(uid, sid))
 
     fun getSectionsOfUser(uid: Int): List<Session> {
-        var sids: List<Int> = userSectionRepository.getSectionsOfUser(uid)
-        var sessions = sessionRepository.getSessions()
+        val sids: List<Int> = userSectionRepository.getSectionsOfUser(uid)
+        val sessions = sessionRepository.getSessions()
 
-        var sectionsOfUser = mutableListOf<Session>()
+        val sectionsOfUser = mutableListOf<Session>()
 
         sids.forEach {
-            var sessionId = it
-            sectionsOfUser.add(sessions.first { it -> it.sessionId == sessionId })
+            val sessionId = it
+            sectionsOfUser.add(sessions.first { session -> session.sessionId == sessionId })
         }
 
         return sectionsOfUser
     }
 
     fun getConferenceOfProposal(proposal: Proposal) = conferenceRepository.getConferenceOfProposal(proposal)
-
-    fun getProposalsOfConference(conferenceId: Int) = proposalRepository.getProposalsOfConference(conferenceId)
 
     fun usersWithNameAndPassword(username: String, password: String): List<User> {
         return getUsers().stream().filter {
@@ -194,8 +195,6 @@ class Service {
             finalized,
             accepted))
 
-    fun getProposals() = proposalRepository.getProposals()
-
     fun updateProposal(
         id: Int, userConferenceId: Int,
         abstractText: String,
@@ -225,8 +224,33 @@ class Service {
         pcMemberProposalRepository.addPair(PCMemberProposal(pcMemberId, proposalId, availability, false))
     }
 
-    fun addReview(pcMemberId: Int, proposalId: Int, reviewResult: ReviewResult) {
-        reviewRepository.addPair(Review(pcMemberId, proposalId, reviewResult))
+    fun review(pcMemberId: Int, proposalId: Int, reviewResult: ReviewResult): Pair<Int, Int> {
+        if (reviewRepository.getAll().any {
+                it.pcMemberId == pcMemberId && it.proposalId == proposalId
+            })
+            reviewRepository.updatePair(Review(pcMemberId, proposalId, reviewResult))
+        else
+            reviewRepository.addPair(Review(pcMemberId, proposalId, reviewResult))
+        var total = 0
+        var needed = 0
+        for (proposal in pcMemberProposalRepository.getAll())
+            if (proposal.proposalId == proposalId && proposal.availability != Availability.REFUSE)
+                ++total
+        for (review in reviewRepository.getAll())
+            if (review.proposalId == proposalId && review.reviewResult in listOf(
+                    ReviewResult.STRONGLY_ACCEPT,
+                    ReviewResult.ACCEPT,
+                    ReviewResult.WEAK_ACCEPT,
+                    ReviewResult.BORDERLINE
+                )
+            )
+                ++needed
+        if (needed == total) {
+            val proposal = proposalRepository.getProposalWithGivenId(proposalId)
+            proposal.accepted = true
+            proposalRepository.updateProposal(proposal)
+        }
+        return Pair(needed, total)
     }
 
 
@@ -246,15 +270,17 @@ class Service {
                                 getConferenceOfProposal(proposal)!!.id == conference.id
                     }
         }
-        if (userConference != null) {
-            userConferenceRepository.changeAuthorToSpeaker(userConference)
-        } else if (userConferenceRepository.getAll().any {
+        when {
+            userConference != null -> {
+                userConferenceRepository.changeAuthorToSpeaker(userConference)
+            }
+            userConferenceRepository.getAll().any {
                 it.userId == user.id &&
                         it.conferenceId == conference.id &&
                         it.role == Role.SPEAKER
-            })
-            throw ConferenceException("This user is already registered as a speaker to this conference")
-        else throw ConferenceException("This user has no accepted papers to this conference")
+            } -> throw ConferenceException("This user is already registered as a speaker to this conference")
+            else -> throw ConferenceException("This user has no accepted papers to this conference")
+        }
     }
 
     fun unmakeUserSpeaker(user: User, conference: Conference) {
@@ -306,7 +332,7 @@ class Service {
         )
     }
 
-    fun getProposalWithUserConferenceId(ucid: Int): List<Proposal> {
+    private fun getProposalWithUserConferenceId(ucid: Int): List<Proposal> {
         return proposalRepository.getProposals()
             .filter { (it.userConferenceId == ucid) }
             .toList()
@@ -392,7 +418,7 @@ class Service {
     }
 
     fun getSessionsOfAConference(conferenceId: Int): List<Session> {
-        return sessionRepository.findSessionsByConferecenceId(conferenceId)
+        return sessionRepository.findSessionsByConferenceId(conferenceId)
     }
 
     fun getPcMemberProposalsOfConferenceNotRefused(conferenceId: Int) =

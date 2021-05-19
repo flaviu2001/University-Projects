@@ -1,45 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
-<?import javafx.scene.control.cell.CheckBoxTreeTableCell?>
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
+          prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1">
     <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="10.0" />
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="10.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="10.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="10.0"/>
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints maxHeight="148.0" minHeight="10.0" prefHeight="148.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="268.0" minHeight="10.0" prefHeight="99.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="263.0" minHeight="10.0" prefHeight="138.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="238.0" minHeight="10.0" prefHeight="44.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="172.0" minHeight="9.0" prefHeight="46.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="81.0" minHeight="0.0" prefHeight="44.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="81.0" minHeight="0.0" prefHeight="44.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="81.0" minHeight="0.0" prefHeight="44.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="148.0" minHeight="10.0" prefHeight="148.0" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="268.0" minHeight="10.0" prefHeight="99.0" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="263.0" minHeight="10.0" prefHeight="138.0" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="238.0" minHeight="10.0" prefHeight="44.0" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="172.0" minHeight="9.0" prefHeight="46.0" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="81.0" minHeight="0.0" prefHeight="44.0" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="81.0" minHeight="0.0" prefHeight="44.0" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="81.0" minHeight="0.0" prefHeight="44.0" vgrow="SOMETIMES"/>
     </rowConstraints>
-    <children>
-        <ListView fx:id="assignedProposalsListView" GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.rowSpan="5" />
-        <ComboBox fx:id="reviewResultOptions" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.columnSpan="3"/>
-        <Label fx:id="keywordsLabel" text="Keywords" GridPane.halignment="CENTER" GridPane.rowIndex="5"  GridPane.columnIndex="2" GridPane.columnSpan="3"/>
-        <Label fx:id="paperLabel" text="Paper" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.columnIndex="2" GridPane.columnSpan="3"/>
-        <Label fx:id="abstractLabel" text="Abstract" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.columnIndex="2" GridPane.columnSpan="3"/>
-        <Label fx:id="titleLabel" text="Title" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.columnIndex="2" GridPane.columnSpan="3"/>
-        <Label fx:id="authorsLabel" text="Authors" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.columnIndex="2" GridPane.columnSpan="3"/>
-        <Button fx:id="goBackButton" mnemonicParsing="false" text="Go back" GridPane.halignment="CENTER" GridPane.rowIndex="6"  GridPane.columnIndex="1" GridPane.valignment="CENTER"/>
-        <Button fx:id="submitResultButton" mnemonicParsing="false" text="Submit result" GridPane.halignment="CENTER" GridPane.rowIndex="6"  GridPane.columnIndex="2" GridPane.valignment="CENTER" />
-        <Button fx:id="bidProposalButton" mnemonicParsing="false" text="Bid proposal" GridPane.halignment="CENTER" GridPane.rowIndex="6"  GridPane.columnIndex="3" GridPane.valignment="CENTER" />
-        <Button fx:id="payForConference" mnemonicParsing="false" text="Pay for conference" GridPane.halignment="CENTER" GridPane.rowIndex="6"  GridPane.columnIndex="4" GridPane.valignment="CENTER" />
-        <TextField fx:id="recommendationField" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="7" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-        <Button fx:id="attachRecommendations" mnemonicParsing="false" text="Attach Recommendations" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.columnIndex="4" GridPane.valignment="CENTER" />
-    </children>
+    <ListView fx:id="assignedProposalsListView" GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.rowSpan="5"/>
+    <ComboBox fx:id="reviewResultOptions" GridPane.columnIndex="2" GridPane.halignment="CENTER"
+              GridPane.columnSpan="3"/>
+    <Label fx:id="keywordsLabel" text="Keywords" GridPane.halignment="CENTER" GridPane.rowIndex="5"
+           GridPane.columnIndex="2" GridPane.columnSpan="3"/>
+    <Label fx:id="paperLabel" text="Paper" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.columnIndex="2"
+           GridPane.columnSpan="3"/>
+    <Label fx:id="abstractLabel" text="Abstract" GridPane.halignment="CENTER" GridPane.rowIndex="1"
+           GridPane.columnIndex="2" GridPane.columnSpan="3"/>
+    <Label fx:id="titleLabel" text="Title" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.columnIndex="2"
+           GridPane.columnSpan="3"/>
+    <Label fx:id="authorsLabel" text="Authors" GridPane.halignment="CENTER" GridPane.rowIndex="4"
+           GridPane.columnIndex="2" GridPane.columnSpan="3"/>
+    <Button fx:id="goBackButton" mnemonicParsing="false" text="Go back" GridPane.halignment="CENTER"
+            GridPane.rowIndex="6" GridPane.columnIndex="1" GridPane.valignment="CENTER"/>
+    <Button fx:id="submitResultButton" mnemonicParsing="false" text="Submit result" GridPane.halignment="CENTER"
+            GridPane.rowIndex="6" GridPane.columnIndex="2" GridPane.valignment="CENTER"/>
+    <Button fx:id="bidProposalButton" mnemonicParsing="false" text="Bid proposal" GridPane.halignment="CENTER"
+            GridPane.rowIndex="6" GridPane.columnIndex="3" GridPane.valignment="CENTER"/>
+    <Button fx:id="payForConference" mnemonicParsing="false" text="Pay for conference" GridPane.halignment="CENTER"
+            GridPane.rowIndex="6" GridPane.columnIndex="4" GridPane.valignment="CENTER"/>
+    <TextField fx:id="recommendationField" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="7"
+               GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
+    <Button fx:id="attachRecommendations" mnemonicParsing="false" text="Attach Recommendations"
+            GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.columnIndex="4" GridPane.valignment="CENTER"/>
 </GridPane>
 

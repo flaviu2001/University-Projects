@@ -112,32 +112,6 @@ class ProposalRepository(private val url: String, private val db_user: String, p
         return proposals
     }
 
-    fun getProposalsOfConference(conferenceId: Int): List<Proposal> {
-        val proposals = mutableListOf<Proposal>()
-        val sqlCommand = "SELECT P.* FROM Proposals P JOIN userconference UC on P.ucid = UC.ucid WHERE UC.cid = ?"
-        DriverManager.getConnection(url, db_user, db_password).use { connection ->
-            val preparedStatement = connection.prepareStatement(sqlCommand)
-            preparedStatement.setInt(1, conferenceId)
-
-            val rs = preparedStatement.executeQuery()
-            while (rs.next()) {
-                val proposal = Proposal(
-                    rs.getInt("id"),
-                    rs.getInt("ucid"),
-                    rs.getString("abstractText"),
-                    rs.getString("paperText"),
-                    rs.getString("title"),
-                    rs.getString("authors"),
-                    rs.getString("keywords"),
-                    rs.getBoolean("finalized"),
-                    rs.getBoolean("accepted")
-                )
-                proposals.add(proposal)
-            }
-        }
-        return proposals
-    }
-
     fun getProposalsOfUser(userId: Int): List<Proposal> {
         val proposals = mutableListOf<Proposal>()
         val sqlCommand =
@@ -165,13 +139,13 @@ class ProposalRepository(private val url: String, private val db_user: String, p
     }
 
     fun getProposalWithGivenId(id : Int): Proposal {
-        var sqlCommand = "SELECT * FROM Proposals WHERE id= ?";
+        val sqlCommand = "SELECT * FROM Proposals WHERE id= ?"
         DriverManager.getConnection(url, db_user, db_password).use{connection ->
             val preparedStatement = connection.prepareStatement(sqlCommand)
             preparedStatement.setInt(1, id)
             val resultSet = preparedStatement.executeQuery()
-            if(resultSet.next()){
-                val proposal = Proposal(
+            if(resultSet.next()) {
+                return Proposal(
                     resultSet.getInt("id"),
                     resultSet.getInt("ucid"),
                     resultSet.getString("abstractText"),
@@ -182,8 +156,6 @@ class ProposalRepository(private val url: String, private val db_user: String, p
                     resultSet.getBoolean("finalized"),
                     resultSet.getBoolean("accepted")
                 )
-
-                return proposal
             }
             throw ConferenceException("Proposal with given id does not exist")
         }

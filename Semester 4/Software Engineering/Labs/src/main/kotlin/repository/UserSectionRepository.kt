@@ -17,18 +17,6 @@ class UserSectionRepository(private val url: String, private val db_user: String
         }
     }
 
-    fun getAll(): List<UserSection> {
-        val pairs = mutableListOf<UserSection>()
-        val sqlCommand = "SELECT * FROM UserSection"
-        DriverManager.getConnection(url, db_user, db_password).use { connection ->
-            val preparedStatement = connection.prepareStatement(sqlCommand)
-            val rs = preparedStatement.executeQuery()
-            while (rs.next())
-                pairs.add(UserSection(rs.getInt("uid"), rs.getInt("sid")))
-        }
-        return pairs
-    }
-
     fun getSectionsOfUser(uid: Int): List<Int> {
         val pairs = mutableListOf<Int>()
         val sqlCommand = "SELECT sid FROM UserSection where uid = ?"

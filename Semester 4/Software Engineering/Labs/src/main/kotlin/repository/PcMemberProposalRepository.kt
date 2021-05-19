@@ -1,7 +1,6 @@
 package repository
 
 import domain.Availability
-import domain.Conference
 import domain.PCMemberProposal
 import java.sql.DriverManager
 

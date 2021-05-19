@@ -137,15 +137,17 @@ class ReviewerView(
             return
         }
         try {
-            service.addReview(user.id, paper.id, result)
-            alert(Alert.AlertType.INFORMATION, "Paper was reviewed");
+            val pair = service.review(user.id, paper.id, result)
+            if (pair.first != pair.second)
+                alert(Alert.AlertType.INFORMATION, "Paper was reviewed, ${pair.first} accepts out of ${pair.second} needed")
+            else alert(Alert.AlertType.INFORMATION, "Paper has been accepted! The necessary ${pair.second} accepts have been reached")
         } catch (e: Exception) {
-            alert(Alert.AlertType.ERROR, "Paper was already reviewed");
+            e.message?.let { alert(Alert.AlertType.ERROR, it) }
         }
     }
 
     private fun attachRecommendationsHandle() {
-        val recommendation = recommendationField.text;
+        val recommendation = recommendationField.text
         if (recommendation == null) {
             alert(Alert.AlertType.INFORMATION, "Please select a recommendation")
             return

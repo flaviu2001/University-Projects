@@ -60,8 +60,8 @@ class BidProposalView(private val user: User,
     private fun bidProposalHandle(){
         val proposal = proposalsListView.selectionModel.selectedItem
         if (Calendar.getInstance().time.after(conference.biddingPhaseDeadline)) {
-            alert(Alert.AlertType.ERROR, "Bidding phase is over");
-            return;
+            alert(Alert.AlertType.ERROR, "Bidding phase is over")
+            return
         }
         if(proposal == null) {
             alert(Alert.AlertType.INFORMATION, "Select a proposal")

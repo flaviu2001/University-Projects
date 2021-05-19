@@ -1,8 +1,8 @@
-package repository;
+package repository
 
 import domain.Review
 import domain.ReviewResult
-import java.sql.DriverManager;
+import java.sql.DriverManager
 
 class ReviewRepository(private val url: String, private val db_user: String, private val db_password: String) {
     init {
@@ -44,6 +44,17 @@ class ReviewRepository(private val url: String, private val db_user: String, pri
             preparedStatement.setInt(1, review.pcMemberId)
             preparedStatement.setInt(2, review.proposalId)
             preparedStatement.setString(3, review.reviewResult.name)
+            preparedStatement.executeUpdate()
+        }
+    }
+
+    fun updatePair(review: Review) {
+        val sqlCommand = "UPDATE Reviews SET result = ? WHERE pcMemberId = ? AND proposalId = ?"
+        DriverManager.getConnection(url, db_user, db_password).use { connection ->
+            val preparedStatement = connection.prepareStatement(sqlCommand)
+            preparedStatement.setString(1, review.reviewResult.name)
+            preparedStatement.setInt(2, review.pcMemberId)
+            preparedStatement.setInt(3, review.proposalId)
             preparedStatement.executeUpdate()
         }
     }

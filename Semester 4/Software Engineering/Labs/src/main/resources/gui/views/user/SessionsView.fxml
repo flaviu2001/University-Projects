@@ -17,11 +17,11 @@
                         vgrow="SOMETIMES"/>
         <RowConstraints maxHeight="108.0" minHeight="10.0" prefHeight="102.0" vgrow="SOMETIMES"/>
     </rowConstraints>
-    <ListView fx:id="FinalPapers" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1"/>
-    <ListView fx:id="Sessions" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+    <ListView fx:id="finalPapers" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1"/>
+    <ListView fx:id="sessions" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
     <Label text="FinalPapers" GridPane.halignment="CENTER"/>
     <Label text="Sessions" GridPane.columnIndex="2" GridPane.halignment="CENTER"/>
-    <ListView fx:id="PapersOfSession" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1"
+    <ListView fx:id="papersOfSession" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1"
               GridPane.rowIndex="1"/>
     <Label text="PapersForSession" GridPane.columnIndex="1" GridPane.halignment="CENTER"/>
     <Button fx:id="addToSession" mnemonicParsing="false" text="AddPaperToSession" GridPane.columnIndex="1"

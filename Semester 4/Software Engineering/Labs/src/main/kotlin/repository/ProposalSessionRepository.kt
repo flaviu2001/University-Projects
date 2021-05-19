@@ -1,7 +1,5 @@
 package repository
 
-import domain.Conference
-import domain.PCMemberProposal
 import domain.ProposalSession
 import java.sql.DriverManager
 

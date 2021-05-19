@@ -16,21 +16,20 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 
 class SessionsView(
-    private val user: User,
+    user: User,
     private val service: Service,
     private val parent: View,
     private val conference: Conference
 ) : View(user.name + " - " + conference.name) {
     override val root: GridPane by fxml()
-    private val FinalPapers: ListView<Proposal> by fxid()
-    private val Sessions: ListView<Session> by fxid()
-    private val PapersOfSession: ListView<ProposalSession> by fxid()
+    private val finalPapers: ListView<Proposal> by fxid()
+    private val sessions: ListView<Session> by fxid()
+    private val papersOfSession: ListView<ProposalSession> by fxid()
     private val topic: TextField by fxid()
     private val time: TextField by fxid()
     private val goBack: Button by fxid()
     private val addSession: Button by fxid()
     private val addToSession: Button by fxid()
-    private val map = hashMapOf<Int, Any?>()
 
     init {
         goBack.apply {
@@ -48,10 +47,10 @@ class SessionsView(
                 addToSessionHandler()
             }
         }
-        Sessions.onLeftClick {
-            val session = Sessions.selectionModel.selectedItem ?: return@onLeftClick
-            PapersOfSession.items.clear()
-            PapersOfSession.items.addAll(service.getProposalSessionsOfSession(session.sessionId).asObservable())
+        sessions.onLeftClick {
+            val session = sessions.selectionModel.selectedItem ?: return@onLeftClick
+            papersOfSession.items.clear()
+            papersOfSession.items.addAll(service.getProposalSessionsOfSession(session.sessionId).asObservable())
         }
         loadSessions()
         loadPapers()
@@ -66,13 +65,13 @@ class SessionsView(
 
     private fun loadPapers() {
         val observable = FXCollections.observableArrayList(service.getAcceptedPapers(conference.id))
-        FinalPapers.items.addAll(observable)
+        finalPapers.items.addAll(observable)
     }
 
     private fun loadSessions() {
         val observable = FXCollections.observableArrayList(service.getSessionsOfAConference(conference.id))
-        Sessions.items.clear()
-        Sessions.items.addAll(observable)
+        sessions.items.clear()
+        sessions.items.addAll(observable)
     }
 
     private fun addSession() {
@@ -90,12 +89,12 @@ class SessionsView(
             alert(Alert.AlertType.ERROR, "Invalid date")
             return
         }
-        val proposal = FinalPapers.selectionModel.selectedItem
+        val proposal = finalPapers.selectionModel.selectedItem
         if (proposal == null) {
             alert(Alert.AlertType.ERROR, "Proposal not selected")
             return
         }
-        val session = Sessions.selectionModel.selectedItem
+        val session = sessions.selectionModel.selectedItem
         try {
             service.addProposalSession(ProposalSession(proposal.id, session.sessionId, Date.valueOf(date)))
         } catch (e: ConferenceException) {

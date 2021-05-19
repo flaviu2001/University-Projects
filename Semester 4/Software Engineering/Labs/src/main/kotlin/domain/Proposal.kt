@@ -1,15 +1,15 @@
 package domain
 
 data class Proposal(
-    val id: Int,
-    val userConferenceId: Int,
-    val abstractText: String,
-    val paperText: String,
-    val title: String,
-    val authors: String,
-    val keywords: String,
-    val finalized: Boolean,
-    val accepted: Boolean
+    var id: Int,
+    var userConferenceId: Int,
+    var abstractText: String,
+    var paperText: String,
+    var title: String,
+    var authors: String,
+    var keywords: String,
+    var finalized: Boolean,
+    var accepted: Boolean
 ) {
     override fun toString(): String {
         return title

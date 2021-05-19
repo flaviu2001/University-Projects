@@ -23,6 +23,7 @@ class UserRepository(private val url: String, private val db_user: String, priva
     }
 
     fun findUserById(id: Int): User? {
+        @Suppress("SqlConstantCondition")
         val sqlCommand = "SELECT * FROM Users WHERE id = $id"
         var user: User? = null
         DriverManager.getConnection(url, db_user, db_password).use { connection ->

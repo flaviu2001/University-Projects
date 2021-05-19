@@ -56,6 +56,12 @@ class RolesView(
                     0.3.seconds, ViewTransition.Direction.RIGHT
                 )
             )
+            Role.AUTHOR -> replaceWith(
+                AuthorView(user, service, conference, this),
+                ViewTransition.Slide(
+                    0.3.seconds, ViewTransition.Direction.RIGHT
+                )
+            )
             null
             -> {
 

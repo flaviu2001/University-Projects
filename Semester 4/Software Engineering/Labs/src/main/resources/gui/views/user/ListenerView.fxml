@@ -1,37 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
+          prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="5.0" prefWidth="5.0" />
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="5.0" prefWidth="5.0" />
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="5.0" prefWidth="5.0" />
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="5.0" prefWidth="5.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="5.0" prefWidth="5.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="5.0" prefWidth="5.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="5.0" prefWidth="5.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="5.0" prefWidth="5.0"/>
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints maxHeight="295.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="525.0" minHeight="10.0" prefHeight="180.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="295.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="525.0" minHeight="10.0" prefHeight="180.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="295.0" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="295.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="525.0" minHeight="10.0" prefHeight="180.0" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="295.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="525.0" minHeight="10.0" prefHeight="180.0" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="295.0" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES"/>
     </rowConstraints>
-    <children>
-        <Label text="Available sections" GridPane.halignment="LEFT" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
-        <ListView fx:id="sectionsListView" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.columnIndex="1" GridPane.columnSpan="3"/>
-        <Label text="My sections" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.columnIndex="1" />
-        <ListView fx:id="userSectionsListView" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.columnIndex="1" GridPane.columnSpan="3"/>
-        <Label text="Section name" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.columnIndex="5"/>
-        <TextField fx:id="sectionNameTextField" GridPane.halignment="CENTER" GridPane.columnIndex="5" GridPane.rowIndex="2"/>
-        <Button fx:id="goBackButton" mnemonicParsing="false" text="Go back" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.halignment="CENTER"/>
-        <Button fx:id="payButton" mnemonicParsing="false" text="Pay" GridPane.columnIndex="3" GridPane.rowIndex="4" GridPane.halignment="CENTER"/>
-        <Button fx:id="chooseSectionButton" mnemonicParsing="false" text="Choose section" GridPane.columnIndex="5" GridPane.rowIndex="4" GridPane.halignment="CENTER"/>
-    </children>
+    <Label text="Available sections" GridPane.halignment="LEFT" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+    <ListView fx:id="sectionsListView" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.columnIndex="1"
+              GridPane.columnSpan="3"/>
+    <Label text="My sections" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+    <ListView fx:id="userSectionsListView" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.columnIndex="1"
+              GridPane.columnSpan="3"/>
+    <Label text="Section name" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.columnIndex="5"/>
+    <TextField fx:id="sectionNameTextField" GridPane.halignment="CENTER" GridPane.columnIndex="5"
+               GridPane.rowIndex="2"/>
+    <Button fx:id="goBackButton" mnemonicParsing="false" text="Go back" GridPane.columnIndex="1" GridPane.rowIndex="4"
+            GridPane.halignment="CENTER"/>
+    <Button fx:id="payButton" mnemonicParsing="false" text="Pay" GridPane.columnIndex="3" GridPane.rowIndex="4"
+            GridPane.halignment="CENTER"/>
+    <Button fx:id="chooseSectionButton" mnemonicParsing="false" text="Choose section" GridPane.columnIndex="5"
+            GridPane.rowIndex="4" GridPane.halignment="CENTER"/>
 </GridPane>

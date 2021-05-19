@@ -55,7 +55,7 @@ class UserConferenceRepository (private val url: String, private val db_user: St
             val preparedStatement = connection.prepareStatement(sqlCommand)
             preparedStatement.setInt(1, uid)
             preparedStatement.setInt(2, cid)
-            preparedStatement.executeUpdate();
+            preparedStatement.executeUpdate()
         }
     }
 
@@ -73,19 +73,6 @@ class UserConferenceRepository (private val url: String, private val db_user: St
         return pairs
     }
 
-    fun getUsersOfConference(cid: Int) : List<UserConference> {
-        val pairs = mutableListOf<UserConference>()
-        val sqlCommand = "SELECT * FROM UserConference WHERE cid=?"
-        DriverManager.getConnection(url, db_user, db_password).use { connection ->
-            val preparedStatement = connection.prepareStatement(sqlCommand)
-            preparedStatement.setInt(1, cid)
-            val rs = preparedStatement.executeQuery()
-            while (rs.next())
-                pairs.add(UserConference(rs.getInt("ucid"), rs.getInt("uid"), rs.getInt("cid"), Role.valueOf(rs.getString("role")), rs.getBoolean("paid")))
-        }
-        return pairs
-    }
-
     fun getAll(): List<UserConference> {
         val pairs = mutableListOf<UserConference>()
         val sqlCommand = "SELECT * FROM UserConference"
@@ -99,7 +86,7 @@ class UserConferenceRepository (private val url: String, private val db_user: St
     }
 
     fun changeAuthorToSpeaker(userConference: UserConference) {
-        val sqlCommand = "UPDATE UserConference SET role = ? WHERE ucid = ?";
+        val sqlCommand = "UPDATE UserConference SET role = ? WHERE ucid = ?"
         DriverManager.getConnection(url, db_user, db_password).use { connection ->
             val preparedStatement = connection.prepareStatement(sqlCommand)
             preparedStatement.setString(1, Role.SPEAKER.name)

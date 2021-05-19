@@ -34,34 +34,35 @@
     <ListView fx:id="conferenceListView" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0"
               prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="8"
               GridPane.columnIndex="1"/>
-
+    <Label text="Username" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.columnIndex="5"/>
     <Label text="Conference name" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+    <TextField fx:id="usernameField" maxWidth="-Infinity" prefWidth="200.0" GridPane.halignment="CENTER"
+               GridPane.rowIndex="1" GridPane.columnIndex="5"/>
     <TextField fx:id="nameField" maxWidth="-Infinity" prefWidth="200.0" GridPane.halignment="CENTER"
                GridPane.rowIndex="1" GridPane.columnIndex="3"/>
     <Label text="Price" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.columnIndex="3"/>
+    <CheckBox fx:id="coChairRadioButton" text="Co-Chair" GridPane.rowIndex="2" GridPane.columnIndex="5" GridPane.halignment="CENTER"/>
     <TextField fx:id="priceField" maxWidth="-Infinity" prefWidth="200.0" GridPane.halignment="CENTER"
                GridPane.rowIndex="3" GridPane.columnIndex="3"/>
     <Label text="Date" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.columnIndex="3"/>
     <DatePicker fx:id="dateField" maxWidth="-Infinity" prefWidth="200.0" GridPane.halignment="CENTER"
                 GridPane.rowIndex="5" GridPane.columnIndex="3"/>
     <Button fx:id="addConferenceButton" mnemonicParsing="false" text="Add conference" GridPane.halignment="CENTER"
-            GridPane.rowIndex="6" GridPane.columnIndex="3"/>
+            GridPane.rowIndex="12" GridPane.columnIndex="3"/>
 
-    <Label text="Username" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.columnIndex="5"/>
-    <TextField fx:id="chairNameField" maxWidth="-Infinity" prefWidth="200.0" GridPane.halignment="CENTER"
-               GridPane.rowIndex="1" GridPane.columnIndex="5"/>
-    <CheckBox fx:id="coChairRadioButton" text="Co-Chair" GridPane.rowIndex="2" GridPane.columnIndex="5" GridPane.halignment="CENTER"/>
     <Button fx:id="inviteChairButton" mnemonicParsing="false" text="Invite chairperson" GridPane.halignment="CENTER"
-            GridPane.columnIndex="5" GridPane.rowIndex="6" prefWidth="150.0"/>
+            GridPane.columnIndex="5" GridPane.rowIndex="3" prefWidth="150.0"/>
     <Button fx:id="logoutButton" mnemonicParsing="false" text="Logout" GridPane.halignment="CENTER"
-            GridPane.columnIndex="0" GridPane.columnSpan="7" GridPane.rowIndex="7"/>
-    <Label text="Submit Paper Deadline" GridPane.rowIndex="8" GridPane.columnIndex="3"/>
+            GridPane.columnIndex="5" GridPane.rowIndex="13"/>
+    <Label text="Submit Paper Deadline" GridPane.rowIndex="6" GridPane.columnIndex="3"/>
     <DatePicker fx:id="submitPaperDeadline" maxWidth="-Infinity" prefWidth="200.0" GridPane.halignment="CENTER"
-                GridPane.rowIndex="9" GridPane.columnIndex="3"/>
+                GridPane.rowIndex="7" GridPane.columnIndex="3"/>
     <Label text="Review Paper Deadline" GridPane.rowIndex="10" GridPane.columnIndex="3"/>
     <DatePicker fx:id="reviewPaperDeadline" maxWidth="-Infinity" prefWidth="200.0" GridPane.halignment="CENTER"
                 GridPane.rowIndex="11" GridPane.columnIndex="3"/>
-    <Label text="Bidding Phase Deadline" GridPane.rowIndex="12" GridPane.columnIndex="3"/>
+    <Label text="Bidding Phase Deadline" GridPane.rowIndex="8" GridPane.columnIndex="3"/>
     <DatePicker fx:id="biddingPhaseDeadline" maxWidth="-Infinity" prefWidth="200.0" GridPane.halignment="CENTER"
-                GridPane.rowIndex="13" GridPane.columnIndex="3"/>
+                GridPane.rowIndex="9" GridPane.columnIndex="3"/>
+    <Button fx:id="inviteReviewerButton" maxWidth="-Infinity" prefWidth="150.0" GridPane.halignment="CENTER"
+                GridPane.rowIndex="4" GridPane.columnIndex="5" text="Invite Reviewer"/>
 </GridPane>

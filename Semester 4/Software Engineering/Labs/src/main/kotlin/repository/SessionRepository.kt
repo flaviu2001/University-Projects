@@ -32,7 +32,7 @@ class SessionRepository(private val url: String, private val db_user: String, pr
         return sessions
     }
 
-    fun findSessionsByConferecenceId(conferenceId: Int): List<Session> {
+    fun findSessionsByConferenceId(conferenceId: Int): List<Session> {
         val sqlCommand = "SELECT * FROM Sessions WHERE conferenceId = ?"
         val sessions = mutableListOf<Session>()
         DriverManager.getConnection(url, db_user, db_password).use { connection ->

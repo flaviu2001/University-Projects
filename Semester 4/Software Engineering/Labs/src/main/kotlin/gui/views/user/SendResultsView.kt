@@ -91,7 +91,7 @@ class SendResultsView (private val user: User,
         }
 
         abstractTextField.text = proposal.abstractText
-        selectedProposal = proposal;
+        selectedProposal = proposal
     }
 
     private fun loadData() {

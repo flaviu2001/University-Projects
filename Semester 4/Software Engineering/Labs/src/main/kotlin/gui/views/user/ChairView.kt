@@ -2,10 +2,8 @@ package gui.views.user
 
 import domain.*
 import exceptions.ConferenceException
-import gui.views.conference.BidProposalView
 import gui.views.conference.ChangeSpeakerView
 import gui.views.conference.PayForConferenceView
-import javafx.collections.FXCollections
 import javafx.scene.control.Alert
 import javafx.scene.control.Button
 import javafx.scene.control.ListView
@@ -27,9 +25,9 @@ class ChairView(
     private val postponeDeadlinesButton: Button by fxid()
     private val sendResultsButton: Button by fxid()
     private val payButton: Button by fxid()
-    private val ViewSessions: Button by fxid()
+    private val viewSessions: Button by fxid()
     private val modifySpeakers: Button by fxid()
-    private val ListOfPCMembers: ListView<PCMemberProposal> by fxid()
+    private val listOfPCMembers: ListView<PCMemberProposal> by fxid()
 
     init {
         goBackButton.apply {
@@ -55,7 +53,7 @@ class ChairView(
                 sendResultsHandle()
             }
         }
-        ViewSessions.apply {
+        viewSessions.apply {
             action {
                 showSessions()
             }
@@ -91,12 +89,7 @@ class ChairView(
     }
 
     private fun sendResultsHandle() {
-        val reviewPaperDeadline = conference.reviewPaperDeadline
-
-        val calendar = Calendar.getInstance()
-        val year = calendar.get(Calendar.YEAR)
-        val month = calendar.get(Calendar.MONTH)
-        val day = calendar.get(Calendar.DAY_OF_MONTH)
+        conference.reviewPaperDeadline
 
         if (Calendar.getInstance().time.before(conference.reviewPaperDeadline)){
             alert(Alert.AlertType.INFORMATION, "Review deadline has not passed")
@@ -123,13 +116,6 @@ class ChairView(
         )
     }
 
-    private fun bidProposalHandle() {
-        replaceWith(
-            BidProposalView(user, service, this, conference),
-            ViewTransition.Slide(0.3.seconds, ViewTransition.Direction.LEFT)
-        )
-    }
-
     private fun showSessions() {
         replaceWith(
             SessionsView(user, service, this, conference),
@@ -138,14 +124,15 @@ class ChairView(
     }
 
     private fun sendPaperToPCMemberHandle() {
-        val reviewer = ListOfPCMembers.selectionModel.selectedItem
+        val reviewer = listOfPCMembers.selectionModel.selectedItem
         if (reviewer == null) {
             alert(Alert.AlertType.INFORMATION, "Select a reviewer")
             return
         }
         try {
             service.assignPaper(reviewer.proposalId, reviewer.pcMemberId)
-            alert(Alert.AlertType.INFORMATION, "Assigned paper");
+            alert(Alert.AlertType.INFORMATION, "Assigned paper")
+            loadPCMembers()
         } catch (exception: ConferenceException) {
             alert(Alert.AlertType.ERROR, exception.message)
             return
@@ -153,8 +140,9 @@ class ChairView(
     }
 
     private fun loadPCMembers() {
+        listOfPCMembers.items.clear()
         val users = service.getPcMemberProposalsOfConferenceNotRefused(conference.id)
-        ListOfPCMembers.items.addAll(users)
+        listOfPCMembers.items.addAll(users)
     }
 
 

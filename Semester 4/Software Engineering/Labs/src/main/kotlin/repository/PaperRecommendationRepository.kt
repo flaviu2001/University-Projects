@@ -44,7 +44,7 @@ class PaperRecommendationRepository(
     fun addPair(recommendation: PaperRecommendation) {
         val sqlCommand = "INSERT INTO PaperRecommendation(id, proposalid, reviewerId, recommendation) values (?, ?, ?, ?)"
         DriverManager.getConnection(url, db_user,db_password).use { connection ->
-            val preparedStatement = connection.prepareStatement(sqlCommand);
+            val preparedStatement = connection.prepareStatement(sqlCommand)
             preparedStatement.setInt(1, recommendation.id)
             preparedStatement.setInt(2, recommendation.proposalId)
             preparedStatement.setInt(3, recommendation.reviewerId)

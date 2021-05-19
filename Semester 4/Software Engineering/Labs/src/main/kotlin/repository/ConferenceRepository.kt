@@ -23,19 +23,6 @@ class ConferenceRepository (private val url: String, private val db_user: String
 
     }
 
-    fun findConferenceById(id: Int): Conference? {
-        val sqlCommand = "SELECT * FROM Conferences WHERE id = ?"
-        var conference: Conference? = null
-        DriverManager.getConnection(url, db_user, db_password).use { connection ->
-            val preparedStatement = connection.prepareStatement(sqlCommand)
-            preparedStatement.setInt(1, id)
-            val rs = preparedStatement.executeQuery()
-            if (rs.next())
-                conference = Conference(rs.getInt("id"), rs.getString("name"), rs.getDate("date"), rs.getInt("attendancePrice"), rs.getDate("submitProposalDeadline"), rs.getDate("reviewPaperDeadline"), rs.getDate("biddingPhaseDeadline"))
-        }
-        return conference
-    }
-
     fun getConferences(): List<Conference> {
         val conferences = mutableListOf<Conference>()
         val sqlCommand = "SELECT * FROM Conferences"
