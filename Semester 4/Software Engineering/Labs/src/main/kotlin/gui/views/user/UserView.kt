@@ -18,6 +18,7 @@ class UserView(private val user: User, private val service: Service) : View(user
     private val logoutButton: Button by fxid()
     private val conferenceListView: ListView<Conference> by fxid()
     private val registerAuthor: Button by fxid()
+    private val registerAsListener: Button by fxid()
     private val abstractText: TextArea by fxid()
     private val paperText: TextArea by fxid()
     private val paperTitle: TextField by fxid()
@@ -41,6 +42,11 @@ class UserView(private val user: User, private val service: Service) : View(user
                 handleRegisterAuthor()
             }
         }
+        registerAsListener.apply {
+            action {
+                handleRegisterAsListener()
+            }
+        }
         submitProposal.apply {
             action {
                 handleSubmitProposal()
@@ -52,6 +58,20 @@ class UserView(private val user: User, private val service: Service) : View(user
             }
         }
         loadData()
+    }
+
+    private fun handleRegisterAsListener() {
+        val conference = conferenceListView.selectionModel.selectedItem
+        if (conference == null) {
+            alert(Alert.AlertType.INFORMATION, "Select a conference")
+            return
+        }
+        val conferencesOfUser = service.getConferencesOfUser(user.id)
+        if (!conferencesOfUser.any { userConference -> userConference.conferenceId == conference.id })
+            service.addUserToConference(user.id, conference.id, Role.LISTENER, false)
+        else {
+            alert(Alert.AlertType.INFORMATION, "User already registered to conference")
+        }
     }
 
     private fun handleChooseConference(){

@@ -60,3 +60,9 @@ gradle-app.setting
 data
 *.DS_Store
 .DS_Store
+
+#Fake smtp stuff
+fakeSMTP-2.0.jar
+received-emails
+
+src/main/resources/presentations

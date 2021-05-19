@@ -5,6 +5,7 @@ import domain.Proposal
 import domain.ReviewResult
 import domain.User
 import gui.views.conference.BidProposalView
+import gui.views.conference.PayForConferenceView
 import javafx.collections.FXCollections
 import javafx.scene.control.*
 import javafx.scene.layout.GridPane
@@ -22,6 +23,7 @@ class ReviewerView(
     private val goBackButton: Button by fxid()
     private val submitResultButton: Button by fxid()
     private val bidProposalButton: Button by fxid()
+    private val payForConference: Button by fxid()
     private val attachRecommendations: Button by fxid()
 
     private val recommendationField: TextField by fxid()
@@ -63,11 +65,25 @@ class ReviewerView(
 
             }
         }
+
+        payForConference.apply {
+            action {
+                pay()
+            }
+        }
+
         if (Calendar.getInstance().time.before(conference.reviewPaperDeadline)) {
             loadData()
         } else {
             alert(Alert.AlertType.ERROR, "Review deadline has passed. You can no longer review papers.")
         }
+    }
+
+    private fun pay() {
+        replaceWith(
+            PayForConferenceView(user, service, this, conference),
+            ViewTransition.Slide(0.3.seconds, ViewTransition.Direction.RIGHT)
+        )
     }
 
     private fun goBackHandle() {

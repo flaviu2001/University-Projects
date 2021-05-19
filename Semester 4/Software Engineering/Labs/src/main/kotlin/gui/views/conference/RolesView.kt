@@ -3,9 +3,7 @@ package gui.views.conference
 import domain.Conference
 import domain.Role
 import domain.User
-import gui.views.user.ChairView
-import gui.views.user.ReviewerView
-import gui.views.user.UserView
+import gui.views.user.*
 import javafx.collections.FXCollections
 import javafx.scene.control.Alert
 import javafx.scene.control.Button
@@ -48,7 +46,18 @@ class RolesView(
                 ReviewerView(user, service, this, conference),
                 ViewTransition.Slide(0.3.seconds, ViewTransition.Direction.RIGHT)
             )
-            null -> {
+            Role.LISTENER -> replaceWith(
+                ListenerView(user, service, this, conference),
+                ViewTransition.Slide(0.3.seconds, ViewTransition.Direction.RIGHT)
+            )
+            Role.SPEAKER -> replaceWith(
+                SpeakerView(user, service, this, conference),
+                ViewTransition.Slide(
+                    0.3.seconds, ViewTransition.Direction.RIGHT
+                )
+            )
+            null
+            -> {
 
             }
             else -> {

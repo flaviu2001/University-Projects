@@ -23,13 +23,24 @@
                   prefWidth="200.0"/>
     </VBox>
     <VBox GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.rowSpan="2" GridPane.halignment="CENTER" alignment="TOP_CENTER">
+        <HBox alignment="CENTER">
         <Button fx:id="registerAuthor" mnemonicParsing="false" text="Register as Author" >
-            <VBox.margin>
+            <HBox.margin>
                 <Insets>
                     <bottom>20</bottom>
+                    <right>40</right>
                 </Insets>
-            </VBox.margin>
+            </HBox.margin>
         </Button>
+        <Button fx:id="registerAsListener" mnemonicParsing="false" text="Register as Listener" >
+            <HBox.margin>
+                <Insets>
+                    <bottom>20</bottom>
+                    <right>40</right>
+                </Insets>
+            </HBox.margin>
+        </Button>
+        </HBox>
         <VBox alignment="CENTER">
             <TextArea fx:id="abstractText" maxHeight="10" promptText="Enter abstract here:">
                 <VBox.margin>
