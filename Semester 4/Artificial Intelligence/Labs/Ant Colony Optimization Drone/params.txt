@@ -1,0 +1,8 @@
+iterations:200
+number of ants:80
+alpha:1
+beta:1
+rho:0.1
+q0:0.3
+battery:70
+file:no
