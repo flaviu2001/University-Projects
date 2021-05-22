@@ -1,0 +1,20 @@
+<div class="container">
+  <h1>Update User</h1>
+  <p><b>Please fill this form and submit to update the user from the database.</b></p>
+
+  <form #userForm="ngForm" class="formWrapper" (ngSubmit)="updateUser(userForm.value)">
+    <input type="text" name="name" placeholder="Name:" [ngModel]="name"> <br>
+    <input type="text" name="username" placeholder="Username:" [ngModel]="username"> <br>
+    <input type="password" name="password" placeholder="Password:" [ngModel]="password"> <br>
+    <input type="number" name="age" placeholder="Age:" [ngModel]="age"> <br>
+    <input type="text" name="role" placeholder="Role:" [ngModel]="role"> <br>
+    <input type="text" name="email" placeholder="Email:" [ngModel]="email"> <br>
+    <input type="text" name="webpage" placeholder="Webpage:" [ngModel]="webpage"> <br>
+    <div class="button_container">
+      <button type="submit">
+        Update User
+      </button>
+      <button (click)="onCancel()">Cancel</button>
+    </div>
+  </form>
+</div>

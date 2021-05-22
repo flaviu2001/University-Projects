@@ -35,6 +35,7 @@ export class GenericService {
     return this.http.post(this.backendUrl + `addUser.php`, {
       name: nameOf,
       username: usernameOf,
+      password: passwordOf,
       age: ageOf,
       role: roleOf,
       email: emailOf,

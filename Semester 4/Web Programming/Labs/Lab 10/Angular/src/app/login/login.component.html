@@ -1,0 +1,11 @@
+<div class="container">
+  <h1>Login Page</h1>
+
+  <form #loginForm="ngForm" class="formWrapper" (ngSubmit)="handleLogin(loginForm.value)">
+    <input type="text" name="username" placeholder="Username:" ngModel> <br>
+    <input type="password" name="password" placeholder="Password:" ngModel> <br>
+    <button type="submit">
+      Add User
+    </button>
+  </form>
+</div>
