@@ -1,0 +1,48 @@
+services:
+  frontend:
+    build: ./PetShop-Frontend
+    ports:
+      - "4200:4200"
+    links:
+      - proxy
+  proxy:
+    build: ./PetShop-Proxy
+    ports:
+      - "8080:8080"
+    links:
+      - cats
+      - toys
+      - purchases
+      - customers
+      - foods
+  cats:
+    build: ./PetShop-Cats
+    # ports: 
+    #   - "8080:8080"
+    links:
+      - database
+  toys:
+    build: ./PetShop-Toys
+    # ports: 
+    #   - "8081:8080"
+    links:
+      - database
+  purchases:
+    build: ./PetShop-Purchases
+    # ports: 
+    #   - "8082:8080"
+    links:
+      - database
+  customers:
+    build: ./PetShop-Customers
+    # ports:
+    #   - "3000:3000"
+  foods:
+    build: ./PetShop-Foods
+    # ports:
+    #   - "3001:3001"
+  database:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: "petshop"

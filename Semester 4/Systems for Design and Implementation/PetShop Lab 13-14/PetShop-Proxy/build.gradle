@@ -1,0 +1,28 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+group 'ro.ubb.pisicilesalbatice.proxy'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.springframework', name: 'spring-context', version: "5.2.13.RELEASE"
+    compile group: 'org.springframework', name: 'spring-webmvc', version: "5.2.13.RELEASE"
+    compile group: 'org.springframework', name: 'spring-web', version: "5.2.13.RELEASE"
+    compile group: 'javax.servlet', name: 'javax.servlet-api', version:"4.0.1"
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: "2.9.4"
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: "2.9.4"
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
+test {
+    useJUnitPlatform()
+}

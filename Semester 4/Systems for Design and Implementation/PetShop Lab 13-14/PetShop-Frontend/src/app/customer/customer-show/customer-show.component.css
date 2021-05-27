@@ -1,0 +1,77 @@
+.container {
+  height: auto;
+  min-height: calc(90% - 100px);
+  padding-bottom: 100px;
+  width: 90%;
+  background: lightsalmon;
+  border-radius: 10px;
+  color: black;
+  display: flex;
+  flex-direction: column;
+}
+
+.details {
+  margin-top: 20px;
+  width: 80%;
+  align-self: center;
+  display: grid;
+  grid-template-columns: auto auto;
+  padding: 15px;
+}
+
+.insideDetails {
+  display: flex;
+  align-items: center;
+}
+
+.insideDetails h1 {
+  text-align: center;
+  margin-left: 30%;
+}
+
+.insideDetails button {
+  margin-left: 40px;
+}
+
+.details .add {
+  width: 120px;
+  height: 40px;
+  justify-self: end;
+  margin-right: 25%;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+button {
+  border: 2px solid darkred;
+  border-radius: 7px;
+  background: lightcoral;
+}
+
+table {
+  margin-top: 30px;
+  align-self: center;
+  width: 80%;
+  table-layout: fixed;
+}
+
+th {
+  background: black;
+  color: lightcoral;
+}
+
+table, th, td {
+  border-bottom: 1px solid darkred;
+  border-collapse: collapse;
+  text-align: center;
+  padding: 15px;
+}
+
+#deleteButton, #purchasesButton {
+  margin-top: 5px;
+  width: 85px;
+}
+
+#updateButton {
+  width: 85px;
+}
