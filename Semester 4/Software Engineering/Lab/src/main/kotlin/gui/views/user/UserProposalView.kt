@@ -66,7 +66,8 @@ class UserProposalView(private val user: User, private val service: Service, pri
             paperTitle.text,
             authors.text,
             keywords.text,
-            finalized = finalized.isSelected
+            finalized = finalized.isSelected,
+            accepted = proposal.accepted
         )
         loadData()
     }

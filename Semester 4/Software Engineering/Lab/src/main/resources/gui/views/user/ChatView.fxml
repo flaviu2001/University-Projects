@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="395.0" minWidth="10.0" prefWidth="291.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="509.0" minWidth="10.0" prefWidth="509.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="213.0" minHeight="10.0" prefHeight="213.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="436.0" minHeight="10.0" prefHeight="296.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="193.0" minHeight="10.0" prefHeight="49.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <Button fx:id="goBackButton" mnemonicParsing="false" text="Go back" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+      <ListView fx:id="messagesListView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowSpan="2" />
+      <GridPane GridPane.columnIndex="1" GridPane.rowIndex="2">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="446.0" minWidth="10.0" prefWidth="446.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="247.0" minWidth="10.0" prefWidth="63.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button fx:id="sendMessageButton" mnemonicParsing="false" text="Send" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+            <TextField fx:id="messageTextField" />
+         </children>
+      </GridPane>
+      <ListView fx:id="conversationsListView" prefHeight="200.0" prefWidth="200.0" GridPane.rowSpan="2" />
+   </children>
+</GridPane>

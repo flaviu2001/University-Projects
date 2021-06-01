@@ -1,13 +1,11 @@
 package gui.views.user
 
 import domain.Conference
+import domain.Room
 import domain.Session
 import domain.User
 import gui.views.conference.PayForConferenceView
-import javafx.scene.control.Alert
-import javafx.scene.control.Button
-import javafx.scene.control.ListView
-import javafx.scene.control.TextField
+import javafx.scene.control.*
 import javafx.scene.layout.GridPane
 import org.postgresql.util.PSQLException
 import service.Service
@@ -26,6 +24,7 @@ class ListenerView(private val user: User,
     private val userSectionsListView: ListView<Session> by fxid()
     private val sectionNameTextField: TextField by fxid()
     private val chooseSectionButton: Button by fxid()
+    private val sessionInfoLabel: Label by fxid()
 
     init {
         goBackButton.apply {
@@ -46,6 +45,20 @@ class ListenerView(private val user: User,
             selectedSection = session
         }
 
+        userSectionsListView.onLeftClick {
+            sessionInfoLabel.text=""
+            val session = userSectionsListView.selectionModel.selectedItem ?: return@onLeftClick
+            val room: Room? = service.getRoomOfSession(session.sessionId)
+
+            var sessionInfo = "No information for selected conference!"
+
+            if(room != null){
+                sessionInfo = "Session with topic ${session.topic} will be held in the ${room.name} room"
+            }
+
+            sessionInfoLabel.text = sessionInfo
+        }
+
         chooseSectionButton.apply {
             action {
                 handleChooseSection()
@@ -57,6 +70,7 @@ class ListenerView(private val user: User,
     }
 
     private fun loadUserSections() {
+        sessionInfoLabel.text=""
         userSectionsListView.items.clear()
         userSectionsListView.items.addAll(service.getSectionsOfUser(user.id).asObservable())
     }
@@ -67,6 +81,12 @@ class ListenerView(private val user: User,
             return
         }
         try {
+            val numberOfListeners = service.getNumberOfUsersForSession(selectedSection!!.sessionId)
+            if(numberOfListeners == selectedSection!!.participantsLimit){
+                alert(Alert.AlertType.INFORMATION, "Section full", "Sorry! You cannot attend this session as the maximum number of participants was reached")
+                return
+            }
+
             service.addUserToSection(user.id, selectedSection!!.sessionId)
             loadUserSections()
             alert(Alert.AlertType.INFORMATION, "Section was chosen")
@@ -76,6 +96,7 @@ class ListenerView(private val user: User,
     }
 
     private fun loadSessions() {
+        sessionInfoLabel.text=""
         sectionsListView.items.clear()
         sectionsListView.items.addAll(service.getSessionsOfAConference(conference.id).asObservable())
     }

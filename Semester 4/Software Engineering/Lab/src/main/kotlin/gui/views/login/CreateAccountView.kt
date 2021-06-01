@@ -68,7 +68,12 @@ class CreateAccountView(private val service: Service) : View("Create account") {
             return
         }
         if (!atLeastNCharacters(fullNameField.text)) {
-            alert(Alert.AlertType.ERROR, "The username should have at least three characters")
+            alert(Alert.AlertType.ERROR, "The full name should have at least three characters")
+            return
+        }
+
+        if (!atLeastNCharacters(passwordField.text)) {
+            alert(Alert.AlertType.ERROR, "The password should have at least three characters")
             return
         }
         try {

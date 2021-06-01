@@ -62,6 +62,12 @@ class RolesView(
                     0.3.seconds, ViewTransition.Direction.RIGHT
                 )
             )
+            Role.SESSION_CHAIR -> replaceWith(
+                ChangeSpeakerView(service, this, conference, user),
+                ViewTransition.Slide(
+                    0.3.seconds, ViewTransition.Direction.RIGHT
+                )
+            )
             null
             -> {
 

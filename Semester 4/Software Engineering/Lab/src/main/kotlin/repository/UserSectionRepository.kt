@@ -31,6 +31,20 @@ class UserSectionRepository(private val url: String, private val db_user: String
         return pairs
     }
 
+    fun getUsersOfSession(sid: Int): List<Int>{
+        val pairs = mutableListOf<Int>()
+        val sqlCommand = "SELECT uid FROM UserSection where sid = ?"
+        DriverManager.getConnection(url, db_user, db_password).use { connection ->
+            val preparedStatement = connection.prepareStatement(sqlCommand)
+            preparedStatement.setInt(1, sid)
+            val rs = preparedStatement.executeQuery()
+
+            while (rs.next())
+                pairs.add(rs.getInt("uid"))
+        }
+        return pairs
+    }
+
     fun addPair(userSection: UserSection) {
         val sqlCommand = "INSERT INTO UserSection (uid, sid) VALUES (?, ?)"
         DriverManager.getConnection(url, db_user, db_password).use { connection ->

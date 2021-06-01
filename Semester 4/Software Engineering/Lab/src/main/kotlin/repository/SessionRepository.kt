@@ -1,5 +1,6 @@
 package repository
 
+import domain.Room
 import domain.Session
 import java.sql.DriverManager
 
@@ -61,8 +62,49 @@ class SessionRepository(private val url: String, private val db_user: String, pr
         }
     }
 
+    fun findSessionsByConferenceIdWithNoRoomsAssigned(conferenceId: Int): List<Session> {
+        val sqlCommand = """
+            SELECT * 
+            FROM Sessions 
+            WHERE (conferenceId = ?) AND (roomid IS NULL)
+        """.trimIndent()
+        val sessions = mutableListOf<Session>()
+        DriverManager.getConnection(url, db_user, db_password).use { connection ->
+            val preparedStatement = connection.prepareStatement(sqlCommand)
+            preparedStatement.setInt(1, conferenceId)
+            val rs = preparedStatement.executeQuery()
+            while (rs.next()) {
+                val session = Session(rs.getInt("sessionId"), rs.getInt("conferenceId"), rs.getString("topic"), rs.getInt("participantsLimit"))
+                sessions.add(session)
+            }
+        }
+        return sessions
+    }
+
+    fun getRoomOfSession(sid: Int): Room?{
+        var room: Room? = null;
+        val sqlCommand = """
+            SELECT r.* 
+            FROM Sessions INNER JOIN rooms r on sessions.roomid = r.id
+            WHERE sessions.sessionid = ?
+        """.trimIndent()
+        DriverManager.getConnection(url, db_user, db_password).use { connection ->
+            val preparedStatement = connection.prepareStatement(sqlCommand)
+            preparedStatement.setInt(1, sid)
+            val rs = preparedStatement.executeQuery()
+            if (rs.next()) {
+                room = Room(rs.getInt("id"), rs.getString("name"), rs.getInt("capacity"))
+            }
+        }
+        return room
+    }
+
     fun assignRoomToSession(sessionId: Int, roomId: Int){
-        val sqlCommand = "UPDATE Sessions SET roomId = ?  WHERE sessionId = ?"
+        val sqlCommand = """
+            UPDATE Sessions 
+            SET roomid = ?  
+            WHERE sessionId = ?
+        """.trimIndent()
         DriverManager.getConnection(url, db_user, db_password).use { connection ->
             val preparedStatement = connection.prepareStatement(sqlCommand)
             preparedStatement.setInt(1, roomId)

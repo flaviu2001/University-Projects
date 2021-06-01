@@ -29,6 +29,10 @@
     <Label text="Section name" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.columnIndex="5"/>
     <TextField fx:id="sectionNameTextField" GridPane.halignment="CENTER" GridPane.columnIndex="5"
                GridPane.rowIndex="2"/>
+
+    <Label fx:id="sessionInfoLabel" GridPane.halignment="CENTER" GridPane.columnIndex="5"
+           GridPane.rowIndex="3" wrapText="true"/>
+
     <Button fx:id="goBackButton" mnemonicParsing="false" text="Go back" GridPane.columnIndex="1" GridPane.rowIndex="4"
             GridPane.halignment="CENTER"/>
     <Button fx:id="payButton" mnemonicParsing="false" text="Pay" GridPane.columnIndex="3" GridPane.rowIndex="4"

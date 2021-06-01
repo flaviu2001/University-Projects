@@ -2,12 +2,8 @@ package gui.views.user
 
 import domain.*
 import exceptions.ConferenceException
-import gui.views.conference.PayForConferenceView
 import javafx.collections.FXCollections
-import javafx.scene.control.Alert
-import javafx.scene.control.Button
-import javafx.scene.control.ListView
-import javafx.scene.control.TextField
+import javafx.scene.control.*
 import javafx.scene.layout.GridPane
 import service.Service
 import tornadofx.*
@@ -32,6 +28,10 @@ class SessionsView(
     private val addSession: Button by fxid()
     private val addToSession: Button by fxid()
     private val assignRoomsButton: Button by fxid()
+    private val sessionInfoLabel: Label by fxid()
+    private val presentationDateField: TextField by fxid()
+    private val sessionChair: TextField by fxid()
+    private val sessionChairButton: Button by fxid()
 
     init {
         goBack.apply {
@@ -55,12 +55,36 @@ class SessionsView(
             }
         }
         sessions.onLeftClick {
+            sessionInfoLabel.text = ""
             val session = sessions.selectionModel.selectedItem ?: return@onLeftClick
             papersOfSession.items.clear()
             papersOfSession.items.addAll(service.getProposalSessionsOfSession(session.sessionId).asObservable())
+
+            val room: Room = service.getRoomOfSession(session.sessionId) ?: return@onLeftClick
+
+            val sessionInfo = "Session with topic ${session.topic} will be held in the ${room.name} room"
+            sessionInfoLabel.text = sessionInfo
+
+        }
+        sessionChairButton.apply {
+            action {
+                sessionChairHandle()
+            }
         }
         loadSessions()
         loadPapers()
+    }
+
+    private fun sessionChairHandle() {
+        try {
+            if (sessions.selectionModel.selectedItem == null) {
+                alert(Alert.AlertType.ERROR, "Session not selected")
+                return
+            }
+            service.makeSessionChair(sessionChair.text, conference)
+        } catch (e: Exception) {
+            alert(Alert.AlertType.ERROR, e.message!!)
+        }
     }
 
     private fun assignRoomsHandle() {
@@ -83,12 +107,14 @@ class SessionsView(
     }
 
     private fun loadSessions() {
+        sessionInfoLabel.text= ""
         val observable = FXCollections.observableArrayList(service.getSessionsOfAConference(conference.id))
         sessions.items.clear()
         sessions.items.addAll(observable)
     }
 
     private fun addSession() {
+        sessionInfoLabel.text= ""
         val t = topic.text
         val limit = participantsLimit.text.toInt()
         service.addSession(conference.id, t, limit)
@@ -99,7 +125,7 @@ class SessionsView(
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm", Locale.ENGLISH)
         lateinit var date: LocalDate
         try {
-            date = LocalDate.parse(participantsLimit.text, formatter)
+            date = LocalDate.parse(presentationDateField.text, formatter)
         } catch (e: Exception) {
             alert(Alert.AlertType.ERROR, "Invalid date")
             return

@@ -6,9 +6,9 @@ enum class Role {
     CO_CHAIR,
     REVIEWER,
     SC_MEMBER,
-    SESSION_CHAR,
     LISTENER,
-    SPEAKER
+    SPEAKER,
+    SESSION_CHAIR,
 }
 
 data class UserConference (val id: Int, val userId: Int, val conferenceId: Int, val role: Role, var paid: Boolean)

@@ -2,7 +2,6 @@ package gui.views.user
 
 import domain.*
 import exceptions.ConferenceException
-import gui.views.conference.ChangeSpeakerView
 import gui.views.conference.PayForConferenceView
 import javafx.scene.control.Alert
 import javafx.scene.control.Button
@@ -26,10 +25,16 @@ class ChairView(
     private val sendResultsButton: Button by fxid()
     private val payButton: Button by fxid()
     private val viewSessions: Button by fxid()
-    private val modifySpeakers: Button by fxid()
     private val listOfPCMembers: ListView<PCMemberProposal> by fxid()
+    private val decideReevaluationButton: Button by fxid()
 
     init {
+        decideReevaluationButton.apply {
+            action {
+                decideReevaluationHandle()
+            }
+        }
+
         goBackButton.apply {
             action {
                 goBackHandle()
@@ -65,18 +70,16 @@ class ChairView(
             }
         }
 
-        modifySpeakers.apply{
-            action {
-                handleModifySpeakers()
-            }
-        }
-
         loadPCMembers()
     }
 
-    private fun handleModifySpeakers() {
+    private fun decideReevaluationHandle(){
+        if (Calendar.getInstance().time.after(conference.reviewPaperDeadline)){
+            alert(Alert.AlertType.INFORMATION, "Review deadline has passed")
+            return
+        }
         replaceWith(
-            ChangeSpeakerView(service, this, conference),
+            DecideReevaluationView(user, service, this, conference),
             ViewTransition.Explode(0.3.seconds)
         )
     }
@@ -139,7 +142,7 @@ class ChairView(
         }
     }
 
-    private fun loadPCMembers() {
+    fun loadPCMembers() {
         listOfPCMembers.items.clear()
         val users = service.getPcMemberProposalsOfConferenceNotRefused(conference.id)
         listOfPCMembers.items.addAll(users)

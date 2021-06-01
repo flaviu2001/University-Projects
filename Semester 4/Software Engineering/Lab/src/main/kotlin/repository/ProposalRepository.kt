@@ -1,8 +1,10 @@
 package repository
 
 import domain.Proposal
+import domain.User
 import exceptions.ConferenceException
 import java.sql.DriverManager
+import java.util.*
 
 class ProposalRepository(private val url: String, private val db_user: String, private val db_password: String) {
     init {
@@ -166,5 +168,71 @@ class ProposalRepository(private val url: String, private val db_user: String, p
             throw ConferenceException("Proposal with given id does not exist")
         }
 
+    }
+
+    fun getProposalsForConference(conferenceId: Int): List<Proposal> {
+        val proposals = mutableListOf<Proposal>()
+        val sqlCommand = "SELECT P.* FROM Proposals P JOIN userconference UC on P.ucid = UC.ucid WHERE UC.cid = ?"
+        DriverManager.getConnection(url, db_user, db_password).use { connection ->
+            val preparedStatement = connection.prepareStatement(sqlCommand)
+            preparedStatement.setInt(1, conferenceId)
+
+            val rs = preparedStatement.executeQuery()
+            while (rs.next()) {
+                val proposal = Proposal(
+                    rs.getInt("id"),
+                    rs.getInt("ucid"),
+                    rs.getString("abstractText"),
+                    rs.getString("paperText"),
+                    rs.getString("title"),
+                    rs.getString("authors"),
+                    rs.getString("keywords"),
+                    rs.getBoolean("finalized"),
+                    rs.getBoolean("accepted"),
+                    rs.getString("fullPaperLocation")
+                )
+                proposals.add(proposal)
+            }
+        }
+        return proposals
+    }
+
+    fun getReviewersOfProposal(proposalId: Int): List<User>{
+        var users = LinkedList<User>()
+        var sqlCommand = "SELECT u.* " +
+                "FROM reviews r " +
+                "INNER JOIN users u on u.id = r.pcmemberid " +
+                "WHERE r.proposalid = ? ORDER BY u.name"
+        DriverManager.getConnection(url, db_user, db_password).use { connection ->
+            val preparedStatement = connection.prepareStatement(sqlCommand)
+            preparedStatement.setInt(1, proposalId)
+
+            val rs = preparedStatement.executeQuery()
+            while (rs.next()) {
+                val proposal = User(
+                    rs.getInt("id"),
+                    rs.getString("name"),
+                    rs.getString("password"),
+                    rs.getString("email"),
+                    rs.getString("fullname"),
+                    rs.getString("affiliation"),
+                    rs.getString("personalwebsite"),
+                    rs.getString("domainofinterest")
+                )
+                users.add(proposal)
+            }
+        }
+        return users
+    }
+
+    fun acceptProposal(proposalId: Int){
+        var sqlCommand = "UPDATE proposals SET accepted=true where id=?"
+        DriverManager.getConnection(url, db_user, db_password).use { connection ->
+            val preparedStatement = connection.prepareStatement(sqlCommand)
+            preparedStatement.setInt(1, proposalId)
+            val rows = preparedStatement.executeUpdate()
+            if (rows == 0)
+                throw ConferenceException("Could not accept paper")
+        }
     }
 }

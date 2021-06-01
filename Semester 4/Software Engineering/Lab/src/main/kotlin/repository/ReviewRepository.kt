@@ -58,4 +58,17 @@ class ReviewRepository(private val url: String, private val db_user: String, pri
             preparedStatement.executeUpdate()
         }
     }
+
+    fun dropReview(pcMemberId: Int, proposalId: Int){
+        val sqlCommand = """
+           DELETE FROM reviews
+            WHERE pcmemberid=? AND proposalid=?
+        """
+        DriverManager.getConnection(url, db_user, db_password).use { connection ->
+            val preparedStatement = connection.prepareStatement(sqlCommand)
+            preparedStatement.setInt(1, pcMemberId)
+            preparedStatement.setInt(2, proposalId)
+            preparedStatement.executeUpdate()
+        }
+    }
 }

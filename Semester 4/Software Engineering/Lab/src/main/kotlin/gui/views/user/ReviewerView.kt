@@ -36,7 +36,15 @@ class ReviewerView(
     private val authorsLabel: Label by fxid()
     private val keywordsLabel: Label by fxid()
 
+    private val chatButton: Button by fxid()
+
     init {
+        chatButton.apply {
+            action {
+                chatButtonHandle()
+            }
+        }
+
         goBackButton.apply {
             action {
                 goBackHandle()
@@ -77,6 +85,13 @@ class ReviewerView(
         } else {
             alert(Alert.AlertType.ERROR, "Review deadline has passed. You can no longer review papers.")
         }
+    }
+
+    private fun chatButtonHandle(){
+        replaceWith(
+            ChatView(user, service, this, conference),
+            ViewTransition.Slide(0.3.seconds, ViewTransition.Direction.LEFT)
+        )
     }
 
     private fun pay() {
