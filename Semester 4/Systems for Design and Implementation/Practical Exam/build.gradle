@@ -1,0 +1,58 @@
+allprojects{
+    apply plugin: 'java'
+
+    group 'ubb.flaviu'
+    version '1.0-SNAPSHOT'
+
+    sourceCompatibility = JavaVersion.VERSION_1_8
+
+    //noinspection GroovyAssignabilityCheck
+    repositories {
+        mavenCentral()
+    }
+
+    ext {
+        springVersion = '5.2.13.RELEASE'
+        postgresqlVersion = '42.2.5'
+        dbcpVersion = '2.2.0'
+        slf4jVersion = '1.7.25'
+        log4jVersion = '2.10.0'
+        springDataVersion = '2.0.3.RELEASE'
+        hibernateVersion = '5.2.6.Final'
+        caffeineVersion = '2.6.1'
+        hikariVersion = '2.7.7'
+        jaxbapiVersion = '2.3.0'
+        jacksonDatabindVersion = '2.9.4'
+        javaxServeletApiVersion = '4.0.1'
+        lombokVersion = '1.18.20'
+        h2DbVersion = '1.4.193'
+        springtestdbunitVersion = '1.3.0'
+        dbUnitVersion = '2.5.3'
+    }
+
+    dependencies {
+        implementation group: 'org.springframework', name: 'spring-context', version: "$springVersion"
+        compileOnly 'org.projectlombok:lombok:1.18.16'
+        annotationProcessor 'org.projectlombok:lombok:1.18.16'
+        implementation group: 'org.springframework', name: 'spring-context-support', version: "$springVersion"
+        implementation group: 'org.springframework', name: 'spring-orm', version: "$springVersion"
+        implementation group: 'org.springframework.data', name: 'spring-data-jpa', version: "$springDataVersion"
+        implementation group: 'org.hibernate', name: 'hibernate-core', version:"$hibernateVersion"
+        implementation group: 'org.hibernate', name: 'hibernate-jpamodelgen', version: "$hibernateVersion"
+        annotationProcessor group: 'org.hibernate', name: 'hibernate-jpamodelgen', version: "${hibernateVersion}"
+        implementation group: 'org.postgresql', name: 'postgresql', version: "$postgresqlVersion"
+        implementation group: 'com.github.ben-manes.caffeine', name: 'caffeine', version: "$caffeineVersion"
+        implementation group: 'com.zaxxer', name: 'HikariCP', version: "$hikariVersion"
+        implementation group: 'javax.xml.bind', name: 'jaxb-api', version: "$jaxbapiVersion"
+        implementation group: 'org.springframework', name: 'spring-webmvc', version: "$springVersion"
+        implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: "$jacksonDatabindVersion"
+        implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: "$jacksonDatabindVersion"
+        implementation group: 'javax.servlet', name: 'javax.servlet-api', version:"$javaxServeletApiVersion"
+        compile group: 'org.slf4j', name: 'slf4j-api', version: "$slf4jVersion"
+        testCompile group: 'org.slf4j', name: 'slf4j-simple', version: "$slf4jVersion"
+        compile group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: "$log4jVersion"
+        compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: "$log4jVersion"
+        compile group: 'org.apache.logging.log4j', name: 'log4j-1.2-api', version: "$log4jVersion"
+    }
+
+}
