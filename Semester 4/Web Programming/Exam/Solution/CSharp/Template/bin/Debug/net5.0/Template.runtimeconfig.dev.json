@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\Flaviu\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Flaviu\\.nuget\\packages"
+    ]
+  }
+}
