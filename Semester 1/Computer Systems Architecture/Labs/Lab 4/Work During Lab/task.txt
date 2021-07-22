@@ -1,0 +1,1 @@
+play around with bits by way of and, shr, or and other operators 

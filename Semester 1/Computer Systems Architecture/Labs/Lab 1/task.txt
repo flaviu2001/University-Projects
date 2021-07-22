@@ -1,0 +1,1 @@
+write the simplest assembly code that is compilable

@@ -1,0 +1,3 @@
+An array of bytes is given. Compute the array D which contains the set of elements of the initial array
+
+Example 1 4 2 4 8 2 1 1 -> 1 4 2 8

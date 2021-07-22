@@ -1,0 +1,1 @@
+Read natural numbers until you reach 0. Write in a file numbers separated by space that are negative and have an odd number of bits set to 1
