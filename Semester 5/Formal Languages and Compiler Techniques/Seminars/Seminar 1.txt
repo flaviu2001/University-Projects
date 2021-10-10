@@ -1,0 +1,60 @@
+BNF - EBNF
+
+Backus Noun Form
+::= defined
+| or
+
+
+letter ::= a|b|c...|A|B|...|Z
+word ::= letter|letter word
+
+An identifier (variable)
+identifier ::= letter subidentifier | letter
+subindentifier ::= (letter|number|symbols subidentifier) | (letter|number|symbols)
+letter ::= a|b|..|z
+number ::= 1|2|..|9
+symbols ::= _|-
+
+A number
+const_no ::= non_zero_digit sub_const | digit
+non_zero_digit ::= 1|2| .. |9
+sub_const ::= digit | digit sub_const
+digit ::= 0|1|..|9
+
+Extended Backus Noun Form
+{} 0 or multiple times
+? or [] optional
+() grouping
+
+identifier ::= letter{(letter|digit|symbol)}
+constant_number ::= non_zero_digit {digit} | 0
+
+C|C++
+
+Keywords : for if while struct etc.
+
+Alphabet: letters, digfits, _, +, !, ?, //, \
+
+Special symbols:
+	* operators: +, -, *, /, %, ?:, !, ^, &&, ||, <<, >>
+	* separators: space, newline, ;, :,  () {} []
+
+Identifiers:
+	identifiers ::= (letter|_){letter|digit|_}
+
+Constants:
+	numeric
+	character
+	strings
+
+const_no ::= (+|-)?non_zero_digit{digit}|0
+
+character ::= 'letter|digit|symbol'
+symbol ::= #|!|?|*|^|...
+'a' -> character error
+'', 'a, 'ab' -> lexical error
+
+string ::= "{character}"
+character ::= letter | digit | symbol
+symbol ::= #|!|?|*|^|...
+ 
