@@ -1,0 +1,26 @@
+type (ex. string, integer)
+	-domain
+	-operations
+
+1. python is a typed language
+	static - C or C like langs (cannot change type, type is known at compile time)
+	dynamic - Python, JavaScript (can change types of a variable)
+
+x = input()
+print(x)
+print(type(x))
+
+"""
+multiline comment
+"""
+
+'''
+same multiline comment
+'''
+
+'this is a string'
+"this is also a string"
+
+def f():
+	pass 
+#pass ii ca return intr-o functie void

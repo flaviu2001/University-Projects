@@ -1,0 +1,81 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    height: 90%;
+    width: 90%;
+    background: lightsalmon;
+    border-radius: 10px;
+    color: black;
+    display: flex;
+    flex-direction: column;
+}
+
+.details {
+    margin-top: 20px;
+    width: 80%;
+    align-self: center;
+    display: grid;
+    grid-template-columns: auto 23% 23% auto;
+    padding: 15px;
+}
+
+.details h1 {
+    text-align: center;
+}
+
+.details input {
+    height: 50%;
+    margin: auto 30px;
+    background-color: #fddcd1;
+    color: black;
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+.details .add {
+    grid-column-start: 4;
+    width: 135px;
+    padding: 8px;
+    justify-self: center;
+    margin-right: 50px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+#info {
+    margin-top: 5px;
+    grid-column-start: 1;
+    grid-column-end: 5;
+}
+
+button {
+    border: 2px solid darkred;
+    border-radius: 7px;
+    background: lightcoral;
+}
+
+table {
+    margin-top: 30px;
+    align-self: center;
+    width: 80%;
+}
+
+th {
+    background: black;
+    color: lightcoral;
+}
+
+table, th, td {
+    border-bottom: 1px solid darkred;
+    border-collapse: collapse;
+    text-align: center;
+    padding: 15px;
+}

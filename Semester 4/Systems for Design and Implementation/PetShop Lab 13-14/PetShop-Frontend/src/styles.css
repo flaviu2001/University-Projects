@@ -1,0 +1,20 @@
+/* You can add global styles to this file, and also import other style files */
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+app-cats-show, app-cats-add, app-cats-delete, app-cats-update,
+app-foods-show, app-foods-add, app-foods-delete, app-foods-update,
+app-customer-show, app-customer-add, app-customer-delete, app-customer-update,
+app-toys-show, app-toys-add, app-toys-delete, app-toys-update,
+app-purchases-show, app-purchases-add, app-report,
+app-switcher{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

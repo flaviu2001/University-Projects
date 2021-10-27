@@ -1,0 +1,294 @@
+body {
+    margin-top: 0;
+    max-width: 1620px;
+    margin-left: auto;
+    margin-right: auto;
+    background: #ffffff;
+}
+
+html {
+    font-family: "OracleSansVF","OracleSansVFCyGr",-apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif;
+    background: #ebeae7;
+}
+
+.headerFirstPart {
+    height: 60px;
+    background: #3a3632;
+}
+
+.headerText {
+    float: left;
+    color: #ffffff;
+    font-size: 16px;
+    margin-left: 1.5%;
+    margin-top: 20px;
+}
+
+.logo {
+    float: left;
+    margin-left: 7%;
+    margin-top: 19px;
+    height: 17px;
+}
+
+.search {
+    float: left;
+    margin-left: 11%;
+    margin-top: 15px;
+    height: 27px;
+}
+
+.buttonAccounts {
+    float: left;
+    color: #ffffff;
+    background: #292624;
+    border: 0;
+    margin-left: 12%;
+    margin-top: 12px;
+    font-size: 15px;
+    height: 35px;
+    border-radius: 4px;
+    padding: 5px 10px;
+    font-weight: bold;
+}
+
+img.account {
+    float: left;
+    margin-top: 3px;
+    margin-right: 8px;
+    width: 20px;
+    height: 20px;
+}
+
+.buttonContact {
+    float: left;
+    color: #ffffff;
+    background: #44403b;
+    margin-left: 15px;
+    margin-top: 12px;
+    font-size: 15px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    border: 1px solid #ffffff;
+    font-weight: bold;
+}
+
+img.phone {
+    width: 15px;
+    height: 15px;
+}
+
+.headerSecondPart {
+    width: 100%;
+    height: 170px;
+    background:	#3a3632;
+    color: #ffffff;
+    font-size: 42px;
+    box-shadow: inset 0 10px 10px #323232;
+}
+
+.error1 {
+    margin: 0 auto;
+    width: 40%;
+    padding-top: 2%;
+    text-align: center;
+}
+
+.bodyContent {
+    width: 100%;
+    height: 400px;
+    color: #000000;
+}
+
+.bodyContent .bodyFirstPart {
+    width: 100%;
+    height: 150px;
+}
+
+.bodyFirstPart .error3 {
+    padding-top: 25px;
+    font-size: 17px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.bodyFirstPart .error4 {
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.bodyContent .bodySecondPart {
+    height: 205px;
+    background: #f5f4f2;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.images {
+    width: 10%;
+    margin-top: 20px;
+}
+
+.images .image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 75px;
+    height: 75px;
+}
+
+.images .text {
+    color: #00688C;
+    font-size: 15px;
+    text-align: center;
+}
+
+.bodyContent .bodyThirdPart {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    background: #ffffff;
+}
+
+.fimages {
+    padding-left: 5%;
+    padding-right: 5%;
+    width: auto;
+    height: 60px;
+    float: left;
+    margin-top: 30px;
+}
+
+.fimages .fimage {
+    height: 30px;
+    width: 30px;
+    margin-top: 15px;
+    float: left;
+}
+
+.fimages .text {
+    color: #00688C;
+    font-size: 15px;
+    margin-top: 22px;
+    margin-left: 7px;
+    float: left;
+}
+
+#background_img {
+    background-image: url("background.jpg");
+    width: 100%;
+    height: 12px;
+}
+
+.bodyFourthPart {
+    width: 100%;
+    height: 230px;
+    background: #312d2a;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.list_div ul li {
+    font-size: 15px;
+    font-weight: normal;
+    color: #ffffff;
+    line-height: 1.2;
+    padding-bottom: 8px;
+}
+
+.list_div {
+    float: left;
+    padding-left: 1.5%;
+    padding-right: 1.5%;
+}
+
+.list_div ul {
+    list-style: none;
+    padding-left: 0;
+    padding-inline-start: 0;
+}
+
+.list_div h5 {
+    font-size: 18px;
+    margin-bottom: 16px;
+    font-weight: bold;
+    color: #FBF9F8;
+    opacity: .6;
+}
+
+#odd_one_out {
+    color: #B0AEAB;
+    text-decoration: none;
+}
+
+.bottom_nav {
+    width: 100%;
+    height: 100px;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 400;
+    background: #312d2a;
+}
+
+.bottom_nav ul {
+    width: 60%;
+    list-style: none;
+    padding-left: 0;
+    padding-inline-start: 0;
+}
+
+.bottom_nav ul li {
+    display: inline;
+}
+
+.bottom_nav #globe {
+    height: 13px;
+    width: 13px;
+}
+
+#trademark {
+    padding-left: 10%;
+}
+
+#site_map {
+    border-left: 1px solid white;
+    padding-left: 20px;
+    margin-left: 19px;
+}
+
+#privacy {
+    padding-left: 20px;
+}
+
+#adchoices {
+    padding-left: 20px;
+}
+
+#careers {
+    padding-left: 20px;
+}
+
+.footer_logo {
+    height: 27px;
+    width: 27px;
+    padding-left: 20px;
+}
+
+#facebook {
+    padding-left: 35px;
+}

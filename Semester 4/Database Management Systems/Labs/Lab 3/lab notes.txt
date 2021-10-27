@@ -1,0 +1,16 @@
+WAITFOR DELAY
+Putem folosi la teme sa sincronizam tranzactiile sa ruleze cum vrem noi
+
+BEGIN TRAN
+Incepe o tranzactie
+
+COMMIT TRAN
+Comite o tranzatie
+
+ROLLBACK TRAN
+Abandoneaza toate tranzactiile
+
+select @@TRANCOUNT 
+Returneaza numarul de tranzactii active
+Doar cand se da commit la ultima tranzactie, adica atunci cand trancount e 1 atunci se comit toate schimbarile, altfel niciuna
+Incepatorii uita des sa faca commit atunci trebuie folosit des select @@TRANCOUNT

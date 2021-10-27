@@ -1,0 +1,35 @@
+esc			-> command mode
+i			-> insert mode
+v			-> visual mode
+h j k l		-> left, down, up, right 					(also arrow keys)
+w W 		-> start of next word 						(w doesn't jump over comma)
+e E 		-> end of the word 							(e doesn't jump over comma)
+b B 		-> beggining of the word 					(b doesn't jump over comma)
+3w			-> emulates w 3 times
+20i-esc		-> inserts '-' 20 times
+f F 		-> finds next/previous character  			(eg. fo)
+0 $			-> start/end of the line
+* #			-> next/previous word under cursor
+%			-> jumps to the matching parenthesis
+gg			-> beggining of file
+G 			-> end of file (start of line)
+7G	or 	:7	-> 7th line
+/regex		-> searches regex and goes to it 			(n for next N for previous)
+o O 		-> inserts new line below/above cursor
+x X 		-> deletes character under/left of cursor
+r 			-> replaces the character under cursor 		(eg. re)
+R 			-> replaces characters until esc is pressed
+d 			-> deletes, can combine with movement 		(eg. d2w, also copies to clipboard)
+dd 			-> deletes entire line
+.			-> repeats previous command
+v 			-> visual mode
+y 			-> yank(copy) the selected field
+yy			-> yank a line
+p 			-> paste
+u 			-> redo
+ctrl+r 		-> undo
+>>			-> tab 										(2>> will tab the next two lines)
+<< 			-> de-tab
+ctrl+n 		-> auto-complete
+:!  		-> external commands 						(like :! ls)
+:r 			-> puts text from a file to cursor 			(:r !ls also works and pastes ls output)

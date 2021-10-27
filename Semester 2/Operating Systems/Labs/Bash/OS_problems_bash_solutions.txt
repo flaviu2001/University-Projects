@@ -1,0 +1,149 @@
+ 1. Write a bash script that calculates the sum of the sizes of all text files in a given folder.
+
+#!/bin/bash
+
+if [ $# -ne 1 ]; then
+    echo "Please provide exactly one argument"
+fi
+
+sum=0
+for i in `ls "$1"`; do
+    if [ -f "$i" ]; then
+        isfile=$(file "$i"|grep -c "text")
+        if [ $isfile -eq 1 ]; then
+            fsize=$(du -b "$i" | cut -f1)
+            sum=$((sum+fsize))
+        fi
+    fi
+done
+
+echo "Total size: $sum"
+
+
+
+2. Write a script that reads filenames until the word "stop" is entered. For each filename, check if it is a text file and if it is, print the number of words on the first line.
+
+#!/bin/bash
+
+while true; do
+    read input
+    if [ "$input" = "stop" ]; then
+        echo "Terminating..."
+        exit 0
+    fi
+    if [ -f "$input" ]; then
+        isText=$(file -b "$input" | grep -ic "text")
+        if [ $isText -eq 1 ]; then
+            echo "$input: `head -1 \"$input\" | wc -w`"
+        fi
+    else
+        echo "$input is not a file!"
+    fi
+done
+
+
+
+3. Write a script that receives as command line arguments pairs consisting of a filename and a word. For each pair, check if the given word appears at least 3 times in the file and print a corresponding message.
+
+#!/bin/bash
+
+while [ $# -gt 0 ]; do
+    file=$1
+    word=$2
+    if [ -f "$file" ]; then
+        #alternativa:
+        #wordCount=`sed "s/\<\|\>/\n/g" "$file" | grep -c "\<$word\>"`
+        wordCount=`grep -o "\<$word\>" "$file" | grep -c "\<$word\>"`
+        if [ $wordCount -ge 3 ]; then
+            echo "$file contains $word $wordCount times"
+        fi
+    fi
+    shift 2
+done
+
+
+
+4. Sort all files given as command line arguments descending by size.
+
+#!/bin/bash
+
+while [ $# -gt 0 ]; do
+    if [ -f "$1" ]; then
+        a[$n]=`du -b "$1"`
+        n=$((n+1))
+    fi
+    shift 1
+done
+
+n=$((n-1))
+for i in $(seq 0 $n); do
+    aux="$aux"$'\n'"${a[i]}"
+done
+aux="${aux:1}"
+echo "$aux" | sort -rn
+
+# shorter alternative
+# printf '%s\n' "${a[@]}" | sort -nr
+
+
+
+5. Write a script that extracts from all the C source files given as command line arguments the included libraries and saves them in a file.
+
+#!/bin/bash
+
+while [ $# -gt 0 ]; do
+    if [ -f "$1" ]; then
+        isCFile=`file -b "$1" | grep -c "ASCII C program text"`
+        if [ $isCFile -eq 1 ]; then
+            libs="$libs"$'\n'"`grep "#include" $1`"
+        fi
+    fi
+    shift 1
+done
+echo "$libs" | sort | uniq > libs
+
+
+
+6. Seminar problem: Write a script that monitors the state of a given folder and prints a message when something changed.
+
+#!/bin/bash
+
+D=$1
+if [ -z "$D" ]; then
+    echo "No directory provided" >&2
+    exit 1
+fi
+
+if [ ! -d "$D"  ]; then
+    echo "Directory $D does not exist" >&2
+    exit 1
+fi
+
+OLD_STATE=""
+while true; do
+    STATE=""
+    for P in `find $D`; do
+        if [ -f $P ]; then
+            props=`ls -l $P | sha1sum`
+            content=`sha1sum $P`
+        elif [ -d $P ]; then
+            props=`ls -ld $P | sha1sum`
+            content=`ls -l $P | sha1sum`
+        fi
+        STATE="$STATE"$'\n'"$props $content"
+    done
+    if [ -n "$OLD_STATE" ] && [ "$STATE" != "$OLD_STATE" ]; then
+        echo "Directory state changed"
+    fi
+    OLD_STATE=$STATE
+    sleep 1
+done
+
+
+
+7. Find recursively in a given directory all the symbolic links, and report those that point to files/directories that no longer exist. Use option -L to test if a path is a symbolic link, and option -e to test if it exists (will return false if the target to which the link points does not exist)
+
+8. Write a script that receives program/process names as command line arguments. The script will monitor all the processes in the system, and whenever a program with one of those names is run, the script will kill it and display a message. (see commands ps, kill, killall)
+
+9. Write a script that receives a directory as a command line argument. The script will delete all the C source files from the directory and will display all other text files sorted alphabetically.
+

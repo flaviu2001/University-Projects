@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="details">
+    <div class="insideDetails">
+      <button (click)="onBack()">Back</button>
+      <h1>Report</h1>
+    </div>
+  </div>
+  <table>
+    <tr>
+      <th> NAME </th>
+      <th> SPENT CASH </th>
+    </tr>
+    <tr *ngFor="let pair of pairs">
+      <td>{{pair.customerId}}</td>
+      <td>{{pair.totalCash}}</td>
+    </tr>
+  </table>
+</div>

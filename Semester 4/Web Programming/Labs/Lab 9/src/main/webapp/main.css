@@ -1,0 +1,94 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background: linear-gradient(45deg, #49a09d, #5f2c82);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapper {
+    background-color: rgba(255,255,255,0.3);
+    border: 5px solid rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: x-large;
+}
+
+input {
+    background: transparent;
+    border: 0 solid lightblue;
+    border-bottom-width: 2px;
+    font-weight: bold;
+    font-size: large;
+    color: black;
+}
+
+label {
+    width: 100%;
+    margin-top: 20px;
+}
+
+label button {
+    margin-left: 20px;
+    float: right;
+}
+
+#errorMsg {
+    color: red;
+    font-size: large;
+    display: none;
+    margin-bottom: 0;
+}
+
+.topWrapper {
+    width: 100%;
+    display: flex;
+}
+
+.topWrapper h3 {
+    margin-left: 20px;
+}
+
+.topWrapper button {
+    margin-left: auto;
+}
+
+button {
+    background: #5f2c82;
+    color: white;
+    border-radius: 5px;
+    border-color: transparent;
+    font-weight: bolder;
+    font-size: x-large;
+}
+
+ul {
+    padding: 0;
+    margin: 10px 0 0;
+    list-style-type: none;
+    width: 100%;
+}
+
+li {
+    margin-top: 15px;
+}
+
+li button {
+    margin-left: 20px;
+    float: right;
+}
+
+h3 {
+    margin: 0;
+    font-size: xx-large;
+}

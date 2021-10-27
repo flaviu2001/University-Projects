@@ -1,0 +1,14 @@
+gcd(a, b) = {
+			a, b=0
+			gcd(b, a%b), else
+}
+
+gcd_list(l1, l2.. ln) = {
+			0, n=0
+			gcd(l1, gcd_list(l2, .. ln)), else
+}
+add_rec(l1, l2..ln, pos_to_add, val, curr_pos) = {
+			(val) + (l1,l2,l3..ln), pos_to_add=1
+			(l1) + add_rec(l2, l3, ..ln, pos_to_add, val, curr_pos+1), curr_pos < pos_to_add
+			(val) + (l1, l2..ln), else
+}

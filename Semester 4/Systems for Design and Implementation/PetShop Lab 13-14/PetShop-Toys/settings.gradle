@@ -1,0 +1,3 @@
+rootProject.name = 'PetShop-Toys'
+include 'core'
+include 'web'

@@ -1,0 +1,80 @@
+    ADT BAG
+- Similar to a set, but the elements do not have to be unique
+- The order of elements is not important
+- There are no positions in a Bag
+    - There are no operations which receive/return positions
+- Assume we have an empty bag of integer numbers
+- Add the following elements 7, 11, 4, 7, 2, 25, 4, 7
+- Print the content of the bag
+- Might be printed in the same order, might not. Probably not.
+
+Domain:
+    Capital handwritten B = {b | b is a bag with elements of type Telem}
+Interface:
+    add(b, e)
+     pre: b ∈ B, e ∈ Telem
+     past: b' ∈ B, b' = b ⊕ {e}
+
+    remove(b, e)
+     pre: b ∈ B, e ∈ Telem
+     past: b' ∈ B, b' = b - {e}, one occurence of e was removed from b
+           remove <- {true if e ∈ B, else false}
+    
+    search(b, e)
+     pre: b ∈ B, e ∈ Telem
+     post: search <- {true if e ∈ b, else false}
+
+    size(b)
+     pre: b ∈ B
+     post: size <- the number of elements in b
+
+    init(b)
+     pre: true
+     post: b ∈ B, b is an empty bag
+
+    destroy(b)
+     pre: b ∈ B
+     post: b was destroyed
+
+    nrOccurences(b, e)
+     pre: b ∈ B, e ∈ Telem
+     post: nrOccurences <- the number of occurences of e in b
+
+    iterator(b, it)
+     pre: b ∈ B
+     post: it ∈ I, it is an iterator over b, the current element of it points to the first element of b, or if b is empty, it is invalid
+    
+
+	ADT ITERATOR
+Domain:
+	I = {it | it is an iterator over a bag}
+Interface:
+	init(it, b)
+	 pre: b ∈ B
+	 post: it ∈ I, it is an iterator over b, the current element from it points to the first element from b, or, if b is empty it is invalid
+
+	valid(it)
+	 pre: it ∈ I
+	 post: valid <- {true if the current element from it is valid, else false}
+
+	getCurrent(it)
+	 pre: it ∈ I, valid(it)
+	 post: getCurrent <- the current element from it
+	 throws: exception if it is not valid
+
+	next(it)
+	 pre: it ∈ I, valid(it)
+	 post: it' ∈ I, the current element from it' points to the next element of b, or if there are no elements left, it' is invalid
+	 throws: exception if it is not valid
+
+Representation: use list from Python
+1.
+	7, 2, 11, 4, 7, 7, 25, 4, 13
+	Iterator: current element is the position of the element
+2.
+	7, 2, 11, 4, 25, 13 - elements
+	3, 1, 1, 2, 1, 1 - frequencies
+	Iterator: contains a current position and current frequency
+
+Implementation(incomplete):
+	Seminar1.py

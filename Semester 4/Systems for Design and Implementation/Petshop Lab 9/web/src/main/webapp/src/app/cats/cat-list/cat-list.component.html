@@ -1,0 +1,8 @@
+<h2>Cats</h2>
+<ul class="cats">
+  <li *ngFor="let cat of cats"
+      [class.selected]="cat === selectedCat"
+      (click)="onSelect(cat)">
+    ID: {{cat.id}}, Name: {{cat.name}}, Breed: {{cat.breed}}, Age: {{cat.catYears}}
+  </li>
+</ul>

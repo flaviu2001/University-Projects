@@ -1,0 +1,10 @@
+<dataset>
+    <cat id="1" breed="b1" catyears="4" name="c1"  />
+    <cat id="2" breed="b1" catyears="5" name="c2"  />
+    <cat id="3" breed="b3" catyears="6" name="c3"  />
+    <cat id="4" breed="b4" catyears="7" name="c4"  />
+    <customer id="1" name="c1" phonenumber="0763281566" />
+    <customer id="2" name="c2" phonenumber="0763281567" />
+    <purchase catid="1" customerid="1" dateacquired="2021-10-10" price="10" review="5" />
+    <toy id="1" name="yarn ball" price="12" cat_id="2"/>
+</dataset>

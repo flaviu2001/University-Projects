@@ -1,0 +1,22 @@
+append_front(E, l1, l2.. ln) = [E, l1, l2.. ln]
+
+increment_aux returns a pair of C (carry) and L (list)
+
+increment_aux(l1, l2.. ln) = {
+	pair(0, [l1+1]), n=1 and l1+1 < 10
+	pair(1, [0]), n=1 and l1+1 == 10
+	pair(0, [l1+increment_aux(l2, l3..).C] + increment_aux(l2, l3..).L), l1+increment_aux(l2, l3..).C < 10
+	pair(1, [0] + increment_aux(l2, l3..).L), l1+increment_aux(l2, l3..).C == 10
+}
+
+increment(l1, l2.. ln) = {
+	increment_aux(l1, l2.. ln).L, increment_aux(l1, l2.. ln).C == 0
+	[1] + increment_aux(l1, l2.. ln).L, increment_aux(l1, l2.. ln).C == 1
+}
+
+increment_sublists(l1, l2.. ln) = {
+	[l1], n=1 and number(l1)
+	[increment(l1)], n=1
+	[l1] + increment_sublists(l2, l3.. ln), n=1 and number(l1),
+	[increment(l1)] + increment_sublists(l2, l3.. ln), else
+}

@@ -1,0 +1,23 @@
+ssh ciie2698@linux.scs.ubbcluj.ro
+passwd -> change password
+pwd -> print working directory
+ls -> show all files(-l is for more info, -a for hidden)
+cd -> change directory (empty cd will take you back home)to
+cd ../ -> parent directory
+./ -> alias for current directory
+touch .forward (makes an empty file named .forward)
+ctrl+s -> locks the command line
+ctrl+q -> frees the command line
+nano/vim -> text editors
+cat .forward -> shows the contents of .forward
+cat -> (empty cat will default to stdin)
+tac -> cat in reverse
+ctrl+c -> kills the process
+alpine -> email client
+wall "anything" -> prints anything to all members
+gcc -Wall -g hello.c -o hello -> Wall for warnings, -g for debug info, -o hello for naming the executable hello
+man command -> shows manual for using the command
+in man use /thing to search occurences for thing
+whatis command -> shows commands named open
+apropos command -> shows commands containing the command name
+valgrind -> memory profiler

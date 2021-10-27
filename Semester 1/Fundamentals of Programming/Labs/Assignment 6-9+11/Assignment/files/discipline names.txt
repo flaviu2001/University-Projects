@@ -1,0 +1,58 @@
+Art
+Citizenship
+Geography
+History
+French
+German
+Spanish
+Literacy
+Music
+Natural history
+Science
+Arithmetic
+Art
+Business studies
+Citizenship
+Dance
+Design & technology
+Drama
+English
+Geography
+History
+Information and communication technology
+Languages
+Modern studies
+Music
+Physical education
+Science
+Study skills
+Ancient Greek
+Animal husbandry
+Art
+Biology
+Chemistry
+Commerce
+Computer studies
+Design technology
+Drama
+Food technology
+Geography
+Health and hygiene
+Latin
+Literature
+Music
+Physics
+Religion
+Woodwork
+Sociology
+Psychology
+Home economics
+Architecture
+Logic
+Geometry
+Algebra
+Analysis
+Operating systems
+Programming fundamentals
+Graph theory
+Machine learning

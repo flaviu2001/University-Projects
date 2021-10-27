@@ -1,0 +1,65 @@
+'''
+Created on Nov 22, 2016
+
+@author: Arthur
+'''
+import pickle
+
+class Person:
+    def __init__(self, personId, familyName, givenName):
+        self.__personId = personId
+        self.__familyName = familyName
+        self.__givenName = givenName
+    
+    def getId(self):
+        return self.__personId
+    
+    def getFamilyName(self):
+        return self.__familyName
+    
+    def getGivenName(self):
+        return self.__givenName
+    
+    def __str__(self):
+        return str(self.__personId) + " - " + self.__familyName + " " + self.__givenName
+    
+def writeToBinaryFile(fileName, persons):
+    f = open(fileName, "wb")
+    pickle.dump(persons, f)
+    f.close()
+
+def readBinaryFile(fileName):
+    result = []
+    try:
+        f = open(fileName, "rb")
+        return pickle.load(f)
+    except EOFError:
+        """
+            This is raised if input file is empty
+        """
+        return []
+    except IOError as e:
+        """
+            Here we 'log' the error, and throw it to the outer layers 
+        """
+        print("An error occured - " + str(e))
+        raise e
+
+    return result
+
+"""
+    Initialize a list of objects
+"""
+persons = [Person(1, "Pop", "Anca"), Person(2, "Morariu", "Sergiu"), Person(3, "Moldovean", "Iuliu")]
+
+"""
+    Write it to a text file
+"""
+writeToBinaryFile("persons.pickle", persons)
+
+"""
+    Read it back and see what we have
+"""
+for p in readBinaryFile("persons.pickle"):
+    print(p)
+

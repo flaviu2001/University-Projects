@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="details">
+    <div class="insideDetails">
+      <button (click)="onBack()">Back</button>
+      <h1>Cats</h1>
+    </div>
+    <input #breed type="text" (input)="refresh(breed.value)" placeholder="Breed:"/>
+    <button class="add" (click)="navigateToAdd()">
+      Add cat
+    </button>
+  </div>
+  <table>
+    <tr>
+      <th> NAME </th>
+      <th> BREED </th>
+      <th> AGE </th>
+      <th> ACTION </th>
+    </tr>
+    <tr *ngFor="let cat of cats">
+      <td>{{cat.name}}</td>
+      <td>{{cat.breed}}</td>
+      <td>{{cat.catYears}}</td>
+      <td>
+        <button id="updateButton" (click)="navigateToUpdate(cat.id)">Update</button>
+        <br>
+        <button id="deleteButton" (click)="navigateToDelete(cat.id)">Delete</button>
+        <br>
+        <button id="toysButton" (click)="navigateToToys(cat.id)">Toys</button>
+        <br>
+        <button id="purchasesButton" (click)="navigateToPurchases(cat.id)">Purchases</button>
+        <br>
+      </td>
+    </tr>
+  </table>
+</div>

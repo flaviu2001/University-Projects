@@ -1,0 +1,91 @@
+'''
+    1. Example of iterable collection
+'''
+class collection:
+    def __init__(self):
+        self._data = []
+
+    def add(self, elem):
+        self._data.append(elem)
+
+    def __iter__(self):
+        # Returns an iterator over this data structure
+        self._poz = 0
+        return self
+    
+    def __next__(self):
+        # Stop iteration when other elements are not available
+        if self._poz == len(self._data):
+            raise StopIteration()
+        # Move to the next element 
+        self._poz += 1
+        return self._data[self._poz-1]
+
+'''
+    2. Add a few items to our collection
+'''
+c = collection()
+for i in range(3):
+    c.add(i)
+
+'''
+    Iterate over the collection
+'''
+for elem in c:
+    print(elem)
+
+'''
+    Let's try to use two iterators at the same time. We expect this to be printed out:
+    0 0
+    0 1
+    0 2
+    1 0 
+    1 1
+    1 2
+    2 0 
+    2 1
+    2 2
+'''
+for elem in c:
+    for elem2 in c:
+        print(elem, elem2) 
+'''
+    hmm...
+    
+    We need to separate the iterator implementation from the collection itself
+    Each iterator must have its own _poz field => the Iterator design pattern
+'''
+class better_collection:
+    class myiterator():
+        def __init__(self, col):
+            self._collection = col
+            self._poz = 0
+        
+        def __next__(self):
+            # Stop iteration when other elements are not available
+            if self._poz == len(self._collection._data):
+                raise StopIteration()
+            # Move to the next element 
+            self._poz += 1
+            return self._collection._data[self._poz-1]
+
+    def __init__(self):
+        self._data = []
+
+    def add(self, elem):
+        self._data.append(elem)
+
+    def __iter__(self):
+        # Returns an iterator over this data structure
+        return self.myiterator(self)
+
+'''
+    Once more with feeling...
+'''
+c = better_collection()
+for i in range(3):
+    c.add(i)
+print('Improved iterator over collection:')
+for elem in c:
+    for elem2 in c:
+        print(elem, elem2) 

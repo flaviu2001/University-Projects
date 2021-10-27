@@ -1,0 +1,66 @@
+command arg arg arg...
+ls
+ls -a
+ls -l
+man ls
+
+Arguments with a dash are considered optional
+Long arguments usually start with a double-dash
+
+		With Value			Without Value
+Short:    cat -d:				ls -a
+Long: 	  cat --delimiter:	 	ls --all
+
+
+Regular expressions
+.       -> any single character
+\       -> escape  ('n' and '\n')
+[abc]	-> matches any one character in the range
+[^a-z]  -> anything except lowercase letters
+^		-> beggining of line
+$		-> end of line
+\<		-> beggining of word
+\> 		-> end of word
+\(...\)	-> group the rules in the expression
+*		-> previous expression/rule 0 or more times
+\+		-> previous expression/rule 1 or more times
+\?		-> previous expression/rule 0 or 1 times
+\{m,n\}	-> previous expression/rule at least m and at most n times
+\{m\}	-> previous expression/rule exactly m times
+\{m,\}	-> previous expression/rule at least m times
+\{,m\}	-> previous expression/rule at most m times
+\|		-> or
+
+GREP
+
+grep -i -> case insensitive
+grep -v -> invert match
+/etc/passwd - username:password:uid:gid:info:home-dir:shell
+"dan"									(searches all names containing dan as a subsequence anywhere in the field)
+"^[^0-9:]\+:"							(searches all lines with no numbers in their username field)
+"^[^:]*:[^:]*:[^:]*:[^:]*:[^Uu:]*:"		(searches all lines with no 'u' in their info field)
+"^\([^:]*:\)\{4\}[^Uu:]*:"				(same thing but smarter)
+"ceva" file.txt | wc -l 				(displays the number of lines outputted by grep)
+"^$"									(empty lines)
+grep -v "^$"							(all non-empty lines)
+"^\(..\)*.$"							(odd length)
+"\<joe\>|\<john\>"						(lines that contain joe or john)
+grep -i -v "\<john\>.*\<joe\>\|\<joe\>.*\<john\>"	(clears all named john joe or joe john)
+grep -i "\<joe\>" a.txt | grep -i -v "\<john\>"		(same thing)
+
+
+SED
+
+search replace
+sed "s/\<john\>/joe/gi"
+		search  replace	flags
+		for		with
+-g replace everywhere on the line
+-i case insensitive
+sed "s/.*\///"				(shows all shells used in /etc/passwd)
+sed "s,.*/,,"				(same but other separator for sed)
+sed "s/\([aeiou]\)/\1\1/gi"	(doubles each vowel)
+sed "/\<joe\>/d"			(deletes lines containing joe)
+sed "y/abc/123/"			(transliteraion)
+sed "y/aeiou/AEIOU"			(changes all lowercase vowels to uppercase)
+tr 'a-z' 'A-Z'

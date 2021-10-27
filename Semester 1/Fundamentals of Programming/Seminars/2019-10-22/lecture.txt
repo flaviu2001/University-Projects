@@ -1,0 +1,21 @@
+specification
+tests + test-driven development
+exceptions
+simple feature-driven development
+undo !?
+modular programming
+
+Menu-driven circles program !?
+	-add a circle
+	-delete circles with radius < r
+	-show circles
+	-undo?
+	-eXit
+
+Test driven development
+1. Write the function specification
+2. Write a test function
+3. Run test function -> it must fail
+4. Write function code
+5. Run test again -> it should pass
+6. Optimize!

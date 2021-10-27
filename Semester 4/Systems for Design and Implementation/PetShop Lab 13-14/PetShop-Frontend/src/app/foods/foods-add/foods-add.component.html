@@ -1,0 +1,16 @@
+<div class="container">
+  <h1>Create Food</h1>
+  <p><b>Please fill this form and submit to add the food to the database.</b></p>
+
+  <form #foodForm = "ngForm" class="formWrapper" (ngSubmit)="addFood(foodForm.value)">
+    <input type="text" name="name" placeholder="Name:" ngModel> <br>
+    <input type="text" name="producer" placeholder="Producer:" ngModel> <br>
+    <input type="date" name="expiration_date" placeholder="Expiration Date:" ngModel> <br>
+    <div class="button_container">
+      <button type="submit">
+        Add Food
+      </button>
+      <button (click)="onCancel()">Cancel</button>
+    </div>
+  </form>
+</div>

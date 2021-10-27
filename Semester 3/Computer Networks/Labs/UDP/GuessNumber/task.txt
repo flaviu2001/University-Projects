@@ -1,0 +1,12 @@
+Implement the Python concurrent example from lab2 to work with UDP. You no longer need threads to be able to serve multiple clients – so the implementation should be much shorter. 
+
+
+A client server implementation in python for the number guess problem. The server chooses a random number. The clients connect and send numbers to server. The server returns to each client a status message:
+
+·         ‘H’ – send a larger number
+
+·         ‘S’ – send a lower number
+
+·         ‘G’ – you guessed my number
+
+·         ‘L’ – another client guessed the number. You are a looser !w

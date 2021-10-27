@@ -1,0 +1,44 @@
+plugins {
+    id 'java'
+    id 'org.jetbrains.kotlin.jvm' version '1.4.31'
+    id 'org.openjfx.javafxplugin' version '0.0.9'
+}
+
+group 'ro.ubb.pisicile-salbatice-iss'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+javafx {
+    version = "15.0.1"
+    modules = ['javafx.controls', 'javafx.graphics', 'javafx.fxml']
+}
+
+compileKotlin {
+    //noinspection GrUnresolvedAccess
+    kotlinOptions.jvmTarget = 1.8
+}
+
+dependencies {
+    implementation 'no.tornado:tornadofx:1.7.20'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+    implementation group: 'org.postgresql', name: 'postgresql', version: '42.2.5'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    // https://mvnrepository.com/artifact/javax.mail/javax.mail-api
+    implementation group: 'javax.mail', name: 'javax.mail-api', version: '1.6.2'
+    implementation group: 'com.sun.mail', name: 'javax.mail', version: '1.6.2'
+
+// https://mvnrepository.com/artifact/javax.activation/activation
+    implementation group: 'javax.activation', name: 'activation', version: '1.1.1'
+    // https://mvnrepository.com/artifact/commons-io/commons-io
+    implementation group: 'commons-io', name: 'commons-io', version: '2.4'
+
+
+}
+
+test {
+    useJUnitPlatform()
+}

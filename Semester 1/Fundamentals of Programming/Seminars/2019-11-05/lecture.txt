@@ -1,0 +1,7 @@
+Bulls and cows
+This is a game played by the human player against the computer as follows
+1. The computer selects a random 4-digits number, which has no repeating digits(e.g. 1234, 9508)
+2. The player tries to guess the number
+3. Each turn the player enters a 4-digit guess
+4. The computer tells how many bulls (correct digits in the correct place) and cows(correct digit, but incorrect place) there are in the latest guess
+5. Game is over when the number is guessed. The aim is to do this over the smallest number of turns possible

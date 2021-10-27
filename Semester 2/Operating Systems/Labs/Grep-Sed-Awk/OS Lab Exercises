@@ -1,0 +1,29 @@
+1. Display all the users in the system (using the /etc/passwd file) whose username starts with a vowel.
+
+2. Display how many times a user has logged in the system(using the last command).
+
+3. Remove the first word containing only lowercase letters from each line of a file.
+
+4. For each file in the current directory, display only the owner's permissions and the filename.
+
+5. Display all the usernames in a system but replace any digits in the username with the digit + 1 (except for 9, which will be replaced by 0).
+
+6. Display the number of lines in a file.
+
+7. Display informations about the students in the system in the following format: Name - Username - Group.
+
+8. Display all the student groups and the number of students in each one.
+
+9. Display the names of students whose user id (the number in the username) contains only even digits.
+
+10. Determine the number of duplicate lines in a file.
+
+11. Display the name of all text files from the current directory.
+
+12. Display all the files smaller than 100 bytes.
+
+13. Count the number of lines ending in vowel and the number of lines ending in consonant.
+
+14. Write a bash script that calculates the sum of the sizes of all text files in a given folder.
+
+

@@ -1,0 +1,21 @@
+<div class="container">
+  <h1>Create User</h1>
+  <p><b>Please fill this form and submit to add the user to the database.</b></p>
+
+  <div class="formWrapper">
+    <input type="text" name="name" placeholder="Name:" #name> <br>
+    <input type="text" name="username" placeholder="Username:" #username> <br>
+    <input type="password" name="password" placeholder="Password:" #password> <br>
+    <input type="number" name="age" placeholder="Age:" #age> <br>
+    <input type="text" name="role" placeholder="Role:" #role> <br>
+    <input type="text" name="email" placeholder="Email:" #email> <br>
+    <input type="text" name="webpage" placeholder="Webpage:" #webpage> <br>
+    <div class="button_container">
+      <button
+        (click)="addUser(name.value, username.value, password.value, age.value, role.value, email.value, webpage.value)">
+        Add User
+      </button>
+      <button (click)="onCancel()">Cancel</button>
+    </div>
+  </div>
+</div>

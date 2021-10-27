@@ -1,0 +1,67 @@
+'''
+Created on Nov 1, 2016
+
+@author: Arthur
+'''
+from math import gcd
+
+class RationalNumber:
+    """
+      Abstract data type rational number
+      Domain: {a/b  where a,b integer numbers, b!=0, greatest common divisor a, b =1}
+    """
+    def __init__(self, a, b=1):
+        """
+          Initialise a rational number
+          a,b inteer numbers
+        """
+        if b == 0:
+            raise ValueError("Denominator cannot be 0!")
+        
+        d = gcd(a, b)
+        self.__nominator = a // d
+        self.__denominator = b // d
+
+    def getDenominator(self):
+        """
+           Getter method
+           return the denominator of the rational number
+        """
+        return self.__denominator
+
+    def getNominator(self):
+        """"
+          Getter method
+          return the nominator of the method
+        """
+        return self.__nominator
+
+    def add(self, a):
+        """
+        add 2 rational numbers
+        a is a rational number
+        Return the sum of two rational numbers as an instance of rational number.
+        Raise ValueError if the denominators are zero.
+        """
+        if self.getDenominator() == 0 or a.getDenominator() == 0:
+            raise ValueError("0 denominator not allowed")
+        return RationalNumber(self.getNominator() * a.getDenominator() + self.getDenominator() * a.getNominator(), self.getDenominator() * a.getDenominator())
+       
+
+def test_rational_add():
+    r1 = RationalNumber(1, 2)
+    r2 = RationalNumber(1, 3)
+    r3 = r1.add(r2)
+    assert r3.getNominator() == 5
+    assert r3.getDenominator() == 6
+
+def testCreate():
+    r1 = RationalNumber(1, 3)  # create the rational number 1/3
+    assert r1.getNominator() == 1
+    assert r1.getDenominator() == 3
+    r1 = RationalNumber(4, 3)  # create the rational number 4/3
+    assert r1.getNominator() == 4
+    assert r1.getDenominator() == 3
+
+testCreate()
+test_rational_add()

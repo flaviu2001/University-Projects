@@ -1,0 +1,48 @@
+h1 {
+  text-align: center;
+  color: black;
+}
+
+.container {
+  height: 200px;
+  width: 600px;
+  background: rgba(255, 160, 122, 0.5);
+  border-radius: 50px;
+  text-align: center;
+  color: black;
+  font-size: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 50px;
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+.container p {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+button {
+  width: 100px;
+  color: black;
+  border: 2px solid darkred;
+  border-radius: 5px;
+  padding: 7px;
+}
+
+#formWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.no {
+  background: lightsalmon;
+  align-self: center;
+  justify-self: center;
+}
+
+.yes {
+  background: lightsalmon;
+}

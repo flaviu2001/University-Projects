@@ -1,0 +1,4 @@
+rootProject.name = 'Practic2021'
+include 'core'
+include 'web'
+

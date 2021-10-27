@@ -1,0 +1,2 @@
+a is a byte, b is a word
+compute ((b/a) * 2 + 10) * b - 15 * b

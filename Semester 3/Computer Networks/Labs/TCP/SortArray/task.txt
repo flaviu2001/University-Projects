@@ -1,0 +1,3 @@
+client sends a list of floats, server gets them and sorts them, then sends back to client the sorted list.
+
+python+processes server

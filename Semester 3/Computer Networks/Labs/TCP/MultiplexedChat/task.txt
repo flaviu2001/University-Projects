@@ -1,0 +1,6 @@
+This example presents an implementation of a client-server chat application working in the command line in an IRC style application with only one room. The server accepts multiple TCP clients and relays messages passed by each client to all other connected clients. The client needs to be able to:
+
+read messages from standard input and pass them to the server;
+read messages relayed from the server and display them to the user;
+
+The motivation of using select lies here in the fact that there are multiple descriptors that need to be watched by both the client and the server. The server also needs a shared state approach where creating a new process to handle each client would only make things complicated. 

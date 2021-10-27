@@ -1,0 +1,5 @@
+rootProject.name = 'PetShop'
+include 'client'
+include 'common'
+include 'server'
+

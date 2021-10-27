@@ -1,0 +1,16 @@
+Hello {{username}}
+
+<ol>
+  <li *ngFor="let follower of followers">{{follower.name}}</li>
+</ol>
+
+<ol>
+  <li *ngFor="let post of posts">
+    {{post.title}}
+    <ol>
+      <li *ngFor="let comment of post.comments">
+        {{comment.comment}}
+      </li>
+    </ol>
+  </li>
+</ol>

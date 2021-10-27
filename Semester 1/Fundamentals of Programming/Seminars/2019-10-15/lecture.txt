@@ -1,0 +1,27 @@
+# command-driven UI
+# function specifications
+# tests
+
+# commandWord param1, param2
+# add <student id>, <name>, <grade>
+# delete <student id>
+# list
+# help
+# exit
+
+# e.g. add 123, Popescu Elena, 9
+# 	   add 123, Popescu Elena -> program screams ERROR
+#      delete 123
+#      delete 21 -> ERROR
+# feature-driven development
+
+# function signature - uniquely identified the function(function name, input parameters, return type)
+# 1. function signature
+# 2. specification
+# 3. we can write test for it
+
+# what do test functions do?
+# 1. Take no parameters -> we want them to have no context
+# 2. Have no user input/output
+# 3. If the code is correct do nothing visible
+# 4. If the code has an error -> SCREAM!!!(ง ͠° ͟ل͜ ͡°)ง

@@ -1,0 +1,4 @@
+star3;cons1;10;14;2
+star4;cons2;11;11;11
+star1;cons3;4;2;10
+star2;cons4;2;1;15

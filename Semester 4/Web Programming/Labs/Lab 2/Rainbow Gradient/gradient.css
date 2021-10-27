@@ -1,0 +1,36 @@
+div.rainbow {
+	margin-top: 3%;
+	margin-left: auto;
+  	margin-right: auto;
+	width: 70%;
+	height: 150px;
+	background: linear-gradient(to right, red, orange , yellow, green, blue, indigo, violet);
+	transform:
+		rotate(3deg)
+	    perspective(200px)
+	    rotateY(5deg)
+	    translate(160px);
+	/*position: fixed;
+	top: 20px;
+	right: 40px;*/
+} 
+
+.color {
+	background: linear-gradient(to right, red, orange , yellow, green, blue, indigo, violet);
+	color: transparent;
+	background-clip: text;
+}
+
+p {
+	margin-left: auto;
+  	margin-right: auto;
+  	font-size: 50px;
+  	text-align: center;
+}
+
+img {
+	margin-left: auto;
+  	margin-right: auto;
+	width: 30%;
+	display: block;
+}

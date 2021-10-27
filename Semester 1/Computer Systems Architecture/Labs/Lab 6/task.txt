@@ -1,0 +1,1 @@
+An array of quad words is given. Compute the sum of the digits of the multiples of 8 of the array of the lower bytes of the upper words of the upper double words of the quad words.

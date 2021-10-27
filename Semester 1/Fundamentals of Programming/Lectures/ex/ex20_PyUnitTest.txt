@@ -1,0 +1,100 @@
+'''
+Created on Nov 14, 2016
+
+@author: Arthur
+'''
+
+import unittest
+
+"""
+    An easy function that we assume want tested
+"""
+def isPrime(nr):
+    """
+    Verify if a number is prime
+    return True if nr is prime, False otherwise
+    raise ValueError if nr <= 0
+    """
+    if nr <= 0:
+        raise ValueError("nr needs to be positive")
+    if nr == 1:
+        return False
+    if nr <= 3:
+        return True
+    for i in range(2, nr):
+        if nr % i == 0:
+            return False
+    return True
+
+"""
+    Blackbox unit test for PyUnit
+"""
+class IsPrimeBlackBoxTest(unittest.TestCase):
+    
+    """
+        This function is called before any test cases.
+        We can add initialization code common to all methods here 
+            (e.g. reading an input file)
+    """
+    def setUp(self):
+        unittest.TestCase.setUp(self)
+        
+    """
+        This function is called after all test function are executed
+        It's like the opposite of setUp, here you dismantle the test scaffolding
+    """
+    def tearDown(self):
+        unittest.TestCase.tearDown(self)
+    
+    def testIsPrimeBlackBox(self):
+        for i in range(-100, 1):
+            try:
+                isPrime(i)
+                assert False
+            except ValueError:
+                pass
+        
+        primes = [2, 3, 5, 7, 11, 13, 17, 19]
+        for i in range(2, 20):
+            assert isPrime(i) == (i in primes), "this is the value where it fails: " + str(i)
+
+"""
+    Whitebox testing - we can see the source code, so we only write the required test cases
+"""
+class IsPrimeWhiteBoxTest(unittest.TestCase):
+
+    """
+        This function is called before any test cases.
+        We can add initialization code common to all methods here 
+            (e.g. reading an input file)
+    """
+    def setUp(self):
+        unittest.TestCase.setUp(self)
+
+    """
+        This function is called after all test function are executed
+        It's like the opposite of setUp, here you dismantle the test scaffolding
+    """
+    def tearDown(self):
+        unittest.TestCase.tearDown(self)
+    
+    def testIsPrimeWhiteBox(self):
+        try:
+            isPrime(-5)
+            assert False
+        except ValueError:
+            pass
+    
+        assert isPrime(1) == False, 1
+        assert isPrime(2) == True, 2
+        assert isPrime(3) == True, 3
+        assert isPrime(6) == False, 4
+        assert isPrime(7) == True, 7
+        assert isPrime(8) == False, 8
+
+"""
+    To run these tests:
+        - Go to Run Configurations
+        - Set up a new "Python unittest" run configuration
+        - Results are in the "PyUnit" Eclipse view
+"""

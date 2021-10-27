@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints maxHeight="500.0" minHeight="500.0" prefHeight="500.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="100.0" minHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <GridPane prefHeight="100.0" prefWidth="800.0" GridPane.rowIndex="1">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="99.0" minWidth="10.0" prefWidth="79.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="129.0" minWidth="10.0" prefWidth="88.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="144.0" minWidth="10.0" prefWidth="144.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="153.0" minWidth="10.0" prefWidth="153.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="164.0" minWidth="10.0" prefWidth="99.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="149.0" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="68.0" minWidth="10.0" prefWidth="51.0" />
+         <ColumnConstraints maxWidth="81.0" minWidth="69.0" prefWidth="81.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+        <Button fx:id="goBackButton" mnemonicParsing="false" text="Go back" GridPane.halignment="CENTER" />
+        <Button fx:id="sendPaperButton" mnemonicParsing="false" text="SendPaper" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+        <Button fx:id="postponeDeadlinesButton" mnemonicParsing="false" text="Postpone deadlines" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
+        <Button fx:id="sendResultsButton" mnemonicParsing="false" text="Send results" GridPane.columnIndex="4" GridPane.halignment="CENTER" />
+        <Button fx:id="viewSessions" mnemonicParsing="false" text="ViewSessions" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+        <Button fx:id="payButton" mnemonicParsing="false" text="Pay" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+        <Button fx:id="decideReevaluationButton" mnemonicParsing="false" text="Decide reevaluation" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+    </GridPane>
+    <GridPane>
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="450.0" minHeight="250.0" prefHeight="250.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+        <ListView fx:id="listOfPCMembers" layoutX="10.0" layoutY="185.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.columnSpan="3" GridPane.rowIndex="1" />
+        <Label text="List of PC Members" GridPane.columnIndex="0" GridPane.columnSpan="3" GridPane.halignment="CENTER" />
+    </GridPane>
+</GridPane>

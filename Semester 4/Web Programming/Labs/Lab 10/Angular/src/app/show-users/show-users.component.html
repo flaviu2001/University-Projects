@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="details">
+    <h1>Users</h1>
+
+    <input type="text" placeholder="Role:" #role (input)="refresh(role.value, name.value)"/>
+
+    <input type="text" placeholder="Name:" #name (input)="refresh(role.value, name.value)"/>
+
+    <div class="buttonWrapper">
+      <button class="add" (click)="navigateToAdd()">
+        Add new user
+      </button>
+      <button class="logout" (click)="logout()">
+        Logout
+      </button>
+    </div>
+    <p id="info">The previous query has been done with the role "{{previousRole}}" and the name "{{previousName}}</p>
+  </div>
+  <table>
+    <tr>
+      <th> NAME</th>
+      <th> USERNAME</th>
+      <th> AGE</th>
+      <th> ROLE</th>
+      <th> EMAIL</th>
+      <th> WEBPAGE</th>
+      <th> ACTION</th>
+    </tr>
+    <tr *ngFor="let user of users">
+      <td>{{user.name}}</td>
+      <td>{{user.username}}</td>
+      <td>{{user.age}}</td>
+      <td>{{user.role}}</td>
+      <td>{{user.email}}</td>
+      <td>{{user.webpage}}</td>
+      <td>
+        <button id="updateButton" (click)="navigateToUpdate(user.id)">Update</button>
+        <br>
+        <button (click)="navigateToDelete(user.id)" id="deleteButton">Delete</button>
+        <br>
+      </td>
+    </tr>
+  </table>
+</div>

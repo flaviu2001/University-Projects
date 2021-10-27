@@ -1,0 +1,9 @@
+Exercise 1
+
+A dword a is given in the data segment.
+Read a number b and compute a + a/b
+Print the result in signed base 10
+
+Exercise 2
+
+Play with printing to file

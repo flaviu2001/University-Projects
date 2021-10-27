@@ -1,0 +1,15 @@
+<div class="container">
+  <h1>Update Toy</h1>
+  <p><b>Please fill this form and submit to update the toy from the database.</b></p>
+
+  <form #foodForm = "ngForm" class="formWrapper" (ngSubmit)="updateToy(foodForm.value)">
+    <input type="text" name="name" placeholder="Name:" [ngModel]="name"> <br>
+    <input type="text" name="price" placeholder="Price:" [ngModel] = "price"> <br>
+    <div class="button_container">
+      <button type="submit">
+        Update Toy
+      </button>
+      <button (click)="onCancel()">Cancel</button>
+    </div>
+  </form>
+</div>

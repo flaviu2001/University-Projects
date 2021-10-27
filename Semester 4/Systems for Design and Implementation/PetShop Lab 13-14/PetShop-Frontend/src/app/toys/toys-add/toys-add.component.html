@@ -1,0 +1,15 @@
+<div class="container">
+  <h1>Create Toy</h1>
+  <p><b>Please fill this form and submit to add the toy to the database.</b></p>
+
+  <form #foodForm = "ngForm" class="formWrapper" (ngSubmit)="addToy(foodForm.value)">
+    <input type="text" name="name" placeholder="Name:" ngModel> <br>
+    <input type="number" name="price" placeholder="Price:" ngModel> <br>
+    <div class="button_container">
+      <button type="submit">
+        Add Toy
+      </button>
+      <button (click)="onCancel()">Cancel</button>
+    </div>
+  </form>
+</div>

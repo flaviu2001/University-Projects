@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html style="" class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage no-websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients no-cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Details</title>
+    <link href="Lab1_files/css.css" rel="stylesheet">
+
+    <script src="Lab1_files/modernizr"></script><script>try {
+                        Object.defineProperty(screen, "availTop", { value: 0 });
+                    } catch (e) {}
+                    try {
+                        Object.defineProperty(screen, "availLeft", { value: 0 });
+                    } catch (e) {}
+                    try {
+                        Object.defineProperty(screen, "availWidth", { value: 1920 });
+                    } catch (e) {}
+                    try {
+                        Object.defineProperty(screen, "availHeight", { value: 1080 });
+                    } catch (e) {}
+                    try {
+                        Object.defineProperty(screen, "colorDepth", { value: 24 });
+                    } catch (e) {}
+                    try {
+                        Object.defineProperty(screen, "pixelDepth", { value: 24 });
+                    } catch (e) {}
+                    try {
+                        Object.defineProperty(navigator, "hardwareConcurrency", { value: 8 });
+                    } catch (e) {}
+                    try {
+                        Object.defineProperty(navigator, "appVersion", { value: "5.0 (X11)" });
+                    } catch (e) {}
+                    try {
+                        Object.defineProperty(navigator, "doNotTrack", { value: "unspecified" });
+                    } catch (e) {}
+                    
+            try {
+                window.screenY = 0
+            } catch (e) { }
+        
+            try {
+                window.screenTop = 0
+            } catch (e) { }
+        
+            try {
+                window.top.window.outerHeight = 1016
+            } catch (e) { }
+        
+            try {
+                window.screenX = 0
+            } catch (e) { }
+        
+            try {
+                window.screenLeft = 0
+            } catch (e) { }
+        
+            try {
+                window.top.window.outerWidth = window.screen.width
+            } catch (e) { }
+        </script>
+
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="http://imre.cs.ubbcluj.ro/">Gamify CS</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                        <li><a href="http://imre.cs.ubbcluj.ro/Exercises/Exercises">Exercises</a></li>
+                        <li><a href="http://imre.cs.ubbcluj.ro/Home/Rules">Rules</a></li>
+                        <li><a href="http://imre.cs.ubbcluj.ro/Home/LabMaterials">Lab materials</a></li>
+                        <li><a href="https://sites.google.com/view/iuliana-bocicor/teaching/oop">Course materials</a></li>
+                    <li><a href="http://imre.cs.ubbcluj.ro/Home/Contact">Contact</a></li>
+                </ul>
+                <form action="/Account/LogOff" class="navbar-right" id="logoutForm" method="post"><input name="__RequestVerificationToken" type="hidden" value="bMpz-xfBGyjBUlYWo5FHEWGno4x7zWEnxPC2XK5g_bqG4xsNG_w3zZpkIhzPD1XIREdVz5lOGqoM9C7DhFza9qPoNrk0ZRUZRs2LceQ-X5dDXTKei4sN76hwTkWAXa0Mc-YGmrZPAZgox8KqIVuKdg2">    <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a href="http://imre.cs.ubbcluj.ro/Manage" title="Manage">Hello Ioan Flaviu!</a>
+            
+            
+        </li>
+        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+    </ul>
+</form>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        <div class="sidenav">
+    <div id="createAttendanceContents">
+
+        <div>
+
+            <script>
+                window.onload = function () {
+                    $('#createAttendance').click(function (e) {
+                        e.preventDefault();
+                        var url = $('#createAttendance').data("url");
+                        $.get(url, function (data) {
+                            $('#createAttendanceContents').hide();
+                        });
+                    });
+                };
+            </script>
+        </div>
+
+    </div>
+        </div>
+
+        
+
+
+<h2>Details for First Rites</h2>
+<form action="/Exercises/UploadSolution" enctype="multipart/form-data" method="post"><input name="__RequestVerificationToken" type="hidden" value="EiexckB_wMeNuxJkocMdL4Ap-YjxxXbGZPnunmGbMX1jWcQMxtCxC6C8_gOQdnGjb28d4Vz3H3RkHzvmRpLiHUTo0iVtcl6_6l2mXXmt4pQPhxBKzQFIinIDQjUwh1EPgduRoI6D8I2eUkkZ7ETMiA2"><div>
+    <dl class="dl-horizontal">
+        <dt>
+            Solvable To Lab Number
+        </dt>
+
+        <dd>
+            3 
+        </dd>
+    </dl>
+    <hr>
+    <input data-val="true" data-val-required="The Id field is required." id="Id" name="Id" type="hidden" value="66070aef-5117-44da-8626-83ff9bab37b6">
+    <input data-val="true" data-val-number="The field Order must be a number." data-val-required="The Order field is required." id="Order" name="Order" type="hidden" value="1">
+    <input id="Text" name="Text" type="hidden" value="&lt;p style='text-indent:50px'&gt;The outer limits of the kingdom could be glanced at from the towering battlements of the Ancient City on the border. Encircled by the gnarled forms of titanic trees, steeped in the perpetual phosphorescence of the encroaching vegetation, the city had stood on the edge of civilization since time immemorial. From its fortified walls, the members of the city watch formed tiny silhouettes against a backdrop of red-yellow incandescence – a wall of moss and vines from the depths of which the calls of unseen animals could be heard day and night. Far beyond the woods, the faintest glimpse of endless waters could be caught by those with exceptional sight.&lt;/p&gt;
+&lt;p style='text-indent:50px'&gt;Not many moons ago, much to the bewilderment of the locals, scholars of the arcane had traveled in great numbers from the farthest reaches of the kingdom, seemingly bent on setting up shop within the forlorn citadel spire – which had seen better days in bygone eras. As strange as it was ambitious, a great experiment had begun to take root. Normally content to keep to their own peculiar studies, locked away in domed edifices of learning, these conjurers, thaumaturges, mages or warlocks had always sparked feelings of apprehension in the lay populace from which they sought so hard to isolate themselves. However, the time had become ripe for change.&lt;/p&gt;
+&lt;p style='text-indent:50px'&gt;The scholars now continuously migrating to the Ancient City on the border had a notion that magic would no longer – could no longer - reside in the lofty heights of abstract speculation. The rift between mage and commoner would be bridged – they hoped -, as the former would descend from his gilded tower and employ his talents to the benefit of the latter.&lt;/p&gt;
+&lt;p style='text-indent:50px'&gt;You are one such magic user, currently residing in the renovated Academy Spire at the edge of town, apprenticed to the arch-mage Huric of Daras. Your personal chamber overlooks the gabled roofs and cobblestone streets winding far below. Nighttime has come, and your most recent assignment is overdue. The cheap parchment on which it was written by a clumsy hand, passed on to you by your superior, rests on your study table. It appears to be beckoning to you. The grizzled arch-mage had warned you that this task would be a feat of patience more than anything else. The road would be arduous, he added, but the fruits of your labor would be reaped as soon as people's minds would begin to warm up to the idea of being helped through more unconventional means. You shut the wooden blinds of your chamber window, blocking out the noises of the half-slumbering city.&lt;/p&gt;
+&lt;p style='text-indent:50px'&gt;Runic set-up:&lt;/p&gt;
+&lt;p style='text-indent:50px'&gt;Your master had first introduced you to runic incantations on the eve of your journey to the Ancient City. Old and of a more unrefined nature, the odd assortment of symbols could yet stir up arcane forces out of the aether. First School runes are what they were aptly called, and apprentices all across the land habitually sharpened their budding magical prowess using these. Next to your study desk lies a fine piece of masonry, a runic altar shipped straight from the Capital Academy. Upon it, you could experiment with any incantations before sending them out to whoever would be in need of them.&lt;/p&gt;
+&lt;p style='text-indent:50px'&gt;To begin, test out the runic altar’s arcane charge. It should be sufficient for future use if it can deliver brief messages to another altar. Convey a message to your master in the upper reaches of the Spire, using a simple set of First School runes. Whatever your quill inscribes on this parchment will appear on the second one.&lt;/p&gt;
+
+&lt;p style='text-indent:50px'&gt;Start with setting up a C++ compiler and an IDE. The automated tester assumes you are using Visual Studio's compiler. CLion uses a slightly different compiler and it will refuse to work sometimes. Same issues other compilers. You have been warned.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Visual Studio Community&lt;/li&gt;
+Download Visual Studio Community 2019 from &lt;a href=&quot;https://www.visualstudio.com/downloads/&quot;&gt;https://www.visualstudio.com/downloads/&lt;/a&gt; and then install it. You will have to create a Microsoft account, or use an existing one (if you already have one).
+&lt;li&gt;Visual Studio Enterprise&lt;/li&gt;
+If you set up an account already you should have access to the enterprise version from &lt;a href=&quot;https://azureforeducation.microsoft.com/devtools&quot;&gt;https://azureforeducation.microsoft.com/devtools&lt;/a&gt;. You will have to create a Microsoft account, or use an existing one (if you already have one). Contact faculty IT if you have issues. 
+&lt;/ul&gt;
+	
+&lt;p style='text-indent:50px'&gt;Create a new C/C++ project and a simple application, specifically read from the console, and write to the screen what you read. Upload below when done.&lt;/p&gt;
+
+&lt;p style='text-indent:50px'&gt;&lt;b&gt;Important:&lt;/b&gt; For each test run durring your adventure, when the server is done with test input it will send &quot;&lt;b&gt;exit&lt;/b&gt;&quot; to your application, at which point it must do so immediately.&lt;/p&gt;
+
+&lt;p&gt;Example test run:&lt;/p&gt;
+&lt;ul class=&quot;list-bullet&quot;&gt;
+&lt;li&gt;Hi!&lt;/li&gt;
+&lt;li&gt;exit&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Expected output:&lt;/p&gt;
+&lt;p style='text-indent:20px'&gt;Hi!&lt;/p&gt;
+
+&lt;p style='text-indent:50px'&gt;While the IDE is being installed, please start working on this and your next assignment, using any online C compiler (e.g. &lt;a href=&quot;https://www.tutorialspoint.com/compile_c_online.php&quot;&gt;https://www.tutorialspoint.com/compile_c_online.php&lt;/a&gt;, &lt;a href=&quot;https://www.onlinegdb.com/online_c_compiler&quot;&gt;https://www.onlinegdb.com/online_c_compiler&lt;/a&gt;).&lt;/p&gt;">
+    <input data-val="true" data-val-number="The field SolvableFromLabNumber must be a number." data-val-required="The SolvableFromLabNumber field is required." id="SolvableFromLabNumber" name="SolvableFromLabNumber" type="hidden" value="1">
+    <input id="Title" name="Title" type="hidden" value="First Rites">
+
+
+    <dl class="dl-horizontal">
+        <dt>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+
+                    <input type="submit" value="Save" class="btn btn-default">
+
+                </div>
+            </div>
+
+        </dt>
+
+        <dd>
+            <div class="form-group">
+                <input type="file" name="Code" class="input-files">
+            </div>
+        </dd>
+    </dl>
+    <hr>
+    <div class="narrative-text">
+        <p style="text-indent:50px">The outer limits of the kingdom 
+could be glanced at from the towering battlements of the Ancient City on
+ the border. Encircled by the gnarled forms of titanic trees, steeped in
+ the perpetual phosphorescence of the encroaching vegetation, the city 
+had stood on the edge of civilization since time immemorial. From its 
+fortified walls, the members of the city watch formed tiny silhouettes 
+against a backdrop of red-yellow incandescence – a wall of moss and 
+vines from the depths of which the calls of unseen animals could be 
+heard day and night. Far beyond the woods, the faintest glimpse of 
+endless waters could be caught by those with exceptional sight.</p>
+<p style="text-indent:50px">Not many moons ago, much to the bewilderment
+ of the locals, scholars of the arcane had traveled in great numbers 
+from the farthest reaches of the kingdom, seemingly bent on setting up 
+shop within the forlorn citadel spire – which had seen better days in 
+bygone eras. As strange as it was ambitious, a great experiment had 
+begun to take root. Normally content to keep to their own peculiar 
+studies, locked away in domed edifices of learning, these conjurers, 
+thaumaturges, mages or warlocks had always sparked feelings of 
+apprehension in the lay populace from which they sought so hard to 
+isolate themselves. However, the time had become ripe for change.</p>
+<p style="text-indent:50px">The scholars now continuously migrating to 
+the Ancient City on the border had a notion that magic would no longer –
+ could no longer - reside in the lofty heights of abstract speculation. 
+The rift between mage and commoner would be bridged – they hoped -, as 
+the former would descend from his gilded tower and employ his talents to
+ the benefit of the latter.</p>
+<p style="text-indent:50px">You are one such magic user, currently 
+residing in the renovated Academy Spire at the edge of town, apprenticed
+ to the arch-mage Huric of Daras. Your personal chamber overlooks the 
+gabled roofs and cobblestone streets winding far below. Nighttime has 
+come, and your most recent assignment is overdue. The cheap parchment on
+ which it was written by a clumsy hand, passed on to you by your 
+superior, rests on your study table. It appears to be beckoning to you. 
+The grizzled arch-mage had warned you that this task would be a feat of 
+patience more than anything else. The road would be arduous, he added, 
+but the fruits of your labor would be reaped as soon as people's minds 
+would begin to warm up to the idea of being helped through more 
+unconventional means. You shut the wooden blinds of your chamber window,
+ blocking out the noises of the half-slumbering city.</p>
+<p style="text-indent:50px">Runic set-up:</p>
+<p style="text-indent:50px">Your master had first introduced you to 
+runic incantations on the eve of your journey to the Ancient City. Old 
+and of a more unrefined nature, the odd assortment of symbols could yet 
+stir up arcane forces out of the aether. First School runes are what 
+they were aptly called, and apprentices all across the land habitually 
+sharpened their budding magical prowess using these. Next to your study 
+desk lies a fine piece of masonry, a runic altar shipped straight from 
+the Capital Academy. Upon it, you could experiment with any incantations
+ before sending them out to whoever would be in need of them.</p>
+<p style="text-indent:50px">To begin, test out the runic altar’s arcane 
+charge. It should be sufficient for future use if it can deliver brief 
+messages to another altar. Convey a message to your master in the upper 
+reaches of the Spire, using a simple set of First School runes. Whatever
+ your quill inscribes on this parchment will appear on the second one.</p>
+
+<p style="text-indent:50px">Start with setting up a C++ compiler and an 
+IDE. The automated tester assumes you are using Visual Studio's 
+compiler. CLion uses a slightly different compiler and it will refuse to
+ work sometimes. Same issues other compilers. You have been warned.</p>
+
+<ul>
+<li>Visual Studio Community</li>
+Download Visual Studio Community 2019 from <a href="https://www.visualstudio.com/downloads/">https://www.visualstudio.com/downloads/</a> and then install it. You will have to create a Microsoft account, or use an existing one (if you already have one).
+<li>Visual Studio Enterprise</li>
+If you set up an account already you should have access to the enterprise version from <a href="https://azureforeducation.microsoft.com/devtools">https://azureforeducation.microsoft.com/devtools</a>.
+ You will have to create a Microsoft account, or use an existing one (if
+ you already have one). Contact faculty IT if you have issues. 
+</ul>
+	
+<p style="text-indent:50px">Create a new C/C++ project and a simple 
+application, specifically read from the console, and write to the screen
+ what you read. Upload below when done.</p>
+
+<p style="text-indent:50px"><b>Important:</b> For each test run durring your adventure, when the server is done with test input it will send "<b>exit</b>" to your application, at which point it must do so immediately.</p>
+
+<p>Example test run:</p>
+<ul class="list-bullet">
+<li>Hi!</li>
+<li>exit</li>
+</ul>
+<p>Expected output:</p>
+<p style="text-indent:20px">Hi!</p>
+
+<p style="text-indent:50px">While the IDE is being installed, please start working on this and your next assignment, using any online C compiler (e.g. <a href="https://www.tutorialspoint.com/compile_c_online.php">https://www.tutorialspoint.com/compile_c_online.php</a>, <a href="https://www.onlinegdb.com/online_c_compiler">https://www.onlinegdb.com/online_c_compiler</a>).</p>
+    </div>
+
+
+</div>
+</form>
+
+        
+        <footer></footer>
+    </div>
+
+    <script src="Lab1_files/jquery"></script>
+
+    <script src="Lab1_files/bootstrap"></script>
+
+    
+
+
+
+
+
+
+</body></html>

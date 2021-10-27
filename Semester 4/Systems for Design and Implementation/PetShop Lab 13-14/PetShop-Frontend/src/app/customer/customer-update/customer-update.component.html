@@ -1,0 +1,15 @@
+<div class="container">
+  <h1>Update Customer</h1>
+  <p><b>Please fill this form and submit to update the customer from the database.</b></p>
+
+  <form #catForm = "ngForm" class="formWrapper" (ngSubmit)="updateCustomer(catForm.value)">
+    <input type="text" name="name" placeholder="Name:" [ngModel]="name"> <br>
+    <input type="text" name="phoneNumber" placeholder="Phone Number:" [ngModel] = "phoneNumber"> <br>
+    <div class="button_container">
+      <button type="submit">
+        Update Customer
+      </button>
+      <button (click)="onCancel()">Cancel</button>
+    </div>
+  </form>
+</div>

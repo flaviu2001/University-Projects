@@ -1,0 +1,1 @@
+The client takes a string from the command line and sends it to the server. The server interprets the string as a command with its parameters. It executes the command and returns the standard output and the exit code to the client.

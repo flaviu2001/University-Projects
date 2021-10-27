@@ -1,0 +1,10 @@
+<input placeholder="Auction id:" #auction> <br>
+<input placeholder="Category id:" #category> <br>
+<input placeholder="Description:" #description> <br>
+<button (click)="updateSlave(auction.value, category.value, description.value)">Update</button>
+<br>
+<br>
+<input placeholder="Category name:" #category2> <br>
+<input placeholder="Description:" #description2> <br>
+<button (click)="addSlave(category2.value, description2.value)">Add</button>
+

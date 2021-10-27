@@ -1,0 +1,21 @@
+plugins {
+    id 'java'
+}
+
+group 'ro.ubb.pisicilesalbatice'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'junit:junit:4.12'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    implementation group: 'org.postgresql', name: 'postgresql', version: '42.2.5'
+}
+
+test {
+    useJUnitPlatform()
+}

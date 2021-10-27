@@ -1,0 +1,2 @@
+An array S of double words is given.
+Compute the array D consisting of the bytes of the double words of S sorted descendingly in unsigned interpretation.

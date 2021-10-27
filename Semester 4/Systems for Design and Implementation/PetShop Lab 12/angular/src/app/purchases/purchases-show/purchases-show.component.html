@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="details">
+    <div class="insideDetails">
+      <button (click)="onBack()">Back</button>
+      <h1>Purchases</h1>
+    </div>
+    <button class="add" (click)="navigateToAdd()">
+      Add purchase
+    </button>
+  </div>
+  <table>
+    <tr>
+      <th *ngIf="catId == null">CAT</th>
+      <th *ngIf="customerId == null">CUSTOMER</th>
+      <th>PRICE</th>
+      <th>DATE</th>
+      <th>REVIEW</th>
+    </tr>
+    <tr *ngFor="let purchase of purchases">
+      <td *ngIf="catId == null">{{purchase.cat.name}}</td>
+      <td *ngIf="customerId == null">{{purchase.customer.name}}</td>
+      <td>{{purchase.price}}</td>
+      <td>{{dateOf(purchase.dateAcquired)}}</td>
+      <td>{{purchase.review}}</td>
+    </tr>
+  </table>
+</div>

@@ -1,0 +1,1 @@
+Create the use case diagram and the class diagram for a virtual library. The library has customers that can place orders, the cusotmers also have a wish list. The library sells books and painting materials. 
