@@ -29,7 +29,7 @@ const EditMeal: React.FC<EditMealProps> = ({history, match}) => {
     const [meal, setMeal] = useState<MealProps>();
     useEffect(() => {
         const routeId = match.params.id || '';
-        const meal = meals?.find(it => it.id === routeId);
+        const meal = meals?.find(it => it._id === routeId);
         setMeal(meal);
         if (meal && !name) {
             setName(meal.name);

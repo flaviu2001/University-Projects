@@ -5,7 +5,7 @@ export const libraryDateFormat = "yyyy-mm-dd HH:mm";
 export const IonDateTimeDateFormat = "YYYY-MM-DD HH:mm";
 
 export interface MealProps {
-    id?: string;
+    _id?: string;
     name: string;
     calories: number;
     dateAdded: Date;

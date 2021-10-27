@@ -1,8 +1,9 @@
-import React, {useCallback, useEffect, useReducer} from "react";
+import React, {useCallback, useContext, useEffect, useReducer} from "react";
 import PropTypes from "prop-types";
 import {createMeal, getMeals, newWebSocket, updateMeal} from "./MealService";
 import {initialState, MealProps, MealsState, SaveMealFunction} from "./MealCommon";
 import {MealContext} from "./MealCommon";
+import {AuthContext} from "../auth";
 
 interface ActionProps {
     type: string,
@@ -30,7 +31,7 @@ const reducer: (state: MealsState, action: ActionProps) => MealsState =
             case SAVE_MEAL_SUCCEEDED:
                 const meals = [...(state.meals || [])];
                 const meal = payload.meal;
-                const index = meals.findIndex(it => it.id === meal.id);
+                const index = meals.findIndex(it => it._id === meal._id);
                 if (index === -1) {
                     meals.splice(0, 0, meal);
                 } else {
@@ -49,12 +50,13 @@ interface MealProviderProps {
 }
 
 export const MealProvider: React.FC<MealProviderProps> = ({children}) => {
+    const {token} = useContext(AuthContext);
     const [state, dispatch] = useReducer(reducer, initialState);
-    const { meals, fetching, fetchingError, saving, savingError } = state;
-    useEffect(getMealsEffect, []);
-    useEffect(webSocketsEffect, []);
-    const saveMeal = useCallback<SaveMealFunction>(saveMealCallback, []);
-    const value = { meals, fetching, fetchingError, saving, savingError, saveMeal: saveMeal };
+    const {meals, fetching, fetchingError, saving, savingError} = state;
+    useEffect(getMealsEffect, [token]);
+    useEffect(webSocketsEffect, [token]);
+    const saveMeal = useCallback<SaveMealFunction>(saveMealCallback, [token]);
+    const value = {meals, fetching, fetchingError, saving, savingError, saveMeal: saveMeal};
     return (
         <MealContext.Provider value={value}>
             {children}
@@ -63,49 +65,54 @@ export const MealProvider: React.FC<MealProviderProps> = ({children}) => {
 
     function getMealsEffect() {
         let canceled = false;
-        fetchMeals().then(_ => {});
+        fetchMeals().then(_ => {
+        });
         return () => {
             canceled = true;
         }
 
         async function fetchMeals() {
+            if (!token?.trim()) {
+                return;
+            }
             try {
-                dispatch({ type: FETCH_MEALS_STARTED });
-                const meals = await getMeals();
-                console.log(meals);
+                dispatch({type: FETCH_MEALS_STARTED});
+                const meals = await getMeals(token);
                 if (!canceled)
-                    dispatch({ type: FETCH_MEALS_SUCCEEDED, payload: { meals: meals } });
+                    dispatch({type: FETCH_MEALS_SUCCEEDED, payload: {meals: meals}});
             } catch (error) {
-                dispatch({ type: FETCH_MEALS_FAILED, payload: { error } });
+                dispatch({type: FETCH_MEALS_FAILED, payload: {error}});
             }
         }
     }
 
     async function saveMealCallback(meal: MealProps) {
         try {
-            dispatch({ type: SAVE_MEAL_STARTED });
-            console.log(meal.id);
-            const savedMeal = await (meal.id ? updateMeal(meal) : createMeal(meal));
-            dispatch({ type: SAVE_MEAL_SUCCEEDED, payload: { meal: savedMeal } });
+            dispatch({type: SAVE_MEAL_STARTED});
+            const savedMeal = await (meal._id ? updateMeal(token, meal) : createMeal(token, meal));
+            dispatch({type: SAVE_MEAL_SUCCEEDED, payload: {meal: savedMeal}});
         } catch (error) {
-            dispatch({ type: SAVE_MEAL_FAILED, payload: { error } });
+            dispatch({type: SAVE_MEAL_FAILED, payload: {error}});
         }
     }
 
     function webSocketsEffect() {
         let canceled = false;
-        const closeWebSocket = newWebSocket(message => {
-            if (canceled) {
-                return;
+        let closeWebSocket: () => void;
+        if (token?.trim()) {
+            closeWebSocket = newWebSocket(token, message => {
+                if (canceled) {
+                    return;
+                }
+                const {type, payload: meal} = message;
+                if (type === 'created' || type === 'updated') {
+                    dispatch({type: SAVE_MEAL_SUCCEEDED, payload: {meal: meal}});
+                }
+            });
+            return () => {
+                canceled = true;
+                closeWebSocket?.();
             }
-            const { event, payload: { meal }} = message;
-            if (event === 'created' || event === 'updated') {
-                dispatch({ type: SAVE_MEAL_SUCCEEDED, payload: { meal: meal } });
-            }
-        });
-        return () => {
-            canceled = true;
-            closeWebSocket();
         }
     }
 }

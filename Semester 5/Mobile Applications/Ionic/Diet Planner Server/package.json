@@ -11,11 +11,14 @@
   "license": "",
   "dependencies": {
     "backpack-core": "^0.8.4",
+    "jsonwebtoken": "^8.5.1",
     "koa": "^2.8.2",
     "koa-bodyparser": "^4.2.1",
     "koa-convert": "^1.2.0",
     "koa-cors": "^0.0.16",
+    "koa-jwt": "^4.0.3",
     "koa-router": "^7.4.0",
+    "nedb-promise": "^2.0.1",
     "ws": "^7.1.2"
   }
 }

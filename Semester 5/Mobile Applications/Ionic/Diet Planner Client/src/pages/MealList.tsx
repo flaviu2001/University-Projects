@@ -29,8 +29,8 @@ const MealList: React.FC<RouteComponentProps> = ({history}) => {
                 <IonLoading isOpen={fetching} message="Fetching items"/>
                 {meals && (
                     <IonList>
-                        {meals.map(({id, name, calories, dateAdded, vegetarian}) =>
-                            <Meal key={id} id={id} name={name} calories={calories} dateAdded={dateAdded}
+                        {meals.map(({_id, name, calories, dateAdded, vegetarian}) =>
+                            <Meal key={_id} _id={_id} name={name} calories={calories} dateAdded={dateAdded}
                                   vegetarian={vegetarian} onEdit={id => history.push(`/meal/${id}`)}/>)}
                     </IonList>
                 )}
