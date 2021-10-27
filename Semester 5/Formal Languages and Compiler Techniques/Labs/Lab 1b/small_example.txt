@@ -1,0 +1,26 @@
+var a;
+var b, c;
+
+a = "this is a string";
+b = 2;
+c = a + " as well"; // a is copied by value, not by reference
+arr<3> d;
+d[0] = a;
+set_nth(d, 0, a);
+get_nth(d, 0, b); // b = d[0]
+set_nth(d, 1, b);
+
+print(a);
+
+if (b == 2) {
+	print(b);
+} else {
+	print(c);
+};
+
+while (b == 2) {
+	b *= 2;
+};
+
+var x = readInt();
+var y = readString(); 

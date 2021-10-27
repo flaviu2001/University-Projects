@@ -1,0 +1,6 @@
+https://github.com/flaviu2001/lftc-lab
+For my Symbol Table I chose to implement 3 separate Hash Tables, one for identifiers, one for int constants and one for string constants.
+My Hash Table is generic, the generic type represents the data type of the object that's being inserted into the table.
+The findByPair(posInBucket, posInList) function returns the posInList-th element from the posInBucket-th bucket.
+The get function returns the pair that represents an object
+The add function returns the pair of the object if it exists, or it returns the pair of a newly created position
