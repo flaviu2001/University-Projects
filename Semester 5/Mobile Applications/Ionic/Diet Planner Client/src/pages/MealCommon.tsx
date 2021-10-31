@@ -19,13 +19,17 @@ export interface MealsState {
     saving: boolean,
     savingError?: Error | null,
     saveMeal?: SaveMealFunction,
+    searchText: string,
+    setSearchText?: SetSearchTextFunction
 }
 
 export type SaveMealFunction = (meal: MealProps) => Promise<any>;
+export type SetSearchTextFunction = (text: string) => void;
 
 export const initialState: MealsState = {
     fetching: false,
     saving: false,
+    searchText: ''
 };
 
 export const MealContext = React.createContext<MealsState>(initialState);

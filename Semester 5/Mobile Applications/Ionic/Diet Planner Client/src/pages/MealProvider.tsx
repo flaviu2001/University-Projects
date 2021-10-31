@@ -1,9 +1,12 @@
 import React, {useCallback, useContext, useEffect, useReducer} from "react";
 import PropTypes from "prop-types";
 import {createMeal, getMeals, newWebSocket, updateMeal} from "./MealService";
-import {initialState, MealProps, MealsState, SaveMealFunction} from "./MealCommon";
+import {initialState, MealProps, MealsState, SaveMealFunction, SetSearchTextFunction} from "./MealCommon";
 import {MealContext} from "./MealCommon";
 import {AuthContext} from "../auth";
+import {useNetwork} from "./UseNetwork";
+import {useIonToast} from "@ionic/react";
+import {Plugins} from "@capacitor/core";
 
 interface ActionProps {
     type: string,
@@ -16,6 +19,7 @@ const FETCH_MEALS_FAILED = 'FETCH_MEALS_FAILED';
 const SAVE_MEAL_STARTED = 'SAVE_MEAL_STARTED';
 const SAVE_MEAL_SUCCEEDED = 'SAVE_MEAL_SUCCEEDED';
 const SAVE_MEAL_FAILED = 'SAVE_MEAL_FAILED';
+const SET_SEARCH_TEXT = 'SET_SEARCH_TEXT';
 
 const reducer: (state: MealsState, action: ActionProps) => MealsState =
     (state, {type, payload}) => {
@@ -31,7 +35,9 @@ const reducer: (state: MealsState, action: ActionProps) => MealsState =
             case SAVE_MEAL_SUCCEEDED:
                 const meals = [...(state.meals || [])];
                 const meal = payload.meal;
-                const index = meals.findIndex(it => it._id === meal._id);
+                let index = meals.findIndex(it => it._id === meal._id);
+                if (index === -1)
+                    index = meals.findIndex(it => it.name === meal.name);
                 if (index === -1) {
                     meals.splice(0, 0, meal);
                 } else {
@@ -40,6 +46,8 @@ const reducer: (state: MealsState, action: ActionProps) => MealsState =
                 return { ...state, meals: meals, saving: false };
             case SAVE_MEAL_FAILED:
                 return { ...state, savingError: payload.error, saving: false };
+            case SET_SEARCH_TEXT:
+                return {...state, searchText: payload.text}
             default:
                 return state;
         }
@@ -52,48 +60,75 @@ interface MealProviderProps {
 export const MealProvider: React.FC<MealProviderProps> = ({children}) => {
     const {token} = useContext(AuthContext);
     const [state, dispatch] = useReducer(reducer, initialState);
-    const {meals, fetching, fetchingError, saving, savingError} = state;
-    useEffect(getMealsEffect, [token]);
+    const {meals, fetching, fetchingError, saving, savingError, searchText} = state;
+    const {networkStatus} = useNetwork()
+    const [present] = useIonToast();
+    useEffect(executePendingOperations, [networkStatus.connected, token])
+    useEffect(getMealsEffect, [token, searchText]);
     useEffect(webSocketsEffect, [token]);
-    const saveMeal = useCallback<SaveMealFunction>(saveMealCallback, [token]);
-    const value = {meals, fetching, fetchingError, saving, savingError, saveMeal: saveMeal};
+    const saveMeal = useCallback<SaveMealFunction>(saveMealCallback, [networkStatus, token, present]);
+    const setSearchText = useCallback<SetSearchTextFunction>(setSearchTextCallback, [])
+    const value = {meals, fetching, fetchingError, saving, savingError, saveMeal: saveMeal, searchText, setSearchText};
     return (
         <MealContext.Provider value={value}>
             {children}
         </MealContext.Provider>
     );
 
+    async function fetchMeals() {
+        if (!token?.trim()) {
+            return;
+        }
+        try {
+            dispatch({type: FETCH_MEALS_STARTED});
+            const meals = await getMeals(token, searchText);
+            dispatch({type: FETCH_MEALS_SUCCEEDED, payload: {meals: meals}});
+        } catch (error) {
+            dispatch({type: FETCH_MEALS_FAILED, payload: {error}});
+        }
+    }
+
     function getMealsEffect() {
-        let canceled = false;
         fetchMeals().then(_ => {
         });
-        return () => {
-            canceled = true;
-        }
+    }
 
-        async function fetchMeals() {
-            if (!token?.trim()) {
-                return;
-            }
-            try {
-                dispatch({type: FETCH_MEALS_STARTED});
-                const meals = await getMeals(token);
-                if (!canceled)
-                    dispatch({type: FETCH_MEALS_SUCCEEDED, payload: {meals: meals}});
-            } catch (error) {
-                dispatch({type: FETCH_MEALS_FAILED, payload: {error}});
-            }
-        }
+    async function setSearchTextCallback(text: string) {
+        dispatch({type: SET_SEARCH_TEXT, payload: {text: text}})
+        await fetchMeals()
     }
 
     async function saveMealCallback(meal: MealProps) {
         try {
             dispatch({type: SAVE_MEAL_STARTED});
-            const savedMeal = await (meal._id ? updateMeal(token, meal) : createMeal(token, meal));
+            const savedMeal = await (meal._id ? updateMeal(token, meal, networkStatus, present) : createMeal(token, meal, networkStatus, present));
             dispatch({type: SAVE_MEAL_SUCCEEDED, payload: {meal: savedMeal}});
         } catch (error) {
             dispatch({type: SAVE_MEAL_FAILED, payload: {error}});
         }
+    }
+
+    function executePendingOperations() {
+        async function helperMethod() {
+            if (networkStatus.connected && token?.trim()) {
+                console.log("executing pending operations")
+                const {Storage} = Plugins;
+                const {keys} = await Storage.keys();
+                for (const key of keys) {
+                    if (key.startsWith("sav-")) {
+                        const value = JSON.parse((await Storage.get({key: key})).value!!)
+                        await createMeal(value.token, value.meal, networkStatus, present)
+                        await Storage.remove({key: key})
+                    } else if (key.startsWith("upd-")) {
+                        const value = JSON.parse((await Storage.get({key: key})).value!!)
+                        await updateMeal(value.token, value.meal, networkStatus, present)
+                        await Storage.remove({key: key})
+                    }
+                }
+            }
+        }
+        // noinspection JSIgnoredPromiseFromCall
+        helperMethod()
     }
 
     function webSocketsEffect() {

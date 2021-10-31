@@ -4,10 +4,18 @@ import mealStore from './store';
 
 export const router = new Router();
 
-router.get('/', async (ctx) => {
+router.get('/filter/:name?', async (ctx) => {
     const response = ctx.response;
     const userId = ctx.state.user._id;
-    response.body = await mealStore.find({ userId });
+    let name = ctx.params.name;
+    if (!name)
+        name = ''
+    let arr = []
+    let all = await mealStore.find({ userId })
+    for (let meal of all)
+        if (meal.name.toLowerCase().includes(name.toLowerCase()))
+            arr = arr.concat(meal)
+    response.body = arr;
     response.status = 200; // ok
 });
 
@@ -33,8 +41,7 @@ const createMeal = async (ctx, meal, response) => {
         meal.userId = userId;
         response.body = await mealStore.insert(meal);
         response.status = 201; // created
-        meal = await mealStore.findOne({name: meal.name})
-        broadcast(userId, { type: 'created', payload: meal });
+        broadcast(userId, { type: 'created', payload: response.body });
     } catch (err) {
         response.body = { message: err.message };
         response.status = 400; // bad request

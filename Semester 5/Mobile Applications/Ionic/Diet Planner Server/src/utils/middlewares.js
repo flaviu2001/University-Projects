@@ -9,6 +9,7 @@ export const exceptionHandler = async (ctx, next) => {
     try {
         return await next();
     } catch (err) {
+        console.log(err)
         ctx.response.body = {issue: [{error: err.message || 'Unexpected error'}]};
         ctx.response.status = 500;
     }
