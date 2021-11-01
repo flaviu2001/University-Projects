@@ -9,7 +9,7 @@ class SymbolTable(val size: Int = 107) {
 
     fun addStringConstant(string: String): Position = Position(PositionType.STRING_CONSTANT, stringConstantsHashTable.add(string))
 
-    fun hasPosition(name: String): Pair<Int, Int>? = identifierHashTable.get(name)
+    fun hasIdentifier(name: String): Pair<Int, Int>? = identifierHashTable.get(name)
 
     fun hasIntConstant(constant: Int): Pair<Int, Int>? = intConstantsHashTable.get(constant)
 

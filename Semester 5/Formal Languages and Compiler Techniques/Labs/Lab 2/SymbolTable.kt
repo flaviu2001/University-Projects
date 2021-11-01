@@ -1,13 +1,13 @@
-class SymbolTable {
-    private val identifierHashTable = HashTable<String>()
-    private val intConstantsHashTable = HashTable<Int>()
-    private val stringConstantsHashTable = HashTable<String>()
+class SymbolTable(val size: Int = 107) {
+    val identifierHashTable = HashTable<String>(size)
+    val intConstantsHashTable = HashTable<Int>(size)
+    val stringConstantsHashTable = HashTable<String>(size)
 
-    fun addIdentifier(name: String): Pair<Int, Int> = identifierHashTable.add(name)
+    fun addIdentifier(name: String): Position = Position(PositionType.IDENTIFIER, identifierHashTable.add(name))
 
-    fun addIntConstant(constant: Int): Pair<Int, Int> = intConstantsHashTable.add(constant)
+    fun addIntConstant(constant: Int): Position = Position(PositionType.INT_CONSTANT, intConstantsHashTable.add(constant))
 
-    fun addStringConstant(string: String): Pair<Int, Int> = stringConstantsHashTable.add(string)
+    fun addStringConstant(string: String): Position = Position(PositionType.STRING_CONSTANT, stringConstantsHashTable.add(string))
 
     fun hasIdentifier(name: String): Pair<Int, Int>? = identifierHashTable.get(name)
 

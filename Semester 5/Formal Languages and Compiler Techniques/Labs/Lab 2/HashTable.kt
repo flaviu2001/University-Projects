@@ -1,5 +1,12 @@
+import kotlin.math.abs
+
 class HashTable<T>(private var size: Int = 107) {
-    private var buckets: Array<MutableList<T>> = Array(size) { mutableListOf() }
+    var buckets: Array<MutableList<T>> = Array(size) { mutableListOf() }
+
+    private fun hash(element: T): Int {
+        val value = element.hashCode() % size
+        return abs(value)
+    }
 
     fun findByPair(posInBucket: Int, posInList: Int): T {
         if (posInBucket !in 0 until size)
@@ -10,7 +17,7 @@ class HashTable<T>(private var size: Int = 107) {
     }
 
     fun get(element: T): Pair<Int, Int>? {
-        val posInBucket = element.hashCode() % size
+        val posInBucket = hash(element)
         for ((posInList, elementInBucket) in buckets[posInBucket].withIndex()) {
             if (elementInBucket == element)
                 return Pair(posInBucket, posInList)
@@ -22,7 +29,7 @@ class HashTable<T>(private var size: Int = 107) {
         val lookup = get(element)
         if (lookup != null)
             return lookup
-        val posInBucket = element.hashCode() % size
+        val posInBucket = hash(element)
         val posInList = buckets[posInBucket].size
         buckets[posInBucket].add(element)
         return Pair(posInBucket, posInList)

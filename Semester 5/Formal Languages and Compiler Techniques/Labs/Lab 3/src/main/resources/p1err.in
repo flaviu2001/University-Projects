@@ -9,7 +9,7 @@ while (i*i <= x && prime == 1) {
 	i = i+1;
 };
 if (prime >= 1) {
-	print("Yes, it is prime!");
+	print("Yes it is prime");
 } else {
-	print("No, it is not prime.); // The string has missing end quotes, lexical error
+	print("No it is not prime); // The string has missing end quotes, lexical error
 };

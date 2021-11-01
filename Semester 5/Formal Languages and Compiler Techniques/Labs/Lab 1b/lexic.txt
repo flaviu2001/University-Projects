@@ -17,4 +17,4 @@ digit = "0"|"1"|..|"9"
 int_constant = ["+"|"-"] non_zero_digit {digit} | "0"
 non_zero_digit = "1"|"2"|..|"9"
 
-string_constant = """{letter|digit|"_"}"""
+string_constant = """{letter|digit|"_"|" "}"""
