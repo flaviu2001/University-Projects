@@ -41,10 +41,12 @@ class Scanner(private val program: String, private val tokens: List<String>) {
     private fun treatIntConstant(): Boolean {
 //        val regex = Regex("^([+-]?[1-9][0-9]*|0)").find(program.substring(index)) ?: return false
 //        val intConstant = regex.groups[1]!!.value
-        val regex = Regex("^([+-]?[0-9]*)").find(program.substring(index)) ?: return false
-        val intConstant = regex.groups[1]!!.value
-        if (!FiniteAutomaton("src/main/resources/int_constant.in").checkAccepted(FiniteAutomaton.stringToListOfChars(intConstant)))
-            return false
+//        val regex = Regex("^([+-]?[0-9]*)").find(program.substring(index)) ?: return false
+//        val intConstant = regex.groups[1]!!.value
+//        if (!FiniteAutomaton("src/main/resources/int_constant.in").checkAccepted(FiniteAutomaton.stringToListOfChars(intConstant)))
+//            return false
+        val fa = FiniteAutomaton("src/main/resources/int_constant.in")
+        val intConstant = fa.getNextAccepted(program.substring(index)) ?: return false
         if (intConstant[0] in listOf('+', '-') && pif.size > 0 && pif.last().first in listOf( // makes it so 1+2 is the tokens 1, + and 2 and not 1 and +2
                 PositionType.IDENTIFIER.code,
                 PositionType.INT_CONSTANT.code,
@@ -71,10 +73,12 @@ class Scanner(private val program: String, private val tokens: List<String>) {
     private fun treatIdentifier(): Boolean {
 //        val regex = Regex("^([a-zA-Z_][a-zA-Z0-9_]*)").find(program.substring(index)) ?: return false
 //        val identifier = regex.groups[1]!!.value
-        val regex = Regex("^([a-zA-Z0-9_]*)").find(program.substring(index)) ?: return false
-        val identifier = regex.groups[1]!!.value
-        if (!FiniteAutomaton("src/main/resources/identifier.in").checkAccepted(FiniteAutomaton.stringToListOfChars(identifier)))
-            return false
+//        val regex = Regex("^([a-zA-Z0-9_]*)").find(program.substring(index)) ?: return false
+//        val identifier = regex.groups[1]!!.value
+//        if (!FiniteAutomaton("src/main/resources/identifier.in").checkAccepted(FiniteAutomaton.stringToListOfChars(identifier)))
+//            return false
+        val fa = FiniteAutomaton("src/main/resources/identifier.in")
+        val identifier = fa.getNextAccepted(program.substring(index)) ?: return false
         index += identifier.length
         val position = symbolTable.addIdentifier(identifier)
         pif.add(Pair(position.positionType.code, position.pair))

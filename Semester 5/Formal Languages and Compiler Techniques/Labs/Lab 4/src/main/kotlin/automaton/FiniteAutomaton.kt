@@ -4,7 +4,8 @@ import java.io.File
 
 class FiniteAutomaton(filename: String) {
     companion object {
-        fun stringToListOfChars(word: String) = word.map { it.toString() }
+        private fun stringToListOfChars(word: String) = word.map { it.toString() }
+        private fun listOfCharsToString(chars: List<String>?) = chars?.joinToString("")
     }
 
     private lateinit var states: List<String>
@@ -98,4 +99,28 @@ class FiniteAutomaton(filename: String) {
         }
         return state in outputStates
     }
+
+    fun checkAccepted(word: String): Boolean = checkAccepted(stringToListOfChars(word))
+
+    fun getNextAccepted(word: List<String>): List<String>? {
+        var state = initialState
+        val acceptedWord = mutableListOf<String>()
+        for (letter in word) {
+            var newState: String? = null
+            for (transition in transitions)
+                if (transition.from == state && transition.label == letter) {
+                    newState = transition.to
+                    break
+                }
+            if (newState == null)
+                break
+            state = newState
+            acceptedWord.add(letter)
+        }
+        if(state !in outputStates)
+            return null
+        return acceptedWord
+    }
+
+    fun getNextAccepted(word: String): String? = listOfCharsToString(getNextAccepted(stringToListOfChars(word)))
 }
