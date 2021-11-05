@@ -1,0 +1,5 @@
+states={p, q, r}
+in_state=p
+out_states={r}
+alphabet={0, 1}
+transitions={(p, q, 1); (q, q, 0); (q, r, 1); (r, r, 0)}

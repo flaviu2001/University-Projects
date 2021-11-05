@@ -1,0 +1,15 @@
+var 2x; //2x does not follow the rules of an identifier, nor can it be classified as anything else
+x = readInt();
+var i = 2;
+var prime = 1;
+while (i*i <= x && prime == 1) {
+	if (x%i == 0) {
+		prime = 0;
+	};
+	i = i+1;
+};
+if (prime >= 1) {
+	print("Yes it is prime");
+} else {
+	print("No it is not prime); // The string has missing end quotes, lexical error
+};

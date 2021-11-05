@@ -1,0 +1,12 @@
+non_zero_digit ::= 1|2| .. |9
+digit ::= 0|1|..|9
+number ::= non_zero_digit{digit}
+letter ::= a|b|..|z|A|B..|Z
+character ::= letter | digit
+firstLine ::= "states" "=" "{" {character} {"," character} "}"
+secondLine ::= {character}
+thirdLine ::= "out_states" "=" "{" {character} {"," character} "}"
+fourthLine ::= "alphabet" "=" "{" {character} {"," character} "}"
+triple ::= "(" {character} "," {character} "," {character} ")"
+fifthLine ::= "transitions" "=" "{" triple {";" triple} "}"
+inputFile ::= firstLine secondLine thirdLine fourthLine fifthLine
