@@ -12,10 +12,10 @@ import {
     IonToolbar, useIonViewWillEnter
 } from '@ionic/react';
 import {add} from 'ionicons/icons';
-import {MealContext, MealProps} from "./MealCommon";
-import Meal from "./Meal";
-import NetworkStatus from "./NetworkStatus";
-import {AuthContext} from "../auth";
+import Meal, {MealProps} from "./Meal";
+import NetworkStatus from "../network/NetworkStatus";
+import {MealContext} from "./MealProvider";
+import {AuthContext} from "../auth/AuthProvider";
 
 const indicesPresented = 5;
 
@@ -35,7 +35,6 @@ const MealList: React.FC<RouteComponentProps> = ({history}) => {
     }
 
     function fetchData() {
-        console.log("next")
         if (meals) {
             const newIndex = Math.min(index + indicesPresented, meals.length);
             if (newIndex >= meals.length)
@@ -83,9 +82,9 @@ const MealList: React.FC<RouteComponentProps> = ({history}) => {
             </IonHeader>
             <IonContent id="dude">
                 <IonSearchbar value={searchText} onIonChange={e => handleTextChange(e)}/>
-                {items.map(({_id, name, calories, dateAdded, vegetarian}) =>
+                {items.map(({_id, name, calories, dateAdded, vegetarian, latitude, longitude}) =>
                     <Meal key={_id} _id={_id} name={name} calories={calories} dateAdded={dateAdded}
-                          vegetarian={vegetarian} onEdit={id => history.push(`/meal/${id}`)}/>)}
+                          vegetarian={vegetarian} latitude={latitude} longitude={longitude} onEdit={id => history.push(`/meal/${id}`)}/>)}
                 <IonInfiniteScroll threshold="0px" disabled={!hasMore}
                                    onIonInfinite={(e: CustomEvent<void>) => searchNext(e)}>
                     <IonInfiniteScrollContent

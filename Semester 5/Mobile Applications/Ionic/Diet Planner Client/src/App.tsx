@@ -20,11 +20,13 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import {MealProvider} from "./pages/MealProvider";
-import MealList from "./pages/MealList";
+import {MealProvider} from "./pages/meal/MealProvider";
+import MealList from "./pages/meal/MealList";
 import React from "react";
-import EditMeal from "./pages/EditMeal";
-import {AuthProvider, Login, PrivateRoute} from "./auth";
+import EditMeal from "./pages/meal/EditMeal";
+import {AuthProvider} from "./pages/auth/AuthProvider";
+import {Login} from "./pages/auth/Login";
+import {PrivateRoute} from "./pages/auth/PrivateRoute";
 
 const App: React.FC = () => (
   <IonApp>

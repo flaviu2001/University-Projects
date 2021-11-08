@@ -1,11 +1,17 @@
 {"name":"Salad","calories":45,"dateAdded":"2021-10-31T20:33:12.925Z","vegetarian":true,"userId":"vI1GMkzBza5i82zj","_id":"08SImQoWSelkn9PX"}
 {"name":"Moroccan Tagine","calories":260,"dateAdded":"2021-10-31T18:10:00.000Z","vegetarian":true,"userId":"vI1GMkzBza5i82zj","_id":"0HZNSwz5SoHsZgZe"}
 {"name":"Sandwiches","calories":300,"dateAdded":"2021-10-31T21:10:00.000Z","vegetarian":false,"userId":"vI1GMkzBza5i82zj","_id":"0tcbxbvYvF5zERNF"}
+{"name":"Tea","calories":12,"dateAdded":"2021-10-31T20:12:21.778Z","vegetarian":true,"userId":"vI1GMkzBza5i82zj","_id":"6puZP9qqhlK34C85"}
 {"name":"Boiled Rice","calories":40,"dateAdded":"2021-10-31T20:27:36.857Z","vegetarian":true,"userId":"vI1GMkzBza5i82zj","_id":"C2UZVIC8LI1H8lNi"}
+{"name":"Nume","calories":100,"dateAdded":"2021-11-01T11:14:14.150Z","vegetarian":true,"userId":"vI1GMkzBza5i82zj","_id":"JyACF6cGKD2sNRhc"}
 {"name":"Pasta Carbonara","calories":250,"dateAdded":"2021-10-31T20:22:08.228Z","vegetarian":false,"userId":"vI1GMkzBza5i82zj","_id":"K0nwmC8yflBrlGN3"}
 {"name":"Sea food","calories":500,"dateAdded":"2021-10-31T20:33:40.437Z","vegetarian":false,"userId":"vI1GMkzBza5i82zj","_id":"cZgLDIBV5hy0XlFF"}
 {"name":"Rata fiarta","calories":300,"dateAdded":"2021-10-31T20:31:06.789Z","vegetarian":false,"userId":"vI1GMkzBza5i82zj","_id":"d3Ylk8PIH4dSUOyS"}
 {"name":"Cookies","calories":450,"dateAdded":"2021-10-31T20:28:13.902Z","vegetarian":true,"userId":"vI1GMkzBza5i82zj","_id":"dAB69GmCsAzk2bnE"}
 {"name":"Chilli con carne","calories":190,"dateAdded":"2021-09-30T17:09:00.000Z","vegetarian":false,"userId":"vI1GMkzBza5i82zj","_id":"egXwcp7nYMUcFt9C"}
 {"name":"Pateu Mandy","calories":100,"dateAdded":"2021-10-31T20:22:21.957Z","vegetarian":true,"userId":"vI1GMkzBza5i82zj","_id":"zrikVFA9xi8YgrKw"}
-{"name":"Tea","calories":12,"dateAdded":"2021-10-31T20:12:21.778Z","vegetarian":true,"userId":"vI1GMkzBza5i82zj","_id":"6puZP9qqhlK34C85"}
+{"name":"Salad","calories":45,"dateAdded":"2021-10-31T20:33:12.925Z","vegetarian":true,"userId":"vI1GMkzBza5i82zj","_id":"08SImQoWSelkn9PX","latitude":47.0321912323336,"longitude":23.905212951827064}
+{"name":"Moroccan Tagine","calories":260,"dateAdded":"2021-10-31T18:10:00.000Z","vegetarian":true,"userId":"vI1GMkzBza5i82zj","_id":"0HZNSwz5SoHsZgZe","latitude":46.92648130422961,"longitude":26.916783516918336}
+{"name":"Sandwiches","calories":300,"dateAdded":"2021-10-31T21:10:00.000Z","vegetarian":false,"userId":"vI1GMkzBza5i82zj","_id":"0tcbxbvYvF5zERNF","latitude":46.7657,"longitude":23.5943}
+{"name":"Sandwiches","calories":300,"dateAdded":"2021-10-31T21:10:00.000Z","vegetarian":false,"userId":"vI1GMkzBza5i82zj","_id":"0tcbxbvYvF5zERNF","latitude":47.33124095530354,"longitude":19.03793154011526}
+{"name":"Salad","calories":45,"dateAdded":"2021-10-31T20:33:12.925Z","vegetarian":true,"userId":"vI1GMkzBza5i82zj","_id":"08SImQoWSelkn9PX","latitude":47.136922268753096,"longitude":24.174377990889564}

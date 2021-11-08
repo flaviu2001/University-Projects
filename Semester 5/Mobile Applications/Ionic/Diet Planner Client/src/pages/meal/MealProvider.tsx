@@ -1,17 +1,38 @@
 import React, {useCallback, useContext, useEffect, useReducer} from "react";
 import PropTypes from "prop-types";
-import {createMeal, getMeals, newWebSocket, updateMeal} from "./MealService";
-import {initialState, MealProps, MealsState, SaveMealFunction, SetSearchTextFunction} from "./MealCommon";
-import {MealContext} from "./MealCommon";
-import {AuthContext} from "../auth";
-import {useNetwork} from "./UseNetwork";
+import {createMeal, getMeals, newWebSocket, updateMeal} from "../../core/ApiService";
+import {useNetwork} from "../network/useNetwork";
 import {useIonToast} from "@ionic/react";
 import {Plugins} from "@capacitor/core";
+import {MealProps} from "./Meal";
+import {AuthContext} from "../auth/AuthProvider";
 
 interface ActionProps {
     type: string,
     payload?: any,
 }
+
+export interface MealsState {
+    meals?: MealProps[],
+    fetching: boolean,
+    fetchingError?: Error | null,
+    saving: boolean,
+    savingError?: Error | null,
+    saveMeal?: SaveMealFunction,
+    searchText: string,
+    setSearchText?: SetSearchTextFunction
+}
+
+export type SaveMealFunction = (meal: MealProps) => Promise<any>;
+export type SetSearchTextFunction = (text: string) => void;
+
+export const initialState: MealsState = {
+    fetching: false,
+    saving: false,
+    searchText: ''
+};
+
+export const MealContext = React.createContext<MealsState>(initialState);
 
 const FETCH_MEALS_STARTED = 'FETCH_MEALS_STARTED';
 const FETCH_MEALS_SUCCEEDED = 'FETCH_MEALS_SUCCEEDED';

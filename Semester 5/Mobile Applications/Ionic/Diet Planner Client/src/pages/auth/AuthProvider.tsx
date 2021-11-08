@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { getLogger } from '../core';
-import { login as loginApi } from './authApi';
+import { getLogger } from '../../core';
+import { login as loginApi } from '../../core/authApi';
 import {Plugins} from "@capacitor/core";
 
 const log = getLogger('AuthProvider');

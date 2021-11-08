@@ -1,7 +1,7 @@
 import axios from 'axios';
-import {authConfig, baseUrl, getLogger, withLogs} from '../core';
-import {MealProps} from "./MealCommon";
+import {authConfig, baseUrl, getLogger, withLogs} from './index';
 import {Plugins} from "@capacitor/core";
+import {MealProps} from "../pages/meal/Meal";
 
 // noinspection HttpUrlsUsage
 const mealUrl = `http://${baseUrl}/api/meal`;
@@ -34,6 +34,10 @@ export const createMeal: (token: string, meal: MealProps, networkStatus: any, pr
         });
     }
     return offlineActionGenerator()
+}
+
+export const uploadPhoto: (token: string, photo: string) => void = (token, photo) => {
+    axios.post(`${mealUrl}/photo`, photo, authConfig(token)).then(_ => {})
 }
 
 // @ts-ignore

@@ -3,8 +3,8 @@ import {Redirect} from 'react-router-dom';
 import {RouteComponentProps} from 'react-router';
 import {IonButton, IonContent, IonHeader, IonInput, IonLoading, IonPage, IonTitle, IonToolbar} from '@ionic/react';
 import {AuthContext} from './AuthProvider';
-import {getLogger} from '../core';
-import NetworkStatus from "../pages/NetworkStatus";
+import {getLogger} from '../../core';
+import NetworkStatus from "../network/NetworkStatus";
 
 const log = getLogger('Login');
 

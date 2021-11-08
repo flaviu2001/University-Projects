@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Redirect, Route } from 'react-router-dom';
 import { AuthContext, AuthState } from './AuthProvider';
-import { getLogger } from '../core';
+import { getLogger } from '../../core';
 
 const log = getLogger('Login');
 

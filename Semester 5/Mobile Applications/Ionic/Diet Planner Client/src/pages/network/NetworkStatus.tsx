@@ -1,4 +1,4 @@
-import {useNetwork} from "./UseNetwork";
+import {useNetwork} from "./useNetwork";
 import React from "react";
 import {IonItem} from "@ionic/react";
 

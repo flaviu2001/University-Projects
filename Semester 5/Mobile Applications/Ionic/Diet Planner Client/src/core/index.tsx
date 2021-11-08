@@ -1,3 +1,5 @@
+import dateFormat from "dateformat";
+
 export const baseUrl = 'localhost:3000';
 
 export const getLogger: (tag: string) => (...args: any) => void =
@@ -34,3 +36,15 @@ export const authConfig = (token?: string) => ({
         Authorization: `Bearer ${token}`,
     }
 });
+
+export const libraryDateFormat = "yyyy-mm-dd HH:mm";
+export const IonDateTimeDateFormat = "YYYY-MM-DD HH:mm";
+
+export function dateToString(date: Date): string {
+    return dateFormat(date, libraryDateFormat);
+}
+
+export function stringToDate(string: string | undefined | null): Date {
+    return new Date(string || new Date());
+}
+

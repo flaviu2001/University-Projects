@@ -1,6 +1,7 @@
 import Router from 'koa-router';
 import { broadcast } from "../utils";
 import mealStore from './store';
+import fs from "fs";
 
 export const router = new Router();
 
@@ -49,6 +50,17 @@ const createMeal = async (ctx, meal, response) => {
 };
 
 router.post('/', async ctx => await createMeal(ctx, ctx.request.body, ctx.response));
+
+router.post('/photo', async ctx => {
+    // noinspection JSUnresolvedVariable
+    const photo = ctx.request.body.data;
+    let buff = Buffer.from(photo, 'base64');
+    fs.writeFile('my-file.png', buff, (err) => {
+        if (err) throw err;
+        console.log('The binary data has been decoded and saved to my-file.png');
+    });
+    ctx.response.status = 200
+})
 
 router.put('/:id', async (ctx) => {
     const meal = ctx.request.body;
