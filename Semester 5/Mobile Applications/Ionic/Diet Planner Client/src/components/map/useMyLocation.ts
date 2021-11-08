@@ -27,7 +27,7 @@ export const useMyLocation = () => {
     };
 
     function updateMyPosition(source: string, position?: GeolocationPosition, error: any = undefined) {
-      console.log(source, position, error);
+      // console.log(source, position, error);
       if (!cancelled) {
         setState({ ...state, position: position || state.position, error });
       }

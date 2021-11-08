@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {authConfig, baseUrl, getLogger, withLogs} from './index';
 import {Plugins} from "@capacitor/core";
-import {MealProps} from "../pages/meal/Meal";
+import {MealProps} from "../components/meal/Meal";
 
 // noinspection HttpUrlsUsage
 const mealUrl = `http://${baseUrl}/api/meal`;

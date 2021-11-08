@@ -1,8 +1,8 @@
-import React, {useState} from "react";
+import React from "react";
 import {IonButton, IonCard, IonItem, IonTitle} from "@ionic/react";
 import {usePhotoGallery} from "../photo/usePhotoGallery";
 import {dateToString} from "../../core";
-import {MyMap} from "../map/MyMap";
+import {MapModal} from "../modal/MapModal";
 
 interface MealPropsExt extends MealProps {
     onEdit: (_id?: string) => void;
@@ -20,10 +20,10 @@ export interface MealProps {
 
 const Meal: React.FC<MealPropsExt> = ({_id, name, calories, dateAdded, vegetarian, onEdit, latitude, longitude}) => {
     const {photos} = usePhotoGallery();
-    const [showMap, setShowMap] = useState<boolean>(false);
+    // const [showMap, setShowMap] = useState<boolean>(false);
     let filteredPhotos = photos.filter(it => it.filepath.startsWith(`${name}=>`))
     return (
-        <IonCard>
+        <IonCard class="meal-card">
             <IonTitle>
                 {name}
             </IonTitle>
@@ -42,17 +42,20 @@ const Meal: React.FC<MealPropsExt> = ({_id, name, calories, dateAdded, vegetaria
             <IonItem>It is {vegetarian ? "" : "not"} vegetarian</IonItem>
             <IonButton onClick={() => onEdit(_id)}>Edit</IonButton>
             {latitude && longitude &&
-            <IonButton onClick={() => {
-                setShowMap(!showMap)
-            }}>Show map</IonButton>
+            <MapModal latitude={latitude} longitude={longitude}/>
             }
-            {latitude && longitude && showMap &&
-            <div style={{width: "60%"}}>
-                <MyMap
-                    lat={latitude}
-                    lng={longitude}
-                />
-            </div>}
+            {/*{latitude && longitude &&*/}
+            {/*<IonButton onClick={() => {*/}
+            {/*    setShowMap(!showMap)*/}
+            {/*}}>Show map</IonButton>*/}
+            {/*}*/}
+            {/*{latitude && longitude && showMap &&*/}
+            {/*<div style={{width: "60%"}}>*/}
+            {/*    <MyMap*/}
+            {/*        lat={latitude}*/}
+            {/*        lng={longitude}*/}
+            {/*    />*/}
+            {/*</div>}*/}
         </IonCard>
     );
 };

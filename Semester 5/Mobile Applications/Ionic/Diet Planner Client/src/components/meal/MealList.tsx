@@ -1,13 +1,14 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {RouteComponentProps} from 'react-router';
 import {
+    createAnimation,
     IonButton,
     IonButtons,
     IonContent,
     IonFab,
     IonFabButton,
     IonHeader,
-    IonIcon, IonInfiniteScroll, IonInfiniteScrollContent, IonPage, IonSearchbar,
+    IonIcon, IonInfiniteScroll, IonInfiniteScrollContent, IonList, IonPage, IonSearchbar,
     IonTitle,
     IonToolbar, useIonViewWillEnter
 } from '@ionic/react';
@@ -26,6 +27,8 @@ const MealList: React.FC<RouteComponentProps> = ({history}) => {
     const [items, setItems] = useState<MealProps[]>([]);
     const [hasMore, setHasMore] = useState<boolean>(true);
     const [hasFetched, setHasFetched] = useState<boolean>(false);
+
+    useEffect(simpleAnimation, [])
 
     if (!hasFetched) {
         if (meals) {
@@ -67,6 +70,18 @@ const MealList: React.FC<RouteComponentProps> = ({history}) => {
         setSearchText?.(e.detail.value!!)
     }
 
+    function simpleAnimation() {
+        const el = document.querySelectorAll('.meal-list');
+        if (el) {
+            const animation = createAnimation()
+                .addElement(el)
+                .duration(5000)
+                .iterations(1)
+                .fromTo('transform', 'translateX(50%)', 'translateX(0px)');
+            animation.play();
+        }
+    }
+
     return (
         <IonPage>
             <IonHeader>
@@ -82,9 +97,11 @@ const MealList: React.FC<RouteComponentProps> = ({history}) => {
             </IonHeader>
             <IonContent id="dude">
                 <IonSearchbar value={searchText} onIonChange={e => handleTextChange(e)}/>
-                {items.map(({_id, name, calories, dateAdded, vegetarian, latitude, longitude}) =>
-                    <Meal key={_id} _id={_id} name={name} calories={calories} dateAdded={dateAdded}
-                          vegetarian={vegetarian} latitude={latitude} longitude={longitude} onEdit={id => history.push(`/meal/${id}`)}/>)}
+                <IonList class="meal-list">
+                    {items.map(({_id, name, calories, dateAdded, vegetarian, latitude, longitude}) =>
+                        <Meal key={_id} _id={_id} name={name} calories={calories} dateAdded={dateAdded}
+                              vegetarian={vegetarian} latitude={latitude} longitude={longitude} onEdit={id => history.push(`/meal/${id}`)}/>)}
+                </IonList>
                 <IonInfiniteScroll threshold="0px" disabled={!hasMore}
                                    onIonInfinite={(e: CustomEvent<void>) => searchNext(e)}>
                     <IonInfiniteScrollContent
