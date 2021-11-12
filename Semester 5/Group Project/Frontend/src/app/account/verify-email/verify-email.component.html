@@ -1,0 +1,20 @@
+<div class="container_center">
+  <mat-card>
+
+    <div mat-card-avatar class="logo"> </div>
+    <mat-card-title> You are close to have fun: <b> verify your email! </b> </mat-card-title>
+    <mat-card-subtitle> Please check your email and type the verification code below </mat-card-subtitle>
+
+    <mat-card-content>
+      <mat-form-field appearance="outline">
+        <mat-label> Enter your verification code </mat-label>
+        <input matInput placeholder="Verification code" #code >
+      </mat-form-field>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="verifyEmail(code.value)"> VERIFY </button>
+    </mat-card-actions>
+
+  </mat-card>
+</div>

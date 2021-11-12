@@ -1,0 +1,23 @@
+.mat-card {
+  width: 25%;
+  box-shadow: black 1px 10px 20px 10px;
+}
+
+mat-card-title, mat-card-subtitle {
+  text-align: center;
+}
+
+mat-card-content {
+  margin-top: 10%;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+mat-card-actions, mat-card-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10%;
+}

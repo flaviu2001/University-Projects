@@ -1,0 +1,82 @@
+<div class="container_center">
+
+  <mat-card>
+
+    <div mat-card-avatar class="logo"> </div>
+    <mat-card-title> Welcome to Arcane Programming! </mat-card-title>
+    <mat-card-subtitle> Are you ready to create an account? </mat-card-subtitle>
+
+  <mat-card-content>
+    <mat-form-field hintLabel="Max 20 characters" appearance="fill">
+      <mat-label> Enter your first name </mat-label>
+      <input matInput maxlength="20" placeholder="First name" #first_name
+             [formControl]="this.utils.firstName" required>
+      <mat-hint align="end"> {{first_name.value?.length || 0}}/20 </mat-hint>
+      <mat-error *ngIf="this.utils.firstName.invalid"> {{this.utils.getErrorMessageForFirstName()}} </mat-error>
+    </mat-form-field>
+
+    <mat-form-field hintLabel="Max 20 characters" appearance="fill">
+      <mat-label> Enter your last name </mat-label>
+      <input matInput maxlength="20" placeholder="Last name" #last_name
+             [formControl]="this.utils.lastName" required>
+      <mat-hint align="end"> {{last_name.value?.length || 0}}/20 </mat-hint>
+      <mat-error *ngIf="this.utils.lastName.invalid"> {{this.utils.getErrorMessageForLastName()}} </mat-error>
+    </mat-form-field>
+
+    <mat-form-field hintLabel="Max 20 characters" appearance="fill">
+      <mat-label> Enter your username </mat-label>
+      <input matInput maxlength="20" placeholder="Username" #user_name
+             [formControl]="this.utils.username" required>
+      <mat-hint align="end"> {{user_name.value?.length || 0}}/20 </mat-hint>
+      <mat-error *ngIf="this.utils.username.invalid"> {{this.utils.getErrorMessageForUsername()}} </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label> Enter your email </mat-label>
+      <input matInput placeholder="example@example.com" #Email
+             [formControl]="this.utils.email" required>
+      <mat-error *ngIf="this.utils.email.invalid"> {{this.utils.getErrorMessageForEmail()}} </mat-error>
+    </mat-form-field>
+
+    <mat-form-field hintLabel="Let us know you! :)" appearance="fill">
+      <mat-label> Bio </mat-label>
+      <textarea matInput #bio> </textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label> Enter password </mat-label>
+      <input matInput placeholder="Password"  #Password
+             [type]="this.utils.hidePassword? 'password': 'text'"
+             [formControl]="this.utils.password" required>
+      <button mat-icon-button matSuffix (click)="this.utils.hidePassword = !this.utils.hidePassword">
+        <mat-icon> {{this.utils.hidePassword ? 'visibility_off' : 'visibility'}} </mat-icon>
+      </button>
+      <mat-error *ngIf="this.utils.password.invalid"> {{this.utils.getErrorMessageForPassword()}} </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label> Re-enter password </mat-label>
+      <input matInput placeholder="Re-enter password" #ReenterPassword
+             [type]="this.utils.hideReenterPassword? 'password': 'text'"
+             [formControl]="this.utils.reenterPassword" required>
+      <button mat-icon-button matSuffix (click)="this.utils.hideReenterPassword = !this.utils.hideReenterPassword">
+        <mat-icon> {{this.utils.hideReenterPassword ? 'visibility_off' : 'visibility'}} </mat-icon>
+      </button>
+      <mat-error *ngIf="this.utils.reenterPassword.invalid"> {{this.utils.getErrorMessageForRPassword()}} </mat-error>
+    </mat-form-field>
+
+    <mat-card-actions>
+      <button mat-raised-button color="primary"
+              (click)="register(first_name.value, last_name.value, user_name.value, Email.value, bio.value,
+              Password.value, ReenterPassword.value)"> REGISTER </button>
+    </mat-card-actions>
+  </mat-card-content>
+
+  <mat-card-footer>
+    <p> <b> Do you have an account? </b>
+      <a mat-button (click)="goToLoginPage()" color="primary"> <b> Login! </b> </a>
+    </p>
+  </mat-card-footer>
+
+  </mat-card>
+</div>

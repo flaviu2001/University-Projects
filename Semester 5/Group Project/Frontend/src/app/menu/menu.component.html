@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-sm navbar-dark fixed-top">
+  <a class="navbar-brand">
+    <span> Arcane Programming </span>
+  </a>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav">
+      <li class="nav-item active"> <a class="nav-link" (click)="navigateToHomePage()"> HOME </a>  </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+          STORE
+        </a>
+
+        <div class="dropdown-menu">
+          <a class="dropdown-item" (click)="navigateToStorePage()"> Store </a>
+          <a class="dropdown-item" (click)="navigateToWishListPage()"> WishList </a>
+        </div>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+          MY ACCOUNT
+        </a>
+
+        <div class="dropdown-menu">
+          <a class="dropdown-item" (click)="navigateToProfilePage()"> View Profile </a>
+          <a class="dropdown-item" (click)="navigateToFriendsPage()"> Friends </a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" (click)="navigateToChangeAccountDetailsPage()"> Change account details </a>
+        </div>
+      </li>
+    </ul>
+
+    <span class="navbar-text" style="margin-left: 30px;">
+      Welcome, {{ this.username }}!
+    </span>
+  </div>
+
+  <span class="navbar-text" style="margin-right: 30px;">
+    {{ this.utils.setDate() }}
+  </span>
+
+  <button class="btn btn-outline-light" (click)="logout()">
+    <i class="fa fa-sign-out"> </i>
+    Log out
+  </button>
+</nav>

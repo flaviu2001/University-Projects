@@ -1,0 +1,19 @@
+mat-card-actions, mat-card-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mat-card {
+  width: 30%;
+  box-shadow: black 1px 10px 20px 10px;
+}
+
+mat-card-title, mat-card-subtitle {
+  text-align: center;
+}
+
+mat-form-field {
+  width: 100%;
+}
+

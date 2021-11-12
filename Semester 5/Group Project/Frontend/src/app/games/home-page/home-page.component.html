@@ -1,0 +1,60 @@
+<app-menu> </app-menu>
+
+<div style="margin-top: 100px;">
+  <h1 style="color: rebeccapurple; text-align: center;"> FEATURED & RECOMMENDED </h1>
+  <div class="divider">
+    <mat-divider style="width: 50%;"> </mat-divider>
+  </div>
+</div>
+
+<div class="jumbotron recommended-bar">
+  <div id="demo" class="carousel" data-ride="carousel">
+    <ul class="carousel-indicators">
+      <li data-target="#demo" data-slide-to="0" class="active"> </li>
+      <li data-target="#demo" data-slide-to="1"> </li>
+      <li data-target="#demo" data-slide-to="2"> </li>
+    </ul>
+
+    <div class="carousel-inner" role="listbox">
+      <div class="carousel-item active">
+        <img src="{{this.games[9].pictureUrl}}" alt="{{this.games[9].title}}" style="width: 100%; height: 100%">
+
+        <div class="carousel-caption">
+          <h1 style="color: yellow;"> TOP SELLER </h1>
+          <p> <b> {{this.games[9].price}}€ </b> </p>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <img src="{{this.games[10].pictureUrl}}" alt="{{this.games[10].title}}" style="width: 100%; height: 100%">
+
+        <div class="carousel-caption">
+          <h1> Get it now! </h1>
+          <p>
+            <b style="color: yellow;"> -5% </b>
+            <b> {{this.games[10].price}}€ </b>
+          </p>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <img src="{{this.games[11].pictureUrl}}" alt="{{this.games[11].title}}" style="width: 100%; height: 100%">
+
+        <div class="carousel-caption">
+          <h1> Now available! </h1>
+          <h3> {{this.games[11].price}}€ </h3>
+        </div>
+      </div>
+    </div>
+
+    <a class="carousel-control-prev" href="#demo" data-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </a>
+
+    <a class="carousel-control-next" href="#demo" data-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </a>
+  </div>
+</div>
+
+<app-store-page> </app-store-page>

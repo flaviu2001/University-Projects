@@ -1,0 +1,36 @@
+<div class="container_center">
+  <mat-card>
+
+    <div mat-card-avatar class="logo"> </div>
+    <mat-card-title> Arcane Programming </mat-card-title>
+    <mat-card-subtitle> Adventure starts playing! </mat-card-subtitle>
+
+    <mat-card-content>
+      <mat-form-field appearance="fill">
+        <mat-label> Enter your username </mat-label>
+        <input matInput placeholder="Username" #username>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label> Enter your password </mat-label>
+        <input matInput placeholder="Password" #password
+               [type]="hide? 'password': 'text'" >
+        <button mat-icon-button matSuffix (click)="hide = !hide">
+          <mat-icon> {{hide ? 'visibility_off' : 'visibility'}} </mat-icon>
+        </button>
+      </mat-form-field>
+
+      <a mat-button href="" target="_blank"> <b> <u> Forget password? Click me! </u> </b> </a>
+
+      <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="login(username.value, password.value)"> LOGIN </button>
+      </mat-card-actions>
+    </mat-card-content>
+
+    <mat-card-footer>
+      <p> <b> Do not have an account? </b>
+        <a mat-button (click)="goToRegisterPage()" color="primary"> <b> Sign up! </b> </a>
+      </p>
+    </mat-card-footer>
+  </mat-card>
+</div>

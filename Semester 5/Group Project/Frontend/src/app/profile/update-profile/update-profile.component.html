@@ -1,0 +1,69 @@
+<app-menu> </app-menu>
+
+<div class="container_center">
+
+  <mat-card>
+
+    <div mat-card-avatar class="logo"> </div>
+    <mat-card-title> Hello, {{this.username}}! </mat-card-title>
+    <mat-card-subtitle> Your profile details </mat-card-subtitle>
+
+    <mat-card-content>
+      <mat-form-field hintLabel="Max 20 characters" appearance="fill">
+        <mat-label> Enter your first name </mat-label>
+        <input matInput maxlength="20" value="{{this.user.firstName}}" #first_name
+               [formControl]="this.utils.firstName" required>
+        <mat-hint align="end"> {{first_name.value?.length || 0}}/20 </mat-hint>
+        <mat-error *ngIf="this.utils.firstName.invalid"> {{this.utils.getErrorMessageForFirstName()}} </mat-error>
+      </mat-form-field>
+
+      <mat-form-field hintLabel="Max 20 characters" appearance="fill">
+        <mat-label> Enter your last name </mat-label>
+        <input matInput maxlength="20" value="{{this.user.lastName}}" #last_name
+               [formControl]="this.utils.lastName" required>
+        <mat-hint align="end"> {{last_name.value?.length || 0}}/20 </mat-hint>
+        <mat-error *ngIf="this.utils.lastName.invalid"> {{this.utils.getErrorMessageForLastName()}} </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label> Enter your email </mat-label>
+        <input matInput value="{{this.user.email}}" #Email
+               [formControl]="this.utils.email" required>
+        <mat-error *ngIf="this.utils.email.invalid"> {{this.utils.getErrorMessageForEmail()}} </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label> Bio </mat-label>
+        <textarea matInput #bio value="{{this.user.bio}}"> </textarea>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label> Enter your current password </mat-label>
+        <input matInput placeholder="Current password"  #Password
+               [type]="this.utils.hidePassword? 'password': 'text'"
+               [formControl]="this.utils.password" required>
+        <button mat-icon-button matSuffix (click)="this.utils.hidePassword = !this.utils.hidePassword">
+          <mat-icon> {{this.utils.hidePassword ? 'visibility_off' : 'visibility'}} </mat-icon>
+        </button>
+        <mat-error *ngIf="this.utils.password.invalid"> {{this.utils.getErrorMessageForPassword()}} </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label> Enter your new password </mat-label>
+        <input matInput placeholder="New password" #NewPassword
+               [type]="this.utils.hideNewPassword? 'password': 'text'"
+               [formControl]="this.utils.newPassword" required>
+        <button mat-icon-button matSuffix (click)="this.utils.hideNewPassword = !this.utils.hideNewPassword">
+          <mat-icon> {{this.utils.hideNewPassword ? 'visibility_off' : 'visibility'}} </mat-icon>
+        </button>
+        <mat-error *ngIf="this.utils.newPassword.invalid"> {{this.utils.getErrorMessageForNewPassword()}} </mat-error>
+      </mat-form-field>
+
+      <mat-card-actions>
+        <button mat-raised-button color="primary"
+                (click)="updateProfile(Password.value, NewPassword.value,
+                bio.value, last_name.value, first_name.value, Email.value)"> UPDATE </button>
+      </mat-card-actions>
+    </mat-card-content>
+  </mat-card>
+</div>

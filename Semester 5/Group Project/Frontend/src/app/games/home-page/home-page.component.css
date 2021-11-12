@@ -1,0 +1,64 @@
+.jumbotron {
+  border-radius: 10%;
+  height: 50%;
+}
+
+.recommended-bar {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+img {
+  border-radius: 10%;
+}
+
+.carousel {
+  width: 50%;
+}
+
+.carousel .carousel-indicators li {
+  background-color: rebeccapurple;
+}
+.carousel .carousel-indicators li.active
+{
+  background-color: yellow;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  height: 100px;
+  width: 100px;
+  background-size: 100%, 100%;
+  background-image: none;
+}
+
+.carousel-control-next-icon:after
+{
+  content: '>';
+  font-size: 50px;
+  color: rebeccapurple;
+}
+
+.carousel-control-prev-icon:after {
+  content: '<';
+  font-size: 50px;
+  color: rebeccapurple;
+}
+
+.carousel-caption {
+  background-color: black;
+  opacity: 70%;
+  margin-bottom: 15px;
+}
+
+h1, h3 {
+  color: white;
+}
+
+.divider {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}

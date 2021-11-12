@@ -1,0 +1,63 @@
+<app-menu> </app-menu>
+
+<div class="games-bar">
+  <h1 class="game-bar-h1"> GAMES </h1>
+  <div class="divider">
+    <mat-divider style="width: 50%;"> </mat-divider>
+  </div>
+
+  <mat-grid-list cols="3" rowHeight="450px">
+    <mat-grid-tile *ngFor="let game of this.pagedList">
+
+      <div>
+        <mat-card class="game-card">
+          <img mat-card-image src="{{ game.pictureUrl }}" alt="{{ game.title }}">
+
+          <mat-card-content>
+            <h1 class="game-bar-h1"> {{ game.title }} </h1>
+
+            <ng-container [ngTemplateOutlet]='game.id % 4 == 0 ? thenBlock : elseBlock'
+                          [ngTemplateOutletContext]="{id:game.id}"> </ng-container>
+
+            <ng-template #thenBlock let-number='id'>
+              <p>
+                <b style="color: yellow;"> -{{ (game.id + 1) * 5 }}% </b>
+                <b> {{ game.price }}€ </b>
+              </p>
+            </ng-template>
+
+            <ng-template #elseBlock let-number='id'>
+              <p>
+                <b> {{ game.price }}€ </b>
+              </p>
+            </ng-template>
+          </mat-card-content>
+
+          <mat-card-actions style="display: flex; align-content: center; justify-content: center;">
+            <button mat-fab
+                    color="primary"
+                    aria-label="See details"
+                    matTooltip="Info about the game"
+                    matTooltipClass="example-tooltip-red"
+                    class="example-button">
+              <mat-icon> info </mat-icon>
+            </button>
+
+            <button mat-fab
+                    color="primary"
+                    aria-label="Purchase game"
+                    matTooltip="Purchase game"
+                    class="example-button">
+              <mat-icon> add </mat-icon>
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <mat-paginator [length]="this.games.length"
+                 [pageSize]="3" [pageSizeOptions]="[3, 6]" (page)="pageEvent = $event; onPaginateChange($event)" showFirstLastButtons>
+  </mat-paginator>
+</div>
