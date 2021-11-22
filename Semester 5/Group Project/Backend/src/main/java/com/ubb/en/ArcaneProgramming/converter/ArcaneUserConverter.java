@@ -17,6 +17,7 @@ public class ArcaneUserConverter {
             arcaneUserDto.setEmailVerified("true");
         else
             arcaneUserDto.setEmailVerified("false");
+        arcaneUserDto.setAvatarUrl(user.getAvatarUrl());
         return arcaneUserDto;
     }
 
@@ -32,6 +33,7 @@ public class ArcaneUserConverter {
                 null,
                 null,
                 arcaneUserDto.getEmailVerified().equals("true"),
-                arcaneUserDto.getBio());
+                arcaneUserDto.getBio(),
+                arcaneUserDto.getAvatarUrl());
     }
 }

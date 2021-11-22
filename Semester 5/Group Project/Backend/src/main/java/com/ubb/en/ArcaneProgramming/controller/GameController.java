@@ -27,6 +27,17 @@ public class GameController {
         return new ResponseEntity<>(GameConverter.convertToDto(gameService.findGame(id)), HttpStatus.OK);
     }
 
+
+    @GetMapping("/fromUser/{name}")
+    public ResponseEntity<List<GameDto>> getGamesFromUser(@PathVariable String name) {
+        return new ResponseEntity<>(gameService.getGamesOwnedByUser(name).stream().map(GameConverter::convertToDto).collect(Collectors.toList()), HttpStatus.OK);
+    }
+
+    @GetMapping("/getGameByTitle/{title}")
+    public ResponseEntity<GameDto> getGameByTitle(@PathVariable String title) {
+        return new ResponseEntity<>(GameConverter.convertToDto(gameService.findGameByTitle(title)), HttpStatus.OK);
+    }
+
     @PostMapping("/")
     public ResponseEntity<HttpStatus> addGame(@RequestBody GameDto gameDto) {
         gameService.addGame(GameConverter.convertToModel(gameDto));

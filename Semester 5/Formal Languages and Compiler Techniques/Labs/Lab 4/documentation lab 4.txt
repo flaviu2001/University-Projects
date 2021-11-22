@@ -1,0 +1,21 @@
+In this laboratory I created another class FiniteAutomaton which implements operations on an automaton read from a file.
+In its constructor I parse the fa.in file which contains the states, alphabet, transitions, out states and input state of the automaton. I parse them by hand using built in kotlin method for string parsing.
+The method checkAccepted returns true if the provided word is accepted by the automaton. The method getNextAccepted returns the longest accepted prefix of a given word, this is used to replace the regexes that match int constant and identifier in the lexical analyser.
+The data structure used to store the finite automaton is a simple list for states, one for the alphabet, one for the output states and one for the transitions. The transition is a class in itself which just contains three variables. Another variable mantains the input state
+The checkAccepted method is implemented by starting in the initial state and for each letter of a given word I check if there is a transition that starts from my state and its label is the letter in the word. If no transition is found when required or the final state is not an output state then the word is not accepted, otherwise it is.
+
+
+inputFile is the ebnf form of fa.in
+
+non_zero_digit = 1|2| .. |9
+digit = 0|1|..|9
+number = non_zero_digit{digit}
+letter = a|b|..|z|A|B..|Z
+character = letter | digit
+firstLine = "states" "=" "{" {character} {"," character} "}"
+secondLine = {character}
+thirdLine = "out_states" "=" "{" {character} {"," character} "}"
+fourthLine = "alphabet" "=" "{" {character} {"," character} "}"
+triple = "(" {character} "," {character} "," {character} ")"
+fifthLine = "transitions" "=" "{" triple {";" triple} "}"
+inputFile = firstLine "\n" secondLine "\n" thirdLine "\n" fourthLine "\n" fifthLine 

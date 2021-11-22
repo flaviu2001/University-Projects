@@ -1,0 +1,11 @@
+.btn-outline-, .btn-outline-:hover, .btn-outline-:active, .btn-outline-:visited {
+  color: rebeccapurple !important;
+}
+
+.btn-outline- {
+  border-color: rebeccapurple !important;
+}
+
+button {
+  margin-left: 10px;
+}

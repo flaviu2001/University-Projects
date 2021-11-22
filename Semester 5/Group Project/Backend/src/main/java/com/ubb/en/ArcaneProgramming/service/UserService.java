@@ -33,6 +33,7 @@ public class UserService {
             user.setBio(arcaneUser.getBio());
             user.setHashedPassword(arcaneUser.getHashedPassword());
             user.setSalt(arcaneUser.getSalt());
+            user.setAvatarUrl(arcaneUser.getAvatarUrl());
         });
         Optional<ArcaneUser> arcaneUserOptional = userRepository.findById(arcaneUser.getID());
         return arcaneUserOptional.orElse(null);

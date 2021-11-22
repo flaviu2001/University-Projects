@@ -29,7 +29,7 @@ export class MenuComponent implements OnInit {
   }
 
   navigateToProfilePage() {
-
+    this.router.navigate([`profile/${this.username}`]).then(_ => {});
   }
 
   navigateToFriendsPage() {

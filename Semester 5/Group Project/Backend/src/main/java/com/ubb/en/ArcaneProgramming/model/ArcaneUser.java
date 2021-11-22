@@ -33,4 +33,6 @@ public class ArcaneUser {
     private Boolean emailVerified;
 
     private String bio;
+
+    private String avatarUrl;
 }

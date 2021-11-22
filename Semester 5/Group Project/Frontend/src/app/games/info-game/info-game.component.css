@@ -1,0 +1,119 @@
+.myContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ecdffa;
+}
+
+.container {
+  width: 50%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 5% 10% 40% 5% 5% 5% 30%;
+  grid-template-columns: 5% 30% 30% 30% 5%;
+  grid-template-areas:
+  ". . . . ."
+  ". a . e ."
+  ". b b c ."
+  ". . d . ."
+  ". . . . ."
+  ". g . . ."
+  ". f f f .";
+  background: white;
+}
+
+.title {
+  color: rebeccapurple;
+  text-align: center;
+}
+
+.item1 {
+  margin-top: 100px;
+  grid-area: a;
+  justify-self: start;
+  align-self: center;
+}
+
+.item2 {
+  grid-area: b;
+  justify-content: center;
+  align-self: center;
+}
+
+.item2 img {
+  height: 100%;
+  width: 100%;
+}
+
+.item3 {
+  grid-area: c;
+  justify-self: center;
+  align-self: center;
+  text-align: center;
+  margin-left: 50px;
+}
+
+.item4 {
+  grid-area: d;
+  justify-self: center;
+  align-self: start;
+  padding: 16px;
+}
+
+ul {
+  margin-left: 20px;
+}
+
+.item5 {
+  margin-top: 100px;
+  grid-area: e;
+  justify-self: end;
+  align-self: center;
+}
+
+.item6 {
+  grid-area: g;
+}
+
+.item7 {
+  grid-area: f;
+}
+
+.rating-list li {
+  float: right;
+  color: #ecdffa;
+  padding-left: 5px;
+
+}
+
+.rating-list li:hover,
+.rating-list li:hover ~ li, .rating-list li.selected {
+  color: rebeccapurple;
+}
+
+.rating-list {
+  display: inline-block;
+  list-style: none;
+}
+
+.btn-outline-, .btn-outline-:hover, .btn-outline-:active, .btn-outline-:visited {
+  color: rebeccapurple !important;
+}
+
+.btn-outline- {
+  border-color: rebeccapurple !important;
+}
+
+.container_review_text {
+  border: 1px solid rebeccapurple;
+  border-radius: 5px;
+  padding: 5px;
+  text-align: center;
+}
+
+.review_text {
+  margin-left: 5px;
+  margin-top: 10px;
+}

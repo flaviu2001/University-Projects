@@ -1,0 +1,15 @@
+<h1 mat-dialog-title style="color: rebeccapurple; text-align: center;"> Hi, {{ this.username }}! </h1>
+
+<div mat-dialog-content style="text-align: center">
+  <p> Your review is {{ data.numberOfStars }} <i class="fa fa-star"></i> </p>
+  <p> Would you like to say something? We want to know your opinion! </p>
+  <mat-form-field appearance="fill">
+    <mat-label> Review </mat-label>
+    <input matInput #text>
+  </mat-form-field>
+</div>
+
+<div mat-dialog-actions>
+  <button class="btn btn-outline-" (click)="onNoClick()"> No Thanks </button>
+  <button class="btn btn-outline-" (click)="sendReview(text.value)"> Send Review </button>
+</div>

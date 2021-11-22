@@ -1,0 +1,37 @@
+<app-menu></app-menu>
+
+<div class="bg-div">
+  <div class="big-div">
+    <mat-card class="profile-view-container">
+      <div class="left-to-right">
+        <img height="256px" width="256px" class="profile-header-img" src="{{user.avatarUrl}}" alt="{{username}}"/>
+        <mat-divider [vertical]="true"></mat-divider>
+        <div class="titles-to-the-right-of-avatar">
+          <mat-card-title class="profile-title">{{user.userName}}</mat-card-title>
+          <mat-card-subtitle class="profile-title">Also goes by {{user.firstName}} {{user.lastName}}</mat-card-subtitle>
+          <mat-card-content>
+            <mat-card-subtitle>What {{user.userName}} has to say about himself</mat-card-subtitle>
+            {{user.bio}}
+          </mat-card-content>
+        </div>
+        <mat-card-content class="content-on-the-right">
+          <mat-label class="score-font">Games owned: {{this.games.length}}</mat-label>
+          <br>
+          <br>
+          <mat-label class="score-font">Reviews written : 10</mat-label>
+        </mat-card-content>
+      </div>
+      <mat-divider></mat-divider>
+      <mat-grid-list cols="3" class="games">
+        <mat-grid-tile *ngFor="let game of this.games">
+          <mat-card (click)="goToInfoGamePage(game.title)" class="game-card">
+            <img mat-card-image src="{{ game.pictureUrl }}" alt="{{ game.title }}">
+            <mat-card-content>
+              <h1 class="game-bar-h1"> {{ game.title }} </h1>
+            </mat-card-content>
+          </mat-card>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-card>
+  </div>
+</div>

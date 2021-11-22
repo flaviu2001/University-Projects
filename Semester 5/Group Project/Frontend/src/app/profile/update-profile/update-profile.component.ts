@@ -26,13 +26,13 @@ export class UpdateProfileComponent implements OnInit {
       });
   }
 
-  updateProfile(currentPassword: string, newPassword: string, bio: string, lastName: string, firstName: string, email: string) {
+  updateProfile(currentPassword: string, newPassword: string, bio: string, lastName: string, firstName: string, email: string, avatar: string) {
 /*    if(currentPassword !== this.user.password) {
       window.alert('Your current password is wrong!');
       return;
     }*/
 
-    let updatedUser = new User(firstName, lastName, this.username, email, bio, newPassword, 'false');
+    let updatedUser = new User(firstName, lastName, this.username, email, bio, newPassword, 'false', avatar);
     this.profileService.updateProfile(this.username, currentPassword, updatedUser).subscribe(hasChanged => {
       if (hasChanged) {
         localStorage.clear();

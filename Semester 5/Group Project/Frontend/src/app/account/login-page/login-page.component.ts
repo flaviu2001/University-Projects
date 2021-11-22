@@ -20,7 +20,6 @@ export class LoginPageComponent implements OnInit {
     this.loginService.login(username, password).subscribe(
       (user) => {
         if(user) {
-          console.log(user);
           if (user.emailVerified == "true") {
             this.goToHomePage();
             localStorage.setItem('username', username);

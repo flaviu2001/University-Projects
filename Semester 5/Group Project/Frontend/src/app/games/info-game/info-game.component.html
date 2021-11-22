@@ -1,0 +1,88 @@
+<app-menu> </app-menu>
+
+<div class="myContainer">
+  <div class="container">
+    <div class="item1">
+      <h1 class="title"> <i> {{ this.title }} </i> </h1>
+    </div>
+
+    <div class="item5">
+      <button class="btn btn-outline-" (click)="goToPurchaseGamePage(this.title)">
+        <i class="fa fa-plus-circle"> </i>
+        Purchase game
+      </button>
+    </div>
+
+    <div class="item2">
+      <img src="{{ this.game.pictureUrl }}" alt="{{ this.title }}">
+    </div>
+
+    <div class="item3" style="margin-top: 20px">
+      <i> {{ this.game.description }} </i>
+      <br>
+      <b> PRICE: {{ this.game.price }}€ </b>
+    </div>
+
+    <div class="item4">
+      <b style="color: rebeccapurple"> How much do you like this game? </b>
+      <ul class="list-inline rating-list" *ngFor="let star of stars" style="display: inline-block" >
+        <li (click)="countStar(star)"
+            [ngClass]="{'selected': (star <= selectedValue)}">
+          <i class="fa fa-star"></i>
+        </li>
+      </ul>
+    </div>
+
+    <div class="item6">
+      <h2 style="color: rebeccapurple;"> <u> Reviews </u> </h2>
+    </div>
+
+    <div class="item7">
+      <p *ngIf="this.reviews.length == 0"> No reviews yet </p>
+
+      <div *ngIf="this.reviews.length > 0">
+        <mat-card *ngFor="let review of this.reviews">
+
+          <mat-card-header>
+            <mat-card-title>
+              <div class="row">
+                <div class="col">
+                  {{ this.review.arcaneUserDto.userName }}
+                </div>
+
+                <div class="col">
+                  <mat-chip-list aria-label="Review">
+                    <mat-chip *ngIf="this.review.numberOfStars < 3"
+                              color="warn" selected style="width: 170px; margin-left: 300px">
+                      <i class="fa fa-thumbs-down"></i> <p class="review_text"> Not recommended </p>
+                    </mat-chip>
+
+                    <mat-chip *ngIf="this.review.numberOfStars >= 3 && this.review.numberOfStars < 5"
+                              color="primary" selected style="width: 170px; margin-left: 300px">
+                      <i class="fa fa-thumbs-up"></i> <p class="review_text"> Recommended </p>
+                    </mat-chip>
+
+                    <mat-chip *ngIf="this.review.numberOfStars == 5"
+                              color="accent" selected style="width: 170px; margin-left: 300px">
+                      <i class="fa fa-heart"> </i> <p class="review_text"> The best </p>
+                    </mat-chip>
+                  </mat-chip-list>
+                </div>
+              </div>
+            </mat-card-title>
+
+            <mat-card-subtitle>
+              <p> {{ this.review.numberOfStars }} <i class="fa fa-star"></i> </p>
+            </mat-card-subtitle>
+          </mat-card-header>
+
+          <mat-card-content>
+            <div class="container_review_text">
+              {{ this.review.text }}
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

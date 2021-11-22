@@ -34,7 +34,8 @@
           </mat-card-content>
 
           <mat-card-actions style="display: flex; align-content: center; justify-content: center;">
-            <button mat-fab
+            <button (click)="goToInfoGamePage(game.title)"
+                    mat-fab
                     color="primary"
                     aria-label="See details"
                     matTooltip="Info about the game"
@@ -43,7 +44,8 @@
               <mat-icon> info </mat-icon>
             </button>
 
-            <button mat-fab
+            <button (click)="goToPurchaseGamePage(game.title)"
+                    mat-fab
                     color="primary"
                     aria-label="Purchase game"
                     matTooltip="Purchase game"

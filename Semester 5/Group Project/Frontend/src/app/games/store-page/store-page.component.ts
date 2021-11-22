@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from "@angular/material/paginator";
+import { Router } from "@angular/router";
 
 import { Game } from "../../common/models/game.model";
 import { GameService } from "../../common/services/game.service";
@@ -15,7 +16,7 @@ export class StorePageComponent implements OnInit {
   games: Game[] = [];
   pagedList: Game[] = [];
 
-  constructor(private gameService: GameService) {
+  constructor(private gameService: GameService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -35,6 +36,21 @@ export class StorePageComponent implements OnInit {
     }
 
     this.pagedList = this.games.slice(startIndex, endIndex);
-    console.log(this.pagedList);
+  }
+
+  goToInfoGamePage(title: string) {
+    this.router.navigate(['infoGame'], {
+      queryParams: {
+        title: title
+      }
+    }).then(_ => {});
+  }
+
+  goToPurchaseGamePage(title: string) {
+    this.router.navigate(['purchaseGame'], {
+      queryParams: {
+        title: title
+      }
+    }).then(_ => {});
   }
 }

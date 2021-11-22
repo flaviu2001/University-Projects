@@ -31,4 +31,12 @@ public class GameService {
     public void deleteGame(Long gameID) {
         gameRepository.deleteById(gameID);
     }
+
+    public List<Game> getGamesOwnedByUser(String name) {
+        return gameRepository.getGamesOwnedByUser(name);
+    }
+
+    public Game findGameByTitle(String title) {
+        return gameRepository.findByTitle(title);
+    }
 }

@@ -31,4 +31,8 @@ public class ReviewService {
     public void deleteReview(Long reviewID) {
         reviewRepository.deleteById(reviewID);
     }
+
+    public List<Review> getAllReviewsByTitle(String title) {
+        return this.reviewRepository.getReviewsOfGame(title);
+    }
 }

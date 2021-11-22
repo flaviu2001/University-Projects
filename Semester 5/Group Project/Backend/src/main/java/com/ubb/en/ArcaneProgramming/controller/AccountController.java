@@ -76,6 +76,7 @@ public class AccountController {
                 user.setFirstName(arcaneUserDto.getFirstName());
                 user.setUserName(arcaneUserDto.getUserName());
                 user.setLastName(arcaneUserDto.getLastName());
+                user.setAvatarUrl(arcaneUserDto.getAvatarUrl());
                 if (arcaneUserDto.getPassword().length() >= 8)
                     hashPassword(user, arcaneUserDto.getPassword());
                 if (!user.getEmail().equals(arcaneUserDto.getEmail())) {

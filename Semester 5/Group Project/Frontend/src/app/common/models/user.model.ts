@@ -7,8 +7,9 @@ export class User {
   bio: string;
   password: string;
   emailVerified: string;
+  avatarUrl: string;
 
-  constructor(firstName: string, lastName: string, userName: string, email: string, bio: string, password: string, emailVerified: string) {
+  constructor(firstName: string, lastName: string, userName: string, email: string, bio: string, password: string, emailVerified: string, avatarUrl: string) {
     this.id = -1;
     this.firstName = firstName;
     this.lastName = lastName;
@@ -17,5 +18,6 @@ export class User {
     this.bio = bio;
     this.password = password;
     this.emailVerified = emailVerified;
+    this.avatarUrl = avatarUrl;
   }
 }

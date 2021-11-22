@@ -25,7 +25,7 @@ export class RegisterPageComponent implements OnInit {
       return;
     }
 
-    let user = new User(firstName, lastName, username, email, bio, password, 'false');
+    let user = new User(firstName, lastName, username, email, bio, password, 'false', "");
     this.registerService.register(user).subscribe(
       () => {
         this.goToVerifyEmailPage(username);

@@ -27,6 +27,11 @@ public class ReviewController {
         return new ResponseEntity<>(ReviewConverter.convertToDto(reviewService.findReview(id)), HttpStatus.OK);
     }
 
+    @GetMapping("/getReviewsOfGame/{title}")
+    public ResponseEntity<List<ReviewDto>> getReviewsByTitle(@PathVariable String title) {
+        return new ResponseEntity<>(reviewService.getAllReviewsByTitle(title).stream().map(ReviewConverter::convertToDto).collect(Collectors.toList()), HttpStatus.OK);
+    }
+
     @PostMapping("/")
     public ResponseEntity<HttpStatus> addReview(@RequestBody ReviewDto reviewDto) {
         reviewService.addReview(ReviewConverter.convertToModel(reviewDto));

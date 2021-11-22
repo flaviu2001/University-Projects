@@ -23,4 +23,6 @@ public class ArcaneUserDto {
     private String password;
 
     private String emailVerified;
+
+    private String avatarUrl;
 }

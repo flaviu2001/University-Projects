@@ -1,8 +1,8 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
+import {Injectable} from "@angular/core";
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
 
-import { Game } from "../models/game.model";
+import {Game} from "../models/game.model";
 
 @Injectable()
 export class GameService {
@@ -13,5 +13,13 @@ export class GameService {
 
   getAllGames(): Observable<Game[]> {
     return this.httpClient.get<Game[]>(this.baseUrl);
+  }
+
+  getGamesFromUser(name: String): Observable<Game[]> {
+    return this.httpClient.get<Game[]>(`${this.baseUrl}fromUser/${name}`);
+  }
+
+  getGameByTitle(title: string): Observable<Game> {
+    return this.httpClient.get<Game>(this.baseUrl + `getGameByTitle/${title}`);
   }
 }

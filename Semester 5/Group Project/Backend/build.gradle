@@ -15,20 +15,20 @@ repositories {
 dependencies {
 	implementation 'javax.mail:javax.mail-api:1.6.2'
 	implementation group: 'com.sun.mail', name: 'javax.mail', version: '1.6.2'
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	compileOnly 'org.projectlombok:lombok'
-	runtimeOnly 'mysql:mysql-connector-java'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.5.6'
+	implementation 'org.springframework.boot:spring-boot-starter-data-rest:2.5.6'
+	implementation 'org.springframework.boot:spring-boot-starter-web:2.5.6'
+	compileOnly 'org.projectlombok:lombok:1.18.22'
+	runtimeOnly 'mysql:mysql-connector-java:8.0.25'
 
-	runtimeOnly 'org.postgresql:postgresql'
-	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	runtimeOnly 'org.postgresql:postgresql:42.3.1'
+	annotationProcessor 'org.projectlombok:lombok:1.18.22'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.6'
 	implementation group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
 
-	implementation 'com.github.eliux:megacmd4j:1.6.0'
+	implementation 'com.github.eliux:megacmd4j:1.6.2'
 
-	testImplementation 'org.apache.httpcomponents:httpclient'
+	testImplementation 'org.apache.httpcomponents:httpclient:4.5.13'
 }
 
 test {
