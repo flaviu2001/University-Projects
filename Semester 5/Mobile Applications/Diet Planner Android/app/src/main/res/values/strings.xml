@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Meal Planner</string>
+    <string name="username">Username:</string>
+    <string name="password">Password:</string>
+    <string name="login">Login</string>
+    <string name="logout">logout</string>
+    <string name="name">Name:</string>
+    <string name="calories">Calories</string>
+    <string name="vegetarian">Vegetarian</string>
+    <string name="meal_name">Name</string>
+    <string name="date_added">Date Added:</string>
+    <string name="save">save</string>
+</resources>

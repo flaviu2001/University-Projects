@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="ro.ubb.flaviu.mealplanner.ui.login.LoginFragment"
+        android:label="Login" >
+        <action
+            android:id="@+id/action_loginFragment_to_mealListFragment"
+            app:destination="@id/mealListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mealListFragment"
+        android:name="ro.ubb.flaviu.mealplanner.ui.mealList.MealListFragment"
+        android:label="Meals"
+        tools:layout="@layout/meal_list_fragment" >
+        <action
+            android:id="@+id/action_mealListFragment_to_mealEditFragment"
+            app:destination="@id/mealEditFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mealEditFragment"
+        android:name="ro.ubb.flaviu.mealplanner.ui.mealEdit.MealEditFragment"
+        android:label="Edit"
+        tools:layout="@layout/meal_edit_fragment">
+        <argument
+            android:name="mealId"
+            app:argType="string" />
+    </fragment>
+</navigation>
