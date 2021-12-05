@@ -1,2 +1,6 @@
 venv 
 .fuse*
+.ipynb_checkpoints
+__pycache__
+.idea
+weights
