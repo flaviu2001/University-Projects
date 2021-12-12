@@ -7,7 +7,7 @@
     <string name="name">Name:</string>
     <string name="calories">Calories</string>
     <string name="vegetarian">Vegetarian</string>
-    <string name="meal_name">Name</string>
     <string name="date_added">Date Added:</string>
     <string name="save">save</string>
+    <string name="add_a_meal">Add a meal</string>
 </resources>

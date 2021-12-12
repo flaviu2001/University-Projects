@@ -1,5 +1,6 @@
 package ro.ubb.flaviu.mealplanner.ui.login
 
+import android.content.Context
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.LayoutInflater
@@ -11,8 +12,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import ro.ubb.flaviu.mealplanner.R
-import ro.ubb.flaviu.mealplanner.data.models.Result
 import ro.ubb.flaviu.mealplanner.databinding.LoginFragmentBinding
+import ro.ubb.flaviu.mealplanner.getToken
+import ro.ubb.flaviu.mealplanner.putToken
 
 class LoginFragment : Fragment() {
     private lateinit var binding: LoginFragmentBinding
@@ -28,6 +30,8 @@ class LoginFragment : Fragment() {
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.login_fragment, container, false)
         viewModel = ViewModelProvider(this)[LoginViewModel::class.java]
+        val sharedPref = requireActivity().getPreferences(Context.MODE_PRIVATE)
+        viewModel.useToken(getToken(sharedPref))
         binding.loginButton.setOnClickListener{
             login()
         }
@@ -39,12 +43,14 @@ class LoginFragment : Fragment() {
             return@setOnKeyListener false
         }
         viewModel.loginResult.observe(viewLifecycleOwner){
-            it?.let {
-                if (it is Result.Success<*>) {
-                    findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToMealListFragment())
-                    viewModel.onLoginEnded()
-                } else
-                    Toast.makeText(requireContext(), "Wrong username of password", Toast.LENGTH_SHORT).show()
+            if (it != null) {
+                if (it == "") {
+                    Toast.makeText(requireContext(), "Wrong username or password", Toast.LENGTH_SHORT).show()
+                    return@observe
+                }
+                putToken(sharedPref, it)
+                findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToMealListFragment())
+                viewModel.onLoginEnded()
             }
         }
         return binding.root

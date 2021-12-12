@@ -1,19 +1,30 @@
 package ro.ubb.flaviu.mealplanner.ui.mealList
 
+import android.content.Context
+import android.content.SharedPreferences
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.util.Log
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.work.*
+import ro.ubb.flaviu.mealplanner.PendingOperationsWorker
 import ro.ubb.flaviu.mealplanner.R
+import ro.ubb.flaviu.mealplanner.data.ConnectivityLiveData
 import ro.ubb.flaviu.mealplanner.databinding.MealListFragmentBinding
+import ro.ubb.flaviu.mealplanner.removeToken
 
 class MealListFragment : Fragment() {
     private lateinit var binding: MealListFragmentBinding
     private lateinit var viewModel: MealListViewModel
+    private lateinit var sharedPref: SharedPreferences
+    private lateinit var connectivityManager: ConnectivityManager
+    private lateinit var connectivityLiveData: ConnectivityLiveData
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -21,11 +32,15 @@ class MealListFragment : Fragment() {
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.meal_list_fragment, container, false)
         viewModel = ViewModelProvider(this)[MealListViewModel::class.java]
+        sharedPref = requireActivity().getPreferences(Context.MODE_PRIVATE)
         viewModel.refresh()
         val adapter = MealsAdapter(ClickMealListener {
             viewModel.onCardClicked(it)
         })
         binding.mealList.adapter = adapter
+        binding.fab.setOnClickListener {
+            findNavController().navigate(MealListFragmentDirections.actionMealListFragmentToMealEditFragment(null))
+        }
         viewModel.meals.observe(viewLifecycleOwner){
             it?.let{
                 adapter.meals = it
@@ -37,6 +52,27 @@ class MealListFragment : Fragment() {
                 viewModel.onEditCardNavigated()
             }
         }
+        connectivityManager = ContextCompat.getSystemService(
+            requireContext(),
+            ConnectivityManager::class.java
+        )!!
+        connectivityLiveData = ConnectivityLiveData(connectivityManager)
+        connectivityLiveData.observe(viewLifecycleOwner, {
+            if (it == true) {
+                binding.connectivityText.text = "Connected"
+                viewModel.refresh()
+                val constraints = Constraints.Builder()
+                    .setRequiredNetworkType(NetworkType.CONNECTED)
+                    .build()
+                val myWork = OneTimeWorkRequest.Builder(PendingOperationsWorker::class.java)
+                    .setConstraints(constraints)
+                    .build()
+                WorkManager.getInstance(requireContext()).apply {
+                    enqueue(myWork)
+                }
+            } else
+                binding.connectivityText.text = "Not Connected"
+        })
         (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
         setHasOptionsMenu(true)
         return binding.root
@@ -50,6 +86,7 @@ class MealListFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId) {
             R.id.logout -> {
+                removeToken(sharedPref)
                 viewModel.logout()
                 findNavController().navigateUp()
                 true

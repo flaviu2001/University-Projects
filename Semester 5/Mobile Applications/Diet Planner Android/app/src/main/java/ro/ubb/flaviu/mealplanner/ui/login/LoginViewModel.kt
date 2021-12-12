@@ -7,16 +7,19 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import ro.ubb.flaviu.mealplanner.data.AuthApi
 import ro.ubb.flaviu.mealplanner.data.models.TokenHolder
-import ro.ubb.flaviu.mealplanner.data.models.Result
 
 class LoginViewModel: ViewModel() {
-    private val mutableLoginResult = MutableLiveData<Result<TokenHolder>?>()
-    val loginResult: LiveData<Result<TokenHolder>?> = mutableLoginResult
+    private val mutableLoginResult = MutableLiveData<String?>()
+    val loginResult: LiveData<String?> = mutableLoginResult
 
     fun login(username: String, password: String) {
         viewModelScope.launch {
-            mutableLoginResult.value = AuthApi.login(username, password)
+            mutableLoginResult.value = AuthApi.login(username, password) ?: ""
         }
+    }
+
+    fun useToken(token: String?) {
+        mutableLoginResult.value = token
     }
 
     fun onLoginEnded() {

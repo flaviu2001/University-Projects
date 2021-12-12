@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import ro.ubb.flaviu.mealplanner.R
+import ro.ubb.flaviu.mealplanner.data.MealDatabase
 import ro.ubb.flaviu.mealplanner.data.models.Meal
 import ro.ubb.flaviu.mealplanner.databinding.MealEditFragmentBinding
 import java.util.*
@@ -17,7 +18,21 @@ class MealEditFragment : Fragment() {
     private lateinit var binding: MealEditFragmentBinding
     private lateinit var viewModel: MealEditViewModel
     private var dateAdded: Date? = null
-    private var mealId: String = ""
+    private var mealId: String? = null
+
+    private fun saveOrUpdate() {
+        val id = if (mealId != null) mealId else ""
+        val meal = Meal(binding.nameEdit.text.toString(),
+            binding.caloriesEdit.text.toString().toInt(),
+            dateAdded!!,
+            binding.vegetarian.isChecked,
+            id!!
+        )
+        if (mealId != null)
+            viewModel.update(meal)
+        else viewModel.save(meal)
+        findNavController().navigateUp()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,7 +41,8 @@ class MealEditFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.meal_edit_fragment, container, false)
         val arguments = MealEditFragmentArgs.fromBundle(requireArguments())
         mealId = arguments.mealId
-        val mealEditViewModelFactory = MealEditViewModelFactory(mealId)
+        val database = MealDatabase.getInstance(requireContext()).databaseDao
+        val mealEditViewModelFactory = MealEditViewModelFactory(mealId, database)
         viewModel = ViewModelProvider(this, mealEditViewModelFactory)[MealEditViewModel::class.java]
         viewModel.meal.observe(viewLifecycleOwner) {
             it?.let {
@@ -69,14 +85,7 @@ class MealEditFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId) {
             R.id.save -> {
-                val meal = Meal(binding.nameEdit.text.toString(),
-                    binding.caloriesEdit.text.toString().toInt(),
-                    dateAdded!!,
-                    binding.vegetarian.isChecked,
-                    mealId
-                )
-                viewModel.update(meal)
-                findNavController().navigateUp()
+                saveOrUpdate()
                 true
             }
             else -> super.onOptionsItemSelected(item)

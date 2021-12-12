@@ -56,3 +56,26 @@ Assessment
 * Use animations
   * Animate some components, 1p
   * Override existing component animations, 1p
+
+
+# Lab 4 (Android 1)
+
+Assignments
+
+ * Implement a master-detail user interface
+ * Use a REST service to fetch data
+ * Authenticate user using JWT
+
+Assessment
+
+ * Login page, 3p
+ * List page, 3p
+ * Edit page, 3p
+
+
+# Lab 5 (Android 2)
+
+Assignments
+ * Use the local storage for storing data fetched from server, 4p
+ * Use background tasks, 3p
+ * Use system services, 2p

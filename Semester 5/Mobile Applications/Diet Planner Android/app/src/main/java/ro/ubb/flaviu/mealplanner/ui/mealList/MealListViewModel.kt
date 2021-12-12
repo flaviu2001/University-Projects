@@ -1,7 +1,5 @@
 package ro.ubb.flaviu.mealplanner.ui.mealList
 
-import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,7 +8,6 @@ import kotlinx.coroutines.launch
 import ro.ubb.flaviu.mealplanner.data.AuthApi
 import ro.ubb.flaviu.mealplanner.data.MealApi
 import ro.ubb.flaviu.mealplanner.data.models.Meal
-import ro.ubb.flaviu.mealplanner.data.models.Result
 
 class MealListViewModel : ViewModel() {
     private val mutableMeals = MutableLiveData<List<Meal>?>()
@@ -21,10 +18,7 @@ class MealListViewModel : ViewModel() {
     fun refresh() {
         viewModelScope.launch {
             val result = MealApi.getMeals()
-            if (result is Result.Success<List<Meal>>)
-                mutableMeals.value = result.data
-            else
-                mutableMeals.value = null
+            mutableMeals.value = result
         }
     }
 

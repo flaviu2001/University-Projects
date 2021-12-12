@@ -1,10 +1,22 @@
 package ro.ubb.flaviu.mealplanner.data
 
+import android.util.Log
 import retrofit2.http.*
 import ro.ubb.flaviu.mealplanner.data.models.Meal
-import ro.ubb.flaviu.mealplanner.data.models.Result
+import java.util.*
 
 object MealApi {
+    private data class MockMeal (val name: String,
+                                 val calories: Int,
+                                 val dateAdded: Date,
+                                 val vegetarian: Boolean) {
+        companion object {
+            fun fromMeal(meal: Meal): MockMeal {
+                return MockMeal(meal.name, meal.calories, meal.dateAdded, meal.vegetarian)
+            }
+        }
+    }
+
     private interface MealService {
         @Headers("Content-Type: application/json")
         @GET("/api/meal/filter")
@@ -18,39 +30,48 @@ object MealApi {
         @PUT("/api/meal/{id}")
         suspend fun update(@Path("id") mealId: String, @Body meal: Meal): Meal
 
-
+        @Headers("Content-Type: application/json")
+        @POST("/api/meal/")
+        suspend fun save(@Body meal: MockMeal): Meal
     }
 
     private val mealService: MealService = Api.retrofit.create(MealService::class.java)
 
-    private suspend fun retrofitGetMeals(): Result<List<Meal>> {
+    suspend fun getMeals(): List<Meal>? {
         return try {
-            Result.Success(mealService.getMeals())
+            mealService.getMeals()
         } catch (e: Exception) {
-            Result.Error(e)
+            Log.i("meals", e.toString())
+            null
         }
     }
 
-    private suspend fun retrofitGetMeal(mealId: String): Result<Meal> {
+    suspend fun getMeal(mealId: String): Meal? {
         return try {
-            Result.Success(mealService.getMeal(mealId))
+            mealService.getMeal(mealId)
         } catch (e: Exception) {
-            Result.Error(e)
+            Log.i("meals", e.toString())
+            null
         }
     }
 
-    private suspend fun retrofitUpdate(meal: Meal): Result<Meal> {
+    suspend fun update(meal: Meal): Boolean {
         return try {
-            Result.Success(mealService.update(meal._id, meal))
+            mealService.update(meal._id, meal)
+            true
         } catch (e: Exception) {
-            Result.Error(e)
+            Log.i("meals", e.toString())
+            false
         }
     }
 
-    suspend fun getMeals(): Result<List<Meal>> = retrofitGetMeals()
-
-    suspend fun getMeal(mealId: String): Result<Meal> = retrofitGetMeal(mealId)
-
-    suspend fun update(meal: Meal): Result<Meal> = retrofitUpdate(meal)
-
+    suspend fun save(meal: Meal): Boolean {
+        return try {
+            mealService.save(MockMeal.fromMeal(meal))
+            true
+        } catch (e: java.lang.Exception) {
+            Log.i("meals", e.toString())
+            false
+        }
+    }
 }

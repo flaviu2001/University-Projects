@@ -1,9 +1,9 @@
 package ro.ubb.flaviu.mealplanner.data
 
+import android.util.Log
 import retrofit2.http.Body
 import retrofit2.http.Headers
 import retrofit2.http.POST
-import ro.ubb.flaviu.mealplanner.data.models.Result
 import ro.ubb.flaviu.mealplanner.data.models.TokenHolder
 import ro.ubb.flaviu.mealplanner.data.models.User
 
@@ -16,28 +16,28 @@ object AuthApi {
 
     private val authService: AuthService = Api.retrofit.create(AuthService::class.java)
 
-    private suspend fun retrofitLogin(user: User): Result<TokenHolder> {
+    private suspend fun retrofitLogin(user: User): String? {
         return try {
-            Result.Success(authService.login(user))
+            authService.login(user).token
         } catch (e: Exception) {
-            Result.Error(e)
+            Log.i("meals", e.toString())
+            null
         }
     }
 
-    private var user: User? = null
+    fun updateToken(token: String?) {
+        Api.token = token
+    }
 
     fun logout() {
-        user = null
         Api.token = null
     }
 
-    suspend fun login(username: String, password: String): Result<TokenHolder> {
+    suspend fun login(username: String, password: String): String? {
         val user = User(username, password)
         val result = retrofitLogin(user)
-        if (result is Result.Success<TokenHolder>) {
-            AuthApi.user = user
-            Api.token = result.data.token
-        }
+        if (result != null)
+            Api.token = result
         return result
     }
 }

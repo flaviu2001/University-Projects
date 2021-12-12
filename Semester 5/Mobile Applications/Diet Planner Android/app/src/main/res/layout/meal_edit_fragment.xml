@@ -47,7 +47,6 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="number"
-            android:text="@string/meal_name"
             app:layout_constraintBaseline_toBaselineOf="@+id/textView2"
             app:layout_constraintStart_toStartOf="@+id/nameEdit"
             android:importantForAutofill="no"

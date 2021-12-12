@@ -28,6 +28,7 @@
         tools:layout="@layout/meal_edit_fragment">
         <argument
             android:name="mealId"
-            app:argType="string" />
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
 </navigation>
