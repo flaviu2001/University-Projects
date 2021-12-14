@@ -1,8 +1,0 @@
-Statement: Implement a parser algorithm (cont.) - as assigned by the coordinating teacher, at the previous lab
-Remark: Lab work evaluation is not done per project/team, but per team member (reflecting the individual contribution to what has been delivered). Please make sure that you split the tasks in a balanced way among team members! In case you decide to do pair programming, each team member is supposed to know all the details of what has been implemented!
-
-
-PART 2: Deliverables 
-
-Functions corresponding to the assigned parsing strategy + appropriate tests,  as detailed below:
-LR(0) -  functions Closure, GoTo, CanonicalCollection 

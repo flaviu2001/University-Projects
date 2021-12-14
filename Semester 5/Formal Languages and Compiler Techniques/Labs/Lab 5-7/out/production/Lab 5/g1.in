@@ -1,0 +1,8 @@
+S A
+a b c d e
+S
+S -> a S
+S -> b S c
+S -> d A
+A -> d c
+A -> e
