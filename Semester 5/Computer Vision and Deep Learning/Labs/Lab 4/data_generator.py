@@ -1,3 +1,5 @@
+import random
+
 import cv2.cv2 as cv2
 import numpy as np
 import tensorflow as tf
@@ -62,16 +64,17 @@ class DataGenerator(tf.keras.utils.Sequence):
             np.random.shuffle(self.indices)
 
     @staticmethod
-    def pad_image(image):
-        width_pad = 0
-        height_pad = 0
+    def crop_image(image):
+        if image.shape[0] == image.shape[1]:
+            return image
         if image.shape[0] > image.shape[1]:
-            width_pad = (image.shape[0] - image.shape[1]) // 2
-        else:
-            height_pad = (image.shape[1] - image.shape[0]) // 2
-        return np.pad(image, ((height_pad, height_pad), (width_pad, width_pad), (0, 0)), mode="edge")
+            start = random.randint(0, image.shape[0] - image.shape[1])
+            return image[start:start + image.shape[1], :]
+        start = random.randint(0, image.shape[1] - image.shape[0])
+        return image[:, start:start + image.shape[0]]
 
     @staticmethod
     def resize_image(image, shape):
-        image = DataGenerator.pad_image(image)
-        return cv2.resize(image, shape)
+        image = DataGenerator.crop_image(image)
+        image = cv2.resize(image, shape)
+        return image

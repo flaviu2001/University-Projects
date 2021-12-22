@@ -7,9 +7,9 @@ from tensorflow import keras
 from data_generator import DataGenerator
 
 OUTPUTS = 2
-INPUT_SHAPE = (32, 32)
+INPUT_SHAPE = (64, 64)
 INPUT_SHAPE_RGB = (*INPUT_SHAPE, 3)
-BATCH_SIZE = 32
+BATCH_SIZE = 8
 EPOCHS = 10
 
 
