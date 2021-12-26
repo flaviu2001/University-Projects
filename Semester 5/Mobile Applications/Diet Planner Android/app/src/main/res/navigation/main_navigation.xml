@@ -10,7 +10,11 @@
         android:label="Login" >
         <action
             android:id="@+id/action_loginFragment_to_mealListFragment"
-            app:destination="@id/mealListFragment" />
+            app:destination="@id/mealListFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/mealListFragment"

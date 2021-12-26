@@ -2,17 +2,22 @@ package ro.ubb.flaviu.mealplanner.ui.mealList
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.content.res.Resources
 import android.net.ConnectivityManager
 import android.os.Bundle
-import android.util.Log
 import android.view.*
+import android.view.animation.LinearInterpolator
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.view.marginStart
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.work.*
+import androidx.work.Constraints
+import androidx.work.NetworkType
+import androidx.work.OneTimeWorkRequest
+import androidx.work.WorkManager
 import ro.ubb.flaviu.mealplanner.PendingOperationsWorker
 import ro.ubb.flaviu.mealplanner.R
 import ro.ubb.flaviu.mealplanner.data.ConnectivityLiveData
@@ -25,6 +30,7 @@ class MealListFragment : Fragment() {
     private lateinit var sharedPref: SharedPreferences
     private lateinit var connectivityManager: ConnectivityManager
     private lateinit var connectivityLiveData: ConnectivityLiveData
+    private var length = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -73,9 +79,35 @@ class MealListFragment : Fragment() {
             } else
                 binding.connectivityText.text = "Not Connected"
         })
+        length = Resources.getSystem().displayMetrics.widthPixels - 228 - binding.connectivityText.marginStart*2
+        leftToRight()
         (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
         setHasOptionsMenu(true)
         return binding.root
+    }
+
+    private fun leftToRight() {
+        binding.connectivityText.apply {
+            animate()
+                .translationX(length.toFloat())
+                .setDuration(3000)
+                .setInterpolator(LinearInterpolator())
+                .withEndAction{
+                    rightToLeft()
+                }
+        }
+    }
+
+    private fun rightToLeft() {
+        binding.connectivityText.apply {
+            animate()
+                .translationX(0f)
+                .setDuration(3000)
+                .setInterpolator(LinearInterpolator())
+                .withEndAction{
+                    leftToRight()
+                }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

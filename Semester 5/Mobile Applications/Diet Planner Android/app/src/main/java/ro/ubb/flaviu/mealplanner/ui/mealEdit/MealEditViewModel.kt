@@ -36,7 +36,6 @@ class MealEditViewModel(private val mealId: String?, private val database: MealD
         uiScope.launch {
             withContext(Dispatchers.IO) {
                 if (!MealApi.save(meal)) {
-                    Log.i("meals", "why???")
                     database.insertOperation(
                         Operation(
                             opType = 0,

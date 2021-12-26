@@ -57,11 +57,17 @@ def plot_history(history_to_plot):
     plt.show()
 
 
+def save_model(model, name):
+    test_generator = DataGenerator("data/test.csv", "data/classes.csv", BATCH_SIZE, INPUT_SHAPE)
+    val_loss, val_acc = model.evaluate(test_generator, verbose=2)
+    model.save(f"./weights/acc_{str(val_acc)[:5]}_{name}")
+
+
 train_set = DataGenerator("data/train.csv", "data/classes.csv", BATCH_SIZE, INPUT_SHAPE)
 test_set = DataGenerator("data/test.csv", "data/classes.csv", BATCH_SIZE, INPUT_SHAPE)
 
 
-def train(optimizer):
+def train(optimizer, name):
     model = build_mini_resnet(INPUT_SHAPE_RGB, OUTPUTS)
     model.summary()
 
@@ -72,12 +78,35 @@ def train(optimizer):
     )
 
     history = model.fit(x=train_set, validation_data=test_set, batch_size=BATCH_SIZE, epochs=EPOCHS, shuffle=True)
+    save_model(model, name)
     plot_history(history)
 
 
-lr_schedule = keras.optimizers.schedules.ExponentialDecay(
-                initial_learning_rate=3e-4,
-                decay_steps=5,
-                decay_rate=0.96)
-# train(keras.optimizers.Adam(lr_schedule))
-train(keras.optimizers.Adam(1e-3))
+# lr_schedule = keras.optimizers.schedules.ExponentialDecay(
+#                 initial_learning_rate=3e-4,
+#                 decay_steps=5,
+#                 decay_rate=0.96)
+# # train(keras.optimizers.Adam(lr_schedule))
+# train(keras.optimizers.Adam(1e-3), "adam_1e3-3")
+
+
+def make_ensemble(input_size, paths):
+    inputs = layers.Input(shape=input_size)
+    models = [keras.models.load_model(path) for path in paths]
+    for i, ensemble_model in enumerate(models):
+        ensemble_model._name += str(i)
+    x = layers.Average()([model(inputs) for model in models])
+    return keras.Model(inputs=inputs, outputs=x, name="ensemble")
+
+
+# evaluate the ensemble
+model = make_ensemble(INPUT_SHAPE_RGB, [
+    "weights/acc_0.604_adam_exp_decay",
+    "weights/acc_0.658_adam_1e3-3",
+    "weights/acc_0.661_adam_1e3-3/"
+])
+model.compile(optimizer=keras.optimizers.Adam(),
+              loss=keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+              metrics=['accuracy'],
+              )
+val_loss, val_acc = model.evaluate(test_set, verbose=2)
