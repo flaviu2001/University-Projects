@@ -1,0 +1,9 @@
+.idea
+.ipynb_checkpoints
+annotations
+images
+oxford_pets_seg
+annotations.tar.gz
+images.tar.gz
+model_final.h5
+model.png 
