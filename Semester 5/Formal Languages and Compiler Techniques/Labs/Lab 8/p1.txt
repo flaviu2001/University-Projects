@@ -1,0 +1,12 @@
+var a, b, c;
+a = readInt();
+b = readInt();
+c = readInt();
+var d = a;
+if (b > d) {
+	d = b;
+};
+if (c > d) {
+	d = c;
+};
+print(d);

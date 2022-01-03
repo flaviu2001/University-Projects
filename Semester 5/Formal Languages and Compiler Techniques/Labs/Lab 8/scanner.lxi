@@ -1,0 +1,188 @@
+%{
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int lines = 0;
+char **string_symbol_table;
+int len_string = 10;
+int pointer_string = 0;
+char **identifier_symbol_table;
+int len_identifier = 10;
+int pointer_identifier = 0;
+int *int_symbol_table;
+int len_int = 10;
+int pointer_int = 0;
+struct Entry{
+    int code; //0 - token, 1 - identifier, 2 - int, 3 - string
+    char *token;
+    int position;
+};
+struct Entry* pif;
+int len_pif = 10;
+int pointer_pif = 0;
+
+void init_symbol_tables()
+{
+    string_symbol_table = malloc(len_string * sizeof(char*));
+    identifier_symbol_table = malloc(len_identifier * sizeof(char*));
+    int_symbol_table = malloc(len_int * sizeof(int));
+    pif = malloc(len_pif * sizeof(struct Entry));
+}
+
+void add_string (char *string)
+{
+    if (len_string == pointer_string) {
+        char **new_string_symbol_table = malloc(len_string * 2 * sizeof (char*));
+        for (int i = 0; i < len_string; ++i)
+            new_string_symbol_table[i] = string_symbol_table[i];
+        free(string_symbol_table);
+        len_string *= 2;
+        string_symbol_table = new_string_symbol_table;
+    }
+    string_symbol_table[pointer_string++] = string;
+}
+
+void add_identifier (char *identifier)
+{
+    if (len_identifier == pointer_identifier) {
+        char **new_identifier_symbol_table = malloc(len_identifier * 2 * sizeof (char*));
+        for (int i = 0; i < len_identifier; ++i)
+            new_identifier_symbol_table[i] = identifier_symbol_table[i];
+        free(identifier_symbol_table);
+        len_identifier *= 2;
+        identifier_symbol_table = new_identifier_symbol_table;
+    }
+    identifier_symbol_table[pointer_identifier++] = identifier;
+}
+
+void add_int (int number)
+{
+    if (len_int == pointer_int) {
+        int *new_int_symbol_table = malloc(len_int * 2 * sizeof (int));
+        for (int i = 0; i < len_int; ++i)
+            new_int_symbol_table[i] = int_symbol_table[i];
+        free(int_symbol_table);
+        len_int *= 2;
+        int_symbol_table = new_int_symbol_table;
+    }
+    int_symbol_table[pointer_int++] = number;
+}
+
+int get_string_index(char *string)
+{
+    for (int i = 0; i < pointer_string; ++i)
+        if (strcmp(string, string_symbol_table[i]) == 0)
+            return i;
+    add_string(string);
+    return pointer_string-1;
+}
+
+int get_identifier_index(char *identifier)
+{
+    for (int i = 0; i < pointer_identifier; ++i)
+        if (strcmp(identifier, identifier_symbol_table[i]) == 0)
+            return i;
+    add_identifier(identifier);
+    return pointer_identifier-1;
+}
+
+int get_int_index(char *number)
+{
+    int x = atoi(number); // NOLINT(cert-err34-c)
+    for (int i = 0; i < pointer_int; ++i)
+        if (x == int_symbol_table[i])
+            return i;
+    add_int(x);
+    return pointer_int-1;
+}
+
+void add_to_pif(struct Entry entry)
+{
+    if (len_pif == pointer_pif) {
+        struct Entry *new_pif = malloc(len_pif * 2 * sizeof (struct Entry));
+        for (int i = 0; i < len_pif; ++i)
+            new_pif[i] = pif[i];
+        free(pif);
+        len_pif *= 2;
+        pif = new_pif;
+    }
+    pif[pointer_pif++] = entry;
+}
+
+struct Entry get_entry(int opcode, char *token, int pos) {
+    struct Entry entry;
+    entry.code = opcode;
+    entry.position = pos;
+    entry.token = token;
+    return entry;
+};
+
+char* string_copy(char *string) {
+    int size = (int)strlen(string);
+    char* new_string = malloc((size+1) * sizeof (char));
+    for (int i = 0; i <= size; ++i)
+        new_string[i] = string[i];
+    return new_string;
+}
+
+%}
+
+%option noyywrap
+%option caseless
+
+DIGIT [0-9]
+NON_ZERO_DIGIT [1-9]
+INT_CONSTANT [+-]?{NON_ZERO_DIGIT}{DIGIT}*|0
+LETTER [a-zA-Z_]
+STRING_CONSTANT \"({LETTER}|{DIGIT})*\"
+IDENTIFIER {LETTER}({LETTER}|{DIGIT})*
+BAD_IDENTIFIER ({DIGIT})+({LETTER})+({LETTER}|{DIGIT})*
+
+%%
+
+"var"|"if"|"print"|"readInt"|"readString"|"else"|"while"|"set_nth"|"get_nth" { char *token = string_copy(yytext); add_to_pif(get_entry(0, token, -1)); printf("%s - reserved word\n", yytext);}
+
+{IDENTIFIER} {char *id = string_copy(yytext); add_to_pif(get_entry(1, NULL, get_identifier_index(id))); printf("%s - identifier\n", yytext);}
+
+{BAD_IDENTIFIER} {printf("Error at token %s at line %d\n", yytext, lines); exit(1);}
+
+{INT_CONSTANT} {char *int_const = string_copy(yytext); add_to_pif(get_entry(2, NULL, get_int_index(int_const))); printf("%s - int constant\n", yytext);}
+
+{STRING_CONSTANT} {char *str_const = string_copy(yytext); add_to_pif(get_entry(3, NULL, get_string_index(str_const))); printf("%s - str constant\n", yytext);}
+
+"+"|"-"|"*"|"/"|"%"|"="|">"|">="|"<"|"<="|"=="|"!="|"&&"|"||" printf("%s - operator\n", yytext);
+
+";"|"("|")"|"{"|"}"|"," printf("%s - separator\n", yytext);
+
+[ \t]+ {}
+
+[\n]+ {++lines;}
+
+. {printf("Error at token %s at line %d\n", yytext, lines); exit(1);}
+
+%%
+
+int main(int argc, char **argv ) 
+{ 
+    if ( argc > 1 ) 
+    	yyin = fopen(argv[1], "r"); 
+    else 
+    	yyin = stdin;
+   	init_symbol_tables();
+    yylex();
+    printf("INT SYMBOL TABLE\n\n");
+    for (int i = 0; i < pointer_int; ++i)
+    	printf("%d\n", int_symbol_table[i]);
+    printf("\n");
+    printf("STRING SYMBOL TABLE\n\n");
+    for (int i = 0; i < pointer_string; ++i)
+    	printf("%s\n", string_symbol_table[i]);
+    printf("\n");
+    printf("IDENTIFIER SYMBOL TABLE\n\n");
+    for (int i = 0; i < pointer_identifier; ++i)
+    	printf("%s\n", identifier_symbol_table[i]);
+    printf("PIF\n\n");
+    for (int i = 0; i < pointer_pif; ++i)
+    	printf("%d %s %d\n", pif[i].code, pif[i].token, pif[i].position);
+}

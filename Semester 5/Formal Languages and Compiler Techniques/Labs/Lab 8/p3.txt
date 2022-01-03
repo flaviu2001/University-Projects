@@ -1,0 +1,8 @@
+var n = readInt();
+var sum = 0;
+var i = 1;
+while (i <= n) {
+	sum = sum + readInt();	
+	i = i+1;
+};
+print(sum); 
