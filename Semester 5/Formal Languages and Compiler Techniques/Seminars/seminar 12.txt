@@ -1,0 +1,38 @@
+Attribute Grammars. PDA. Intermediary code generation
+
+1. Consider the grammar with the following rules:
+
+exp -> exp + term
+exp -> exp - term
+exp -> term
+term -> term * factor
+term -> factor
+factor -> (exp)
+factor -> number
+
+Write an attribute grammar to evaluate the value of an expression
+Verify your approach with the expression (3+4)*7-9
+Write an attribute grammar to generate the polish postfix form of an expression.
+Verify your approach with the expression 2*7+3-9
+
+2. Consider the grammar with the following production rules:
+
+lines -> line EOL
+lines -> lines line EOL
+line -> eps
+line -> line CHR
+
+Write an attribute grammar that computes the number of lines in a file.
+Write an attribute grammar to compute the number of characters in a file.
+
+3. Define a PDA that accepts the languages:
+
+L = {a^n b^2n | n >= 1}
+L = {a^n b^m c^n | m >= 0, n > 1}
+
+4. Write the 3 address code corresponding to the following statements:
+
+if not a and b then
+	sum := sum + a
+else sum = sum + b
+endif
