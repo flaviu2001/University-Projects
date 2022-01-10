@@ -1,0 +1,5 @@
+Each student or team of 2 students will take one project. It is ok to take a theme that is not listed below (but check with the lab advisor before starting).
+Each project will have 2 implementations: one with "regular" threads or tasks/futures, and one distributed (possibly, but not required, using MPI).
+Task: Find an n-coloring of a graph.
+Teammate: Custura Stefan-Octavian
+I did the MPI solution only here.

@@ -7,34 +7,43 @@ namespace Behaviours
     {
         public Text text;
         public static float CurrentLight = 1;
-        public static bool Finished = false;
+        public static bool Finished;
         public static bool Won = false;
-        public float speed1 = 0.1f;
-        public float speed2 = 0.05f;
-        public float speed3 = 0.01f;
+        private const float Speed1 = 0.05f;
+        private const float Speed2 = 0.02f;
+        private const float Speed3 = 0.005f;
+        private const float Threshold1 = 0.5f;
+        private const float Threshold2 = 0.2f;
+        private const float LossLight = 0.05f;
         [SerializeField] public Light playerLight;
 
         private void Update()
         {
-            if (Finished && Won)
+            if (Pause.Paused)
             {
-                playerLight.intensity = 1f;
+                Debug.Log(1);
+                playerLight.intensity = 1;
                 return;
             }
-            var speed = speed1;
-            if (CurrentLight < 0.1)
-                speed = speed3;
-            else if (CurrentLight < 0.5)
-                speed = speed2;
-            CurrentLight -= Time.deltaTime * speed;
-            if (CurrentLight < 0)
+            if (Finished && Won)
             {
-                text.text = "YOU LOST";
-                CurrentLight = 0;
+                playerLight.intensity = CurrentLight;
+                return;
+            }
+            var speed = Speed1;
+            if (CurrentLight < Threshold2)
+                speed = Speed3;
+            else if (CurrentLight < Threshold1)
+                speed = Speed2;
+            CurrentLight -= Time.deltaTime * speed;
+            if (CurrentLight < LossLight)
+            {
+                CurrentLight = LossLight;
                 Finished = true;
             }
             if (CurrentLight > 1)
                 CurrentLight = 1;
+            Debug.Log(CurrentLight);
             playerLight.intensity = CurrentLight;
         }
     }

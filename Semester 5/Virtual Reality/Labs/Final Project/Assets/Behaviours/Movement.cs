@@ -10,7 +10,8 @@ namespace Behaviours
 
         private void Update()
         {
-            if (ReduceLight.Finished && !ReduceLight.Won) return;
+            if (Pause.Paused)
+                return;
             var x = Input.GetAxis("Horizontal");
             var z = Input.GetAxis("Vertical");
             var transformRef = transform;

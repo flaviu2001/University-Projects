@@ -1,3 +1,4 @@
+using RainMaker.Prefab;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,13 +10,14 @@ namespace Behaviours
 
         private void OnCollisionEnter(Collision collision)
         {
-            if (!collision.gameObject.name.Equals("Robot"))
+            if (!collision.gameObject.name.Equals("Player"))
                 return;
-            text.text = "YOU WON!";
-            ReduceLight.Won = true;
-            ReduceLight.Finished = true;
+            if (!ReduceLight.Finished)
+            {
+                ReduceLight.Won = true;
+                ReduceLight.Finished = true;   
+            }
             Destroy(gameObject);
-            ReduceLight.CurrentLight += 1f;
         }
     }
 }

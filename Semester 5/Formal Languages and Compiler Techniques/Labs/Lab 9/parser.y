@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define YYDEBUG 1 
+#define YYDEBUG 1
 %}
 
 %token ARR;
@@ -46,28 +46,28 @@
 %start Program 
 
 %%
-Program : Statement SEMICOLON Program | Statement SEMICOLON ;
-Statement : VarStatement | ArrStatement | AssignStatement | IfStatement | WhileStatement | ReturnStatement | FunctionCallStatement ;
-VarStatement : VAR IdentifierList ;
-IdentifierList : MaybeEqualExpression | MaybeEqualExpression COMMA IdentifierList ;
-MaybeEqualExpression : IDENTIFIER | IDENTIFIER EQ Expression ;
-Expression : IntExpression | StringExpression ;
-MathematicalOperator : PLUS | MINUS | TIMES | DIV | MOD ;
-IntExpression : INTCONSTANT | IDENTIFIER | FunctionCallStatement | IntExpression MathematicalOperator IntExpression | OPEN IntExpression MathematicalOperator IntExpression CLOSE ;
-StringExpression : STRINGCONSTANT ;
-ExpressionList : Expression | Expression COMMA ExpressionList ;
-ArrStatement : ARR LESS INTCONSTANT BIGGER PureIdentifierList ;
-PureIdentifierList : IDENTIFIER | IDENTIFIER COMMA PureIdentifierList ;
-AssignStatement : IDENTIFIER EQ Expression ;
-IfStatement : IF OPEN Condition CLOSE BRACKETOPEN Program BRACKETCLOSE | IF OPEN Condition CLOSE BRACKETOPEN Program BRACKETCLOSE ELSE BRACKETOPEN Program BRACKETCLOSE ;
-RelationalOperator : EQQ | LESS | LESSEQ | BIGGER | BIGGEREQ ;
-Condition : Expression RelationalOperator Expression 
-			| Expression RelationalOperator Expression AND Expression RelationalOperator Expression 
-			| Expression RelationalOperator Expression OR Expression RelationalOperator Expression ;
-WhileStatement : WHILE OPEN Condition CLOSE BRACKETOPEN Program BRACKETCLOSE ;
-ReturnStatement : RETURN Expression ;
-FunctionCallStatement : FunctionName OPEN ExpressionList CLOSE | FunctionName OPEN CLOSE ;
-FunctionName : PRINT | SETNTH | GETNTH | READINT | READSTRING ;
+Program : Statement SEMICOLON Program {printf("Program -> Statement ; Program\n");} | Statement SEMICOLON {printf("Program -> Statement ;\n");} ;
+Statement : VarStatement {printf("Statement -> VarStatement\n");} | ArrStatement {printf("Statement -> ArrStatement\n");} | AssignStatement {printf("Statement -> AssignStatement\n");} | IfStatement {printf("Statement -> IfStatement\n");} | WhileStatement {printf("Statement -> WhileStatement\n");} | ReturnStatement {printf("Statement -> ReturnStatement\n");} | FunctionCallStatement {printf("Statement -> FunctionCallStatement\n");} ;
+VarStatement : VAR IdentifierList {printf("VarStatement -> var IdentifierList\n");} ;
+IdentifierList : MaybeEqualExpression {printf("IdentifierList -> MaybeEqualExpression \n");} | MaybeEqualExpression COMMA IdentifierList {printf("IdentifierList -> MaybeEqualExpression , IdentifierList\n");} ;
+MaybeEqualExpression : IDENTIFIER {printf("MaybeEqualExpression -> IDENTIFIER \n");} | IDENTIFIER EQ Expression {printf("MaybeEqualExpression -> IDENTIFIER = Expression \n");} ;
+Expression : IntExpression {printf("Expression -> IntExpression \n");} | StringExpression {printf("Expression -> StringExpression \n");} ;
+MathematicalOperator : PLUS {printf("MathematicalOperator -> + \n");} | MINUS {printf("MathematicalOperator -> - \n");} | TIMES {printf("MathematicalOperator -> * \n");} | DIV {printf("MathematicalOperator -> / \n");} | MOD {printf("MathematicalOperator -> % \n");} ;
+IntExpression : INTCONSTANT {printf("IntExpression -> INTCONSTANT \n");} | IDENTIFIER {printf("IntExpression -> IDENTIFIER \n");} | FunctionCallStatement {printf("IntExpression -> FunctionCallStatement \n");} | IntExpression MathematicalOperator IntExpression {printf("IntExpression -> IntExpression MathematicalOperator IntExpression \n");} | OPEN IntExpression MathematicalOperator IntExpression CLOSE {printf("IntExpression -> ( IntExpression MathematicalOperator IntExpression ) \n");} ;
+StringExpression : STRINGCONSTANT {printf("StringExpression -> STRINGCONSTANT \n");} ;
+ExpressionList : Expression {printf("ExpressionList -> Expression \n");} | Expression COMMA ExpressionList {printf("ExpressionList -> Expression , ExpressionList \n");} ;
+ArrStatement : ARR LESS INTCONSTANT BIGGER PureIdentifierList {printf("ArrStatement -> arr < INTCONSTANT > PureIdentifierList \n");} ;
+PureIdentifierList : IDENTIFIER {printf("PureIdentifierList -> IDENTIFIER \n");} | IDENTIFIER COMMA PureIdentifierList {printf("PureIdentifierList -> IDENTIFIER , PureIdentifierList \n");} ;
+AssignStatement : IDENTIFIER EQ Expression {printf("AssignStatement -> IDENTIFIER = Expression \n");} ;
+IfStatement : IF OPEN Condition CLOSE BRACKETOPEN Program BRACKETCLOSE {printf("IfStatement -> if ( Condition ) { Program } \n");} | IF OPEN Condition CLOSE BRACKETOPEN Program BRACKETCLOSE ELSE BRACKETOPEN Program BRACKETCLOSE {printf("IfStatement -> if ( Condition ) { Program } else { Program } \n");} ;
+RelationalOperator : EQQ {printf("RelationalOperator -> ==\n");} | LESS {printf("RelationalOperator -> <\n");} | LESSEQ {printf("RelationalOperator -> <=\n");} | BIGGER {printf("RelationalOperator -> >\n");} | BIGGEREQ {printf("RelationalOperator -> >=\n");} ;
+Condition : Expression RelationalOperator Expression {printf("Condition -> Expression RelationalOperator Expression\n");}
+			| Expression RelationalOperator Expression AND Expression RelationalOperator Expression {printf("Condition -> Expression RelationalOperator Expression && Expression RelationalOperator Expression\n");}
+			| Expression RelationalOperator Expression OR Expression RelationalOperator Expression {printf("Condition -> Expression RelationalOperator Expression || Expression RelationalOperator Expression\n");} ;
+WhileStatement : WHILE OPEN Condition CLOSE BRACKETOPEN Program BRACKETCLOSE {printf("WhileStatement -> while ( Condition ) { Program }\n");} ;
+ReturnStatement : RETURN Expression {printf("ReturnStatement -> return Expression\n");} ;
+FunctionCallStatement : FunctionName OPEN ExpressionList CLOSE {printf("FunctionCallStatement -> FunctionName ( ExpressionList )\n");} | FunctionName OPEN CLOSE {printf("FunctionCallStatement -> FunctionName ( )\n");} ;
+FunctionName : PRINT {printf("FunctionName -> print\n");} | SETNTH {printf("FunctionName -> setnth\n");} | GETNTH {printf("FunctionName -> getnth\n");} | READINT {printf("FunctionName -> readint\n");} | READSTRING {printf("FunctionName -> readstring\n");} ;
 %%
 yyerror(char *s)
 {	

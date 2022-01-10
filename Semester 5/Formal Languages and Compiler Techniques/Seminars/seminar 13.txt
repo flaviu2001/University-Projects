@@ -1,0 +1,25 @@
+1. canonical collection (1p)
+S -> aSb
+S -> b
+
+2. consider the grammar (0.5p)
+G = ({S,A}, {2, 1}, P, S)
+P: S -> 2S1 | 1A | 2
+   A -> 1A | 1
+Which sequences belong to L(G):
+a. 1 2
+b. 2 1 1 1
+c. 2 2 1
+d. 2 1
+
+3. consider the language L1 = {eps, 0, 00}, L2 = {eps, 1, 0}. L1 (+) L2 = ? (0.5p)
+
+4. construct right linear grammar and finite automaton corresponding to regex 1+(0+10)* (2p)
+
+5. construct first, follow, ll1 table and parse the sequence w for the grammar (3p)
+G = ({S}, {+,a,(,)}, P, S}
+P: S -> a|S+S|SS|(S)
+w = a+(aa)
+
+6. define a push down automaton corresponding to the language (2p)
+L = {a^nb^m|n>0, m>=0}
