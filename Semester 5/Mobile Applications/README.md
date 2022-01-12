@@ -79,3 +79,9 @@ Assignments
  * Use the local storage for storing data fetched from server, 4p
  * Use background tasks, 3p
  * Use system services, 2p
+
+# Lab 6 (Android 3)
+
+Assignments
+ * Use sensors, 3p
+ * Use animations, 6p
