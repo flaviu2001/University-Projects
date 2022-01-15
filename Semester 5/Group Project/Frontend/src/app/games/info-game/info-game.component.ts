@@ -17,6 +17,7 @@ export class InfoGameComponent implements OnInit {
   title: string = '';
   game: Game = {} as Game;
   reviews: Review[] = [];
+  purchased: boolean = false;
 
   stars: number[] = [1, 2, 3, 4, 5];
   selectedValue: number = -1;
@@ -35,6 +36,11 @@ export class InfoGameComponent implements OnInit {
     this.reviewService.getReviewsOfGame(this.title).subscribe((reviews) => {
       this.reviews = reviews;
       });
+    this.gameService.getGamesFromUser(localStorage.getItem('username')!!).subscribe(games => {
+      for (let game of games)
+        if (game.id == this.game.id)
+          this.purchased = true;
+    })
   }
 
   openDialog(numberOfStars: number) {

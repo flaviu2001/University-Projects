@@ -22,6 +22,7 @@ public class ArcaneUserConverter {
     }
 
     // Daniel, you left return null previously. Did you mean that this method would never get called or that you didn't know how to implement it?
+    // I made it so that its there, never bothered to implement it basically since I did not use it
     public static ArcaneUser convertToModel(ArcaneUserDto arcaneUserDto) {
         return new ArcaneUser(
                 arcaneUserDto.getID(),

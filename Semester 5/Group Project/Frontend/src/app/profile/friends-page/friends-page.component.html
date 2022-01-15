@@ -1,0 +1,30 @@
+<app-menu></app-menu>
+
+<div class="div-parent">
+  <div class="friends-div">
+    <mat-card *ngFor="let friendInvitation of this.friendInvites" class="friend-card">
+      <div class="left-to-right">
+        <div>
+          <img src="{{getUser(friendInvitation).avatarUrl}}"  alt="avatar" height="128px" class="user-image">
+          <mat-card-title class="user-title">
+            {{getUser(friendInvitation).userName}}
+          </mat-card-title>
+        </div>
+        <mat-divider [vertical]="true" class="divider"></mat-divider>
+        <div class="right-div">
+          <mat-card-content class="user-bio">
+            <mat-card-subtitle>What {{getUser(friendInvitation).userName}} has to say about themself</mat-card-subtitle>
+            {{getUser(friendInvitation).bio}}
+          </mat-card-content>
+          <button mat-button class="button" (click)="handleCheckout(getUser(friendInvitation))">CHECK OUT</button>
+          <button mat-button *ngIf="friendInvitation.status == 'ACCEPTED'" class="button" (click)="goToConversationPage(getUser(friendInvitation))"> MESSAGES </button>
+          <mat-divider inset *ngIf="friendInvitation.status == 'PENDING'"></mat-divider>
+          <div *ngIf="friendInvitation.status == 'PENDING'">
+            <button mat-button class="button" (click)="handleAccept(friendInvitation)">ACCEPT</button>
+            <button mat-button class="button" (click)="handleReject(friendInvitation)">REFUSE</button>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</div>

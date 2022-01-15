@@ -18,4 +18,8 @@ export class ReviewService {
   getReviewsOfGame(title: string): Observable<Review[]> {
     return this.httpClient.get<Review[]>(this.baseUrl + `getReviewsOfGame/${title}`);
   }
+
+  getReviewsOfUser(username: string): Observable<Review[]> {
+    return this.httpClient.get<Review[]>(this.baseUrl + `getReviewsOfUser/${username}`);
+  }
 }

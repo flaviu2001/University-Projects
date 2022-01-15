@@ -9,7 +9,7 @@
   <mat-card-content>
     <mat-form-field hintLabel="Max 20 characters" appearance="fill">
       <mat-label> Enter your first name </mat-label>
-      <input matInput maxlength="20" placeholder="First name" #first_name
+      <input matInput maxlength="20" placeholder="First name" #first_name autocomplete="off"
              [formControl]="this.utils.firstName" required>
       <mat-hint align="end"> {{first_name.value?.length || 0}}/20 </mat-hint>
       <mat-error *ngIf="this.utils.firstName.invalid"> {{this.utils.getErrorMessageForFirstName()}} </mat-error>
@@ -17,7 +17,7 @@
 
     <mat-form-field hintLabel="Max 20 characters" appearance="fill">
       <mat-label> Enter your last name </mat-label>
-      <input matInput maxlength="20" placeholder="Last name" #last_name
+      <input matInput maxlength="20" placeholder="Last name" #last_name autocomplete="off"
              [formControl]="this.utils.lastName" required>
       <mat-hint align="end"> {{last_name.value?.length || 0}}/20 </mat-hint>
       <mat-error *ngIf="this.utils.lastName.invalid"> {{this.utils.getErrorMessageForLastName()}} </mat-error>
@@ -25,7 +25,7 @@
 
     <mat-form-field hintLabel="Max 20 characters" appearance="fill">
       <mat-label> Enter your username </mat-label>
-      <input matInput maxlength="20" placeholder="Username" #user_name
+      <input matInput maxlength="20" placeholder="Username" #user_name autocomplete="off"
              [formControl]="this.utils.username" required>
       <mat-hint align="end"> {{user_name.value?.length || 0}}/20 </mat-hint>
       <mat-error *ngIf="this.utils.username.invalid"> {{this.utils.getErrorMessageForUsername()}} </mat-error>
@@ -33,7 +33,7 @@
 
     <mat-form-field appearance="fill">
       <mat-label> Enter your email </mat-label>
-      <input matInput placeholder="example@example.com" #Email
+      <input matInput placeholder="example@example.com" #Email autocomplete="off"
              [formControl]="this.utils.email" required>
       <mat-error *ngIf="this.utils.email.invalid"> {{this.utils.getErrorMessageForEmail()}} </mat-error>
     </mat-form-field>
@@ -45,7 +45,7 @@
 
     <mat-form-field appearance="fill">
       <mat-label> Enter password </mat-label>
-      <input matInput placeholder="Password"  #Password
+      <input matInput placeholder="Password"  #Password autocomplete="off"
              [type]="this.utils.hidePassword? 'password': 'text'"
              [formControl]="this.utils.password" required>
       <button mat-icon-button matSuffix (click)="this.utils.hidePassword = !this.utils.hidePassword">
@@ -56,7 +56,7 @@
 
     <mat-form-field appearance="fill">
       <mat-label> Re-enter password </mat-label>
-      <input matInput placeholder="Re-enter password" #ReenterPassword
+      <input matInput placeholder="Re-enter password" #ReenterPassword autocomplete="off"
              [type]="this.utils.hideReenterPassword? 'password': 'text'"
              [formControl]="this.utils.reenterPassword" required>
       <button mat-icon-button matSuffix (click)="this.utils.hideReenterPassword = !this.utils.hideReenterPassword">

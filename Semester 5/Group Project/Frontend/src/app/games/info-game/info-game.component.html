@@ -7,7 +7,7 @@
     </div>
 
     <div class="item5">
-      <button class="btn btn-outline-" (click)="goToPurchaseGamePage(this.title)">
+      <button class="btn btn-outline-" *ngIf="!purchased" (click)="goToPurchaseGamePage(this.title)">
         <i class="fa fa-plus-circle"> </i>
         Purchase game
       </button>
@@ -23,12 +23,12 @@
       <b> PRICE: {{ this.game.price }}€ </b>
     </div>
 
-    <div class="item4">
+    <div class="item4" *ngIf="purchased">
       <b style="color: rebeccapurple"> How much do you like this game? </b>
       <ul class="list-inline rating-list" *ngFor="let star of stars" style="display: inline-block" >
         <li (click)="countStar(star)"
             [ngClass]="{'selected': (star <= selectedValue)}">
-          <i class="fa fa-star"></i>
+          <i class="fa fa-star star-color"></i>
         </li>
       </ul>
     </div>
@@ -41,7 +41,7 @@
       <p *ngIf="this.reviews.length == 0"> No reviews yet </p>
 
       <div *ngIf="this.reviews.length > 0">
-        <mat-card *ngFor="let review of this.reviews">
+        <mat-card class="reviews" *ngFor="let review of this.reviews">
 
           <mat-card-header>
             <mat-card-title>

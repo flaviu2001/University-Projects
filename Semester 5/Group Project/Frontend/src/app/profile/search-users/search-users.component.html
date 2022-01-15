@@ -1,0 +1,54 @@
+<app-menu> </app-menu>
+
+<div class="users-bar">
+  <h1 class="user-bar-h1"> SEARCH FOR USERS </h1>
+  <p><b> Please specify the username of the users you want to search for. </b></p>
+
+  <div class="search-bar-alignment">
+    <form class="search-bar">
+      <mat-form-field class="search-bar-full-width" appearance="fill">
+        <mat-label> Username </mat-label>
+        <input matInput type="text" #username>
+        <button matSuffix mat-icon-button aria-label="Search" (click)="searchUsers(username.value)">
+          <mat-icon> search </mat-icon>
+        </button>
+      </mat-form-field>
+    </form>
+  </div>
+
+  <div class="divider">
+    <mat-divider style="width: 50%;"> </mat-divider>
+  </div>
+
+  <mat-grid-list cols="3" rowHeight="600px">
+    <mat-grid-tile *ngFor="let user of this.users">
+
+      <div>
+        <mat-card class="user-card">
+          <img mat-card-image src="{{ user.avatarUrl }}" alt="{{ user.userName }}">
+
+          <mat-card-content>
+            <h1 class="user-bar-h1"> {{ user.userName }} </h1>
+          </mat-card-content>
+
+          <mat-card-actions style="display: flex; align-content: center; justify-content: center;">
+            <button (click)="handleCheckout(user)"
+                    mat-fab
+                    color="primary"
+                    aria-label="Go to his/her profile"
+                    matTooltip="Profile details"
+                    matTooltipClass="example-tooltip-red"
+                    class="example-button">
+              <mat-icon> info </mat-icon>
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <mat-paginator [length]="this.users.length"
+                 [pageSize]="3" [pageSizeOptions]="[3, 6]" (page)="pageEvent = $event; onPaginateChange($event)" showFirstLastButtons>
+  </mat-paginator>
+</div>

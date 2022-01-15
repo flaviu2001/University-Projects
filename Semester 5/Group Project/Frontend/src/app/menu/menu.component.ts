@@ -25,7 +25,7 @@ export class MenuComponent implements OnInit {
   }
 
   navigateToWishListPage() {
-
+    this.router.navigate(['wishlist']).then(_ => {});
   }
 
   navigateToProfilePage() {
@@ -33,7 +33,11 @@ export class MenuComponent implements OnInit {
   }
 
   navigateToFriendsPage() {
+    this.router.navigate([`friends`]).then(_ => {});
+  }
 
+  navigateToSearchUsersPage() {
+    this.router.navigate([`searchUsers`]).then(_ => {});
   }
 
   navigateToChangeAccountDetailsPage() {

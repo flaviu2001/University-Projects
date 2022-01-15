@@ -1,0 +1,126 @@
+.container {
+  margin: 2% 0 0 2%;
+  padding: 15px;
+  justify-content: center;
+  align-items: center;
+}
+
+.left{
+  padding: 0 0 0 18px;
+  margin: 0;
+}
+
+.right{
+  margin: 5% 0 0 0;
+}
+
+.row{
+  margin-top: 15px;
+}
+
+.mat-form-field{
+  padding: 0;
+  width: 81%;
+}
+
+.small-filed{
+  margin: 0 0 0 18px;
+  width: 75%;
+}
+
+.card-purchase-title{
+  font-family: Roboto, serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 42px;
+  letter-spacing: 0em;
+  text-align: left;
+  margin: 0;
+  color: #482669;
+}
+
+.helper-sub-title{
+  font-family: Roboto, serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 28px;
+  letter-spacing: 0em;
+  text-align: left;
+  width: 400px;
+  margin: 0;
+  color: rgba(56, 56, 56, 0.6);
+}
+
+.card-number *{
+  width: 85%;
+  max-height: 16px;
+}
+
+
+.cvv{
+  max-width: 300px;
+}
+
+.card-data{
+  display: inline;
+  width: 100%;
+}
+
+.date-row{
+  margin: 0 0 0 1.2vw;
+}
+
+.date-p{
+  width: 86%;
+}
+
+.date{
+  margin: 0;
+  padding: 0;
+}
+
+#slash{
+  font-size: 42px;
+}
+
+#card-purchase-svg{
+  width: 455px;
+  height: 370px;
+}
+
+.payment-title{
+  font-family: Roboto, serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 28px;
+  color: #482669;
+}
+
+.total-price{
+  font-family: Roboto, serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 42px;
+  letter-spacing: 0em;
+  text-align: left;
+  margin: 0;
+  color: #482669;
+}
+
+#card-img{
+  width: 10vw;
+  height: 6vh;
+}
+
+#pay-btn{
+  background: #663399;
+  border: 1px solid #C5C5C5;
+  box-sizing: border-box;
+  border-radius: 10px;
+  width: 85%;
+  height: 45px;
+}

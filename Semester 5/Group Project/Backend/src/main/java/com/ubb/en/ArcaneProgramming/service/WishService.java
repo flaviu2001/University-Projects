@@ -1,5 +1,7 @@
 package com.ubb.en.ArcaneProgramming.service;
 
+import com.ubb.en.ArcaneProgramming.model.ArcaneUser;
+import com.ubb.en.ArcaneProgramming.model.Game;
 import com.ubb.en.ArcaneProgramming.model.Wish;
 import com.ubb.en.ArcaneProgramming.repository.WishRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +30,12 @@ public class WishService {
         return wishRepository.save(wish);
     }
 
-    public void deleteWish(Long wishID) {
-        wishRepository.deleteById(wishID);
+
+    public List<Wish> getAllWishesForUser(ArcaneUser user) {
+        return wishRepository.findByArcaneUser(user);
+    }
+
+    public void deleteWish(Game game, ArcaneUser arcaneUser) {
+        wishRepository.delete(wishRepository.findByGameAndArcaneUser(game, arcaneUser));
     }
 }

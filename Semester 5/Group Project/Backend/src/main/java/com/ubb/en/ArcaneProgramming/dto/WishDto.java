@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class WishDto {
     private Long ID;
-    private ArcaneUserDto arcaneUserDto;
-    private GameDto gameDto;
+    private String arcaneUserName;
+    private Long gameID;
 }

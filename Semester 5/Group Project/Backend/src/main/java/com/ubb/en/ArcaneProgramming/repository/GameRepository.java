@@ -13,5 +13,8 @@ public interface GameRepository extends JpaRepository<Game, Long> {
     @Query("select distinct g from Purchase p join p.game g join p.arcaneUser u where u.userName = :name")
     List<Game> getGamesOwnedByUser(@Param("name")String name);
 
-    public Game findByTitle(String title);
+    Game findByTitle(String title);
+
+    @Query("select distinct g from Wish w join w.game g join w.arcaneUser u where u.userName = :name")
+    List<Game> getWishList(@Param("name")String username);
 }

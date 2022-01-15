@@ -2,6 +2,20 @@
 
 <div class="games-bar">
   <h1 class="game-bar-h1"> GAMES </h1>
+  <p><b> Please specify the game you want to search for. </b></p>
+
+  <div class="search-bar-alignment">
+    <form class="search-bar">
+      <mat-form-field class="search-bar-full-width" appearance="fill">
+        <mat-label> Game </mat-label>
+        <input matInput type="text" #game>
+        <button matSuffix mat-icon-button aria-label="Search" (click)="searchGames(game.value)">
+          <mat-icon> search </mat-icon>
+        </button>
+      </mat-form-field>
+    </form>
+  </div>
+
   <div class="divider">
     <mat-divider style="width: 50%;"> </mat-divider>
   </div>
@@ -44,13 +58,31 @@
               <mat-icon> info </mat-icon>
             </button>
 
-            <button (click)="goToPurchaseGamePage(game.title)"
+            <button *ngIf="!gameOwned(game)" (click)="goToPurchaseGamePage(game.title)"
                     mat-fab
                     color="primary"
                     aria-label="Purchase game"
                     matTooltip="Purchase game"
                     class="example-button">
               <mat-icon> add </mat-icon>
+            </button>
+
+            <button *ngIf="!gameWished(game)" (click)="addToWishList(game)"
+                    mat-fab
+                    color="primary"
+                    aria-label="Add to wishlist"
+                    matTooltip="Add to wishlist"
+                    class="example-button">
+              <mat-icon color="accent"> star </mat-icon>
+            </button>
+
+            <button *ngIf="gameWished(game)" (click)="removeFromWishList(game)"
+                    mat-fab
+                    color="accent"
+                    aria-label="Remove from wishlist"
+                    matTooltip="Remove from wishlist"
+                    class="example-button">
+              <mat-icon color="primary"> star </mat-icon>
             </button>
           </mat-card-actions>
         </mat-card>

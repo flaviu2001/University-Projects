@@ -1,0 +1,51 @@
+.bg-div {
+  min-height: 100%;
+  height: fit-content;
+  background-image: url("src/cover.png");
+  background-repeat: repeat-y;
+  background-size: cover;
+  padding-bottom: 54px;
+}
+
+.big-div {
+  height: fit-content;
+  width: 100%;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 54px 0 0;
+}
+
+.conversation {
+  margin-top: 32px;
+  width: 60%;
+  background: #eadeff;
+}
+
+mat-card-header {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.example-full-width {
+  padding: 20px;
+  width: 70%;
+}
+
+.sendButton {
+
+}
+
+
+.friend-message {
+  width: 40%;
+}
+
+.own-message {
+  width: 40%;
+  margin-left: auto !important;
+  background: #e3d4ff;
+}

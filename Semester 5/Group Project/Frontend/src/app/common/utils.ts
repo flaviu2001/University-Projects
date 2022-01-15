@@ -16,6 +16,16 @@ export class Utils {
     return (day + "-" + longMonth + "-" + year + " " + hour + ":" + minutes);
   }
 
+  prettyDate(date: Date): any {
+    let year = date.getFullYear();
+    let longMonth = date.toLocaleString('en-us', { month: 'long' });
+    let day = (date.getDate() < 10 ? '0' : '') + date.getDate();
+    let hour = (date.getHours() < 10 ? '0' : '') + date.getHours();
+    let minutes = (date.getMinutes() < 10 ? '0' : '') + date.getMinutes();
+
+    return (day + "-" + longMonth + "-" + year + " " + hour + ":" + minutes);
+  }
+
   /*__________________________________________________________________________________________________________________*/
 
   hidePassword: boolean = true;

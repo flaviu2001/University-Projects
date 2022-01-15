@@ -1,0 +1,55 @@
+<app-menu> </app-menu>
+
+<div class="bg-div">
+  <div class="big-div">
+    <mat-card class="conversation">
+      <mat-card-header>
+        <mat-card-title> {{this.receiver.userName}} </mat-card-title>
+        <mat-card-subtitle> {{this.receiver.lastName}} {{this.receiver.firstName}} </mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-divider></mat-divider>
+
+      <div class="allMessages">
+        <mat-card *ngFor="let message of this.messages" [ngClass]="{'own-message': message.sender.userName==senderUsername, 'friend-message': message.sender.userName==receiverUsername}" style="margin: 15px">
+          <mat-card-content style="text-align: center; height: fit-content">
+            {{message.content}}
+          </mat-card-content>
+
+          <mat-divider></mat-divider>
+
+          <mat-card-footer>
+            <mat-grid-list cols="2" rowHeight="40px">
+              <mat-grid-tile> <b><i> {{message.messageStatus}} </i></b> </mat-grid-tile>
+              <mat-grid-tile> {{getPrettyMessageDate(message)}} </mat-grid-tile>
+            </mat-grid-list>
+          </mat-card-footer>
+        </mat-card>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <mat-card-footer>
+        <mat-grid-list cols="2" rowHeight="150px">
+          <mat-grid-tile>
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label> Leave a message </mat-label>
+              <input matInput #message>
+            </mat-form-field>
+          </mat-grid-tile>
+
+          <mat-grid-tile>
+            <button (click)="sendMessage(message.value)"
+                    mat-fab
+                    color="primary"
+                    aria-label="Send message"
+                    matTooltip="Send message"
+                    class="sendButton">
+              <mat-icon> send </mat-icon>
+            </button>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </mat-card-footer>
+    </mat-card>
+  </div>
+</div>

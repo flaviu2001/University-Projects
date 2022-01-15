@@ -13,17 +13,24 @@ import { ViewProfileComponent } from './profile/view-profile/view-profile.compon
 import { InfoGameComponent } from './games/info-game/info-game.component';
 import { PurchaseGameComponent } from './games/purchase-game/purchase-game.component';
 import { GiveReviewComponent } from './games/give-review/give-review.component';
+import { FriendsPageComponent } from './profile/friends-page/friends-page.component';
+import { WishListComponent } from './games/wish-list/wish-list.component';
+import { MessagesBetweenFriendsComponent } from './profile/messages-between-friends/messages-between-friends.component';
+import { SearchUsersComponent } from './profile/search-users/search-users.component';
 
 import { Utils } from "./common/utils";
 import { LoginRegisterService } from "./common/services/login-register.service";
 import { GameService } from "./common/services/game.service";
 import { ProfileService } from "./common/services/profile.service";
 import { ReviewService } from "./common/services/review.service";
+import { PurchaseService } from "./common/services/purchase.service";
+import { FriendsService } from "./common/services/friends.service";
+import { MessageService } from "./common/services/message.service";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatCardModule } from "@angular/material/card";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
@@ -36,6 +43,7 @@ import { MatTooltipModule } from "@angular/material/tooltip";
 import { MatDividerModule } from "@angular/material/divider";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatChipsModule } from "@angular/material/chips";
+import { MatSelectModule } from "@angular/material/select";
 
 @NgModule({
   declarations: [
@@ -51,35 +59,44 @@ import { MatChipsModule } from "@angular/material/chips";
     InfoGameComponent,
     PurchaseGameComponent,
     GiveReviewComponent,
+    FriendsPageComponent,
+    WishListComponent,
+    MessagesBetweenFriendsComponent,
+    SearchUsersComponent,
   ],
   entryComponents: [
     GiveReviewComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    ReactiveFormsModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatIconModule,
-    MatGridListModule,
-    MatPaginatorModule,
-    MatTableModule,
-    MatTooltipModule,
-    MatDividerModule,
-    MatDialogModule,
-    MatChipsModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        ReactiveFormsModule,
+        MatCardModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+        MatIconModule,
+        MatGridListModule,
+        MatPaginatorModule,
+        MatTableModule,
+        MatTooltipModule,
+        MatDividerModule,
+        MatDialogModule,
+        MatChipsModule,
+        MatSelectModule,
+        FormsModule
+    ],
   providers: [
     LoginRegisterService,
     Utils,
     GameService,
     ProfileService,
-    ReviewService
+    ReviewService,
+    FriendsService,
+    PurchaseService,
+    MessageService
   ],
   bootstrap: [AppComponent]
 })

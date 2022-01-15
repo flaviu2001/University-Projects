@@ -18,4 +18,8 @@ export class ProfileService {
   updateProfile(username: string, password: string, user: User): Observable<any> {
     return this.httpClient.put(this.baseUrl + `change/${username}/${password}`, user);
   }
+
+  searchUsers(username: string): Observable<User[]> {
+    return this.httpClient.get<User[]>(this.baseUrl + `searchUsers/${username}`);
+  }
 }

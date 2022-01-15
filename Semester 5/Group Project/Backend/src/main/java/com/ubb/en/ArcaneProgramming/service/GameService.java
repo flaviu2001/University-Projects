@@ -12,8 +12,8 @@ public class GameService {
     @Autowired
     private GameRepository gameRepository;
 
-    public Game addGame(Game game) {
-        return gameRepository.save(game);
+    public void addGame(Game game) {
+        gameRepository.save(game);
     }
 
     public Game findGame(Long gameID) {
@@ -24,8 +24,8 @@ public class GameService {
         return gameRepository.findAll();
     }
 
-    public Game updateGame(Game game) {
-        return gameRepository.save(game);
+    public void updateGame(Game game) {
+        gameRepository.save(game);
     }
 
     public void deleteGame(Long gameID) {
@@ -38,5 +38,9 @@ public class GameService {
 
     public Game findGameByTitle(String title) {
         return gameRepository.findByTitle(title);
+    }
+
+    public List<Game> getWishList(String username) {
+        return gameRepository.getWishList(username);
     }
 }

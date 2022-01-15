@@ -32,15 +32,14 @@ public class ReviewController {
         return new ResponseEntity<>(reviewService.getAllReviewsByTitle(title).stream().map(ReviewConverter::convertToDto).collect(Collectors.toList()), HttpStatus.OK);
     }
 
+    @GetMapping("/getReviewsOfUser/{username}")
+    public ResponseEntity<List<ReviewDto>> getReviewsByUsername(@PathVariable String username) {
+        return new ResponseEntity<>(reviewService.getAllReviewsByUsername(username).stream().map(ReviewConverter::convertToDto).collect(Collectors.toList()), HttpStatus.OK);
+    }
+
     @PostMapping("/")
     public ResponseEntity<HttpStatus> addReview(@RequestBody ReviewDto reviewDto) {
         reviewService.addReview(ReviewConverter.convertToModel(reviewDto));
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
-
-    @PutMapping("/")
-    public ResponseEntity<HttpStatus> updateReview(@RequestBody ReviewDto reviewDto) {
-        reviewService.updateReview(ReviewConverter.convertToModel(reviewDto));
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

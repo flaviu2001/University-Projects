@@ -25,3 +25,19 @@
 p {
   text-align: center;
 }
+
+.search-bar {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.search-bar-full-width {
+  width: 100%;
+}
+
+.search-bar-alignment {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}

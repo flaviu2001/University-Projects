@@ -1,0 +1,43 @@
+.divider {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.users-bar {
+  margin-top: 70px;
+}
+
+.user-card {
+  width: 350px;
+  box-shadow: rebeccapurple 1px 10px 20px 10px;
+}
+
+.example-button {
+  margin-left: 10px;
+}
+
+.user-bar-h1 {
+  text-align: center;
+  color: rebeccapurple;
+}
+
+p {
+  text-align: center;
+}
+
+.search-bar {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.search-bar-full-width {
+  width: 100%;
+}
+
+.search-bar-alignment {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}

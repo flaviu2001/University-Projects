@@ -12,8 +12,8 @@ public class PurchaseService {
     @Autowired
     private PurchaseRepository purchaseRepository;
 
-    public Purchase addPurchase(Purchase purchase) {
-        return purchaseRepository.save(purchase);
+    public void addPurchase(Purchase purchase) {
+        purchaseRepository.save(purchase);
     }
 
     public Purchase findPurchase(Long purchaseID) {
@@ -24,8 +24,8 @@ public class PurchaseService {
         return purchaseRepository.findAll();
     }
 
-    public Purchase updatePurchase(Purchase purchase) {
-        return purchaseRepository.save(purchase);
+    public void updatePurchase(Purchase purchase) {
+        purchaseRepository.save(purchase);
     }
 
     public void deletePurchase(Long purchaseID) {

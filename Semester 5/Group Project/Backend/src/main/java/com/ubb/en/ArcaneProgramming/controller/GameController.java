@@ -1,14 +1,20 @@
 package com.ubb.en.ArcaneProgramming.controller;
 
+import com.ubb.en.ArcaneProgramming.converter.ArcaneUserConverter;
 import com.ubb.en.ArcaneProgramming.converter.GameConverter;
+import com.ubb.en.ArcaneProgramming.dto.ArcaneUserDto;
 import com.ubb.en.ArcaneProgramming.dto.GameDto;
+import com.ubb.en.ArcaneProgramming.model.ArcaneUser;
+import com.ubb.en.ArcaneProgramming.model.Game;
 import com.ubb.en.ArcaneProgramming.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 @RestController
@@ -33,6 +39,11 @@ public class GameController {
         return new ResponseEntity<>(gameService.getGamesOwnedByUser(name).stream().map(GameConverter::convertToDto).collect(Collectors.toList()), HttpStatus.OK);
     }
 
+    @GetMapping("/getWishList/{username}")
+    public ResponseEntity<List<GameDto>> getWishList(@PathVariable String username){
+        return new ResponseEntity<>(gameService.getWishList(username).stream().map(GameConverter::convertToDto).collect(Collectors.toList()), HttpStatus.OK);
+    }
+
     @GetMapping("/getGameByTitle/{title}")
     public ResponseEntity<GameDto> getGameByTitle(@PathVariable String title) {
         return new ResponseEntity<>(GameConverter.convertToDto(gameService.findGameByTitle(title)), HttpStatus.OK);
@@ -54,5 +65,21 @@ public class GameController {
     public ResponseEntity<HttpStatus> deleteGame(@PathVariable Long id) {
         gameService.deleteGame(id);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping(value = {"/searchGames/{game}", "/searchGames"})
+    public ResponseEntity<List<GameDto>> searchGame(@PathVariable(required = false) String game) {
+        List<GameDto> games = new ArrayList<>();
+
+        if(game == null || game.isEmpty()) game = "";
+        game = game.toLowerCase(Locale.ROOT);
+
+        for(Game g: gameService.getAllGames()) {
+            if(g.getTitle().toLowerCase(Locale.ROOT).contains(game)) {
+                games.add(GameConverter.convertToDto(g));
+            }
+        }
+
+        return new ResponseEntity<>(games, HttpStatus.OK);
     }
 }

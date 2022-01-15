@@ -1,0 +1,28 @@
+.games-bar {
+  margin-top: 70px;
+}
+
+
+.divider {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.game-card {
+  max-width: 450px;
+  box-shadow: rebeccapurple 1px 10px 20px 10px;
+}
+
+.example-button {
+  margin-left: 10px;
+}
+
+.game-bar-h1 {
+  text-align: center;
+  color: rebeccapurple;
+}
+
+p {
+  text-align: center;
+}

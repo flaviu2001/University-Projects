@@ -34,6 +34,16 @@ body {
   justify-content: center;
 }
 
+.container_center_wb {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .container_ {
   height: 100%;
   width: 100%;

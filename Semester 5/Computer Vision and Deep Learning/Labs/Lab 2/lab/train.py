@@ -38,27 +38,24 @@ X_test -= mean_image
 X_train = np.hstack([X_train, np.ones((X_train.shape[0], 1))])
 X_test = np.hstack([X_test, np.ones((X_test.shape[0], 1))])
 
-# the search limits for the learning rate and regularization strength
-# we'll use log scale for the search
-lr_bounds = (-7, -2)
-reg_strength_bounds = (-4, -2)
-
 os.system('rm -rf train')
 os.mkdir('train')
 
 best_acc = -1
 best_cls_path = ''
 
-learning_rates = [-7, -5]
-regularization_strengths = [3000, 80000]
+# the search limits for the learning rate and regularization strength
+# we'll use log scale for the search
+lr_bounds = [-7, -5]
+reg_bounds = [3000, 80000]
 
 input_size_flattened = reduce((lambda a, b: a * b), X_train[0].shape)
 results = []
 
 for index in range(0, search_iter):
     # use log scale for sampling the learning rate
-    lr = pow(10, random.uniform(learning_rates[0], learning_rates[1]))
-    reg_strength = random.uniform(regularization_strengths[0], regularization_strengths[1])
+    lr = pow(10, random.uniform(lr_bounds[0], lr_bounds[1]))
+    reg_strength = random.uniform(reg_bounds[0], reg_bounds[1])
 
     cls = SoftmaxClassifier(input_shape=input_size_flattened, num_classes=cifar10.NUM_CLASSES)
     history = cls.fit(X_train, y_train, lr=lr, reg_strength=reg_strength,

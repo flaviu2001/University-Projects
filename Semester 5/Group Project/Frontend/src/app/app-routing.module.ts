@@ -10,6 +10,10 @@ import { UpdateProfileComponent } from "./profile/update-profile/update-profile.
 import { ViewProfileComponent } from "./profile/view-profile/view-profile.component";
 import { InfoGameComponent } from "./games/info-game/info-game.component";
 import { PurchaseGameComponent } from "./games/purchase-game/purchase-game.component";
+import { FriendsPageComponent } from "./profile/friends-page/friends-page.component";
+import { WishListComponent } from "./games/wish-list/wish-list.component";
+import { MessagesBetweenFriendsComponent } from "./profile/messages-between-friends/messages-between-friends.component";
+import { SearchUsersComponent } from "./profile/search-users/search-users.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -21,11 +25,16 @@ const routes: Routes = [
   { path: 'changeAccountDetails', component: UpdateProfileComponent },
   { path: 'profile/:name', component: ViewProfileComponent },
   { path: 'infoGame', component: InfoGameComponent },
-  { path: 'purchaseGame', component: PurchaseGameComponent }
+  { path: 'purchaseGame', component: PurchaseGameComponent },
+  { path: 'friends', component: FriendsPageComponent },
+  { path: 'wishlist', component: WishListComponent },
+  { path: 'conversation/:name', component: MessagesBetweenFriendsComponent },
+  { path: 'searchUsers', component: SearchUsersComponent }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

@@ -19,6 +19,7 @@
 .content-on-the-right {
   margin-top: auto;
   margin-bottom: auto;
+  width: 30%;
 }
 
 .score-font {
@@ -60,3 +61,15 @@
   justify-content: center;
   margin: 54px 0 0;
 }
+
+.friend-button {
+  margin-left: 32px;
+  margin-bottom: 32px;
+  background: #482669;
+  color: white;
+}
+
+.reviews {
+  margin: 16px;
+}
+

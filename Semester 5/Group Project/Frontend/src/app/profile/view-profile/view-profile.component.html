@@ -10,15 +10,18 @@
           <mat-card-title class="profile-title">{{user.userName}}</mat-card-title>
           <mat-card-subtitle class="profile-title">Also goes by {{user.firstName}} {{user.lastName}}</mat-card-subtitle>
           <mat-card-content>
-            <mat-card-subtitle>What {{user.userName}} has to say about himself</mat-card-subtitle>
+            <mat-card-subtitle>What {{user.userName}} has to say about themself</mat-card-subtitle>
             {{user.bio}}
           </mat-card-content>
         </div>
         <mat-card-content class="content-on-the-right">
-          <mat-label class="score-font">Games owned: {{this.games.length}}</mat-label>
-          <br>
-          <br>
-          <mat-label class="score-font">Reviews written : 10</mat-label>
+          <button *ngIf="!isFriend" (click)="addFriend()" mat-button class="friend-button">Add friend</button>
+          <div>
+            <mat-label class="score-font">Games owned: {{this.games.length}}</mat-label>
+            <br>
+            <br>
+            <mat-label class="score-font">Reviews written: {{this.reviews.length}}</mat-label>
+          </div>
         </mat-card-content>
       </div>
       <mat-divider></mat-divider>
@@ -32,6 +35,46 @@
           </mat-card>
         </mat-grid-tile>
       </mat-grid-list>
+
+      <mat-card class="reviews" *ngFor="let review of this.reviews">
+
+        <mat-card-header>
+            <div class="row" style="width: 100%">
+              <div class="col" style="font-weight: bold; font-size: large">
+                {{ this.review.arcaneUserDto.userName }}
+              </div>
+
+              <div class="col">
+                <mat-chip-list aria-label="Review">
+                  <mat-chip *ngIf="this.review.numberOfStars < 3"
+                            color="warn" selected style="width: 170px; margin-left: calc(100% - 200px); font-size: large">
+                    <i class="fa fa-thumbs-down"></i> <p class="review_text"> Not recommended </p>
+                  </mat-chip>
+
+                  <mat-chip *ngIf="this.review.numberOfStars >= 3 && this.review.numberOfStars < 5"
+                            color="primary" selected style="width: 170px; margin-left: calc(100% - 200px); font-size: large" >
+                    <i class="fa fa-thumbs-up"></i> <p class="review_text"> Recommended </p>
+                  </mat-chip>
+
+                  <mat-chip *ngIf="this.review.numberOfStars == 5"
+                            color="accent" selected style="width: 170px; margin-left: calc(100% - 200px); font-size: large">
+                    <i class="fa fa-heart"> </i> <p class="review_text"> The best </p>
+                  </mat-chip>
+                </mat-chip-list>
+              </div>
+            </div>
+        </mat-card-header>
+
+        <mat-card-subtitle class="row" style="margin-top: 8px">
+          <p style="margin-left: 48px"> {{ this.review.numberOfStars }} <i class="fa fa-star"></i> </p>
+        </mat-card-subtitle>
+
+        <mat-card-content class="row">
+          <div class="container_review_text" style="margin-left: 48px">
+            {{ this.review.text }}
+          </div>
+        </mat-card-content>
+      </mat-card>
     </mat-card>
   </div>
 </div>

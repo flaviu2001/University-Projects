@@ -1,1 +1,139 @@
-<p>purchase-game works!</p>
+<app-menu> </app-menu>
+
+<div class="container_center_wb">
+    <div class="row">
+      <div class="col-md-7 left">
+
+        <div class="row">
+          <div class="col-md-12">
+            <p class="mat-card-title card-purchase-title">
+              Card Number
+            </p>
+            <p class="card-number">
+              <mat-form-field appearance="fill">
+                <mat-label>Enter the 16-digit number on the card</mat-label>
+                <input matInput #cardNumber placeholder= "2422· 2335 • 9866 · 2355">
+              </mat-form-field>
+            </p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 cvv">
+            <p class="card-purchase-title">
+              Card's cvv
+            </p>
+            <p class="helper-sub-title">
+              Enter the 3 digit on the back of the card number
+            </p>
+          </div>
+          <div class="col-md-6">
+            <p class="card-data">
+              <mat-form-field class="small-filed" appearance="fill">
+                <input matInput #cvv placeholder= "Ex: 432">
+              </mat-form-field>
+            </p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 cvv">
+            <p class="mat-card-title card-purchase-title">
+              Expiration Date
+            </p>
+            <p class="helper-sub-title">
+              Enter expiration date on the card
+            </p>
+          </div>
+          <div class="col-md-6">
+            <div class="row date-row">
+              <div class="col-5 date date-left">
+                <p class="date-p">
+                  <mat-form-field appearance="fill">
+                    <mat-select [(ngModel)]="selectedDay">
+                      <mat-option *ngFor="let day of _1_31" [value]="day"> {{day}} </mat-option>
+                    </mat-select>
+                    <mat-label> Ex: 24 </mat-label>
+                  </mat-form-field>
+                </p>
+              </div>
+              <div class="col-1 date">
+                <p class="card-purchase-title" id="slash"> / </p>
+              </div>
+              <div class="col-5 date">
+                <p class="date-p">
+                  <mat-form-field appearance="fill">
+                    <mat-select [(ngModel)]="selectedMonth">
+                      <mat-option *ngFor="let month of _1_12" [value]="month"> {{month}} </mat-option>
+                    </mat-select>
+                    <mat-label> Ex: 11 </mat-label>
+                  </mat-form-field>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 cvv">
+            <p class="mat-card-title card-purchase-title">
+              Name
+            </p>
+            <p class="helper-sub-title">
+              Enter the name on the card
+            </p>
+          </div>
+          <div class="col-md-6">
+            <p class="card-data">
+              <mat-form-field class="small-filed" appearance="fill">
+                <input matInput #name placeholder= "Ex: Paul Tudorescu">
+              </mat-form-field>
+            </p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <button id="pay-btn" mat-raised-button color="primary" (click)="purchase(cardNumber.value, cvv.value, selectedDay, selectedMonth, name.value)">Pay now ({{this.game.price}}$) </button>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-md-5 right">
+        <mat-card>
+          <div class="row">
+              <div class="col-12">
+                <img class="card-img" mat-card-image src="src/assets/card-purchase.png" alt="Card Payment"/>
+                <p class="payment-title"> Payment Summary </p>
+                <img class="card-img" src="{{ this.game.pictureUrl }}" alt="{{ this.title }}" >
+              </div>
+          </div>
+          <div class="row">
+            <div class="col-10">
+              <p>
+                {{this.title}}
+              </p>
+            </div>
+            <div class="col-2">
+              <p>
+                {{this.game.price}} $
+              </p>
+            </div>
+          </div>
+          <hr/>
+          <div class="row">
+            <div class="col-10">
+              <p class="card-purchase-title">
+                Total:
+              </p>
+            </div>
+            <div class="col-2">
+              <p class="total-price">
+                {{this.game.price}} <span> $ </span>
+              </p>
+            </div>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+</div>

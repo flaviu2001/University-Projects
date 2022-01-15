@@ -1,0 +1,52 @@
+.div-parent {
+  min-height: 100%;
+  height: fit-content;
+  background-image: url("src/cover.png");
+  background-repeat: repeat-y;
+  background-size: cover;
+  margin-top: 54px;
+  padding-top: 1px;
+}
+
+.friends-div {
+  margin-left: 20px;
+}
+
+.left-to-right {
+  display: flex;
+}
+
+.friend-card {
+  padding: 0;
+  margin-left: 16px;
+  margin-top: 16px;
+  background: #dfcefd;
+  width: 30%;
+}
+
+.divider {
+  margin-left: 8px;
+}
+
+.user-title {
+  margin-left: 16px!important;
+  margin-bottom: 16px!important;
+}
+
+.user-image {
+  margin: 16px!important;
+}
+
+.user-bio {
+  margin-top: 16px;
+  margin-left: 16px;
+}
+
+.right-div {
+  width: 100%;
+  /*margin-left: 16px;*/
+}
+
+.button {
+  margin: 8px;
+}

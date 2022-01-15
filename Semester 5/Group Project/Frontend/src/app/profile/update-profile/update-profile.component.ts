@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
 
 import { ProfileService } from "../../common/services/profile.service";
 import { User } from "../../common/models/user.model";
 import { Utils } from "../../common/utils";
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-update-profile',
@@ -27,11 +27,6 @@ export class UpdateProfileComponent implements OnInit {
   }
 
   updateProfile(currentPassword: string, newPassword: string, bio: string, lastName: string, firstName: string, email: string, avatar: string) {
-/*    if(currentPassword !== this.user.password) {
-      window.alert('Your current password is wrong!');
-      return;
-    }*/
-
     let updatedUser = new User(firstName, lastName, this.username, email, bio, newPassword, 'false', avatar);
     this.profileService.updateProfile(this.username, currentPassword, updatedUser).subscribe(hasChanged => {
       if (hasChanged) {
