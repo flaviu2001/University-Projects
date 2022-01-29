@@ -1,0 +1,39 @@
+Orders
+
+To register orders, a restaurant designed a client-server system.
+The server emits web socket notifications (ws://localhost:3000) related to menu items.
+When a client opens a web socket connection the sever sends the list of orders in JSON
+using the following format [{ code, name }] where code is a number and name is a string,
+e.g. [{"code": 1, "name": "p1"}, {"code": 2, "name": "p2"}].
+The server also allows clients to POST order items, an item having the following props:
+  code - number,
+  quantity - number.
+Develop a mobile application (client) as follows.
+
+1. When the app is launched, it connects to the server and receives via web sockets
+the menu items [1p].
+
+2. A list shows the menu items [1p], for each entry showing the name of the menu item
+and a readonly quantity widget [1p].
+
+3. When the user clicks on a readonly quantity, it will be replaced by an input, allowing
+the user to enter a quantity. The user can confirm the entered value, then a readonly
+quantity will replace the input [1p].
+
+4. The user can filter the list by showing all entries or only the entries with entered
+quantities [1p].
+
+5. When the user clicks on a 'Submit' button (shown below the list), the app will execute
+in parallel POST /item, for all items with quantities, including in the request body
+for each menu item { code, quantity } [1p].
+
+6. If some POST operation fails, the user will be informed and the related entries from the list
+will be highlighted [1p].
+
+7. The app persists locally the menu items and the entered quantities [1p].
+
+8. Whenever the app performs HTTP operations, it shows a progress indicator.
+Any IO errors will be reported to the user [1p].
+
+
+EXAM GRADE: 9
