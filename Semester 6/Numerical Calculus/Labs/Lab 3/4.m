@@ -1,7 +1,7 @@
 1;
 
 function retval = solve(n)
-	x = linspace(-5, 5, n);
+	x = linspace(-5, 5, n+1);
 	bary_f = 1 ./ (1 + x.^2);
 	y = linspace(-5, 5, 101);
 	
