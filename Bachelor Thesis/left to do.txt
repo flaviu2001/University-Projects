@@ -1,0 +1,3 @@
+parallelize engine (use all threads)
+prioritize move ordering to improve alpha-beta performance
+quiescence searching
