@@ -1,0 +1,11 @@
+<div class="chessboard">
+  <app-chess-piece
+    class="piece"
+    *ngFor="let position of positions"
+    [position]="position"
+    [piece]="pieceAtPosition(position)"
+    [moveTo]="isClickable(position)"
+    (click)="clickPosition(position)"
+  ></app-chess-piece>
+  <p class="state" *ngIf="showState()">{{getStateString()}}</p>
+</div>

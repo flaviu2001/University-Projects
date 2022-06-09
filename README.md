@@ -153,4 +153,33 @@ All of my university lectures, seminaries and laboratories neatly ordered to hel
             </li>
         </ul>
     </li>
+    <li>:open_file_folder: Semester 6
+        <ul>
+            <li>
+                <a href="https://github.com/flaviu2001/University-Projects/tree/master/Semester%206/Artificial%20Intelligence%20Models%20for%20Climate%20Change">
+                    :ocean: Artificial Intelligence Models for Climate Change
+                </a>
+            </li>
+            <li>
+                <a href="https://github.com/flaviu2001/University-Projects/tree/master/Semester%206/Blockchain">
+                    :link: Blockchain
+                </a>
+            </li>
+            <li>
+                <a href="https://github.com/flaviu2001/University-Projects/tree/master/Semester%206/History%20of%20Informatics">
+                    :date: History of Informatics
+                </a>
+            </li>
+            <li>
+                <a href="https://github.com/flaviu2001/University-Projects/tree/master/Semester%206/Numerical%20Calculus">
+                    :bar_chart: Numerical Calculus
+                </a>
+            </li>
+            <li>
+                <a href="https://github.com/flaviu2001/University-Projects/tree/master/Semester%206/Software%20Systems%20Validation%20and%20Verification">
+                    :heavy_check_mark: Software Systems Validation and Verification
+                </a>
+            </li>
+        </ul>
+    </li>
 </ul>

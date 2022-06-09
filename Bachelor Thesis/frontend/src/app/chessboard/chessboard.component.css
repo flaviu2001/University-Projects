@@ -1,0 +1,18 @@
+.chessboard {
+  display: grid;
+  grid-template-columns: 80px 80px 80px 80px 80px 80px 80px 80px;
+}
+
+.piece {
+  height: 80px;
+  width: 80px;
+}
+
+.state {
+  font-weight: bolder;
+  color: darkred;
+  font-size: x-large;
+  white-space: nowrap;
+}
+
+/*# sourceMappingURL=chessboard.component.css.map */
