@@ -381,7 +381,7 @@ class Board(
         return stringToReturn
     }
 
-    fun zobristHash(): Int {
+    private fun zobristHash(): Int {
         var hash = 0
         for (piece in pieceSet.values()) {
             val secondIndex = when (piece.pieceName) {

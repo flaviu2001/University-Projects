@@ -1,13 +1,17 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Observable } from "rxjs";
+
 import { MatDialog } from '@angular/material/dialog';
-import {Position} from "../models/position";
-import {Board} from "../models/board";
-import {ChessService} from "../chess.service";
-import {Piece} from "../models/piece";
-import {Move} from "../models/move";
-import {ExecuteMove} from "../models/execute-move";
-import {PromotionChoiceComponent} from "./promotion-choice/promotion-choice.component";
-import {Observable} from "rxjs";
+
+import { Position } from "../models/position";
+import { Board } from "../models/board";
+import { Move } from "../models/move";
+import { ExecuteMove } from "../models/execute-move";
+import { getPieceImage, Piece } from "../models/piece";
+
+import { ChessService} from "../chess.service";
+
+import { PromotionChoiceComponent } from "./promotion-choice/promotion-choice.component";
 
 @Component({
   selector: 'app-chessboard',
@@ -15,13 +19,17 @@ import {Observable} from "rxjs";
   styleUrls: ['./chessboard.component.sass']
 })
 export class ChessboardComponent implements OnInit {
+  @Input() gameID: string = ""
+  @Input() playerColor: string = "WHITE"
+  @Input() computerVsPlayer: boolean = true
+
   positions: Array<Position> = []
+
   board: Board | null = null
+
   activePosition: Position | null = null
   possibleMoves: Array<Move> = []
   canClick: Array<Position> = []
-  playerColor: string = "WHITE"
-  computerVsPlayer: boolean = true
 
   constructor(private chessService: ChessService, private dialog: MatDialog) { }
 
@@ -30,21 +38,16 @@ export class ChessboardComponent implements OnInit {
       this.positions = Array.from({length: 64}, (_, i) => new Position(7-Math.floor(i/8), i%8))
     else
       this.positions = Array.from({length: 64}, (_, i) => new Position(Math.floor(i/8), i%8))
-    if (this.playerColor == "WHITE" || !this.computerVsPlayer)
-      this.chessService.getStart().subscribe(board => {
-        this.board = board
-        this.refreshPossibleMoves()
-      })
-    else
-      this.chessService.getStart().subscribe(board => {
-        this.board = board
-        this.refreshPossibleMoves()
-        if (this.computerVsPlayer)
-          this.chessService.computeMove(this.board).subscribe(newerBoard => {
-            this.board = newerBoard
-            this.refreshPossibleMoves()
-          })
-      })
+
+    this.chessService.getGame(this.gameID).subscribe(board => {
+      this.board = board
+      if (this.playerColor != this.board.currentColor && this.computerVsPlayer) {
+        this.chessService.computeMove(this.gameID).subscribe(board2 => {
+          this.board = board2
+          this.refreshPossibleMoves()
+        })
+      } else this.refreshPossibleMoves()
+    })
   }
 
   openDialog(): Observable<number> {
@@ -57,7 +60,7 @@ export class ChessboardComponent implements OnInit {
 
   refreshPossibleMoves() {
     if (this.board)
-      this.chessService.getAvailableMoves(this.board).subscribe(moves => this.possibleMoves = moves)
+      this.chessService.getMoves(this.gameID).subscribe(moves => this.possibleMoves = moves)
   }
 
   pieceAtPosition(position: Position): Piece | null {
@@ -89,12 +92,21 @@ export class ChessboardComponent implements OnInit {
     return false
   }
 
+  isFromLastMove(position: Position): boolean {
+    if (this.board == null)
+      return false
+    if (this.board.historyOfMoves.length == 0)
+      return false
+    let move = this.board.historyOfMoves[this.board.historyOfMoves.length-1].move
+    return Position.equals(move.initialPosition, position) || Position.equals(move.finalPosition, position)
+  }
+
   executeMove(move: Move, choice: number): void {
-    this.chessService.move(new ExecuteMove(this.board!!, move, choice)).subscribe(newBoard => {
+    this.chessService.move(this.gameID, new ExecuteMove(move, choice)).subscribe(newBoard => {
       this.board = newBoard
       this.refreshPossibleMoves()
       if (this.computerVsPlayer && this.board.state == "UNFINISHED")
-        this.chessService.computeMove(this.board).subscribe(newerBoard => {
+        this.chessService.computeMove(this.gameID).subscribe(newerBoard => {
           this.board = newerBoard
           this.refreshPossibleMoves()
         })
@@ -143,5 +155,60 @@ export class ChessboardComponent implements OnInit {
 
   showState(): boolean {
     return !(this.board == null || this.board.state == "UNFINISHED");
+  }
+
+  getMissingPiecesTally(color: string): Array<Piece> {
+    if (this.board == null)
+      return []
+
+    let queenCount = 1
+    let rookCount = 2
+    let bishopCount = 2
+    let knightCount = 2
+    let pawnCount = 8
+    for (let piece of this.board.pieceList) {
+      if (piece.color != color)
+        continue
+
+      if (piece.pieceName == "QUEEN")
+        --queenCount
+      if (piece.pieceName == "ROOK")
+        --rookCount
+      if (piece.pieceName == "BISHOP")
+        --bishopCount
+      if (piece.pieceName == "KNIGHT")
+        --knightCount
+      if (piece.pieceName == "PAWN")
+        --pawnCount
+    }
+
+    let pieces = []
+    let position = new Position(0, 0)
+
+    for (let i = 0; i < queenCount; ++i)
+      pieces.push(new Piece(position, color, "QUEEN"))
+
+    for (let i = 0; i < rookCount; ++i)
+      pieces.push(new Piece(position, color, "ROOK"))
+
+    for (let i = 0; i < bishopCount; ++i)
+      pieces.push(new Piece(position, color, "BISHOP"))
+
+    for (let i = 0; i < knightCount; ++i)
+      pieces.push(new Piece(position, color, "KNIGHT"))
+
+    for (let i = 0; i < pawnCount; ++i)
+      pieces.push(new Piece(position, color, "PAWN"))
+
+    return pieces
+  }
+
+  getPieceImage(piece: Piece): string {
+    return getPieceImage(piece)
+  }
+
+  cancelTheGame(): void {
+    localStorage.clear();
+    window.location.reload();
   }
 }

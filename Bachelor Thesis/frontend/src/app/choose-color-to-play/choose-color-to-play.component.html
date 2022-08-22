@@ -1,0 +1,30 @@
+<mat-card>
+  <mat-card-header>
+    <div mat-card-avatar class="chess-logo"> </div>
+
+    <div class="header-titles">
+      <mat-card-title> WELCOME </mat-card-title>
+      <mat-card-subtitle> to my CHESS game! </mat-card-subtitle>
+    </div>
+  </mat-card-header>
+
+  <mat-divider> </mat-divider>
+
+  <mat-card-content>
+    <p>
+      Hello <span> CHESS </span> player!
+      <br> <br>
+      In order to start the game, you have to complete two steps: <br> <br>
+
+      <a class="step-one_1"> STEP ONE </a> <br>
+      <a class="step-one_2"> Choose the color you want to play with! </a> <br>
+    </p>
+  </mat-card-content>
+
+  <mat-divider> </mat-divider>
+
+  <mat-card-actions>
+    <button mat-raised-button class="white" (click)="play('WHITE')"> PLAY AS WHITE </button>
+    <button mat-raised-button class="black" (click)="play('BLACK')"> PLAY AS BLACK </button>
+  </mat-card-actions>
+</mat-card>

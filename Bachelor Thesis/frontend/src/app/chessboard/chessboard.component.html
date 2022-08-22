@@ -1,11 +1,45 @@
-<div class="chessboard">
-  <app-chess-piece
-    class="piece"
-    *ngFor="let position of positions"
-    [position]="position"
-    [piece]="pieceAtPosition(position)"
-    [moveTo]="isClickable(position)"
-    (click)="clickPosition(position)"
-  ></app-chess-piece>
+<div class="started-game">
+  <div class="left-to-right">
+    <mat-card class="tally" style="margin-left: 10%">
+      <mat-card-title> WHITE </mat-card-title>
+      <mat-divider> </mat-divider>
+      <mat-card-content>
+        <img *ngFor="let piece of getMissingPiecesTally('WHITE')"
+             src="{{getPieceImage(piece)}}" alt=""
+             height="45px" width="45px">
+      </mat-card-content>
+
+      <button mat-mini-fab matTooltip="Cancel the game" (click)="cancelTheGame()">
+        <mat-icon> close </mat-icon>
+      </button>
+    </mat-card>
+
+    <div>
+      <h1> ChessBot </h1>
+
+      <div class="chessboard">
+        <app-chess-piece
+          class="piece"
+          *ngFor="let position of positions"
+          [position]="position"
+          [piece]="pieceAtPosition(position)"
+          [moveTo]="isClickable(position)"
+          [lastMove]="isFromLastMove(position)"
+          (click)="clickPosition(position)"
+        ></app-chess-piece>
+      </div>
+    </div>
+
+    <mat-card class="tally">
+      <mat-card-title> BLACK </mat-card-title>
+      <mat-divider> </mat-divider>
+      <mat-card-content>
+        <img *ngFor="let piece of getMissingPiecesTally('BLACK')"
+             src="{{getPieceImage(piece)}}" alt=""
+             height="45px" width="45px">
+      </mat-card-content>
+    </mat-card>
+  </div>
+
   <p class="state" *ngIf="showState()">{{getStateString()}}</p>
 </div>

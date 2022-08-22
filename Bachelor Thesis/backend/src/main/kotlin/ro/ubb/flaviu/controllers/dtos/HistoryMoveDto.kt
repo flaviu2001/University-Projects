@@ -4,7 +4,7 @@ import ro.ubb.flaviu.models.moves.HistoryMove
 import ro.ubb.flaviu.models.pieces.Piece
 import ro.ubb.flaviu.models.pieces.PieceName
 
-data class HistoryMoveDto (val moveDto: MoveDto = MoveDto(), val initialPieceName: String = "PAWN", val attackedPiece: Piece? = null) {
+data class HistoryMoveDto (val move: MoveDto = MoveDto(), val initialPieceName: String = "PAWN", val attackedPiece: Piece? = null) {
     companion object {
         fun fromHistoryMove(historyMove: HistoryMove): HistoryMoveDto {
             return HistoryMoveDto(MoveDto.fromMove(historyMove.move), historyMove.initialPieceName.toString())
@@ -12,6 +12,6 @@ data class HistoryMoveDto (val moveDto: MoveDto = MoveDto(), val initialPieceNam
     }
 
     fun toHistoryMove(): HistoryMove {
-        return HistoryMove(moveDto.toMove(), PieceName.valueOf(initialPieceName), attackedPiece)
+        return HistoryMove(move.toMove(), PieceName.valueOf(initialPieceName), attackedPiece)
     }
 }

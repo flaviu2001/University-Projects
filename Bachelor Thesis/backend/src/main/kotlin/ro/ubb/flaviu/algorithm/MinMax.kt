@@ -15,21 +15,21 @@ import kotlin.math.min
 
 data class MoveState(val line: List<Move>, val score: Double, val finalState: BoardState)
 
-class MinMax (private val board: Board) {
+class MinMax (private val board: Board,
+              val ENABLE_ALPHA_BETA_PRUNING: Boolean = true,
+              val ENABLE_QUIESCENCE: Boolean = false,
+              val ENABLE_TRANSPOSITION_TABLE: Boolean = true,
+              val ENABLE_PARALLELIZATION: Boolean = false,
+              val ITERATIVE_DEEPENING_LOW_CUTOFF: Long = 3000,
+              val ITERATIVE_DEEPENING_HIGH_CUTOFF: Long = 30000) {
     companion object {
         const val MINIMUM_VALUE = -1000000.0
         const val MAXIMUM_VALUE = 1000000.0
-        const val ENABLE_ALPHA_BETA_PRUNING = true
-        const val ENABLE_QUIESCENCE = false
         const val QUIESCENCE_DEPTH = 10
-        const val ENABLE_TRANSPOSITION_TABLE = true
         private const val TRANSPOSITION_TABLE_SIZE = 1e6
         private const val TRANSPOSITION_DEPTH_LIMIT = 100
-        const val ENABLE_PARALLELIZATION = false
         const val THREADS_PER_NODE = 2
         const val PARALLELIZATION_DEPTH_CUTOFF = 1
-        const val ITERATIVE_DEEPENING_LOW_CUTOFF = 3000.toLong()
-        const val ITERATIVE_DEEPENING_HIGH_CUTOFF = 30000.toLong()
         const val DEBUG = true
 
         var quiescentNodes = 0

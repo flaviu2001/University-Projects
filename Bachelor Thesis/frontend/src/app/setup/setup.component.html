@@ -1,0 +1,97 @@
+<mat-card>
+  <mat-card-header class="header-titles">
+    <mat-card-title> STEP TWO </mat-card-title>
+    <mat-card-subtitle> - explanation of setup - </mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-divider> </mat-divider>
+
+  <mat-card-content>
+    <div class="question">
+      <p> <b> Do you want to enable alpha beta pruning? </b> </p>
+    </div>
+
+    <div class="answer">
+      <mat-radio-group [(ngModel)]="enableAlphaBetaPruning">
+        <mat-radio-button class="example-margin" [value]="true"> Yes </mat-radio-button>
+        <mat-radio-button class="example-margin" [value]="false" style="margin-left: 10px"> No </mat-radio-button>
+      </mat-radio-group>
+    </div>
+  </mat-card-content>
+
+  <mat-card-content>
+    <div class="question">
+      <p> <b> Do you want to enable quiescence? </b> </p>
+    </div>
+
+    <div class="answer">
+      <mat-radio-group [(ngModel)]="enableQuiescence">
+        <mat-radio-button class="example-margin" [value]="true"> Yes </mat-radio-button>
+        <mat-radio-button class="example-margin" [value]="false" style="margin-left: 10px"> No </mat-radio-button>
+      </mat-radio-group>
+    </div>
+  </mat-card-content>
+
+  <mat-card-content>
+    <div class="question">
+      <p> <b> Do you want to enable transposition table? </b> </p>
+    </div>
+
+    <div class="answer">
+      <mat-radio-group [(ngModel)]="enableTranspositionTable">
+        <mat-radio-button class="example-margin" [value]="true"> Yes </mat-radio-button>
+        <mat-radio-button class="example-margin" [value]="false" style="margin-left: 10px"> No </mat-radio-button>
+      </mat-radio-group>
+    </div>
+  </mat-card-content>
+
+  <mat-card-content>
+    <div class="question">
+      <p> <b> Do you want to enable parallelization? </b> </p>
+    </div>
+
+    <div class="answer">
+      <mat-radio-group [(ngModel)]="enableParallelization">
+        <mat-radio-button class="example-margin" [value]="true"> Yes </mat-radio-button>
+        <mat-radio-button class="example-margin" [value]="false" style="margin-left: 10px"> No </mat-radio-button>
+      </mat-radio-group>
+    </div>
+  </mat-card-content>
+
+  <mat-card-content>
+    <div class="question">
+      <p> <b> Write below the iterative deepening low cutoff: </b> </p>
+    </div>
+
+    <div class="answer">
+      <mat-form-field appearance="legacy">
+        <input matInput type="text" autocomplete="off"
+               [(ngModel)]="iterativeDeepeningLowCutoff"
+               [value]="iterativeDeepeningLowCutoff">
+      </mat-form-field>
+    </div>
+  </mat-card-content>
+
+  <mat-card-content>
+    <div class="question">
+      <p> <b> Write below the iterative deepening high cutoff: </b> </p>
+    </div>
+
+    <div class="answer">
+      <mat-form-field appearance="legacy">
+        <input matInput type="number" autocomplete="off"
+               [(ngModel)]="iterativeDeepeningHighCutoff"
+               [value]="iterativeDeepeningHighCutoff">
+      </mat-form-field>
+    </div>
+  </mat-card-content>
+
+  <mat-divider> </mat-divider>
+
+  <mat-card-actions>
+    <button mat-raised-button matTooltip="Enjoy the game!"
+            (click)="setupFinished()">
+      START
+    </button>
+  </mat-card-actions>
+</mat-card>

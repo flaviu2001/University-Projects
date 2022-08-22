@@ -49,12 +49,8 @@ class PieceSet(vararg pieces: Piece) {
         pieceSet.remove(position)
     }
 
-    private fun pieceAt(position: Position): Piece? {
-        return pieceSet[position]
-    }
-
     operator fun get(position: Position): Piece? {
-        return pieceAt(position)
+        return pieceSet[position]
     }
 
     fun values(): Iterable<Piece> {

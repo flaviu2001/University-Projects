@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {Board} from "./models/board";
-import {Move} from "./models/move";
-import {ExecuteMove} from "./models/execute-move";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Observable } from "rxjs";
+
+import { Board } from "./models/board";
+import { Move } from "./models/move";
+import { ExecuteMove } from "./models/execute-move";
+import {Options} from "./models/options";
 
 @Injectable({
   providedIn: 'root'
@@ -19,19 +21,23 @@ export class ChessService {
 
   constructor(private http: HttpClient) { }
 
-  getStart(): Observable<Board> {
-    return this.http.get<Board>(`${this.backendURL}/start`)
+  newGame(options: Options): Observable<string> {
+    return this.http.post<string>(`${this.backendURL}/new-game`, options)
   }
 
-  getAvailableMoves(board: Board): Observable<Array<Move>> {
-    return this.http.post<Array<Move>>(`${this.backendURL}/getmoves`, board)
+  getGame(id: string): Observable<Board> {
+    return this.http.get<Board>(`${this.backendURL}/get-game/${id}`)
   }
 
-  move(executeMove: ExecuteMove): Observable<Board> {
-    return this.http.post<Board>(`${this.backendURL}/move`, executeMove)
+  computeMove(id: string): Observable<Board> {
+    return this.http.post<Board>(`${this.backendURL}/compute/${id}`, {})
   }
 
-  computeMove(board: Board): Observable<Board> {
-    return this.http.post<Board>(`${this.backendURL}/compute`, board)
+  move(id: string, executeMove: ExecuteMove): Observable<Board> {
+    return this.http.post<Board>(`${this.backendURL}/move/${id}`, executeMove)
+  }
+
+  getMoves(id: string): Observable<Array<Move>> {
+    return this.http.get<Array<Move>>(`${this.backendURL}/get-moves/${id}`)
   }
 }
