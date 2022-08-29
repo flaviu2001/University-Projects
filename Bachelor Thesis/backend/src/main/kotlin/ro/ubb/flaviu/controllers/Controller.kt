@@ -40,6 +40,7 @@ class Controller {
         val board = games[id] ?: throw Exception("invalid id")
         val options = optionsMap[id] ?: throw Exception("invalid id")
         val cloneBoard = board.clone()
+        println(options)
         val moveState = MinMax(
             board,
             options.alphaBeta,

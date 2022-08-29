@@ -28,7 +28,7 @@ class MinMax (private val board: Board,
         const val QUIESCENCE_DEPTH = 10
         private const val TRANSPOSITION_TABLE_SIZE = 1e6
         private const val TRANSPOSITION_DEPTH_LIMIT = 100
-        const val THREADS_PER_NODE = 2
+        const val THREADS_PER_NODE = 3
         const val PARALLELIZATION_DEPTH_CUTOFF = 1
         const val DEBUG = true
 
@@ -85,11 +85,11 @@ class MinMax (private val board: Board,
             return evaluate()
 
         val moves = board.getAllValidMoves().filter { it.isCapture }.shuffled().sortedByDescending { it.score }
-        var evaluation = if (board.currentColor == Color.WHITE) MINIMUM_VALUE else MAXIMUM_VALUE
+        var evaluation = evaluate()
 
         for (move in moves) {
             board.move(move)
-            val score = MinMax(board).quiesce(depthLeft-1, alpha, beta)
+            val score = MinMax(board, ENABLE_ALPHA_BETA_PRUNING, ENABLE_QUIESCENCE, ENABLE_TRANSPOSITION_TABLE, ENABLE_PARALLELIZATION, ITERATIVE_DEEPENING_LOW_CUTOFF).quiesce(depthLeft-1, alpha, beta)
             board.unmove()
             if (board.currentColor == Color.WHITE) {
                 if (score > evaluation)
@@ -167,7 +167,7 @@ class MinMax (private val board: Board,
                 executorService.execute {
                     val boardClone = board.clone()
                     boardClone.move(move)
-                    val moveState = MinMax(boardClone).getBestMove(depthLeft-1, depthDone+1, alpha, beta)
+                    val moveState = MinMax(boardClone, ENABLE_ALPHA_BETA_PRUNING, ENABLE_QUIESCENCE, ENABLE_TRANSPOSITION_TABLE, ENABLE_PARALLELIZATION, ITERATIVE_DEEPENING_LOW_CUTOFF).getBestMove(depthLeft-1, depthDone+1, alpha, beta)
 
                     if (board.currentColor == Color.WHITE && moveState.finalState == BoardState.BLACK_WIN && moveState.line.isEmpty()) {
                         ++cntSureMoves
@@ -205,7 +205,7 @@ class MinMax (private val board: Board,
         }
         for (move in moves.slice(b until c)) {
             board.move(move)
-            val moveState = MinMax(board).getBestMove(depthLeft-1, depthDone+1, alpha, beta)
+            val moveState = MinMax(board, ENABLE_ALPHA_BETA_PRUNING, ENABLE_QUIESCENCE, ENABLE_TRANSPOSITION_TABLE, ENABLE_PARALLELIZATION, ITERATIVE_DEEPENING_LOW_CUTOFF).getBestMove(depthLeft-1, depthDone+1, alpha, beta)
             board.unmove()
 
             if (board.currentColor == Color.WHITE && moveState.finalState == BoardState.BLACK_WIN && moveState.line.isEmpty()) {
