@@ -1,10 +1,10 @@
 package ro.ubb.flaviu.models.pieces
 
-import models.*
-import models.moves.BasicMove
-import models.moves.CastlingMove
-import models.moves.HistoryMove
-import models.moves.Move
+import ro.ubb.flaviu.models.*
+import ro.ubb.flaviu.models.moves.BasicMove
+import ro.ubb.flaviu.models.moves.CastlingMove
+import ro.ubb.flaviu.models.moves.HistoryMove
+import ro.ubb.flaviu.models.moves.Move
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
@@ -43,8 +43,8 @@ internal class KingTest {
             Rook(Position(0, 0), Color.WHITE),
         ),
         mutableListOf(
-            HistoryMove(BasicMove(Color.WHITE, Position(0, 7), Position(0, 6)), PieceName.ROOK),
-            HistoryMove(BasicMove(Color.WHITE, Position(0, 6), Position(0, 7)), PieceName.ROOK)
+            HistoryMove(BasicMove(Color.WHITE, Position(0, 7), Position(0, 6), false, 0.0), PieceName.ROOK, null),
+            HistoryMove(BasicMove(Color.WHITE, Position(0, 6), Position(0, 7), false, 0.0), PieceName.ROOK, null)
         )
     )
     private val boardWithKingsAndRooksAndPiecesInBetween = Board(
@@ -71,7 +71,7 @@ internal class KingTest {
             Position(4, 3),
             Position(4, 4),
         ))
-            expectedMoves.add(BasicMove(Color.WHITE, Position(3, 3), position))
+            expectedMoves.add(BasicMove(Color.WHITE, Position(3, 3), position, false, 0.0))
         assertEquals(moves, expectedMoves.toSet())
     }
 
@@ -87,7 +87,7 @@ internal class KingTest {
             Position(1, 4),
             Position(1, 5),
         ))
-            expectedMoves.add(BasicMove(Color.WHITE, king.position, position))
+            expectedMoves.add(BasicMove(Color.WHITE, king.position, position, false, 0.0))
         expectedMoves.add(CastlingMove(Color.WHITE, CastleType.KING_SIDE))
         expectedMoves.add(CastlingMove(Color.WHITE, CastleType.QUEEN_SIDE))
         assertEquals(moves, expectedMoves.toSet())
@@ -105,7 +105,7 @@ internal class KingTest {
             Position(6, 4),
             Position(6, 5),
         ))
-            expectedMoves.add(BasicMove(Color.BLACK, king.position, position))
+            expectedMoves.add(BasicMove(Color.BLACK, king.position, position, false, 0.0))
         expectedMoves.add(CastlingMove(Color.BLACK, CastleType.KING_SIDE))
         expectedMoves.add(CastlingMove(Color.BLACK, CastleType.QUEEN_SIDE))
         assertEquals(moves, expectedMoves.toSet())
@@ -123,7 +123,7 @@ internal class KingTest {
             Position(1, 4),
             Position(1, 5),
         ))
-            expectedMoves.add(BasicMove(Color.WHITE, king.position, position))
+            expectedMoves.add(BasicMove(Color.WHITE, king.position, position, false, 0.0))
         expectedMoves.add(CastlingMove(Color.WHITE, CastleType.KING_SIDE))
         assertEquals(moves, expectedMoves.toSet())
     }
@@ -140,7 +140,7 @@ internal class KingTest {
             Position(1, 4),
             Position(1, 5),
         ))
-            expectedMoves.add(BasicMove(Color.WHITE, king.position, position))
+            expectedMoves.add(BasicMove(Color.WHITE, king.position, position, false, 0.0))
         expectedMoves.add(CastlingMove(Color.WHITE, CastleType.QUEEN_SIDE))
         assertEquals(moves, expectedMoves.toSet())
     }
@@ -157,7 +157,7 @@ internal class KingTest {
             Position(1, 4),
             Position(1, 5),
         ))
-            expectedMoves.add(BasicMove(Color.WHITE, king.position, position))
+            expectedMoves.add(BasicMove(Color.WHITE, king.position, position, false, 0.0))
         expectedMoves.add(CastlingMove(Color.WHITE, CastleType.KING_SIDE))
         assertEquals(moves, expectedMoves.toSet())
     }

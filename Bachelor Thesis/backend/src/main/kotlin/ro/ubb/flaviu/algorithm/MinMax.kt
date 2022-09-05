@@ -25,7 +25,7 @@ class MinMax (private val board: Board,
     companion object {
         const val MINIMUM_VALUE = -1000000.0
         const val MAXIMUM_VALUE = 1000000.0
-        const val QUIESCENCE_DEPTH = 10
+        const val QUIESCENCE_DEPTH = 4
         private const val TRANSPOSITION_TABLE_SIZE = 1e6
         private const val TRANSPOSITION_DEPTH_LIMIT = 100
         const val THREADS_PER_NODE = 3

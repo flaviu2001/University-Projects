@@ -34,7 +34,7 @@ internal class BoardTest {
             Pawn(Position(4, 3), Color.WHITE),
             Pawn(Position(4, 4), Color.BLACK)
         ),
-        mutableListOf(HistoryMove(BasicMove(Color.BLACK, Position(6, 4), Position(4, 4)), PieceName.PAWN))
+        mutableListOf(HistoryMove(BasicMove(Color.BLACK, Position(6, 4), Position(4, 4), false, 0.0), PieceName.PAWN, null))
     )
 
     private val boardPromotionMove = Board(
@@ -54,14 +54,14 @@ internal class BoardTest {
 
     @Test
     fun moveBasicMoveNonEating() {
-        boardBasicMoveNonEating.move(BasicMove(Color.WHITE, Position(1, 3), Position(4, 3)))
+        boardBasicMoveNonEating.move(BasicMove(Color.WHITE, Position(1, 3), Position(4, 3), false, 0.0))
         assert(piecesEqual(boardBasicMoveNonEating.pieceAt(Position(4, 3)), Rook(Position(4, 3), Color.WHITE)))
         assertNull(boardBasicMoveNonEating.pieceAt(Position(1, 3)))
     }
 
     @Test
     fun moveBasicMoveEating() {
-        boardBasicMoveEating.move(BasicMove(Color.WHITE, Position(1, 3), Position(5, 3)))
+        boardBasicMoveEating.move(BasicMove(Color.WHITE, Position(1, 3), Position(5, 3), true, 0.0))
         assert(piecesEqual(boardBasicMoveEating.pieceAt(Position(5, 3)), Rook(Position(5, 3), Color.WHITE)))
         assertNull(boardBasicMoveEating.pieceAt(Position(1, 3)))
         assert(boardBasicMoveEating.historyOfMoves.size == 1)
@@ -86,7 +86,7 @@ internal class BoardTest {
 
     @Test
     fun movePromotionMove() {
-        boardPromotionMove.move(PromotionMove(Color.WHITE, Position(6, 5), 6, PieceName.ROOK))
+        boardPromotionMove.move(PromotionMove(Color.WHITE, Position(6, 5), 6, PieceName.ROOK, false))
         assert(piecesEqual(boardPromotionMove.pieceAt(Position(7, 6)), Rook(Position(7, 6), Color.WHITE)))
         assertNull(boardPromotionMove.pieceAt(Position(6, 5)))
     }

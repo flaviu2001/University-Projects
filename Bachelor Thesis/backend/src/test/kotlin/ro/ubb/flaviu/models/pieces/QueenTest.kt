@@ -1,11 +1,11 @@
 package ro.ubb.flaviu.models.pieces
 
-import models.Board
-import models.Color
-import models.PieceSet
-import models.Position
-import models.moves.BasicMove
-import models.moves.Move
+import ro.ubb.flaviu.models.Board
+import ro.ubb.flaviu.models.Color
+import ro.ubb.flaviu.models.PieceSet
+import ro.ubb.flaviu.models.Position
+import ro.ubb.flaviu.models.moves.BasicMove
+import ro.ubb.flaviu.models.moves.Move
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
@@ -52,7 +52,7 @@ internal class QueenTest {
             Position(3, 6),
             Position(3, 7),
         ))
-            expectedMoves.add(BasicMove(Color.WHITE, Position(3, 3), position))
+            expectedMoves.add(BasicMove(Color.WHITE, Position(3, 3), position, false, 0.0))
         assertEquals(moves, expectedMoves.toSet())
     }
 
@@ -84,7 +84,7 @@ internal class QueenTest {
             Position(3, 6),
             Position(3, 7),
         ))
-            expectedMoves.add(BasicMove(Color.WHITE, Position(3, 3), position))
+            expectedMoves.add(BasicMove(Color.WHITE, Position(3, 3), position, false, 0.0))
         assertEquals(moves, expectedMoves.toSet())
     }
 }

@@ -1,10 +1,10 @@
 package ro.ubb.flaviu.models.pieces
 
-import models.Board
-import models.Color
-import models.PieceSet
-import models.Position
-import models.moves.*
+import ro.ubb.flaviu.models.Board
+import ro.ubb.flaviu.models.Color
+import ro.ubb.flaviu.models.PieceSet
+import ro.ubb.flaviu.models.Position
+import ro.ubb.flaviu.models.moves.*
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
@@ -24,7 +24,7 @@ internal class PawnTest {
             Pawn(Position(4, 3), Color.WHITE),
             Pawn(Position(4, 4), Color.BLACK)
         ),
-        mutableListOf(HistoryMove(BasicMove(Color.BLACK, Position(6, 4), Position(4, 4)), PieceName.PAWN))
+        mutableListOf(HistoryMove(BasicMove(Color.BLACK, Position(6, 4), Position(4, 4), false, 0.0), PieceName.PAWN, null))
     )
     private val boardWithPawnPromoting = Board(
         Color.BLACK, PieceSet(
@@ -47,7 +47,7 @@ internal class PawnTest {
             Position(2, 3),
             Position(3, 3),
         ))
-            expectedMoves.add(BasicMove(Color.WHITE, Position(1, 3), position))
+            expectedMoves.add(BasicMove(Color.WHITE, Position(1, 3), position, false, 0.0))
         assertEquals(moves, expectedMoves.toSet())
     }
 
@@ -60,7 +60,7 @@ internal class PawnTest {
             Position(5, 3),
             Position(4, 3),
         ))
-            expectedMoves.add(BasicMove(Color.BLACK, Position(6, 3), position))
+            expectedMoves.add(BasicMove(Color.BLACK, Position(6, 3), position, false, 0.0))
         assertEquals(moves, expectedMoves.toSet())
     }
 
@@ -72,7 +72,7 @@ internal class PawnTest {
         for (position in listOf(
             Position(3, 3)
         ))
-            expectedMoves.add(BasicMove(Color.WHITE, Position(2, 3), position))
+            expectedMoves.add(BasicMove(Color.WHITE, Position(2, 3), position, false, 0.0))
         assertEquals(moves, expectedMoves.toSet())
     }
 
@@ -84,7 +84,7 @@ internal class PawnTest {
         for (position in listOf(
             Position(5, 3)
         ))
-            expectedMoves.add(BasicMove(Color.WHITE, Position(4, 3), position))
+            expectedMoves.add(BasicMove(Color.WHITE, Position(4, 3), position, false, 0.0))
         expectedMoves.add(EnPassantMove(Color.WHITE, Position(4, 3), Position(5, 4)))
         assertEquals(moves, expectedMoves.toSet())
     }
@@ -95,7 +95,7 @@ internal class PawnTest {
         val moves = pawn.getValidMoves(boardWithPawnPromoting).toSet()
         val expectedMoves = mutableListOf<Move>()
         for (promotionChoice in listOf(PieceName.ROOK, PieceName.QUEEN, PieceName.BISHOP, PieceName.KNIGHT))
-            expectedMoves.add(PromotionMove(Color.BLACK, Position(1, 6), 6, promotionChoice))
+            expectedMoves.add(PromotionMove(Color.BLACK, Position(1, 6), 6, promotionChoice, false))
         assertEquals(moves, expectedMoves.toSet())
     }
 
@@ -105,8 +105,8 @@ internal class PawnTest {
         val moves = pawn.getValidMoves(boardWithPawnPromotingTwoPlaces).toSet()
         val expectedMoves = mutableListOf<Move>()
         for (promotionChoice in listOf(PieceName.ROOK, PieceName.QUEEN, PieceName.BISHOP, PieceName.KNIGHT)) {
-            expectedMoves.add(PromotionMove(Color.BLACK, Position(1, 6), 6, promotionChoice))
-            expectedMoves.add(PromotionMove(Color.BLACK, Position(1, 6), 5, promotionChoice))
+            expectedMoves.add(PromotionMove(Color.BLACK, Position(1, 6), 6, promotionChoice, false))
+            expectedMoves.add(PromotionMove(Color.BLACK, Position(1, 6), 5, promotionChoice, false))
         }
         assertEquals(moves, expectedMoves.toSet())
     }
